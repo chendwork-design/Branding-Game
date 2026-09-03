@@ -2,6 +2,11 @@ packages:
   - apps/*
   - packages/*
 
+# Kept alongside `allowBuilds` for Cloudflare build images that still run
+# pnpm 10 and do not recognize the pnpm 11 setting below.
+onlyBuiltDependencies:
+  - esbuild
+
 allowBuilds:
   esbuild: true
   simple-git-hooks: false

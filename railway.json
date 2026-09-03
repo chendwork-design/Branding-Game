@@ -5,7 +5,8 @@
   },
   "deploy": {
     "preDeployCommand": [
-      "node apps/api/dist/apps/api/src/db/migrate.js"
+      "node apps/api/dist/apps/api/src/db/migrate.js",
+      "node apps/api/dist/apps/api/src/db/seed-test.js"
     ],
     "healthcheckPath": "/ready",
     "healthcheckTimeout": 120,

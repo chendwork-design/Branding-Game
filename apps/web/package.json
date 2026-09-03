@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -p tsconfig.json && vite build --configLoader runner --outDir ../../.vite-cache/web-dist && vite build --config legacy-vite.config.mjs --configLoader runner",
+    "build": "tsc -p tsconfig.json && vite build --outDir ../../.vite-cache/web-dist && vite build --config legacy-vite.config.mjs",
     "lint": "eslint src",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --configLoader runner",

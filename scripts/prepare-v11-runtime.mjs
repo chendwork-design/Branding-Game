@@ -28,6 +28,7 @@ for (const packageName of workspacePackages) {
         type: 'module',
         exports: {
           '.': './src/index.js',
+          './full': './src/full.js',
         },
       },
       null,

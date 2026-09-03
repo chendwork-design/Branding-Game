@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="title desc">
+  <title id="title">茶团子 IP 方案</title><desc id="desc">带茶叶帽的圆形角色，适用于杯套和社交头像。</desc>
+  <rect width="480" height="300" rx="28" fill="#f4e2c8"/>
+  <circle cx="240" cy="142" r="76" fill="#d6863e"/>
+  <path d="M223 73c8-41 46-52 73-39-16 27-40 41-73 39Z" fill="#567249"/>
+  <circle cx="213" cy="135" r="8" fill="#25201c"/><circle cx="267" cy="135" r="8" fill="#25201c"/>
+  <path d="M211 166c19 17 39 17 58 0" fill="none" stroke="#25201c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M162 174c-26 10-38 29-41 49m197-49c26 10 38 29 41 49" fill="none" stroke="#b9602f" stroke-width="12" stroke-linecap="round"/>
+  <text x="240" y="260" text-anchor="middle" fill="#25201c" font-size="29" font-family="sans-serif" font-weight="700">茶团子来打招呼</text>
+</svg>

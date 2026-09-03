@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="一抹茶色插画视觉提案">
+  <rect width="360" height="220" rx="24" fill="#edf0e7"/>
+  <path d="M45 154C93 58 142 185 189 78s79 89 128-39" fill="none" stroke="#8fae91" stroke-width="26" stroke-linecap="round" opacity=".7"/>
+  <path d="M56 167c67-64 126 55 246-89" fill="none" stroke="#557b67" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="178" cy="113" r="38" fill="#c58f52"/>
+  <path d="M151 110h54M160 130h36" stroke="#fff8e8" stroke-width="7" stroke-linecap="round"/>
+  <text x="180" y="205" text-anchor="middle" fill="#557b67" font-family="serif" font-size="18" letter-spacing="4">一抹茶色</text>
+</svg>

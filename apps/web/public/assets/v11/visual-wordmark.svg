@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="title desc">
+  <title id="title">一笔成街文字标志方案</title><desc id="desc">深墨色文字标志，配合一条连续的街巷线。</desc>
+  <rect width="480" height="300" rx="28" fill="#f6f0e6"/>
+  <path d="M58 230C118 192 156 247 214 202S316 159 418 202" fill="none" stroke="#b9602f" stroke-width="9" stroke-linecap="round"/>
+  <text x="48" y="150" fill="#25201c" font-size="62" font-family="serif" font-weight="700">一盏屯溪</text>
+  <text x="52" y="184" fill="#796f64" font-size="18" font-family="sans-serif" letter-spacing="5">TEA · OLD STREET</text>
+</svg>

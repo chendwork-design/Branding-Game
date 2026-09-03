@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300" role="img" aria-labelledby="title desc">
+  <title id="title">山影入杯符号方案</title><desc id="desc">朱砂红印章中的山形茶杯符号。</desc>
+  <rect width="480" height="300" rx="28" fill="#efe9dd"/>
+  <circle cx="240" cy="126" r="84" fill="#b94f31"/>
+  <path d="M166 143 214 87l30 36 28-55 52 75H166Z" fill="#f6e8cf"/>
+  <path d="M190 155h100l-10 40c-2 12-12 19-24 19h-32c-12 0-22-7-24-19l-10-40Z" fill="#25201c"/>
+  <text x="240" y="257" text-anchor="middle" fill="#25201c" font-size="29" font-family="serif" font-weight="700">山影入杯</text>
+</svg>

@@ -1,0 +1,444 @@
+{
+  "version": "v1.8",
+  "referenceRoots": [
+    "docs/visual-references/v1.5-user-set-01",
+    "docs/visual-references/v1.6-user-set-02"
+  ],
+  "assets": [
+    {
+      "path": "scenes/briefing/briefing-r08-v18.jpg",
+      "semanticRole": "r08-briefing",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "scenes/results/result-r08-v18-stable.jpg",
+      "semanticRole": "r08-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r08-world-master",
+      "resultGroup": "r08-v18",
+      "outcomeState": "stable"
+    },
+    {
+      "path": "scenes/results/result-r08-v18-strained.jpg",
+      "semanticRole": "r08-result",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r08-world-master",
+      "resultGroup": "r08-v18",
+      "outcomeState": "strained"
+    },
+    {
+      "path": "scenes/results/result-r08-v18-crisis.jpg",
+      "semanticRole": "r08-result",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r08-world-master",
+      "resultGroup": "r08-v18",
+      "outcomeState": "crisis"
+    },
+    {
+      "path": "touchpoints/v18/touchpoint-storefront.jpg",
+      "semanticRole": "visual-touchpoint-storefront",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "touchpoints/v18/touchpoint-cup.jpg",
+      "semanticRole": "visual-touchpoint-cup",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "touchpoints/v18/touchpoint-bag.jpg",
+      "semanticRole": "visual-touchpoint-bag",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "touchpoints/v18/touchpoint-avatar.jpg",
+      "semanticRole": "visual-touchpoint-avatar",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "touchpoints/v18/touchpoint-receipt.jpg",
+      "semanticRole": "visual-touchpoint-receipt",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r08-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r01-v18.jpg",
+      "semanticRole": "r01-briefing",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r01-world-master"
+    },
+    {
+      "path": "scenes/results/result-r01-v18-neighbor.jpg",
+      "semanticRole": "r01-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r01-world-master",
+      "resultGroup": "r01-v18",
+      "outcomeState": "stable"
+    },
+    {
+      "path": "scenes/results/result-r01-v18-hybrid.jpg",
+      "semanticRole": "r01-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r01-world-master",
+      "resultGroup": "r01-v18",
+      "outcomeState": "strained"
+    },
+    {
+      "path": "scenes/results/result-r01-v18-tourist.jpg",
+      "semanticRole": "r01-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r01-world-master",
+      "resultGroup": "r01-v18",
+      "outcomeState": "crisis"
+    },
+    {
+      "path": "decisions/products/product-r03-v18-stable.jpg",
+      "semanticRole": "r03-product-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r03-comparison-set"
+    },
+    {
+      "path": "decisions/products/product-r03-v18-complex.jpg",
+      "semanticRole": "r03-product-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r03-comparison-set"
+    },
+    {
+      "path": "decisions/products/product-r03-v18-local.jpg",
+      "semanticRole": "r03-product-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r03-comparison-set"
+    },
+    {
+      "path": "decisions/products/product-r03-v18-seasonal-ritual.jpg",
+      "semanticRole": "r03-product-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r03-comparison-set"
+    },
+    {
+      "path": "decisions/products/product-r03-v18-modular-menu.jpg",
+      "semanticRole": "r03-product-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r03-comparison-set"
+    },
+    {
+      "path": "scenes/briefing/briefing-r03-v18.jpg",
+      "semanticRole": "r03-briefing",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r03-world-master"
+    },
+    {
+      "path": "scenes/chapters/chapter-03-service-v2.jpg",
+      "semanticRole": "chapter-03-service-review",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r07-world-master"
+    },
+    {
+      "path": "scenes/results/result-r03-v18-stable.jpg",
+      "semanticRole": "r03-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r03-world-master",
+      "resultGroup": "r03-v18",
+      "outcomeState": "stable"
+    },
+    {
+      "path": "scenes/results/result-r03-v18-strained.jpg",
+      "semanticRole": "r03-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r03-world-master",
+      "resultGroup": "r03-v18",
+      "outcomeState": "strained"
+    },
+    {
+      "path": "scenes/results/result-r03-v18-crisis.jpg",
+      "semanticRole": "r03-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r03-world-master",
+      "resultGroup": "r03-v18",
+      "outcomeState": "crisis"
+    },
+    {
+      "path": "scenes/briefing/briefing-r11-v18.jpg",
+      "semanticRole": "r11-briefing",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r11-world-master"
+    },
+    {
+      "path": "scenes/results/result-r11-v18-stable.jpg",
+      "semanticRole": "r11-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r11-world-master",
+      "resultGroup": "r11-v18",
+      "outcomeState": "stable"
+    },
+    {
+      "path": "scenes/results/result-r11-v18-strained.jpg",
+      "semanticRole": "r11-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r11-world-master",
+      "resultGroup": "r11-v18",
+      "outcomeState": "strained"
+    },
+    {
+      "path": "scenes/results/result-r11-v18-crisis.jpg",
+      "semanticRole": "r11-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r11-world-master",
+      "resultGroup": "r11-v18",
+      "outcomeState": "crisis"
+    },
+    {
+      "path": "decisions/packaging/package-r04-v18-everyday-cup.jpg",
+      "semanticRole": "r04-packaging-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r04-comparison-set"
+    },
+    {
+      "path": "decisions/packaging/package-r04-v18-gift-box.jpg",
+      "semanticRole": "r04-packaging-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r04-comparison-set"
+    },
+    {
+      "path": "decisions/packaging/package-r04-v18-refill.jpg",
+      "semanticRole": "r04-packaging-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r04-comparison-set"
+    },
+    {
+      "path": "decisions/packaging/package-r04-v18-price-ladder.jpg",
+      "semanticRole": "r04-packaging-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r04-comparison-set"
+    },
+    {
+      "path": "decisions/packaging/package-r04-v18-bundle.jpg",
+      "semanticRole": "r04-packaging-choice",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 900,
+      "parentAssetId": "r04-comparison-set"
+    },
+    {
+      "path": "visual-system-line.jpg",
+      "semanticRole": "visual-system-line-preview",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 800,
+      "parentAssetId": "r05-visual-comparison-set"
+    },
+    {
+      "path": "visual-system-symbol.jpg",
+      "semanticRole": "visual-system-symbol-preview",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 800,
+      "parentAssetId": "r05-visual-comparison-set"
+    },
+    {
+      "path": "visual-system-ip.jpg",
+      "semanticRole": "visual-system-ip-preview",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1200,
+      "height": 800,
+      "parentAssetId": "r05-visual-comparison-set"
+    },
+    {
+      "path": "rewards/positive-cashflow-v1.jpg",
+      "semanticRole": "positive-cashflow-reward",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 800,
+      "height": 941,
+      "parentAssetId": "result-reward-system"
+    },
+    {
+      "path": "scenes/briefing/briefing-r04.jpg",
+      "semanticRole": "r04-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r04-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r05.jpg",
+      "semanticRole": "r05-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r05-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r06.jpg",
+      "semanticRole": "r06-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r06-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r09.jpg",
+      "semanticRole": "r09-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r09-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r10.jpg",
+      "semanticRole": "r10-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r10-world-master"
+    },
+    {
+      "path": "scenes/briefing/briefing-r12.jpg",
+      "semanticRole": "r12-briefing",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r12-world-master"
+    },
+    {
+      "path": "scenes/results/result-r10-stable.jpg",
+      "semanticRole": "r10-result",
+      "provenance": "generated-original",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r10-world-master",
+      "resultGroup": "r10-v18",
+      "outcomeState": "stable"
+    },
+    {
+      "path": "scenes/results/result-r10-strained.jpg",
+      "semanticRole": "r10-result",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r10-world-master",
+      "resultGroup": "r10-v18",
+      "outcomeState": "strained"
+    },
+    {
+      "path": "scenes/results/result-r10-crisis.jpg",
+      "semanticRole": "r10-result",
+      "provenance": "generated-edit",
+      "reviewStatus": "approved",
+      "width": 1280,
+      "height": 720,
+      "parentAssetId": "r10-world-master",
+      "resultGroup": "r10-v18",
+      "outcomeState": "crisis"
+    }
+  ]
+}

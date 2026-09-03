@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="印章入巷符号视觉提案">
+  <rect width="360" height="220" rx="24" fill="#f4e9d7"/>
+  <rect x="108" y="35" width="144" height="144" rx="18" fill="#aa4f36"/>
+  <rect x="119" y="46" width="122" height="122" rx="9" fill="none" stroke="#f7dfb8" stroke-width="5"/>
+  <path d="M144 82h72M144 112h46M144 142h72" stroke="#f7dfb8" stroke-width="9" stroke-linecap="square"/>
+  <text x="180" y="205" text-anchor="middle" fill="#7f4a36" font-family="serif" font-size="18" letter-spacing="5">印章入巷</text>
+</svg>

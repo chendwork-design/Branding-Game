@@ -1,0 +1,63 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  color: #3e3026;
+  background: #f6efe2;
+  font-family: 'Microsoft YaHei', sans-serif;
+}
+.legacy-fallback {
+  width: min(100% - 32px, 620px);
+  margin: 0 auto;
+  padding: 48px 0;
+}
+.legacy-fallback h1 {
+  margin: 8px 0 18px;
+  font-family: Georgia, 'Songti SC', serif;
+  font-size: clamp(2.4rem, 9vw, 5rem);
+  line-height: 1;
+}
+.legacy-fallback p {
+  line-height: 1.65;
+}
+.legacy-fallback .eyebrow {
+  color: #a25d3d;
+  font-size: 0.9rem;
+}
+.legacy-fallback form {
+  display: grid;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 20px;
+  border: 1px solid #e2d4c2;
+  border-radius: 16px;
+  background: #fffaf2;
+}
+.legacy-fallback label {
+  display: grid;
+  gap: 5px;
+  color: #6e5b49;
+  font-size: 0.82rem;
+}
+.legacy-fallback input {
+  min-height: 48px;
+  padding: 10px 12px;
+  border: 1px solid #d5c2a9;
+  border-radius: 10px;
+  font: inherit;
+  background: #fffdf9;
+}
+.legacy-fallback button {
+  min-height: 48px;
+  border: 0;
+  border-radius: 10px;
+  color: #fffaf2;
+  background: #a25d3d;
+  font: inherit;
+  cursor: pointer;
+}
+.legacy-note {
+  color: #786958;
+  font-size: 0.78rem;
+}

@@ -1,0 +1,10 @@
+.git
+.cache
+.tmp-tests
+.vite-cache
+test-results
+playwright-report
+node_modules
+**/node_modules
+**/dist
+*.log

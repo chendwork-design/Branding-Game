@@ -1,0 +1,161 @@
+name: quality-gates
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  CI: true
+
+jobs:
+  quality:
+    name: static, content and release gates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compile and validate the release content
+        run: |
+          pnpm content:compile
+          git diff --exit-code -- content/compiled
+
+      - name: Run quality gates
+        run: |
+          pnpm format:check
+          pnpm lint
+          pnpm typecheck
+          pnpm test
+          pnpm release:build
+          pnpm release:smoke
+
+      - name: Run release and asset gates
+        run: |
+          pnpm release:check
+          pnpm assets:check:v11
+          pnpm assets:audit:v18
+          pnpm pilot:preflight
+
+      - name: Build the immutable API image
+        run: docker build --file Dockerfile.api --tag laojie-brand-game:${{ github.sha }} .
+
+  browsers:
+    name: browser critical paths
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build the candidate web bundle
+        run: pnpm build
+
+      - name: Install Chromium and WebKit
+        run: pnpm --filter @laojie/web exec playwright install --with-deps chromium webkit
+
+      - name: Run browser E2E
+        run: pnpm --filter @laojie/web test:e2e --project=chromium --project=iphone-webkit
+
+  formal-storage:
+    name: PostgreSQL migration, restart and restore gates
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_DB: laojie
+          POSTGRES_USER: laojie
+          POSTGRES_PASSWORD: change-me-ci-only
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U laojie -d laojie"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+          run_install: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install PostgreSQL client utilities
+        run: sudo apt-get update && sudo apt-get install --yes postgresql-client
+
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compile the candidate content and migrate the database
+        env:
+          DATABASE_URL: postgres://laojie:change-me-ci-only@127.0.0.1:5432/laojie
+          SEED_ENCRYPTION_KEY: 0000000000000000000000000000000000000000000000000000000000000000
+        run: |
+          pnpm content:compile
+          pnpm db:migrate
+          pnpm db:seed:test
+
+      - name: Build and exercise the PostgreSQL V11 runtime
+        env:
+          DATABASE_URL: postgres://laojie:change-me-ci-only@127.0.0.1:5432/laojie
+          SEED_ENCRYPTION_KEY: 0000000000000000000000000000000000000000000000000000000000000000
+        run: |
+          pnpm release:build
+          pnpm formal:storage:smoke
+
+      - name: Verify backup and restore into an isolated database
+        env:
+          DATABASE_URL: postgres://laojie:change-me-ci-only@127.0.0.1:5432/laojie
+          RESTORE_DATABASE_URL: postgres://laojie:change-me-ci-only@127.0.0.1:5432/laojie_restore
+          SEED_ENCRYPTION_KEY: 0000000000000000000000000000000000000000000000000000000000000000
+          BACKUP_DIR: db/backups/ci
+          CONFIRM_RESTORE: YES
+        run: |
+          psql "$DATABASE_URL" -c "CREATE DATABASE laojie_restore"
+          pnpm ops:backup
+          backup_file=$(find db/backups/ci -maxdepth 1 -name '*.dump' -print -quit)
+          test -n "$backup_file"
+          BACKUP_FILE="$backup_file" node scripts/restore.mjs
+          test "$(psql "$RESTORE_DATABASE_URL" -Atc 'SELECT count(*) FROM playthroughs')" -ge 1
+          test "$(psql "$RESTORE_DATABASE_URL" -Atc 'SELECT count(*) FROM decision_logs')" -ge 1

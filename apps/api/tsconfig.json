@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "../..",
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@laojie/content-schema": ["../../packages/content-schema/src/index.ts"],
+      "@laojie/content-schema/sample": ["../../packages/content-schema/src/sample.ts"],
+      "@laojie/game-engine": ["../../packages/game-engine/src/index.ts"],
+      "@laojie/report-engine": ["../../packages/report-engine/src/index.ts"],
+      "@laojie/shared-contracts": ["../../packages/shared-contracts/src/index.ts"]
+    }
+  },
+  "include": ["src", "tests"]
+}

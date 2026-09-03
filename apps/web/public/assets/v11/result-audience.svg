@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="街口顾客观察场景">
+  <rect width="360" height="220" rx="24" fill="#f7ead7"/>
+  <path d="M0 177h360" stroke="#b8845b" stroke-width="20"/>
+  <path d="M48 173V56h168v117" fill="#8e5c43"/><path d="M56 83h152" stroke="#f2d4a6" stroke-width="18"/>
+  <text x="132" y="89" text-anchor="middle" fill="#613b2d" font-size="19" font-family="serif">老街茶饮</text>
+  <circle cx="266" cy="116" r="22" fill="#d79662"/><path d="M248 174v-35c0-17 36-17 36 0v35" fill="#52796c"/>
+  <circle cx="315" cy="132" r="17" fill="#c98255"/><path d="M302 174v-25c0-15 26-15 26 0v25" fill="#aa704d"/>
+</svg>

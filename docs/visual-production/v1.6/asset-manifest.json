@@ -1,0 +1,84 @@
+{
+  "version": "v1.6",
+  "runtimeRoot": "/assets/v11",
+  "rasterFormat": "jpg",
+  "generatedAt": "2026-08-30",
+  "families": {
+    "onboarding": {
+      "count": 6,
+      "files": [
+        "scenes/onboarding/onboarding-place.jpg",
+        "scenes/onboarding/onboarding-goal.jpg",
+        "scenes/onboarding/onboarding-operation.jpg",
+        "scenes/onboarding/onboarding-loop-observe.jpg",
+        "scenes/onboarding/onboarding-loop-decide.jpg",
+        "scenes/onboarding/onboarding-loop-result.jpg"
+      ]
+    },
+    "briefing": {
+      "count": 12,
+      "files": [
+        "scenes/briefing/briefing-r01.jpg",
+        "scenes/briefing/briefing-r02.jpg",
+        "scenes/briefing/briefing-r03.jpg",
+        "scenes/briefing/briefing-r04.jpg",
+        "scenes/briefing/briefing-r05.jpg",
+        "scenes/briefing/briefing-r06.jpg",
+        "scenes/briefing/briefing-r07.jpg",
+        "scenes/briefing/briefing-r08.jpg",
+        "scenes/briefing/briefing-r09.jpg",
+        "scenes/briefing/briefing-r10.jpg",
+        "scenes/briefing/briefing-r11.jpg",
+        "scenes/briefing/briefing-r12.jpg"
+      ]
+    },
+    "resultStates": {
+      "count": 36,
+      "pattern": "scenes/results/result-r{01..12}-{stable|strained|crisis}.jpg"
+    },
+    "chapters": {
+      "count": 4,
+      "files": [
+        "scenes/chapters/chapter-01-customers.jpg",
+        "scenes/chapters/chapter-02-product-identity.jpg",
+        "scenes/chapters/chapter-03-service.jpg",
+        "scenes/chapters/chapter-04-growth.jpg"
+      ]
+    },
+    "decisions": {
+      "count": 13,
+      "patterns": [
+        "decisions/products/product-r03-*.jpg",
+        "decisions/packaging/package-r04-*.jpg",
+        "decisions/ip-objects/ip-object-*.jpg"
+      ]
+    },
+    "touchpoints": {
+      "count": 5,
+      "files": [
+        "touchpoints/touchpoint-storefront.jpg",
+        "touchpoints/touchpoint-cup.jpg",
+        "touchpoints/touchpoint-bag.jpg",
+        "touchpoints/touchpoint-avatar.jpg",
+        "touchpoints/touchpoint-receipt.jpg"
+      ]
+    },
+    "visualRoutes": {
+      "count": 3,
+      "files": ["visual-wordmark.svg", "visual-symbol.svg", "visual-ip.svg"]
+    }
+  },
+  "compatibility": {
+    "onboarding-operation": "scenes/onboarding/onboarding-operation.jpg",
+    "briefing-r01-street": "scenes/briefing/briefing-r01.jpg",
+    "briefing-r03-product": "scenes/briefing/briefing-r03.jpg",
+    "briefing-r08-visual": "scenes/briefing/briefing-r08.jpg",
+    "briefing-r11-growth": "scenes/briefing/briefing-r11.jpg"
+  },
+  "quality": {
+    "allRuntimeRasterFilesExist": true,
+    "fallbackSvgRetained": true,
+    "noGeneratedTextUsedAsBrandCopy": true,
+    "stateMappingIsRoundAndOutcomeSpecific": true
+  }
+}

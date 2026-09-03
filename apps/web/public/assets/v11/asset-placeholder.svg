@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">老街品牌局占位图</title>
+  <desc id="desc">当正式场景资产未加载时显示的安全占位图</desc>
+  <rect width="1200" height="800" fill="#f3e7d3"/>
+  <path d="M0 610h1200v190H0z" fill="#d9c29e"/>
+  <path d="M100 610V330h260v280M430 610V250h310v360M810 610V365h290v245" fill="#fff9ed" stroke="#7c5f48" stroke-width="12"/>
+  <path d="M100 330h260l-130-120zM430 250h310L585 90zM810 365h290l-145-120z" fill="#8b5e43"/>
+  <text x="600" y="710" text-anchor="middle" fill="#604b3c" font-family="serif" font-size="48">屯溪老街 · 品牌现场</text>
+</svg>

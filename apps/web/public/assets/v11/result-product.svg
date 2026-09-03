@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="出杯与交付场景">
+  <rect width="360" height="220" rx="24" fill="#e9f0e7"/>
+  <rect x="38" y="40" width="284" height="140" rx="18" fill="#55756b"/>
+  <path d="M72 158h216" stroke="#d9bd86" stroke-width="8"/>
+  <path d="M122 82h56l-7 66h-42z" fill="#f5e4bf"/><path d="M130 92h40" stroke="#9c683b" stroke-width="16"/>
+  <path d="M206 72h45l-6 75h-33z" fill="#f5e4bf"/><path d="M212 89h32" stroke="#a66d3e" stroke-width="22"/>
+  <circle cx="287" cy="99" r="18" fill="#d99e68"/><path d="M270 161v-37c0-18 34-18 34 0v37" fill="#c17851"/>
+</svg>

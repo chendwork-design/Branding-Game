@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420">
+  <defs>
+    <linearGradient id="paper" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f8ead6"/>
+      <stop offset="1" stop-color="#ead7bd"/>
+    </linearGradient>
+    <linearGradient id="dusk" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#c8d6cf"/>
+      <stop offset="1" stop-color="#f2dfc8"/>
+    </linearGradient>
+    <filter id="soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <g id="street-base">
+    <rect width="640" height="420" fill="url(#paper)"/>
+    <circle cx="522" cy="86" r="42" fill="#f5be73" opacity=".62" filter="url(#soft)"/>
+    <path d="M0 312 C112 286 184 324 286 302 S486 286 640 306 V420 H0Z" fill="#bd9b7b" opacity=".5"/>
+    <path d="M0 342 C126 310 194 354 302 330 S496 326 640 344 V420 H0Z" fill="#856853" opacity=".62"/>
+    <path d="M82 296 V153 L184 92 L286 153 V296Z" fill="#faf1df" stroke="#553d30" stroke-width="5"/>
+    <path d="M75 159 L184 84 L295 159" fill="none" stroke="#553d30" stroke-width="8" stroke-linecap="round"/>
+    <rect x="118" y="169" width="52" height="75" rx="4" fill="#d6b58d" stroke="#553d30" stroke-width="4"/>
+    <rect x="204" y="169" width="52" height="75" rx="4" fill="#d6b58d" stroke="#553d30" stroke-width="4"/>
+    <path d="M98 259 H270" stroke="#b46f46" stroke-width="12" stroke-linecap="round"/>
+    <path d="M328 306 V184 H566 V306" fill="#ead5b9" stroke="#634b3b" stroke-width="5"/>
+    <path d="M314 187 L447 115 L580 187" fill="none" stroke="#634b3b" stroke-width="8" stroke-linecap="round"/>
+    <rect x="356" y="211" width="74" height="95" fill="#d2b08a" stroke="#634b3b" stroke-width="4"/>
+    <rect x="465" y="211" width="74" height="95" fill="#d2b08a" stroke="#634b3b" stroke-width="4"/>
+    <path d="M346 196 H550" stroke="#b46f46" stroke-width="14" stroke-linecap="round"/>
+    <path d="M34 372 C150 350 250 380 358 361 S550 355 620 376" fill="none" stroke="#e7caa7" stroke-width="10" opacity=".65"/>
+  </g>
+
+  <g id="briefing-r01"><use href="#street-base"/><circle cx="334" cy="285" r="28" fill="#5b806f"/><path d="M318 320 L337 278 L356 320Z" fill="#5b806f"/><circle cx="334" cy="266" r="11" fill="#f2c39a"/></g>
+  <g id="briefing-r02"><use href="#street-base"/><path d="M325 260 Q350 224 375 260 L375 318 H325Z" fill="#8b6b53"/><circle cx="350" cy="243" r="15" fill="#f2c39a"/><path d="M326 244 Q350 213 374 244" fill="#3d2f28"/></g>
+  <g id="briefing-r03"><use href="#street-base"/><rect x="296" y="226" width="92" height="62" rx="8" fill="#f5efe4" stroke="#b46f46" stroke-width="4"/><path d="M314 258 H370" stroke="#b46f46" stroke-width="5"/><path d="M324 244 H359" stroke="#5b806f" stroke-width="5"/></g>
+  <g id="briefing-r04"><use href="#street-base"/><path d="M312 296 V220 H388 V296" fill="#c67b50"/><path d="M304 220 H396" stroke="#5b806f" stroke-width="12"/><circle cx="350" cy="248" r="15" fill="#f8e2c3"/></g>
+  <g id="briefing-r05"><use href="#street-base"/><path d="M312 256 Q350 203 388 256 V311 H312Z" fill="#496e61"/><circle cx="350" cy="237" r="17" fill="#f2c39a"/><path d="M333 238 Q350 215 367 238" stroke="#3d2f28" stroke-width="8" fill="none"/></g>
+  <g id="briefing-r06"><use href="#street-base"/><path d="M294 301 L350 207 L406 301Z" fill="#f7c36e" opacity=".85"/><path d="M316 290 L350 232 L384 290" fill="none" stroke="#b46f46" stroke-width="7"/></g>
+  <g id="briefing-r07"><use href="#street-base"/><path d="M300 299 H400 V238 H300Z" fill="#7e9a7d"/><path d="M315 258 H385" stroke="#f8ead6" stroke-width="9"/><circle cx="350" cy="217" r="22" fill="#d18a5f"/></g>
+  <g id="briefing-r08"><use href="#street-base"/><path d="M308 313 V239 H392 V313" fill="#f3c77d" stroke="#5b806f" stroke-width="5"/><path d="M302 240 Q350 189 398 240" fill="none" stroke="#5b806f" stroke-width="12"/></g>
+  <g id="briefing-r09"><use href="#street-base"/><circle cx="350" cy="253" r="50" fill="#f5efe4" stroke="#b46f46" stroke-width="7"/><path d="M317 253 Q350 216 383 253 Q350 290 317 253Z" fill="#5b806f"/><circle cx="350" cy="253" r="9" fill="#f5c16f"/></g>
+  <g id="briefing-r10"><use href="#street-base"/><path d="M309 306 V228 H391 V306" fill="#bd7955"/><path d="M298 228 H402" stroke="#5b806f" stroke-width="14"/><path d="M330 258 H370" stroke="#f8ead6" stroke-width="8"/></g>
+  <g id="briefing-r11"><use href="#street-base"/><path d="M303 303 L350 213 L397 303" fill="#5b806f"/><path d="M320 275 H380" stroke="#f8ead6" stroke-width="9"/><circle cx="350" cy="224" r="12" fill="#f2c39a"/></g>
+  <g id="briefing-r12"><use href="#street-base"/><path d="M288 312 Q350 215 412 312" fill="none" stroke="#b46f46" stroke-width="12"/><circle cx="350" cy="245" r="34" fill="#f6d58f" stroke="#5b806f" stroke-width="6"/><path d="M334 245 H366 M350 229 V261" stroke="#b46f46" stroke-width="6"/></g>
+
+  <g id="result-r01"><use href="#street-base"/><path d="M289 298 Q350 206 411 298" fill="none" stroke="#5b806f" stroke-width="14"/><circle cx="350" cy="242" r="28" fill="#f4c378"/><path d="M332 243 H368" stroke="#b46f46" stroke-width="7"/></g>
+  <g id="result-r02"><use href="#street-base"/><circle cx="350" cy="258" r="57" fill="#fff6df" stroke="#b46f46" stroke-width="7"/><circle cx="350" cy="252" r="27" fill="#5b806f"/><path d="M330 286 H370" stroke="#5b806f" stroke-width="8"/></g>
+  <g id="result-r03"><use href="#street-base"/><rect x="282" y="226" width="136" height="86" rx="12" fill="#f8ead6" stroke="#5b806f" stroke-width="8"/><path d="M307 270 H393" stroke="#b46f46" stroke-width="10"/><circle cx="326" cy="249" r="9" fill="#5b806f"/><circle cx="350" cy="249" r="9" fill="#b46f46"/><circle cx="374" cy="249" r="9" fill="#5b806f"/></g>
+  <g id="result-r04"><use href="#street-base"/><path d="M287 305 L350 206 L413 305Z" fill="#c98055"/><path d="M313 282 H387" stroke="#f8ead6" stroke-width="12"/><circle cx="350" cy="240" r="16" fill="#f6d58f"/></g>
+  <g id="result-r05"><use href="#street-base"/><path d="M301 313 V220 H399 V313" fill="#5b806f"/><path d="M290 220 H410" stroke="#f5c16f" stroke-width="14"/><path d="M326 267 H374" stroke="#f8ead6" stroke-width="8"/></g>
+  <g id="result-r06"><use href="#street-base"/><circle cx="350" cy="253" r="52" fill="#f5c16f"/><path d="M320 262 Q350 218 380 262" fill="#5b806f"/><circle cx="350" cy="246" r="14" fill="#f2c39a"/></g>
+  <g id="result-r07"><use href="#street-base"/><path d="M300 305 H400 V236 H300Z" fill="#f8ead6" stroke="#b46f46" stroke-width="7"/><path d="M314 261 H386" stroke="#5b806f" stroke-width="11"/><path d="M326 282 H374" stroke="#b46f46" stroke-width="7"/></g>
+  <g id="result-r08"><use href="#street-base"/><path d="M291 302 Q350 190 409 302" fill="#5b806f"/><circle cx="350" cy="236" r="24" fill="#f6d58f"/><path d="M329 271 H371" stroke="#f8ead6" stroke-width="9"/></g>
+  <g id="result-r09"><use href="#street-base"/><path d="M302 311 V224 H398 V311" fill="#f5c16f"/><path d="M294 224 H406" stroke="#5b806f" stroke-width="13"/><circle cx="350" cy="263" r="20" fill="#b46f46"/></g>
+  <g id="result-r10"><use href="#street-base"/><circle cx="350" cy="258" r="57" fill="#f8ead6" stroke="#5b806f" stroke-width="8"/><path d="M320 258 H380 M350 228 V288" stroke="#b46f46" stroke-width="8"/></g>
+  <g id="result-r11"><use href="#street-base"/><path d="M292 310 L350 208 L408 310" fill="#b46f46"/><path d="M316 280 H384" stroke="#f8ead6" stroke-width="12"/><circle cx="350" cy="239" r="15" fill="#5b806f"/></g>
+  <g id="result-r12"><use href="#street-base"/><rect x="281" y="218" width="138" height="98" rx="16" fill="#5b806f"/><circle cx="350" cy="260" r="32" fill="#f6d58f"/><path d="M333 260 H367 M350 243 V277" stroke="#b46f46" stroke-width="7"/></g>
+</svg>

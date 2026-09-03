@@ -1,0 +1,41 @@
+{
+  "name": "@laojie/content-schema",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./sample": {
+      "types": "./src/sample.ts",
+      "import": "./src/sample.ts"
+    },
+    "./full": {
+      "types": "./src/full.ts",
+      "import": "./src/full.ts"
+    },
+    "./compile": {
+      "types": "./src/compile-contract.ts",
+      "import": "./src/compile-contract.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src tests",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "validate": "tsx src/validate.ts",
+    "compile": "tsx src/compile.ts",
+    "compile:v11": "tsx src/compile-v11.ts"
+  },
+  "dependencies": {
+    "@laojie/shared-contracts": "workspace:*",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "vitest": "^3.2.0"
+  }
+}

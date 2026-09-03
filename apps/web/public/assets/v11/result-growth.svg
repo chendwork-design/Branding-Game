@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="订单增长与团队承接场景">
+  <rect width="360" height="220" rx="24" fill="#e9edf4"/>
+  <path d="M45 175h270" stroke="#7692a7" stroke-width="14"/>
+  <rect x="52" y="48" width="108" height="114" rx="12" fill="#526e80"/>
+  <path d="M65 70h82" stroke="#dce7ea" stroke-width="13"/>
+  <path d="M202 150c0-58 33-58 33 0M244 150c0-76 39-76 39 0" fill="none" stroke="#c98452" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="214" cy="111" r="15" fill="#dfa16d"/><circle cx="260" cy="92" r="15" fill="#d69462"/>
+  <path d="M184 46h110" stroke="#be6b4d" stroke-width="7"/><path d="M283 35l20 11-20 11z" fill="#be6b4d"/>
+</svg>

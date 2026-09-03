@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" role="img" aria-label="店招与包装视觉场景">
+  <rect width="360" height="220" rx="24" fill="#f3ece1"/>
+  <rect x="33" y="38" width="294" height="145" rx="15" fill="#725142"/>
+  <rect x="53" y="56" width="254" height="46" rx="7" fill="#e8d5ae"/>
+  <text x="180" y="87" text-anchor="middle" fill="#493328" font-size="27" font-family="serif">你的品牌名</text>
+  <path d="M101 126h54l-7 48h-39zM205 120h54l-7 54h-39z" fill="#f9edd4"/>
+  <path d="M107 135h42M211 130h42" stroke="#55756b" stroke-width="10"/>
+</svg>

@@ -1,0 +1,37 @@
+{
+  "name": "@laojie/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:v11": "tsx watch src/v11-server.ts",
+    "start:v11": "tsx src/v11-server.ts",
+    "build": "tsc -p tsconfig.json",
+    "lint": "eslint src tests",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:integration": "vitest run tests/integration",
+    "test:load": "vitest run tests/load",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:seed:test": "tsx src/db/seed-test.ts"
+  },
+  "dependencies": {
+    "@laojie/content-schema": "workspace:*",
+    "@fastify/cookie": "^11.0.0",
+    "@fastify/cors": "^11.0.0",
+    "@laojie/game-engine": "workspace:*",
+    "@laojie/report-engine": "workspace:*",
+    "@laojie/shared-contracts": "workspace:*",
+    "drizzle-orm": "^0.44.0",
+    "fastify": "^5.4.0",
+    "pg": "^8.16.0",
+    "zod": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.0",
+    "drizzle-kit": "^0.31.0",
+    "tsx": "^4.20.0",
+    "vitest": "^3.2.0"
+  }
+}

@@ -1,35 +1,37 @@
 import { readFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
 import { Pool } from 'pg';
 
 const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) throw new Error('DATABASE_URL is required for db:migrate');
 const pool = new Pool({ connectionString: databaseUrl });
+const migrationsDirectory = resolve(process.cwd(), 'db', 'migrations');
 const initialSql = await readFile(
-  new URL('../../../../db/migrations/0001_initial.sql', import.meta.url),
+  resolve(migrationsDirectory, '0001_initial.sql'),
   'utf8',
 );
 const reportReadingSql = await readFile(
-  new URL('../../../../db/migrations/0002_report_reading.sql', import.meta.url),
+  resolve(migrationsDirectory, '0002_report_reading.sql'),
   'utf8',
 );
 const firstRunConstraintSql = await readFile(
-  new URL('../../../../db/migrations/0003_first_run_constraint.sql', import.meta.url),
+  resolve(migrationsDirectory, '0003_first_run_constraint.sql'),
   'utf8',
 );
 const immutableDataSql = await readFile(
-  new URL('../../../../db/migrations/0004_immutable_published_data.sql', import.meta.url),
+  resolve(migrationsDirectory, '0004_immutable_published_data.sql'),
   'utf8',
 );
 const gameplayObjectsSql = await readFile(
-  new URL('../../../../db/migrations/0005_gameplay_objects.sql', import.meta.url),
+  resolve(migrationsDirectory, '0005_gameplay_objects.sql'),
   'utf8',
 );
 const v11ProtocolSql = await readFile(
-  new URL('../../../../db/migrations/0006_v11_protocol.sql', import.meta.url),
+  resolve(migrationsDirectory, '0006_v11_protocol.sql'),
   'utf8',
 );
 const v11FormalStorageSql = await readFile(
-  new URL('../../../../db/migrations/0007_v11_formal_storage.sql', import.meta.url),
+  resolve(migrationsDirectory, '0007_v11_formal_storage.sql'),
   'utf8',
 );
 await pool.query(initialSql);

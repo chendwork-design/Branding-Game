@@ -1,4 +1,4 @@
-import { copyFile, cp, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
+import { access, copyFile, cp, mkdir, readFile, realpath, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -14,8 +14,12 @@ const nobleSource = await realpath(
 const workspacePackages = ['content-schema', 'game-engine', 'report-engine', 'shared-contracts'];
 for (const packageName of workspacePackages) {
   const packageDirectory = join(packageRoot, packageName);
+  const sourceDirectory =
+    packageName === 'content-schema'
+      ? join(root, 'packages', packageName, 'dist', 'src')
+      : join(runtimeRoot, 'packages', packageName, 'src');
   await mkdir(packageDirectory, { recursive: true });
-  await cp(join(runtimeRoot, 'packages', packageName, 'src'), join(packageDirectory, 'src'), {
+  await cp(sourceDirectory, join(packageDirectory, 'src'), {
     recursive: true,
     force: true,
   });
@@ -37,6 +41,8 @@ for (const packageName of workspacePackages) {
     'utf8',
   );
 }
+
+await access(join(packageRoot, 'content-schema', 'src', 'full.js'));
 
 await cp(nobleSource, join(runtimeRoot, 'node_modules', '@noble', 'hashes'), {
   recursive: true,

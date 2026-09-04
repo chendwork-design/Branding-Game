@@ -197,14 +197,6 @@ export function V11TeacherScreen() {
                 onChange={(event) => setPassword(event.target.value)}
               />
             </label>
-            <label>
-              班级 ID
-              <input
-                required
-                value={classId}
-                onChange={(event) => setClassId(event.target.value)}
-              />
-            </label>
             {error && (
               <p className="error" role="alert">
                 {error}

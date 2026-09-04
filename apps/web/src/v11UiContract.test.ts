@@ -353,6 +353,7 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(teacher).toContain('调查结果被打开');
     expect(teacher).toContain('风险与事件');
     expect(teacher).toContain('timeline-action-detail');
+    expect(teacher).not.toContain('班级 ID');
     expect(teacherApi).toContain('/api/v11/teacher/classes/');
     expect(teacherApi).toContain('downloadCsv');
   });

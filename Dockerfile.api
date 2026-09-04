@@ -29,4 +29,4 @@ COPY --from=build /app/db/migrations ./db/migrations
 
 USER node
 EXPOSE 3001
-CMD ["node", "apps/api/dist/apps/api/src/v11-server.js"]
+CMD ["sh", "-c", "node apps/api/dist/apps/api/src/db/seed-test.js && exec node apps/api/dist/apps/api/src/v11-server.js"]

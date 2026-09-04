@@ -165,6 +165,9 @@ export function V11TeacherScreen() {
       else setError('当前还没有班级，请先创建一个班级。');
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : '登录失败');
+    } finally {
+      // 首次登录时可能还没有任何班级；无论是否需要继续读取班级数据，
+      // 都必须结束登录态，避免创建班级按钮永久禁用。
       setBusy(false);
     }
   };

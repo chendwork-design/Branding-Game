@@ -265,8 +265,10 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
         return reply.code(401).send({ code: 'INVALID_CREDENTIALS', message: '教师账号或密码错误' });
       reply.setCookie('v11_teacher_session', token, {
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax',
+        // The Pages UI and API live on different sites in production, so the
+        // session must be explicitly allowed on credentialed cross-site fetches.
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         path: '/',
         maxAge: 8 * 60 * 60,
       });

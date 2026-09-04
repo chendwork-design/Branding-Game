@@ -186,6 +186,25 @@ describe('v1.1 four-round API slice', () => {
     await app.close();
   });
 
+  it('uses a secure cross-site teacher session cookie in production', async () => {
+    const previousNodeEnv = process.env.NODE_ENV;
+    process.env.NODE_ENV = 'production';
+    const app = buildV11App(new V11MemoryStore({ trialClassCode: 'COOKIEV11' }));
+    try {
+      const login = await app.inject({
+        method: 'POST',
+        url: '/api/v11/teacher/login',
+        payload: { email: 'teacher@example.test', password: 'change-me-in-production' },
+      });
+      expect(login.statusCode).toBe(200);
+      expect(String(login.headers['set-cookie'])).toContain('Secure');
+      expect(String(login.headers['set-cookie'])).toContain('SameSite=None');
+    } finally {
+      await app.close();
+      process.env.NODE_ENV = previousNodeEnv;
+    }
+  });
+
   it('settles authoritative actions once and exposes an auditable report', async () => {
     const store = new V11MemoryStore({ trialClassCode: 'LAOJIE11' });
     const app = buildV11App(store);

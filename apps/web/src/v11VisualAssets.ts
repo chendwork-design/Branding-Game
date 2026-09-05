@@ -113,9 +113,21 @@ resultAssets['r01-crisis'] = 'scenes/results/result-r01-v18-tourist.jpg';
 resultAssets['r03-stable'] = 'scenes/results/result-r03-v18-stable.jpg';
 resultAssets['r03-strained'] = 'scenes/results/result-r03-v18-strained.jpg';
 resultAssets['r03-crisis'] = 'scenes/results/result-r03-v18-crisis.jpg';
+resultAssets['r04-stable'] = 'scenes/results/result-r04-v19-stable.jpg';
+resultAssets['r04-strained'] = 'scenes/results/result-r04-v19-strained.jpg';
+resultAssets['r04-crisis'] = 'scenes/results/result-r04-v19-crisis.jpg';
 resultAssets['r05-stable'] = 'scenes/results/result-r05-v19-stable.jpg';
 resultAssets['r05-strained'] = 'scenes/results/result-r05-v19-strained.jpg';
 resultAssets['r05-crisis'] = 'scenes/results/result-r05-v19-crisis.jpg';
+resultAssets['r06-stable'] = 'scenes/results/result-r06-v19-stable.jpg';
+resultAssets['r06-strained'] = 'scenes/results/result-r06-v19-strained.jpg';
+resultAssets['r06-crisis'] = 'scenes/results/result-r06-v19-crisis.jpg';
+resultAssets['r09-stable'] = 'scenes/results/result-r09-v19-stable.jpg';
+resultAssets['r09-strained'] = 'scenes/results/result-r09-v19-strained.jpg';
+resultAssets['r09-crisis'] = 'scenes/results/result-r09-v19-crisis.jpg';
+resultAssets['r12-stable'] = 'scenes/results/result-r12-v19-stable.jpg';
+resultAssets['r12-strained'] = 'scenes/results/result-r12-v19-strained.jpg';
+resultAssets['r12-crisis'] = 'scenes/results/result-r12-v19-crisis.jpg';
 resultAssets['r11-stable'] = 'scenes/results/result-r11-v18-stable.jpg';
 resultAssets['r11-strained'] = 'scenes/results/result-r11-v18-strained.jpg';
 resultAssets['r11-crisis'] = 'scenes/results/result-r11-v18-crisis.jpg';
@@ -131,9 +143,9 @@ const decisionAssets: Record<string, string> = {
   'package-r04-refill': 'decisions/packaging/package-r04-v18-refill.jpg',
   'package-r04-price-ladder': 'decisions/packaging/package-r04-v18-price-ladder.jpg',
   'package-r04-bundle': 'decisions/packaging/package-r04-v18-bundle.jpg',
-  'ip-object-sleeve-storage': 'decisions/ip-objects/ip-object-sleeve-storage.jpg',
-  'ip-object-tea-clip': 'decisions/ip-objects/ip-object-tea-clip.jpg',
-  'ip-object-cup-carrier': 'decisions/ip-objects/ip-object-cup-carrier.jpg',
+  'ip-object-sleeve-storage': 'decisions/ip-objects/ip-object-sleeve-storage-v19.jpg',
+  'ip-object-tea-clip': 'decisions/ip-objects/ip-object-tea-clip-v19.jpg',
+  'ip-object-cup-carrier': 'decisions/ip-objects/ip-object-cup-carrier-v19.jpg',
 };
 
 const touchpointAssets: Record<string, string> = {

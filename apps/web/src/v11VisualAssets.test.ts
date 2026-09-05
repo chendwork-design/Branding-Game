@@ -30,15 +30,27 @@ describe('v11 visual asset production contract', () => {
     expect(resultSceneAsset('r03', 'stable')).toBe('scenes/results/result-r03-v18-stable.jpg');
     expect(resultSceneAsset('r03', 'strained')).toBe('scenes/results/result-r03-v18-strained.jpg');
     expect(resultSceneAsset('r03', 'crisis')).toBe('scenes/results/result-r03-v18-crisis.jpg');
+    expect(resultSceneAsset('r04', 'stable')).toBe('scenes/results/result-r04-v19-stable.jpg');
+    expect(resultSceneAsset('r04', 'strained')).toBe('scenes/results/result-r04-v19-strained.jpg');
+    expect(resultSceneAsset('r04', 'crisis')).toBe('scenes/results/result-r04-v19-crisis.jpg');
     expect(resultSceneAsset('r05', 'stable')).toBe('scenes/results/result-r05-v19-stable.jpg');
     expect(resultSceneAsset('r05', 'strained')).toBe('scenes/results/result-r05-v19-strained.jpg');
     expect(resultSceneAsset('r05', 'crisis')).toBe('scenes/results/result-r05-v19-crisis.jpg');
+    expect(resultSceneAsset('r06', 'stable')).toBe('scenes/results/result-r06-v19-stable.jpg');
+    expect(resultSceneAsset('r06', 'strained')).toBe('scenes/results/result-r06-v19-strained.jpg');
+    expect(resultSceneAsset('r06', 'crisis')).toBe('scenes/results/result-r06-v19-crisis.jpg');
+    expect(resultSceneAsset('r09', 'stable')).toBe('scenes/results/result-r09-v19-stable.jpg');
+    expect(resultSceneAsset('r09', 'strained')).toBe('scenes/results/result-r09-v19-strained.jpg');
+    expect(resultSceneAsset('r09', 'crisis')).toBe('scenes/results/result-r09-v19-crisis.jpg');
+    expect(resultSceneAsset('r12', 'stable')).toBe('scenes/results/result-r12-v19-stable.jpg');
+    expect(resultSceneAsset('r12', 'strained')).toBe('scenes/results/result-r12-v19-strained.jpg');
+    expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-v19-crisis.jpg');
     expect(sceneAsset('briefing-r11-growth')).toBe('scenes/briefing/briefing-r11-v18.jpg');
     expect(resultSceneAsset('r11', 'stable')).toBe('scenes/results/result-r11-v18-stable.jpg');
     expect(resultSceneAsset('r11', 'strained')).toBe('scenes/results/result-r11-v18-strained.jpg');
     expect(resultSceneAsset('r11', 'crisis')).toBe('scenes/results/result-r11-v18-crisis.jpg');
     expect(resultSceneAsset('r07', 'stable')).toBe('scenes/results/result-r07-stable.jpg');
-    expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-crisis.jpg');
+    expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-v19-crisis.jpg');
     expect(sceneAsset('not-a-real-scene')).toBeUndefined();
   });
 
@@ -82,7 +94,9 @@ describe('v11 visual asset production contract', () => {
       'decisions/packaging/package-r04-v18-price-ladder.jpg',
     );
     expect(decisionAsset('r04-bundle')).toBe('decisions/packaging/package-r04-v18-bundle.jpg');
-    expect(decisionAsset('r05-tea-character')).toBe('decisions/ip-objects/ip-object-tea-clip.jpg');
+    expect(decisionAsset('r05-tea-character')).toBe(
+      'decisions/ip-objects/ip-object-tea-clip-v19.jpg',
+    );
     expect(choiceVisualAsset('r05-plain-word')).toBe('visual-wordmark.svg');
     expect(choiceVisualAsset('r08-hand')).toBe('visual-ip.svg');
     expect(choiceVisualAsset('r08-wordmark')).toBe('visual-wordmark.svg');

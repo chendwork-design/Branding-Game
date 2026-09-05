@@ -71,6 +71,18 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r01-quote-rent', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r02-observe', 'research')).toBe(
+      'actions/v19/action-r02-interview-segments.jpg',
+    );
+    expect(actionAsset('r02-test', 'test')).toBe('actions/v19/action-r02-test-promise.jpg');
+    expect(actionAsset('r02-quote', 'quote')).toBe('actions/v19/action-r02-quote-staffing.jpg');
+    expect(
+      new Set([
+        actionAsset('r02-observe', 'research'),
+        actionAsset('r02-test', 'test'),
+        actionAsset('r02-quote', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(actionAsset('r08-negotiate-production', 'negotiate')).toBe(
       'actions/action-quote-v1.webp',
     );

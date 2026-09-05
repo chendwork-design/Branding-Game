@@ -114,6 +114,18 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r04-quote', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r05-observe', 'research')).toBe(
+      'actions/v19/action-r05-observe-sign-read.jpg',
+    );
+    expect(actionAsset('r05-test', 'test')).toBe('actions/v19/action-r05-test-avatar.jpg');
+    expect(actionAsset('r05-quote', 'quote')).toBe('actions/v19/action-r05-quote-print.jpg');
+    expect(
+      new Set([
+        actionAsset('r05-observe', 'research'),
+        actionAsset('r05-test', 'test'),
+        actionAsset('r05-quote', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(
       new Set([
         actionAsset('r08-test-sign', 'test'),

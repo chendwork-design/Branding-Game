@@ -24,7 +24,7 @@ export function coreVisualRouteLabel(value: string | undefined): string {
 
 function compactName(value: string): string {
   const normalized = value.trim();
-  return normalized.length > 8 ? `${normalized.slice(0, 8)}…` : normalized || '你的品牌名';
+  return normalized.length > 8 ? `${normalized.slice(0, 8)}…` : normalized;
 }
 
 export function V11VisualMark({
@@ -38,6 +38,7 @@ export function V11VisualMark({
 }) {
   const route: V11CoreVisualRoute = isCoreVisualRoute(visualId) ? visualId : 'v-line';
   const label = compactName(brandName);
+  const accessibleLabel = label ? `${label}的${routeLabels[route]}` : routeLabels[route];
   const style = { '--v11-route': route } as CSSProperties;
   return (
     <svg
@@ -45,7 +46,7 @@ export function V11VisualMark({
       style={style}
       viewBox="0 0 300 150"
       role="img"
-      aria-label={`${label}的${routeLabels[route]}`}
+      aria-label={accessibleLabel}
     >
       <rect className="v11-brand-mark-paper" x="1" y="1" width="298" height="148" rx="12" />
       {route === 'v-line' && <LineMark label={label} />}
@@ -73,12 +74,11 @@ function LineMark({ label }: { label: string }) {
         strokeLinecap="round"
         strokeWidth="3"
       />
-      <text className="v11-brand-mark-name" x="150" y="107" textAnchor="middle">
-        {label}
-      </text>
-      <text className="v11-brand-mark-subtitle" x="150" y="128" textAnchor="middle">
-        OLD STREET TEA BAR
-      </text>
+      {label && (
+        <text className="v11-brand-mark-name" x="150" y="112" textAnchor="middle">
+          {label}
+        </text>
+      )}
     </>
   );
 }
@@ -103,12 +103,11 @@ function SymbolMark({ label }: { label: string }) {
         strokeLinecap="round"
         strokeWidth="3"
       />
-      <text className="v11-brand-mark-name v11-brand-mark-name-left" x="130" y="88">
-        {label}
-      </text>
-      <text className="v11-brand-mark-subtitle v11-brand-mark-name-left" x="132" y="111">
-        CUP · LEAF · STREET
-      </text>
+      {label && (
+        <text className="v11-brand-mark-name v11-brand-mark-name-left" x="130" y="95">
+          {label}
+        </text>
+      )}
     </>
   );
 }
@@ -140,12 +139,11 @@ function CharacterMark({ label }: { label: string }) {
           strokeWidth="6"
         />
       </g>
-      <text className="v11-brand-mark-name v11-brand-mark-name-left" x="156" y="76">
-        {label}
-      </text>
-      <text className="v11-brand-mark-subtitle v11-brand-mark-name-left" x="158" y="100">
-        A WARM HELLO, WELL MADE
-      </text>
+      {label && (
+        <text className="v11-brand-mark-name v11-brand-mark-name-left" x="156" y="88">
+          {label}
+        </text>
+      )}
       <path
         className="v11-brand-mark-accent"
         d="M156 116h85"

@@ -2331,7 +2331,7 @@ function VisualInspector({
     : (touchpoints[0] ?? 'storefront');
   const touchpointFile = touchpointAsset(activeTouchpoint);
   const placement = touchpointPlacement(activeTouchpoint);
-  const brandName = flow.state.brandIdentity?.brandName || '你的品牌名';
+  const brandName = flow.state.brandIdentity?.brandName ?? '';
   return (
     <div className="v11-visual-inspector">
       <div className="v11-inspector-heading">
@@ -2548,7 +2548,7 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
           artKey={result.resultArtKey}
           routeOverlayKey={result.routeOverlayKey}
           outcomeState={result.outcomeState}
-          brandName={flow.state.brandIdentity?.brandName || '你的品牌名'}
+          brandName={flow.state.brandIdentity?.brandName ?? ''}
         />
       </div>
       <div className="v11-result-feedback" aria-live="polite">

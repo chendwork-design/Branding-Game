@@ -14,49 +14,49 @@ export type V11TouchpointPlacement = {
 
 export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11TouchpointPlacement> = {
   storefront: {
-    asset: 'touchpoints/v18/touchpoint-storefront.jpg',
+    asset: 'touchpoints/v19/touchpoint-storefront.jpg',
     label: '店招',
     surfaceClass: 'storefront',
-    x: 18.8,
-    y: 10.4,
-    width: 62.4,
-    height: 17.8,
+    x: 30.3,
+    y: 14.1,
+    width: 43.2,
+    height: 16.2,
   },
   cup: {
-    asset: 'touchpoints/v18/touchpoint-cup.jpg',
+    asset: 'touchpoints/v19/touchpoint-cup.jpg',
     label: '杯身',
     surfaceClass: 'cup',
-    x: 33.2,
-    y: 38.6,
-    width: 33.8,
-    height: 36.4,
+    x: 35.2,
+    y: 38.8,
+    width: 29.8,
+    height: 34.6,
   },
   packaging: {
-    asset: 'touchpoints/v18/touchpoint-bag.jpg',
+    asset: 'touchpoints/v19/touchpoint-bag.jpg',
     label: '包装',
     surfaceClass: 'packaging',
-    x: 26.8,
-    y: 26.4,
-    width: 47.4,
+    x: 32.2,
+    y: 28.2,
+    width: 35.2,
     height: 53.6,
   },
   avatar: {
-    asset: 'touchpoints/v18/touchpoint-avatar.jpg',
+    asset: 'touchpoints/v19/touchpoint-avatar.jpg',
     label: '头像',
     surfaceClass: 'avatar',
-    x: 40.5,
-    y: 15.4,
-    width: 19.2,
-    height: 25.4,
+    x: 43.6,
+    y: 29.5,
+    width: 16.3,
+    height: 21.7,
   },
   menu: {
-    asset: 'touchpoints/v18/touchpoint-receipt.jpg',
+    asset: 'touchpoints/v19/touchpoint-receipt.jpg',
     label: '小票',
     surfaceClass: 'menu',
-    x: 28.8,
-    y: 6.8,
-    width: 43.8,
-    height: 24.4,
+    x: 20.2,
+    y: 23.4,
+    width: 24.8,
+    height: 16.8,
   },
 };
 
@@ -70,11 +70,11 @@ const sceneAssets: Record<string, string> = {
   'briefing-r01-street': 'scenes/briefing/briefing-r01-v18.jpg',
   'briefing-r02': 'scenes/briefing/briefing-r02.jpg',
   'briefing-r03-product': 'scenes/briefing/briefing-r03-v18.jpg',
-  'briefing-r04': 'scenes/briefing/briefing-r04.jpg',
-  'briefing-r05': 'scenes/briefing/briefing-r05.jpg',
+  'briefing-r04': 'scenes/briefing/briefing-r04-v19.jpg',
+  'briefing-r05': 'scenes/briefing/briefing-r05-v19.jpg',
   'briefing-r06': 'scenes/briefing/briefing-r06.jpg',
-  'briefing-r07': 'scenes/briefing/briefing-r07.jpg',
-  'briefing-r08-visual': 'scenes/briefing/briefing-r08-v18.jpg',
+  'briefing-r07': 'scenes/briefing/briefing-r07-v19.jpg',
+  'briefing-r08-visual': 'scenes/briefing/briefing-r08-v19.jpg',
   'briefing-r09': 'scenes/briefing/briefing-r09.jpg',
   'briefing-r10': 'scenes/briefing/briefing-r10.jpg',
   'briefing-r11-growth': 'scenes/briefing/briefing-r11-v18.jpg',
@@ -113,6 +113,9 @@ resultAssets['r01-crisis'] = 'scenes/results/result-r01-v18-tourist.jpg';
 resultAssets['r03-stable'] = 'scenes/results/result-r03-v18-stable.jpg';
 resultAssets['r03-strained'] = 'scenes/results/result-r03-v18-strained.jpg';
 resultAssets['r03-crisis'] = 'scenes/results/result-r03-v18-crisis.jpg';
+resultAssets['r05-stable'] = 'scenes/results/result-r05-v19-stable.jpg';
+resultAssets['r05-strained'] = 'scenes/results/result-r05-v19-strained.jpg';
+resultAssets['r05-crisis'] = 'scenes/results/result-r05-v19-crisis.jpg';
 resultAssets['r11-stable'] = 'scenes/results/result-r11-v18-stable.jpg';
 resultAssets['r11-strained'] = 'scenes/results/result-r11-v18-strained.jpg';
 resultAssets['r11-crisis'] = 'scenes/results/result-r11-v18-crisis.jpg';

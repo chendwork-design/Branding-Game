@@ -5690,21 +5690,21 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   position: absolute;
   z-index: 2;
   overflow: hidden;
-  border: 1px solid rgba(36, 38, 33, 0.14);
-  box-shadow: 0 3px 8px rgba(35, 28, 20, 0.15);
   transform-origin: center;
+  isolation: isolate;
 }
 
 .v11-touchpoint-brand-surface.storefront {
-  border-radius: 2px;
+  border-radius: 1px;
+  transform: perspective(920px) rotateX(0.9deg) rotateY(-1.3deg);
 }
 .v11-touchpoint-brand-surface.cup {
   border-radius: 10% 10% 8% 8%;
-  transform: perspective(420px) rotateX(1deg);
+  transform: perspective(420px) rotateX(1deg) rotateY(-3deg) scaleX(0.95);
 }
 .v11-touchpoint-brand-surface.packaging {
-  border-radius: 1px;
-  transform: perspective(560px) rotateY(-1deg);
+  border-radius: 2px;
+  transform: perspective(560px) rotateY(-3deg) skewY(0.5deg);
 }
 .v11-touchpoint-brand-surface.avatar {
   overflow: hidden;
@@ -5713,7 +5713,31 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 }
 .v11-touchpoint-brand-surface.menu {
   border-radius: 2px;
-  box-shadow: none;
+  transform: perspective(680px) rotateZ(-11deg) skewY(-0.5deg);
+}
+.v11-touchpoint-brand-surface .v11-brand-mark-paper {
+  opacity: 0.04;
+}
+.v11-touchpoint-brand-surface .v11-brand-mark-v-symbol .v11-brand-mark-paper {
+  opacity: 0.86;
+}
+.v11-touchpoint-brand-surface.cup .v11-brand-mark,
+.v11-touchpoint-brand-surface.packaging .v11-brand-mark {
+  mix-blend-mode: multiply;
+}
+.v11-touchpoint-brand-surface.cup::before,
+.v11-touchpoint-brand-surface.packaging::before {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.24),
+    transparent 30%,
+    rgba(51, 37, 25, 0.1)
+  );
+  content: '';
 }
 .v11-touchpoint-brand-surface.avatar .v11-brand-mark {
   transform: scale(1.22);

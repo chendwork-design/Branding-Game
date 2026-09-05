@@ -18,15 +18,21 @@ const assetRoot = fileURLToPath(new URL('../public/assets/v11/', import.meta.url
 describe('v11 visual asset production contract', () => {
   it('maps all runtime scene and result states to raster assets', () => {
     expect(sceneAsset('onboarding-place')).toBe('scenes/onboarding/onboarding-place.jpg');
-    expect(sceneAsset('briefing-r08-visual')).toBe('scenes/briefing/briefing-r08-v18.jpg');
+    expect(sceneAsset('briefing-r08-visual')).toBe('scenes/briefing/briefing-r08-v19.jpg');
     expect(resultSceneAsset('r08', 'stable')).toBe('scenes/results/result-r08-v18-stable.jpg');
     expect(resultSceneAsset('r01', 'stable')).toBe('scenes/results/result-r01-v18-neighbor.jpg');
     expect(resultSceneAsset('r01', 'strained')).toBe('scenes/results/result-r01-v18-hybrid.jpg');
     expect(resultSceneAsset('r01', 'crisis')).toBe('scenes/results/result-r01-v18-tourist.jpg');
     expect(sceneAsset('briefing-r03-product')).toBe('scenes/briefing/briefing-r03-v18.jpg');
+    expect(sceneAsset('briefing-r04')).toBe('scenes/briefing/briefing-r04-v19.jpg');
+    expect(sceneAsset('briefing-r05')).toBe('scenes/briefing/briefing-r05-v19.jpg');
+    expect(sceneAsset('briefing-r07')).toBe('scenes/briefing/briefing-r07-v19.jpg');
     expect(resultSceneAsset('r03', 'stable')).toBe('scenes/results/result-r03-v18-stable.jpg');
     expect(resultSceneAsset('r03', 'strained')).toBe('scenes/results/result-r03-v18-strained.jpg');
     expect(resultSceneAsset('r03', 'crisis')).toBe('scenes/results/result-r03-v18-crisis.jpg');
+    expect(resultSceneAsset('r05', 'stable')).toBe('scenes/results/result-r05-v19-stable.jpg');
+    expect(resultSceneAsset('r05', 'strained')).toBe('scenes/results/result-r05-v19-strained.jpg');
+    expect(resultSceneAsset('r05', 'crisis')).toBe('scenes/results/result-r05-v19-crisis.jpg');
     expect(sceneAsset('briefing-r11-growth')).toBe('scenes/briefing/briefing-r11-v18.jpg');
     expect(resultSceneAsset('r11', 'stable')).toBe('scenes/results/result-r11-v18-stable.jpg');
     expect(resultSceneAsset('r11', 'strained')).toBe('scenes/results/result-r11-v18-strained.jpg');
@@ -82,10 +88,23 @@ describe('v11 visual asset production contract', () => {
     expect(choiceVisualAsset('r08-wordmark')).toBe('visual-wordmark.svg');
     expect(choiceVisualAsset('r08-ip-stamp')).toBe('visual-ip.svg');
     expect(choiceVisualAsset('r12-seasonal-new')).toBeUndefined();
-    expect(touchpointAsset('storefront')).toBe('touchpoints/v18/touchpoint-storefront.jpg');
-    expect(touchpointAsset('packaging')).toBe('touchpoints/v18/touchpoint-bag.jpg');
-    expect(touchpointAsset('menu')).toBe('touchpoints/v18/touchpoint-receipt.jpg');
-    expect(touchpointPlacement('cup')).toMatchObject({ surfaceClass: 'cup', x: 33.2, y: 38.6 });
+    expect(touchpointAsset('storefront')).toBe('touchpoints/v19/touchpoint-storefront.jpg');
+    expect(touchpointAsset('cup')).toBe('touchpoints/v19/touchpoint-cup.jpg');
+    expect(touchpointAsset('packaging')).toBe('touchpoints/v19/touchpoint-bag.jpg');
+    expect(touchpointAsset('avatar')).toBe('touchpoints/v19/touchpoint-avatar.jpg');
+    expect(touchpointAsset('menu')).toBe('touchpoints/v19/touchpoint-receipt.jpg');
+    expect(touchpointPlacement('storefront')).toMatchObject({
+      surfaceClass: 'storefront',
+      x: 30.3,
+      y: 14.1,
+    });
+    expect(touchpointPlacement('cup')).toMatchObject({ surfaceClass: 'cup', x: 35.2, y: 38.8 });
+    expect(touchpointPlacement('avatar')).toMatchObject({
+      surfaceClass: 'avatar',
+      x: 43.6,
+      y: 29.5,
+    });
+    expect(touchpointPlacement('menu')).toMatchObject({ surfaceClass: 'menu', x: 20.2, y: 23.4 });
     expect(chapterAsset('c2')).toBe('scenes/chapters/chapter-02-product-identity.jpg');
     expect(chapterAsset('c3')).toBe('scenes/chapters/chapter-03-service-v2.jpg');
     expect(chapterAsset('c3')).not.toBe(sceneAsset('briefing-r07'));

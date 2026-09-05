@@ -87,12 +87,13 @@ const actionAssets: Record<string, string> = {
   quote: 'actions/action-quote-v1.webp',
 };
 
-// Keep the three actions shown in a single round visually distinguishable.
-// These are semantic overrides, not extra decoration: a field audit reads as
-// observation, a physical trial as testing, and a supplier discussion as a
-// quote/conversation.
+// P1 gives each course action its own operational camera.  Keep the generic
+// family as a compatibility fallback for unfinished or future content, but do
+// not collapse the active round's three evidence-gathering jobs into one scene.
 const actionAssetOverrides: Record<string, string> = {
-  'r01-interview-neighbors': 'actions/action-test-v1.webp',
+  'r01-observe-footfall': 'actions/v19/action-r01-observe-footfall.jpg',
+  'r01-interview-neighbors': 'actions/v19/action-r01-interview-neighbors.jpg',
+  'r01-quote-rent': 'actions/v19/action-r01-quote-rent.jpg',
   'r03-negotiate-supply': 'actions/action-observe-v1.webp',
   'r08-test-sign': 'actions/action-observe-v1.webp',
 };
@@ -205,7 +206,12 @@ const choiceRouteAssets: Record<string, string> = {
 
 export const V11VisualAssetManifest = {
   scene: sceneAssets,
-  action: actionAssets,
+  action: {
+    ...actionAssets,
+    'r01-observe-footfall': actionAssetOverrides['r01-observe-footfall']!,
+    'r01-interview-neighbors': actionAssetOverrides['r01-interview-neighbors']!,
+    'r01-quote-rent': actionAssetOverrides['r01-quote-rent']!,
+  },
   result: resultAssets,
   decision: decisionAssets,
   touchpoint: touchpointAssets,

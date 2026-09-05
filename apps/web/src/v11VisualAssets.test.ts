@@ -55,9 +55,22 @@ describe('v11 visual asset production contract', () => {
   });
 
   it('maps course-specific decision, touchpoint and chapter visuals without inflating compact cards', () => {
-    expect(actionAsset('r01-observe-footfall', 'research')).toBe('actions/action-observe-v1.webp');
-    expect(actionAsset('r01-interview-neighbors', 'research')).toBe('actions/action-test-v1.webp');
-    expect(actionAsset('r01-quote-rent', 'quote')).toBe('actions/action-quote-v1.webp');
+    expect(actionAsset('r01-observe-footfall', 'research')).toBe(
+      'actions/v19/action-r01-observe-footfall.jpg',
+    );
+    expect(actionAsset('r01-interview-neighbors', 'research')).toBe(
+      'actions/v19/action-r01-interview-neighbors.jpg',
+    );
+    expect(actionAsset('r01-quote-rent', 'quote')).toBe(
+      'actions/v19/action-r01-quote-rent.jpg',
+    );
+    expect(
+      new Set([
+        actionAsset('r01-observe-footfall', 'research'),
+        actionAsset('r01-interview-neighbors', 'research'),
+        actionAsset('r01-quote-rent', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(actionAsset('r08-negotiate-production', 'negotiate')).toBe(
       'actions/action-quote-v1.webp',
     );

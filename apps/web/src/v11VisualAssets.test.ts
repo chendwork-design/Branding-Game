@@ -83,6 +83,13 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r02-quote', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r03-test-recipe', 'test')).toBe('actions/v19/action-r03-test-recipe.jpg');
+    expect(actionAsset('r03-quote-packaging', 'quote')).toBe(
+      'actions/v19/action-r03-quote-packaging.jpg',
+    );
+    expect(actionAsset('r03-negotiate-supply', 'negotiate')).toBe(
+      'actions/v19/action-r03-negotiate-supply.jpg',
+    );
     expect(actionAsset('r08-negotiate-production', 'negotiate')).toBe(
       'actions/action-quote-v1.webp',
     );

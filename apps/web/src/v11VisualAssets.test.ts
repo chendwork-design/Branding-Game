@@ -100,6 +100,20 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r03-negotiate-supply', 'negotiate'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r04-observe', 'research')).toBe(
+      'actions/v19/action-r04-observe-price.jpg',
+    );
+    expect(actionAsset('r04-test', 'test')).toBe('actions/v19/action-r04-test-gift-box.jpg');
+    expect(actionAsset('r04-quote', 'quote')).toBe(
+      'actions/v19/action-r04-quote-full-cost.jpg',
+    );
+    expect(
+      new Set([
+        actionAsset('r04-observe', 'research'),
+        actionAsset('r04-test', 'test'),
+        actionAsset('r04-quote', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(
       new Set([
         actionAsset('r08-test-sign', 'test'),

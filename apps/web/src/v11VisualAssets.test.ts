@@ -21,17 +21,17 @@ describe('v11 visual asset production contract', () => {
   it('maps all runtime scene and result states to raster assets', () => {
     expect(sceneAsset('onboarding-place')).toBe('scenes/onboarding/onboarding-place-v19.jpg');
     expect(sceneAsset('briefing-r08-visual')).toBe('scenes/briefing/briefing-r08-v19.jpg');
-    expect(resultSceneAsset('r08', 'stable')).toBe('scenes/results/result-r08-v18-stable.jpg');
-    expect(resultSceneAsset('r01', 'stable')).toBe('scenes/results/result-r01-v18-neighbor.jpg');
-    expect(resultSceneAsset('r01', 'strained')).toBe('scenes/results/result-r01-v18-hybrid.jpg');
-    expect(resultSceneAsset('r01', 'crisis')).toBe('scenes/results/result-r01-v18-tourist.jpg');
+    expect(resultSceneAsset('r08', 'stable')).toBe('scenes/results/result-r08-v19-stable.jpg');
+    expect(resultSceneAsset('r01', 'stable')).toBe('scenes/results/result-r01-v19-stable.jpg');
+    expect(resultSceneAsset('r01', 'strained')).toBe('scenes/results/result-r01-v19-strained.jpg');
+    expect(resultSceneAsset('r01', 'crisis')).toBe('scenes/results/result-r01-v19-crisis.jpg');
     expect(sceneAsset('briefing-r03-product')).toBe('scenes/briefing/briefing-r03-v19.jpg');
     expect(sceneAsset('briefing-r04')).toBe('scenes/briefing/briefing-r04-v19.jpg');
     expect(sceneAsset('briefing-r05')).toBe('scenes/briefing/briefing-r05-v19.jpg');
     expect(sceneAsset('briefing-r07')).toBe('scenes/briefing/briefing-r07-v19.jpg');
-    expect(resultSceneAsset('r03', 'stable')).toBe('scenes/results/result-r03-v18-stable.jpg');
-    expect(resultSceneAsset('r03', 'strained')).toBe('scenes/results/result-r03-v18-strained.jpg');
-    expect(resultSceneAsset('r03', 'crisis')).toBe('scenes/results/result-r03-v18-crisis.jpg');
+    expect(resultSceneAsset('r03', 'stable')).toBe('scenes/results/result-r03-v19-stable.jpg');
+    expect(resultSceneAsset('r03', 'strained')).toBe('scenes/results/result-r03-v19-strained.jpg');
+    expect(resultSceneAsset('r03', 'crisis')).toBe('scenes/results/result-r03-v19-crisis.jpg');
     expect(resultSceneAsset('r04', 'stable')).toBe('scenes/results/result-r04-v19-stable.jpg');
     expect(resultSceneAsset('r04', 'strained')).toBe('scenes/results/result-r04-v19-strained.jpg');
     expect(resultSceneAsset('r04', 'crisis')).toBe('scenes/results/result-r04-v19-crisis.jpg');
@@ -48,10 +48,10 @@ describe('v11 visual asset production contract', () => {
     expect(resultSceneAsset('r12', 'strained')).toBe('scenes/results/result-r12-v19-strained.jpg');
     expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-v19-crisis.jpg');
     expect(sceneAsset('briefing-r11-growth')).toBe('scenes/briefing/briefing-r11-v19.jpg');
-    expect(resultSceneAsset('r11', 'stable')).toBe('scenes/results/result-r11-v18-stable.jpg');
-    expect(resultSceneAsset('r11', 'strained')).toBe('scenes/results/result-r11-v18-strained.jpg');
-    expect(resultSceneAsset('r11', 'crisis')).toBe('scenes/results/result-r11-v18-crisis.jpg');
-    expect(resultSceneAsset('r07', 'stable')).toBe('scenes/results/result-r07-stable.jpg');
+    expect(resultSceneAsset('r11', 'stable')).toBe('scenes/results/result-r11-v19-stable.jpg');
+    expect(resultSceneAsset('r11', 'strained')).toBe('scenes/results/result-r11-v19-strained.jpg');
+    expect(resultSceneAsset('r11', 'crisis')).toBe('scenes/results/result-r11-v19-crisis.jpg');
+    expect(resultSceneAsset('r07', 'stable')).toBe('scenes/results/result-r07-v19-stable.jpg');
     expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-v19-crisis.jpg');
     expect(sceneAsset('not-a-real-scene')).toBeUndefined();
   });
@@ -320,6 +320,28 @@ describe('v11 visual asset production contract', () => {
 
     const hashes = await Promise.all(
       assets.map(async (relativePath) =>
+        createHash('sha256')
+          .update(await readFile(`${assetRoot}/${relativePath}`))
+          .digest('hex'),
+      ),
+    );
+    expect(new Set(hashes).size).toBe(hashes.length);
+  });
+
+  it('gives every course round three distinct v19 result-state scenes', async () => {
+    const states = ['stable', 'strained', 'crisis'] as const;
+    const assets = v11FullContent.rounds.flatMap((round) =>
+      states.map((state) => resultSceneAsset(round.roundId, state)),
+    );
+    const resolvedAssets = assets.filter((asset): asset is string => asset !== undefined);
+
+    expect(resolvedAssets).toHaveLength(36);
+    expect(resolvedAssets.every((asset) => asset.includes('-v19-'))).toBe(true);
+    expect(new Set(resolvedAssets).size).toBe(resolvedAssets.length);
+    await Promise.all(resolvedAssets.map((relativePath) => access(`${assetRoot}/${relativePath}`)));
+
+    const hashes = await Promise.all(
+      resolvedAssets.map(async (relativePath) =>
         createHash('sha256')
           .update(await readFile(`${assetRoot}/${relativePath}`))
           .digest('hex'),

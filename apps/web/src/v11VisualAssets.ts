@@ -188,36 +188,9 @@ const resultAssets: Record<string, string> = {};
 for (let index = 1; index <= 12; index += 1) {
   const roundId = `r${String(index).padStart(2, '0')}`;
   for (const state of ['stable', 'strained', 'crisis'] as const) {
-    resultAssets[`${roundId}-${state}`] = `scenes/results/result-${roundId}-${state}.jpg`;
+    resultAssets[`${roundId}-${state}`] = `scenes/results/result-${roundId}-v19-${state}.jpg`;
   }
 }
-resultAssets['r08-stable'] = 'scenes/results/result-r08-v18-stable.jpg';
-resultAssets['r08-strained'] = 'scenes/results/result-r08-v18-strained.jpg';
-resultAssets['r08-crisis'] = 'scenes/results/result-r08-v18-crisis.jpg';
-resultAssets['r01-stable'] = 'scenes/results/result-r01-v18-neighbor.jpg';
-resultAssets['r01-strained'] = 'scenes/results/result-r01-v18-hybrid.jpg';
-resultAssets['r01-crisis'] = 'scenes/results/result-r01-v18-tourist.jpg';
-resultAssets['r03-stable'] = 'scenes/results/result-r03-v18-stable.jpg';
-resultAssets['r03-strained'] = 'scenes/results/result-r03-v18-strained.jpg';
-resultAssets['r03-crisis'] = 'scenes/results/result-r03-v18-crisis.jpg';
-resultAssets['r04-stable'] = 'scenes/results/result-r04-v19-stable.jpg';
-resultAssets['r04-strained'] = 'scenes/results/result-r04-v19-strained.jpg';
-resultAssets['r04-crisis'] = 'scenes/results/result-r04-v19-crisis.jpg';
-resultAssets['r05-stable'] = 'scenes/results/result-r05-v19-stable.jpg';
-resultAssets['r05-strained'] = 'scenes/results/result-r05-v19-strained.jpg';
-resultAssets['r05-crisis'] = 'scenes/results/result-r05-v19-crisis.jpg';
-resultAssets['r06-stable'] = 'scenes/results/result-r06-v19-stable.jpg';
-resultAssets['r06-strained'] = 'scenes/results/result-r06-v19-strained.jpg';
-resultAssets['r06-crisis'] = 'scenes/results/result-r06-v19-crisis.jpg';
-resultAssets['r09-stable'] = 'scenes/results/result-r09-v19-stable.jpg';
-resultAssets['r09-strained'] = 'scenes/results/result-r09-v19-strained.jpg';
-resultAssets['r09-crisis'] = 'scenes/results/result-r09-v19-crisis.jpg';
-resultAssets['r12-stable'] = 'scenes/results/result-r12-v19-stable.jpg';
-resultAssets['r12-strained'] = 'scenes/results/result-r12-v19-strained.jpg';
-resultAssets['r12-crisis'] = 'scenes/results/result-r12-v19-crisis.jpg';
-resultAssets['r11-stable'] = 'scenes/results/result-r11-v18-stable.jpg';
-resultAssets['r11-strained'] = 'scenes/results/result-r11-v18-strained.jpg';
-resultAssets['r11-crisis'] = 'scenes/results/result-r11-v18-crisis.jpg';
 
 const decisionAssets: Record<string, string> = {
   'product-r03-stable': 'decisions/products/product-r03-v18-stable.jpg',

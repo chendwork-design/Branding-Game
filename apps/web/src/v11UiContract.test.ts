@@ -384,13 +384,24 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(styles).toContain('max-height: 78svh');
   });
 
-  it('keeps the current scene visible while the player makes the main decision', async () => {
+  it('does not repeat the briefing scene in the action-question step', async () => {
     const app = await readFile(appPath, 'utf8');
     const styles = await readFile(stylesPath, 'utf8');
-    expect(app).toContain('v11-step-heading-visual');
+    const actionCenterStart = app.indexOf('function ActionCenterV14');
+    const actionCenterEnd = app.indexOf('// Kept as a source reference', actionCenterStart);
+    const actionCenter = app.slice(actionCenterStart, actionCenterEnd);
+
+    expect(actionCenterStart).toBeGreaterThanOrEqual(0);
+    expect(actionCenterEnd).toBeGreaterThan(actionCenterStart);
+    expect(actionCenter).not.toContain('<SceneArt');
+    expect(actionCenter).toContain('<ActionSceneThumb');
+    expect(actionCenter).toContain('现场问题');
     expect(app).toContain(
       '<SceneArt imageKey={round.briefing.imageKey} label="本轮经营现场插图" />',
     );
+    expect(
+      app.match(/<SceneArt imageKey=\{round\.briefing\.imageKey\} label="本轮经营现场插图" \/>/g),
+    ).toHaveLength(1);
     expect(app).toContain('const questionGroups =');
     expect(app).toContain('round.decisionQuestions && round.decisionQuestions.length > 0');
     expect(app).toContain(
@@ -402,10 +413,8 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(app).not.toContain(
       "step === 'actions' ? '先看清一个问题，再做决定' : '现在，把事实带进你的方案'",
     );
-    expect(styles).toContain('.v11-step-heading-visual');
-    expect(styles).toContain('.v11-step-heading-visual .v11-scene-art');
-    expect(styles).toContain('grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr)');
-    expect(styles).toContain('aspect-ratio: 2.15');
+    expect(styles).toContain('.v11-step-heading-questions');
+    expect(styles).toContain('grid-template-columns: minmax(0, 1fr)');
     expect(styles).not.toContain('.v11-step-heading-meta');
   });
 

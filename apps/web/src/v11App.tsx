@@ -965,7 +965,7 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
   };
   return (
     <section className="v11-step-surface" data-v11-primary={step} aria-label="本轮经营选择">
-      <div className="v11-step-heading">
+      <div className="v11-step-heading v11-step-heading-questions">
         <div className="v11-step-heading-copy">
           <p className="v11-kicker">
             {step === 'actions' ? '第 1 / 2 步 · 眼前发生了什么' : '第 2 / 2 步 · 现在要做的决定'}
@@ -977,9 +977,6 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
           </h2>
           <p>{round.briefing.situation}</p>
           <small className="v11-step-heading-why">为什么现在：{round.briefing.whyNow}</small>
-        </div>
-        <div className="v11-step-heading-visual">
-          <SceneArt imageKey={round.briefing.imageKey} label="本轮经营现场插图" />
         </div>
       </div>
       {step === 'actions' ? (

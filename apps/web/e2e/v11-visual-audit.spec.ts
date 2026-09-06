@@ -1,5 +1,23 @@
 import { expect, test } from '@playwright/test';
 
+test('VISUAL-029 does not repeat the briefing scene in the action-question step', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 800 });
+  await page.goto('/v11-slice');
+  await page.getByRole('button', { name: '继续' }).click();
+  await page.getByRole('button', { name: '继续' }).click();
+  await page.getByRole('button', { name: '开始经营' }).click();
+  await page.getByRole('button', { name: '进入经营现场' }).click();
+
+  await expect(page.locator('.v11-step-heading .v11-scene-art')).toHaveCount(0);
+  const actionImages = page.locator('.v11-action-question-group .v11-action-scene-thumb img');
+  await expect(actionImages).toHaveCount(3);
+  await expect(actionImages.first()).toBeVisible();
+  const actionSources = await actionImages.evaluateAll((images) =>
+    images.map((image) => image.getAttribute('src') ?? ''),
+  );
+  expect(new Set(actionSources).size).toBe(actionSources.length);
+});
+
 test('VISUAL-027 keeps a lazy decision visual inside the 360 px detail sheet and captures review screenshots', async ({
   page,
 }, testInfo) => {

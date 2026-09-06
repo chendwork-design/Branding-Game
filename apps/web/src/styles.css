@@ -6439,14 +6439,9 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   min-width: 0;
 }
 
-.v11-step-heading-visual {
-  width: 100%;
-}
-
-.v11-step-heading-visual .v11-scene-art {
-  min-height: 0;
-  aspect-ratio: 1.55;
-  border-radius: 14px;
+.v11-step-heading-questions {
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
 }
 
 @media (max-width: 680px) {
@@ -6455,13 +6450,6 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
     gap: 16px;
   }
 
-  .v11-step-heading-visual {
-    width: 100%;
-  }
-
-  .v11-step-heading-visual .v11-scene-art {
-    aspect-ratio: 2.15;
-  }
 }
 
 /* U14-10: give the chapter context breathing room and keep mobile actions in one scan line. */
@@ -6590,10 +6578,6 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   .v11-step-heading {
     gap: 11px;
     padding: 14px;
-  }
-
-  .v11-step-heading-visual .v11-scene-art {
-    aspect-ratio: 2.25;
   }
 
   .v11-step-card {

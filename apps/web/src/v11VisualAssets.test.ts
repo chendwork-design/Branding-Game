@@ -187,6 +187,20 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r10-quote', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r11-observe', 'research')).toBe(
+      'actions/v19/action-r11-observe-peak-hour.jpg',
+    );
+    expect(actionAsset('r11-test', 'test')).toBe('actions/v19/action-r11-test-platform-batch.jpg');
+    expect(actionAsset('r11-quote', 'quote')).toBe(
+      'actions/v19/action-r11-quote-supplier-capacity.jpg',
+    );
+    expect(
+      new Set([
+        actionAsset('r11-observe', 'research'),
+        actionAsset('r11-test', 'test'),
+        actionAsset('r11-quote', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(actionAsset('unknown-action', 'unknown-action')).toBeUndefined();
     expect(decisionAsset('r03-stable')).toBe('decisions/products/product-r03-v18-stable.jpg');
     expect(decisionAsset('r03-complex')).toBe('decisions/products/product-r03-v18-complex.jpg');

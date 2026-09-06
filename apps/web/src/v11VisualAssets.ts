@@ -115,6 +115,9 @@ const actionAssetOverrides: Record<string, string> = {
   'r08-test-sign': 'actions/v19/action-r08-test-sign.jpg',
   'r08-test-packaging': 'actions/v19/action-r08-test-packaging.jpg',
   'r08-negotiate-production': 'actions/v19/action-r08-negotiate-production.jpg',
+  'r09-observe': 'actions/v19/action-r09-observe-customer-shares.jpg',
+  'r09-test': 'actions/v19/action-r09-test-story-invite.jpg',
+  'r09-quote': 'actions/v19/action-r09-quote-review-roles.jpg',
 };
 
 const resultAssets: Record<string, string> = {};
@@ -251,6 +254,9 @@ export const V11VisualAssetManifest = {
     'r08-test-sign': actionAssetOverrides['r08-test-sign']!,
     'r08-test-packaging': actionAssetOverrides['r08-test-packaging']!,
     'r08-negotiate-production': actionAssetOverrides['r08-negotiate-production']!,
+    'r09-observe': actionAssetOverrides['r09-observe']!,
+    'r09-test': actionAssetOverrides['r09-test']!,
+    'r09-quote': actionAssetOverrides['r09-quote']!,
   },
   result: resultAssets,
   decision: decisionAssets,

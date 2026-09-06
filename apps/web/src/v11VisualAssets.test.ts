@@ -91,7 +91,7 @@ describe('v11 visual asset production contract', () => {
       'actions/v19/action-r03-negotiate-supply.jpg',
     );
     expect(actionAsset('r08-negotiate-production', 'negotiate')).toBe(
-      'actions/action-quote-v1.webp',
+      'actions/v19/action-r08-negotiate-production.jpg',
     );
     expect(
       new Set([
@@ -150,6 +150,10 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r07-quote', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r08-test-sign', 'test')).toBe('actions/v19/action-r08-test-sign.jpg');
+    expect(actionAsset('r08-test-packaging', 'test')).toBe(
+      'actions/v19/action-r08-test-packaging.jpg',
+    );
     expect(
       new Set([
         actionAsset('r08-test-sign', 'test'),

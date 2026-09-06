@@ -32,6 +32,7 @@
     "release:check:v11": "pnpm --filter @laojie/game-engine release:v11",
     "assets:check:v11": "node scripts/check-v11-assets.mjs",
     "assets:audit:v18": "node scripts/audit-visual-assets.mjs",
+    "assets:audit:v19": "pwsh -NoProfile -File scripts/audit-v11-runtime-visuals.ps1",
     "visual:cache": "node scripts/visual-cache.mjs prepare",
     "visual:cache:check": "node scripts/visual-cache.mjs check",
     "visual:cache:link": "node scripts/visual-cache.mjs link",

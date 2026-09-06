@@ -48,7 +48,13 @@ const shopMetrics = [
 
 const touchpointLabels: Record<string, string> = {
   storefront: '店招',
+  'side-sign': '侧挂招',
+  'door-info': '门贴',
+  'menu-board': '室内菜单',
+  'order-card': '点单卡',
+  receipt: '小票',
   cup: '杯身',
+  'cup-sleeve': '热饮杯套',
   packaging: '包装',
   avatar: '头像',
   menu: '菜单',
@@ -2324,8 +2330,8 @@ function VisualInspector({
         ? 'small'
         : 'normal';
   const touchpoints = selected.touchpoints
-    .filter((item) => ['storefront', 'cup', 'packaging', 'avatar', 'menu'].includes(item))
-    .slice(0, 5);
+    .filter((item) => Boolean(touchpointAsset(item) && touchpointPlacement(item)))
+    .slice(0, 10);
   const activeTouchpoint = touchpoints.includes(touchpoint)
     ? touchpoint
     : (touchpoints[0] ?? 'storefront');

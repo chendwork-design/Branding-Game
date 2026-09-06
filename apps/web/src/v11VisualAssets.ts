@@ -1,6 +1,16 @@
 export type V11OutcomeState = 'stable' | 'strained' | 'crisis';
 
-export type V11TouchpointId = 'storefront' | 'cup' | 'packaging' | 'avatar' | 'menu';
+export type V11TouchpointId =
+  | 'storefront'
+  | 'side-sign'
+  | 'door-info'
+  | 'menu-board'
+  | 'order-card'
+  | 'receipt'
+  | 'cup'
+  | 'cup-sleeve'
+  | 'packaging'
+  | 'avatar';
 
 export type V11TouchpointPlacement = {
   asset: string;
@@ -22,6 +32,51 @@ export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11Touchpoin
     width: 43.2,
     height: 16.2,
   },
+  'side-sign': {
+    asset: 'touchpoints/v19/touchpoint-side-sign-v19.jpg',
+    label: '侧挂招',
+    surfaceClass: 'side-sign',
+    x: 39.8,
+    y: 18.4,
+    width: 28.4,
+    height: 61.8,
+  },
+  'door-info': {
+    asset: 'touchpoints/v19/touchpoint-glass-door-v19.jpg',
+    label: '玻璃门贴',
+    surfaceClass: 'door-info',
+    x: 28.3,
+    y: 24.5,
+    width: 45.2,
+    height: 53.4,
+  },
+  'menu-board': {
+    asset: 'touchpoints/v19/touchpoint-menu-board-v19.jpg',
+    label: '室内菜单',
+    surfaceClass: 'menu-board',
+    x: 9.6,
+    y: 18.2,
+    width: 38.4,
+    height: 42.2,
+  },
+  'order-card': {
+    asset: 'touchpoints/v19/touchpoint-order-card-v19.jpg',
+    label: '点单卡',
+    surfaceClass: 'order-card',
+    x: 26.9,
+    y: 10.5,
+    width: 47.6,
+    height: 72.8,
+  },
+  receipt: {
+    asset: 'touchpoints/v19/touchpoint-receipt.jpg',
+    label: '小票',
+    surfaceClass: 'receipt',
+    x: 20.2,
+    y: 23.4,
+    width: 24.8,
+    height: 16.8,
+  },
   cup: {
     asset: 'touchpoints/v19/touchpoint-cup.jpg',
     label: '杯身',
@@ -30,6 +85,15 @@ export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11Touchpoin
     y: 38.8,
     width: 29.8,
     height: 34.6,
+  },
+  'cup-sleeve': {
+    asset: 'touchpoints/v19/touchpoint-hot-cup-sleeve-v19.jpg',
+    label: '热饮杯套',
+    surfaceClass: 'cup-sleeve',
+    x: 30.8,
+    y: 31.1,
+    width: 37.5,
+    height: 45.4,
   },
   packaging: {
     asset: 'touchpoints/v19/touchpoint-bag.jpg',
@@ -48,15 +112,6 @@ export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11Touchpoin
     y: 29.5,
     width: 16.3,
     height: 21.7,
-  },
-  menu: {
-    asset: 'touchpoints/v19/touchpoint-receipt.jpg',
-    label: '小票',
-    surfaceClass: 'menu',
-    x: 20.2,
-    y: 23.4,
-    width: 24.8,
-    height: 16.8,
   },
 };
 
@@ -182,15 +237,48 @@ const decisionAssets: Record<string, string> = {
 
 const touchpointAssets: Record<string, string> = {
   'touchpoint-storefront': V11VisualTouchpointPlacements.storefront.asset,
+  'touchpoint-side-sign': V11VisualTouchpointPlacements['side-sign'].asset,
+  'touchpoint-glass-door': V11VisualTouchpointPlacements['door-info'].asset,
+  'touchpoint-menu-board': V11VisualTouchpointPlacements['menu-board'].asset,
+  'touchpoint-order-card': V11VisualTouchpointPlacements['order-card'].asset,
+  'touchpoint-receipt': V11VisualTouchpointPlacements.receipt.asset,
   'touchpoint-cup': V11VisualTouchpointPlacements.cup.asset,
+  'touchpoint-hot-cup-sleeve': V11VisualTouchpointPlacements['cup-sleeve'].asset,
   'touchpoint-bag': V11VisualTouchpointPlacements.packaging.asset,
   'touchpoint-avatar': V11VisualTouchpointPlacements.avatar.asset,
-  'touchpoint-receipt': V11VisualTouchpointPlacements.menu.asset,
+  'touchpoint-a-frame': 'touchpoints/v19/touchpoint-a-frame-v19.jpg',
+  'touchpoint-story-wall': 'touchpoints/v19/touchpoint-story-wall-v19.jpg',
+  'touchpoint-pickup-token': 'touchpoints/v19/touchpoint-pickup-token-v19.jpg',
+  'touchpoint-pickup-shelf-label': 'touchpoints/v19/touchpoint-pickup-shelf-label-v19.jpg',
+  'touchpoint-price-tag': 'touchpoints/v19/touchpoint-price-tag-v19.jpg',
+  'touchpoint-tamper-seal': 'touchpoints/v19/touchpoint-tamper-seal-v19.jpg',
+  'touchpoint-lid-marker': 'touchpoints/v19/touchpoint-lid-marker-v19.jpg',
+  'touchpoint-coaster-napkin': 'touchpoints/v19/touchpoint-coaster-napkin-v19.jpg',
+  'touchpoint-tray-mat': 'touchpoints/v19/touchpoint-tray-mat-v19.jpg',
+  'touchpoint-double-carrier': 'touchpoints/v19/touchpoint-double-carrier-v19.jpg',
+  'touchpoint-gift-box': 'touchpoints/v19/touchpoint-gift-box-v19.jpg',
+  'touchpoint-refill-pouch': 'touchpoints/v19/touchpoint-refill-pouch-v19.jpg',
+  'touchpoint-tea-tin': 'touchpoints/v19/touchpoint-tea-tin-v19.jpg',
+  'touchpoint-snack-carrier': 'touchpoints/v19/touchpoint-snack-carrier-v19.jpg',
+  'touchpoint-apron-patch': 'touchpoints/v19/touchpoint-apron-patch-v19.jpg',
+  'touchpoint-name-badge': 'touchpoints/v19/touchpoint-name-badge-v19.jpg',
+  'touchpoint-customer-cards': 'touchpoints/v19/touchpoint-customer-cards-v19.jpg',
+  'touchpoint-hotel-supply': 'touchpoints/v19/touchpoint-hotel-supply-v19.jpg',
+  'touchpoint-delivery-crates': 'touchpoints/v19/touchpoint-delivery-crates-v19.jpg',
+  'touchpoint-popup-flag': 'touchpoints/v19/touchpoint-popup-flag-v19.jpg',
+  'touchpoint-sleeve-dispenser': 'touchpoints/v19/touchpoint-sleeve-dispenser-v19.jpg',
 };
 
 const touchpointAliases: Record<string, string> = {
+  'side-sign': 'touchpoint-side-sign',
+  'door-info': 'touchpoint-glass-door',
+  'menu-board': 'touchpoint-menu-board',
+  'order-card': 'touchpoint-order-card',
+  receipt: 'touchpoint-receipt',
+  'cup-sleeve': 'touchpoint-hot-cup-sleeve',
   packaging: 'touchpoint-bag',
   menu: 'touchpoint-receipt',
+  social: 'touchpoint-avatar',
 };
 
 const chapterAssets: Record<string, string> = {

@@ -5698,9 +5698,30 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   border-radius: 1px;
   transform: perspective(920px) rotateX(0.9deg) rotateY(-1.3deg);
 }
+.v11-touchpoint-brand-surface.side-sign {
+  border-radius: 2px;
+  transform: perspective(760px) rotateY(-4deg) skewY(0.8deg);
+}
+.v11-touchpoint-brand-surface.door-info {
+  border-radius: 2px;
+  transform: perspective(760px) rotateY(-1.6deg) skewY(-0.6deg);
+}
+.v11-touchpoint-brand-surface.menu-board {
+  border-radius: 1px;
+  transform: perspective(680px) rotateY(-2.4deg);
+}
+.v11-touchpoint-brand-surface.order-card,
+.v11-touchpoint-brand-surface.receipt {
+  border-radius: 2px;
+  transform: perspective(680px) rotateZ(-11deg) skewY(-0.5deg);
+}
 .v11-touchpoint-brand-surface.cup {
   border-radius: 10% 10% 8% 8%;
   transform: perspective(420px) rotateX(1deg) rotateY(-3deg) scaleX(0.95);
+}
+.v11-touchpoint-brand-surface.cup-sleeve {
+  border-radius: 8% 8% 10% 10%;
+  transform: perspective(460px) rotateX(1deg) rotateY(-3deg) scaleX(0.92);
 }
 .v11-touchpoint-brand-surface.packaging {
   border-radius: 2px;
@@ -5711,10 +5732,6 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   border-radius: 50%;
   box-shadow: none;
 }
-.v11-touchpoint-brand-surface.menu {
-  border-radius: 2px;
-  transform: perspective(680px) rotateZ(-11deg) skewY(-0.5deg);
-}
 .v11-touchpoint-brand-surface .v11-brand-mark-paper {
   opacity: 0.04;
 }
@@ -5722,10 +5739,12 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   opacity: 0.86;
 }
 .v11-touchpoint-brand-surface.cup .v11-brand-mark,
+.v11-touchpoint-brand-surface.cup-sleeve .v11-brand-mark,
 .v11-touchpoint-brand-surface.packaging .v11-brand-mark {
   mix-blend-mode: multiply;
 }
 .v11-touchpoint-brand-surface.cup::before,
+.v11-touchpoint-brand-surface.cup-sleeve::before,
 .v11-touchpoint-brand-surface.packaging::before {
   position: absolute;
   z-index: 3;
@@ -5742,7 +5761,8 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-touchpoint-brand-surface.avatar .v11-brand-mark {
   transform: scale(1.22);
 }
-.v11-touchpoint-brand-surface.menu .v11-brand-mark {
+.v11-touchpoint-brand-surface.order-card .v11-brand-mark,
+.v11-touchpoint-brand-surface.receipt .v11-brand-mark {
   transform: scale(0.88);
   transform-origin: top center;
 }

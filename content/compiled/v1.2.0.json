@@ -128,8 +128,13 @@
       "plainDefinition": "你最想先服务、也最有能力服务好的一群人。",
       "inGameMeaning": "选谁会影响产品、价格、服务和传播先做什么。",
       "example": "先让附近居民每天顺手买到，再考虑游客拍照传播。",
-      "relatedMetricKeys": ["segmentFit", "conversion"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "segmentFit",
+        "conversion"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "segment-fit",
@@ -138,8 +143,12 @@
       "plainDefinition": "产品、价格和表达是否真的适合那群顾客。",
       "inGameMeaning": "它高，说明顾客更容易觉得这家店是为自己准备的。",
       "example": "通勤客需要快取，游客需要看得懂地方来源。",
-      "relatedMetricKeys": ["segmentFit"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "segmentFit"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "user-insight",
@@ -148,8 +157,13 @@
       "plainDefinition": "能改变决定的顾客真实行为，不是一句好听评价。",
       "inGameMeaning": "调查要带回这种事实，才值得花行动力。",
       "example": "居民午后十分钟内买完，游客愿意为可带走的故事停留。",
-      "relatedMetricKeys": ["segmentFit", "conversion"],
-      "relatedTheoryIds": ["t-insight"]
+      "relatedMetricKeys": [
+        "segmentFit",
+        "conversion"
+      ],
+      "relatedTheoryIds": [
+        "t-insight"
+      ]
     },
     {
       "termId": "conversion",
@@ -158,8 +172,12 @@
       "plainDefinition": "看见或感兴趣的人里，最后真的下单的人有多少。",
       "inGameMeaning": "它反映顾客是否能迅速理解产品、价格和购买方法。",
       "example": "菜单太复杂，很多人看过后就离开，转化会下降。",
-      "relatedMetricKeys": ["conversion"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "conversion"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "loyalty",
@@ -168,8 +186,12 @@
       "plainDefinition": "买过的人愿不愿意再回来。",
       "inGameMeaning": "稳定产品和可信服务会让复购慢慢积累。",
       "example": "熟客知道每周都能喝到同一杯合适的茶。",
-      "relatedMetricKeys": ["loyalty"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "loyalty"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "risk-plan",
@@ -178,8 +200,13 @@
       "plainDefinition": "问题发生前，先花资源准备一套应对办法。",
       "inGameMeaning": "它不能消除所有风险，但能在问题出现时减轻损失。",
       "example": "先写清双线产品各自不做什么，避免高峰期两头忙乱。",
-      "relatedMetricKeys": ["reputationDebt", "orgCapacity"],
-      "relatedTheoryIds": ["t-growth"]
+      "relatedMetricKeys": [
+        "reputationDebt",
+        "orgCapacity"
+      ],
+      "relatedTheoryIds": [
+        "t-growth"
+      ]
     },
     {
       "termId": "brand-positioning",
@@ -188,8 +215,13 @@
       "plainDefinition": "顾客在几家店之间选择时，为什么会先想到你。",
       "inGameMeaning": "定位会约束你对谁说话、卖什么和承诺什么。",
       "example": "工作日下午五分钟拿到一杯稳定的老街茶。",
-      "relatedMetricKeys": ["segmentFit", "differentiation"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "segmentFit",
+        "differentiation"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "differentiation",
@@ -198,8 +230,12 @@
       "plainDefinition": "顾客能否用一句具体的话说出你和隔壁店不同。",
       "inGameMeaning": "差异不是更复杂，而是让人明白为何要选你。",
       "example": "不是“有文化”，而是“能带走真实茶材来源的一杯茶”。",
-      "relatedMetricKeys": ["differentiation"],
-      "relatedTheoryIds": ["t-segment"]
+      "relatedMetricKeys": [
+        "differentiation"
+      ],
+      "relatedTheoryIds": [
+        "t-segment"
+      ]
     },
     {
       "termId": "brand-promise",
@@ -208,8 +244,14 @@
       "plainDefinition": "顾客每次来，都能期待你稳定做到的事。",
       "inGameMeaning": "你说得再好，产品、价格和服务也要一起做得到。",
       "example": "“工作日下午，五分钟拿到一杯稳定的茶。”",
-      "relatedMetricKeys": ["promiseCredibility", "trust"],
-      "relatedTheoryIds": ["t-segment", "t-product"]
+      "relatedMetricKeys": [
+        "promiseCredibility",
+        "trust"
+      ],
+      "relatedTheoryIds": [
+        "t-segment",
+        "t-product"
+      ]
     },
     {
       "termId": "delivery",
@@ -218,8 +260,12 @@
       "plainDefinition": "店里能否按时、稳定地把产品和服务做出来。",
       "inGameMeaning": "复杂产品和高峰订单都会考验它。",
       "example": "一杯茶需要七个步骤，排队时是否还能按时交到顾客手上。",
-      "relatedMetricKeys": ["productDelivery"],
-      "relatedTheoryIds": ["t-product"]
+      "relatedMetricKeys": [
+        "productDelivery"
+      ],
+      "relatedTheoryIds": [
+        "t-product"
+      ]
     },
     {
       "termId": "brand-personality",
@@ -228,8 +274,13 @@
       "plainDefinition": "如果品牌像一个人，它会怎样说话和待客。",
       "inGameMeaning": "它会影响店员语气、包装文字和顾客感到的距离。",
       "example": "松弛、可靠、有一点幽默，而不是每次换一种口气。",
-      "relatedMetricKeys": ["brandConsistency", "trust"],
-      "relatedTheoryIds": ["t-identity"]
+      "relatedMetricKeys": [
+        "brandConsistency",
+        "trust"
+      ],
+      "relatedTheoryIds": [
+        "t-identity"
+      ]
     },
     {
       "termId": "visual-semantics",
@@ -238,8 +289,14 @@
       "plainDefinition": "顾客从颜色、字体和图形里读到的感觉。",
       "inGameMeaning": "画面不只好不好看，也会让人猜测价格、气质和服务方式。",
       "example": "手写字可能显得亲切，也可能让人觉得不够利落。",
-      "relatedMetricKeys": ["visualRecognition", "differentiation"],
-      "relatedTheoryIds": ["t-identity", "t-touchpoint"]
+      "relatedMetricKeys": [
+        "visualRecognition",
+        "differentiation"
+      ],
+      "relatedTheoryIds": [
+        "t-identity",
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "logo",
@@ -248,8 +305,12 @@
       "plainDefinition": "让顾客认出品牌的核心标志。",
       "inGameMeaning": "它要在店招、杯身和手机头像上都能被读出来。",
       "example": "可以是文字、图形，或两者组合。",
-      "relatedMetricKeys": ["visualRecognition"],
-      "relatedTheoryIds": ["t-identity"]
+      "relatedMetricKeys": [
+        "visualRecognition"
+      ],
+      "relatedTheoryIds": [
+        "t-identity"
+      ]
     },
     {
       "termId": "vi",
@@ -258,8 +319,13 @@
       "plainDefinition": "让不同触点看起来像同一品牌的一套规则。",
       "inGameMeaning": "它规定 LOGO、颜色、字体和版式怎样一起使用。",
       "example": "店招、杯套、菜单和头像不用长得一模一样，但要认得出是一家。",
-      "relatedMetricKeys": ["brandConsistency", "visualAdaptability"],
-      "relatedTheoryIds": ["t-touchpoint"]
+      "relatedMetricKeys": [
+        "brandConsistency",
+        "visualAdaptability"
+      ],
+      "relatedTheoryIds": [
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "ip",
@@ -268,8 +334,14 @@
       "plainDefinition": "有固定身份和任务的品牌角色。",
       "inGameMeaning": "它可以帮包装和互动被记住，但不是随便加一个卡通图。",
       "example": "角色的表情、动作和出现位置要有规则，也要有人持续维护。",
-      "relatedMetricKeys": ["visualRecognition", "orgCapacity"],
-      "relatedTheoryIds": ["t-identity", "t-touchpoint"]
+      "relatedMetricKeys": [
+        "visualRecognition",
+        "orgCapacity"
+      ],
+      "relatedTheoryIds": [
+        "t-identity",
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "brand-touchpoint",
@@ -278,8 +350,13 @@
       "plainDefinition": "顾客遇见品牌的地方。",
       "inGameMeaning": "每个触点都要让顾客看懂同一个产品和承诺。",
       "example": "店招、杯身、包装、菜单和手机头像都是触点。",
-      "relatedMetricKeys": ["awareness", "brandConsistency"],
-      "relatedTheoryIds": ["t-touchpoint"]
+      "relatedMetricKeys": [
+        "awareness",
+        "brandConsistency"
+      ],
+      "relatedTheoryIds": [
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "brand-consistency",
@@ -288,8 +365,13 @@
       "plainDefinition": "顾客在不同地方遇见你时，仍认得出是同一家店。",
       "inGameMeaning": "视觉、产品和服务说法不打架，才会让人信任。",
       "example": "海报说亲切，店员忙时也不能只剩冷冰冰的指令。",
-      "relatedMetricKeys": ["brandConsistency", "trust"],
-      "relatedTheoryIds": ["t-touchpoint"]
+      "relatedMetricKeys": [
+        "brandConsistency",
+        "trust"
+      ],
+      "relatedTheoryIds": [
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "org-capacity",
@@ -298,8 +380,13 @@
       "plainDefinition": "订单增加后，人手、供货和客服能不能接得住。",
       "inGameMeaning": "它决定增长是否会变成排队、错单和抱怨。",
       "example": "短视频火了以后，谁出杯、谁处理客诉、谁补货。",
-      "relatedMetricKeys": ["orgCapacity", "productDelivery"],
-      "relatedTheoryIds": ["t-growth"]
+      "relatedMetricKeys": [
+        "orgCapacity",
+        "productDelivery"
+      ],
+      "relatedTheoryIds": [
+        "t-growth"
+      ]
     },
     {
       "termId": "visual-recognition",
@@ -308,8 +395,12 @@
       "plainDefinition": "顾客能否很快看见、读懂并记住你的品牌。",
       "inGameMeaning": "它先看清不清楚，再谈好不好看。",
       "example": "远看店招、缩成头像、被手挡住后还能认出来。",
-      "relatedMetricKeys": ["visualRecognition"],
-      "relatedTheoryIds": ["t-identity"]
+      "relatedMetricKeys": [
+        "visualRecognition"
+      ],
+      "relatedTheoryIds": [
+        "t-identity"
+      ]
     },
     {
       "termId": "visual-adaptability",
@@ -318,8 +409,13 @@
       "plainDefinition": "同一套设计放进不同地方后，是否仍清楚好用。",
       "inGameMeaning": "它避免一张大海报好看，杯套和头像却失效。",
       "example": "杯套侧面被手遮住时，店名和图形还能不能读懂。",
-      "relatedMetricKeys": ["visualAdaptability", "brandConsistency"],
-      "relatedTheoryIds": ["t-touchpoint"]
+      "relatedMetricKeys": [
+        "visualAdaptability",
+        "brandConsistency"
+      ],
+      "relatedTheoryIds": [
+        "t-touchpoint"
+      ]
     },
     {
       "termId": "culture-credibility",
@@ -328,8 +424,13 @@
       "plainDefinition": "顾客是否相信你的地方故事有真实材料和做法支撑。",
       "inGameMeaning": "它来自茶材、来源和服务中的真实细节。",
       "example": "店员能说明茶从哪里来，而不是只贴一张山水图。",
-      "relatedMetricKeys": ["culturalCredibility", "trust"],
-      "relatedTheoryIds": ["t-insight"]
+      "relatedMetricKeys": [
+        "culturalCredibility",
+        "trust"
+      ],
+      "relatedTheoryIds": [
+        "t-insight"
+      ]
     },
     {
       "termId": "channel-dependence",
@@ -338,8 +439,13 @@
       "plainDefinition": "订单越依赖一个平台或伙伴，越会受它的规则影响。",
       "inGameMeaning": "增长带来订单，也可能带来抽成、交付和客诉压力。",
       "example": "平台一改配送规则，菜单、包装和利润都要跟着变。",
-      "relatedMetricKeys": ["channelDependence", "orgCapacity"],
-      "relatedTheoryIds": ["t-growth"]
+      "relatedMetricKeys": [
+        "channelDependence",
+        "orgCapacity"
+      ],
+      "relatedTheoryIds": [
+        "t-growth"
+      ]
     },
     {
       "termId": "reputation-debt",
@@ -348,8 +454,13 @@
       "plainDefinition": "已经说出去、却还没稳定做到的承诺。",
       "inGameMeaning": "积得越多，顾客失望时反弹越明显。",
       "example": "宣传五分钟出杯，高峰期却让顾客等二十分钟。",
-      "relatedMetricKeys": ["reputationDebt", "trust"],
-      "relatedTheoryIds": ["t-growth"]
+      "relatedMetricKeys": [
+        "reputationDebt",
+        "trust"
+      ],
+      "relatedTheoryIds": [
+        "t-growth"
+      ]
     }
   ],
   "events": [
@@ -374,7 +485,9 @@
           "theoryId": "t-segment"
         }
       ],
-      "theoryIds": ["t-segment"],
+      "theoryIds": [
+        "t-segment"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -398,7 +511,9 @@
           "theoryId": "t-segment"
         }
       ],
-      "theoryIds": ["t-segment"],
+      "theoryIds": [
+        "t-segment"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -422,7 +537,9 @@
           "theoryId": "t-segment"
         }
       ],
-      "theoryIds": ["t-segment"],
+      "theoryIds": [
+        "t-segment"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -446,7 +563,9 @@
           "theoryId": "t-segment"
         }
       ],
-      "theoryIds": ["t-segment"],
+      "theoryIds": [
+        "t-segment"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -470,7 +589,9 @@
           "theoryId": "t-segment"
         }
       ],
-      "theoryIds": ["t-segment"],
+      "theoryIds": [
+        "t-segment"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -494,7 +615,9 @@
           "theoryId": "t-insight"
         }
       ],
-      "theoryIds": ["t-insight"],
+      "theoryIds": [
+        "t-insight"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -518,7 +641,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -542,7 +667,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -566,7 +693,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -590,7 +719,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -614,7 +745,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -638,7 +771,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -662,7 +797,9 @@
           "theoryId": "t-identity"
         }
       ],
-      "theoryIds": ["t-identity"],
+      "theoryIds": [
+        "t-identity"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -686,7 +823,9 @@
           "theoryId": "t-identity"
         }
       ],
-      "theoryIds": ["t-identity"],
+      "theoryIds": [
+        "t-identity"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -710,7 +849,9 @@
           "theoryId": "t-identity"
         }
       ],
-      "theoryIds": ["t-identity"],
+      "theoryIds": [
+        "t-identity"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -734,7 +875,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -758,7 +901,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -782,7 +927,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -806,7 +953,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -830,7 +979,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-product"],
+      "theoryIds": [
+        "t-product"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -854,7 +1005,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -878,7 +1031,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -902,7 +1057,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-identity"],
+      "theoryIds": [
+        "t-identity"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -926,7 +1083,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -950,7 +1109,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -974,7 +1135,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-touchpoint"],
+      "theoryIds": [
+        "t-touchpoint"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -998,7 +1161,9 @@
           "theoryId": "t-product"
         }
       ],
-      "theoryIds": ["t-insight"],
+      "theoryIds": [
+        "t-insight"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1022,7 +1187,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1046,7 +1213,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1070,7 +1239,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1094,7 +1265,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1118,7 +1291,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1142,7 +1317,9 @@
           "theoryId": "t-touchpoint"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     },
     {
@@ -1166,7 +1343,9 @@
           "theoryId": "t-growth"
         }
       ],
-      "theoryIds": ["t-growth"],
+      "theoryIds": [
+        "t-growth"
+      ],
       "sourceNote": "基于本局已提交的经营选择触发；不是脱离状态的随机惩罚。"
     }
   ],
@@ -1318,7 +1497,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["onboarding-place"]
+        "overlayKeys": [
+          "onboarding-place"
+        ]
       }
     },
     {
@@ -1330,7 +1511,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["onboarding-goal"]
+        "overlayKeys": [
+          "onboarding-goal"
+        ]
       }
     },
     {
@@ -1342,7 +1525,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["onboarding-operation"]
+        "overlayKeys": [
+          "onboarding-operation"
+        ]
       }
     },
     {
@@ -1354,7 +1539,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r01-street"]
+        "overlayKeys": [
+          "briefing-r01-street"
+        ]
       }
     },
     {
@@ -1366,7 +1553,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-street"]
+        "overlayKeys": [
+          "result-r01-street"
+        ]
       }
     },
     {
@@ -1378,7 +1567,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-neighbor"]
+        "overlayKeys": [
+          "result-r01-neighbor"
+        ]
       }
     },
     {
@@ -1390,7 +1581,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-tourist"]
+        "overlayKeys": [
+          "result-r01-tourist"
+        ]
       }
     },
     {
@@ -1402,7 +1595,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-hybrid"]
+        "overlayKeys": [
+          "result-r01-hybrid"
+        ]
       }
     },
     {
@@ -1414,7 +1609,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-resident-loyalty"]
+        "overlayKeys": [
+          "result-r01-resident-loyalty"
+        ]
       }
     },
     {
@@ -1426,7 +1623,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r01-office-morning"]
+        "overlayKeys": [
+          "result-r01-office-morning"
+        ]
       }
     },
     {
@@ -1438,7 +1637,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r02"]
+        "overlayKeys": [
+          "briefing-r02"
+        ]
       }
     },
     {
@@ -1450,7 +1651,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02"]
+        "overlayKeys": [
+          "result-r02"
+        ]
       }
     },
     {
@@ -1462,7 +1665,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02-anchor"]
+        "overlayKeys": [
+          "result-r02-anchor"
+        ]
       }
     },
     {
@@ -1474,7 +1679,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02-dual-track"]
+        "overlayKeys": [
+          "result-r02-dual-track"
+        ]
       }
     },
     {
@@ -1486,7 +1693,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02-culture-first"]
+        "overlayKeys": [
+          "result-r02-culture-first"
+        ]
       }
     },
     {
@@ -1498,7 +1707,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02-budget-first"]
+        "overlayKeys": [
+          "result-r02-budget-first"
+        ]
       }
     },
     {
@@ -1510,7 +1721,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r02-anti-trend"]
+        "overlayKeys": [
+          "result-r02-anti-trend"
+        ]
       }
     },
     {
@@ -1522,7 +1735,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r03-product"]
+        "overlayKeys": [
+          "briefing-r03-product"
+        ]
       }
     },
     {
@@ -1534,7 +1749,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-product"]
+        "overlayKeys": [
+          "result-r03-product"
+        ]
       }
     },
     {
@@ -1546,7 +1763,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-stable"]
+        "overlayKeys": [
+          "result-r03-stable"
+        ]
       }
     },
     {
@@ -1558,7 +1777,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-complex"]
+        "overlayKeys": [
+          "result-r03-complex"
+        ]
       }
     },
     {
@@ -1570,7 +1791,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-local"]
+        "overlayKeys": [
+          "result-r03-local"
+        ]
       }
     },
     {
@@ -1582,7 +1805,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-seasonal-ritual"]
+        "overlayKeys": [
+          "result-r03-seasonal-ritual"
+        ]
       }
     },
     {
@@ -1594,7 +1819,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r03-modular-menu"]
+        "overlayKeys": [
+          "result-r03-modular-menu"
+        ]
       }
     },
     {
@@ -1606,7 +1833,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r04"]
+        "overlayKeys": [
+          "briefing-r04"
+        ]
       }
     },
     {
@@ -1618,7 +1847,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04"]
+        "overlayKeys": [
+          "result-r04"
+        ]
       }
     },
     {
@@ -1630,7 +1861,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04-everyday-cup"]
+        "overlayKeys": [
+          "result-r04-everyday-cup"
+        ]
       }
     },
     {
@@ -1642,7 +1875,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04-gift-box"]
+        "overlayKeys": [
+          "result-r04-gift-box"
+        ]
       }
     },
     {
@@ -1654,7 +1889,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04-refill"]
+        "overlayKeys": [
+          "result-r04-refill"
+        ]
       }
     },
     {
@@ -1666,7 +1903,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04-price-ladder"]
+        "overlayKeys": [
+          "result-r04-price-ladder"
+        ]
       }
     },
     {
@@ -1678,7 +1917,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r04-bundle"]
+        "overlayKeys": [
+          "result-r04-bundle"
+        ]
       }
     },
     {
@@ -1690,7 +1931,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r05"]
+        "overlayKeys": [
+          "briefing-r05"
+        ]
       }
     },
     {
@@ -1702,7 +1945,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05"]
+        "overlayKeys": [
+          "result-r05"
+        ]
       }
     },
     {
@@ -1714,7 +1959,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05-plain-word"]
+        "overlayKeys": [
+          "result-r05-plain-word"
+        ]
       }
     },
     {
@@ -1726,7 +1973,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05-mountain-mark"]
+        "overlayKeys": [
+          "result-r05-mountain-mark"
+        ]
       }
     },
     {
@@ -1738,7 +1987,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05-tea-character"]
+        "overlayKeys": [
+          "result-r05-tea-character"
+        ]
       }
     },
     {
@@ -1750,7 +2001,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05-neighborhood-seal"]
+        "overlayKeys": [
+          "result-r05-neighborhood-seal"
+        ]
       }
     },
     {
@@ -1762,7 +2015,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r05-no-symbol"]
+        "overlayKeys": [
+          "result-r05-no-symbol"
+        ]
       }
     },
     {
@@ -1774,7 +2029,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r06"]
+        "overlayKeys": [
+          "briefing-r06"
+        ]
       }
     },
     {
@@ -1786,7 +2043,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06"]
+        "overlayKeys": [
+          "result-r06"
+        ]
       }
     },
     {
@@ -1798,7 +2057,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06-streetboard"]
+        "overlayKeys": [
+          "result-r06-streetboard"
+        ]
       }
     },
     {
@@ -1810,7 +2071,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06-shortvideo"]
+        "overlayKeys": [
+          "result-r06-shortvideo"
+        ]
       }
     },
     {
@@ -1822,7 +2085,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06-partner-host"]
+        "overlayKeys": [
+          "result-r06-partner-host"
+        ]
       }
     },
     {
@@ -1834,7 +2099,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06-member-preorder"]
+        "overlayKeys": [
+          "result-r06-member-preorder"
+        ]
       }
     },
     {
@@ -1846,7 +2113,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r06-pop-up"]
+        "overlayKeys": [
+          "result-r06-pop-up"
+        ]
       }
     },
     {
@@ -1858,7 +2127,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r07"]
+        "overlayKeys": [
+          "briefing-r07"
+        ]
       }
     },
     {
@@ -1870,7 +2141,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07"]
+        "overlayKeys": [
+          "result-r07"
+        ]
       }
     },
     {
@@ -1882,7 +2155,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07-greeting-script"]
+        "overlayKeys": [
+          "result-r07-greeting-script"
+        ]
       }
     },
     {
@@ -1894,7 +2169,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07-express-line"]
+        "overlayKeys": [
+          "result-r07-express-line"
+        ]
       }
     },
     {
@@ -1906,7 +2183,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07-gift-service"]
+        "overlayKeys": [
+          "result-r07-gift-service"
+        ]
       }
     },
     {
@@ -1918,7 +2197,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07-community-board"]
+        "overlayKeys": [
+          "result-r07-community-board"
+        ]
       }
     },
     {
@@ -1930,7 +2211,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r07-self-service"]
+        "overlayKeys": [
+          "result-r07-self-service"
+        ]
       }
     },
     {
@@ -1942,7 +2225,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r08-visual"]
+        "overlayKeys": [
+          "briefing-r08-visual"
+        ]
       }
     },
     {
@@ -1954,7 +2239,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-visual"]
+        "overlayKeys": [
+          "result-r08-visual"
+        ]
       }
     },
     {
@@ -1966,7 +2253,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-line"]
+        "overlayKeys": [
+          "result-r08-line"
+        ]
       }
     },
     {
@@ -1978,7 +2267,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-symbol"]
+        "overlayKeys": [
+          "result-r08-symbol"
+        ]
       }
     },
     {
@@ -1990,7 +2281,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-hand"]
+        "overlayKeys": [
+          "result-r08-hand"
+        ]
       }
     },
     {
@@ -2002,7 +2295,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-wordmark"]
+        "overlayKeys": [
+          "result-r08-wordmark"
+        ]
       }
     },
     {
@@ -2014,7 +2309,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r08-ip-stamp"]
+        "overlayKeys": [
+          "result-r08-ip-stamp"
+        ]
       }
     },
     {
@@ -2026,7 +2323,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r09"]
+        "overlayKeys": [
+          "briefing-r09"
+        ]
       }
     },
     {
@@ -2038,7 +2337,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09"]
+        "overlayKeys": [
+          "result-r09"
+        ]
       }
     },
     {
@@ -2050,7 +2351,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09-stamp"]
+        "overlayKeys": [
+          "result-r09-stamp"
+        ]
       }
     },
     {
@@ -2062,7 +2365,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09-stories"]
+        "overlayKeys": [
+          "result-r09-stories"
+        ]
       }
     },
     {
@@ -2074,7 +2379,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09-tea-class"]
+        "overlayKeys": [
+          "result-r09-tea-class"
+        ]
       }
     },
     {
@@ -2086,7 +2393,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09-feedback-table"]
+        "overlayKeys": [
+          "result-r09-feedback-table"
+        ]
       }
     },
     {
@@ -2098,7 +2407,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r09-seasonal-club"]
+        "overlayKeys": [
+          "result-r09-seasonal-club"
+        ]
       }
     },
     {
@@ -2110,7 +2421,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r10"]
+        "overlayKeys": [
+          "briefing-r10"
+        ]
       }
     },
     {
@@ -2122,7 +2435,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10"]
+        "overlayKeys": [
+          "result-r10"
+        ]
       }
     },
     {
@@ -2134,7 +2449,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10-second-counter"]
+        "overlayKeys": [
+          "result-r10-second-counter"
+        ]
       }
     },
     {
@@ -2146,7 +2463,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10-wholesale"]
+        "overlayKeys": [
+          "result-r10-wholesale"
+        ]
       }
     },
     {
@@ -2158,7 +2477,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10-co-brand"]
+        "overlayKeys": [
+          "result-r10-co-brand"
+        ]
       }
     },
     {
@@ -2170,7 +2491,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10-one-store"]
+        "overlayKeys": [
+          "result-r10-one-store"
+        ]
       }
     },
     {
@@ -2182,7 +2505,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r10-delivery"]
+        "overlayKeys": [
+          "result-r10-delivery"
+        ]
       }
     },
     {
@@ -2194,7 +2519,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r11-growth"]
+        "overlayKeys": [
+          "briefing-r11-growth"
+        ]
       }
     },
     {
@@ -2206,7 +2533,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-growth"]
+        "overlayKeys": [
+          "result-r11-growth"
+        ]
       }
     },
     {
@@ -2218,7 +2547,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-platform"]
+        "overlayKeys": [
+          "result-r11-platform"
+        ]
       }
     },
     {
@@ -2230,7 +2561,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-steady"]
+        "overlayKeys": [
+          "result-r11-steady"
+        ]
       }
     },
     {
@@ -2242,7 +2575,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-community"]
+        "overlayKeys": [
+          "result-r11-community"
+        ]
       }
     },
     {
@@ -2254,7 +2589,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-steady-circle"]
+        "overlayKeys": [
+          "result-r11-steady-circle"
+        ]
       }
     },
     {
@@ -2266,7 +2603,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r11-limited-drop"]
+        "overlayKeys": [
+          "result-r11-limited-drop"
+        ]
       }
     },
     {
@@ -2278,7 +2617,9 @@
       "priority": "critical",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["briefing-r12"]
+        "overlayKeys": [
+          "briefing-r12"
+        ]
       }
     },
     {
@@ -2290,7 +2631,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12"]
+        "overlayKeys": [
+          "result-r12"
+        ]
       }
     },
     {
@@ -2302,7 +2645,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12-steady-renewal"]
+        "overlayKeys": [
+          "result-r12-steady-renewal"
+        ]
       }
     },
     {
@@ -2314,7 +2659,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12-seasonal-new"]
+        "overlayKeys": [
+          "result-r12-seasonal-new"
+        ]
       }
     },
     {
@@ -2326,7 +2673,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12-ip-merch"]
+        "overlayKeys": [
+          "result-r12-ip-merch"
+        ]
       }
     },
     {
@@ -2338,7 +2687,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12-platform-growth"]
+        "overlayKeys": [
+          "result-r12-platform-growth"
+        ]
       }
     },
     {
@@ -2350,7 +2701,9 @@
       "priority": "normal",
       "recipe": {
         "baseKey": "scene-atlas.svg",
-        "overlayKeys": ["result-r12-loop-back"]
+        "overlayKeys": [
+          "result-r12-loop-back"
+        ]
       }
     }
   ],
@@ -2421,13 +2774,18 @@
           "questionId": "question-r01-1",
           "prompt": "第一批谁会真的在这里买？",
           "context": "比较居民、游客和通勤人群出现的时段、购买理由和服务难度。",
-          "actionIds": ["r01-observe-footfall", "r01-interview-neighbors"]
+          "actionIds": [
+            "r01-observe-footfall",
+            "r01-interview-neighbors"
+          ]
         },
         {
           "questionId": "question-r01-2",
           "prompt": "两类顾客能不能被同一间店接住？",
           "context": "把人手、产品步骤和开店现金放在一起看。",
-          "actionIds": ["r01-quote-rent"]
+          "actionIds": [
+            "r01-quote-rent"
+          ]
         }
       ],
       "knownFacts": [
@@ -2446,11 +2804,21 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "questionId": "question-r01-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r01-footfall", "ev-r01-competition"],
-          "helpsCompareChoiceIds": ["r01-neighbor", "r01-tourist", "r01-hybrid"],
+          "revealsEvidenceIds": [
+            "ev-r01-footfall",
+            "ev-r01-competition"
+          ],
+          "helpsCompareChoiceIds": [
+            "r01-neighbor",
+            "r01-tourist",
+            "r01-hybrid"
+          ],
           "remainingUnknown": "还不知道哪类人愿意复购，也不知道他们愿意接受什么价格。"
         },
         {
@@ -2462,11 +2830,19 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "questionId": "question-r01-2",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r01-neighbor-interviews"],
-          "helpsCompareChoiceIds": ["r01-neighbor", "r01-hybrid"],
+          "revealsEvidenceIds": [
+            "ev-r01-neighbor-interviews"
+          ],
+          "helpsCompareChoiceIds": [
+            "r01-neighbor",
+            "r01-hybrid"
+          ],
           "remainingUnknown": "还不知道他们愿意为多丰富的口味和地方故事多付多少钱。"
         },
         {
@@ -2478,10 +2854,14 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-insight"],
+          "theoryIds": [
+            "t-insight"
+          ],
           "questionId": "question-r01-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r01-opening-cost"],
+          "revealsEvidenceIds": [
+            "ev-r01-opening-cost"
+          ],
           "helpsCompareChoiceIds": [],
           "remainingUnknown": "高峰期增加的人手和设备投入，还要在实际经营里继续核算。"
         }
@@ -2512,7 +2892,10 @@
               "explanation": "周末客流为游客传播路线提供了机会。"
             }
           ],
-          "theoryIds": ["t-segment", "t-insight"]
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r01-competition",
@@ -2532,7 +2915,10 @@
               "explanation": "游客传播路线会直接面对同街竞争。"
             }
           ],
-          "theoryIds": ["t-segment", "t-insight"]
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r01-neighbor-interviews",
@@ -2559,7 +2945,10 @@
               "explanation": "只追求拍照传播，容易忽略居民每天愿不愿意回来。"
             }
           ],
-          "theoryIds": ["t-segment", "t-insight"]
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r01-opening-cost",
@@ -2579,7 +2968,9 @@
               "explanation": "把预算过早压在强视觉和一次性装饰上，会缩小后续试做空间。"
             }
           ],
-          "theoryIds": ["t-insight"]
+          "theoryIds": [
+            "t-insight"
+          ]
         }
       ],
       "choices": [
@@ -2594,7 +2985,10 @@
           "workload": 3,
           "primaryBenefit": "服务对象变清楚了",
           "primaryRisk": "前期声量较慢",
-          "evidenceRelations": ["ev-r01-footfall", "ev-r01-neighbor-interviews"],
+          "evidenceRelations": [
+            "ev-r01-footfall",
+            "ev-r01-neighbor-interviews"
+          ],
           "effects": [
             {
               "key": "segmentFit",
@@ -2611,9 +3005,13 @@
               "theoryId": "t-segment"
             }
           ],
-          "riskPlanIds": ["risk-r01-repeat"],
+          "riskPlanIds": [
+            "risk-r01-repeat"
+          ],
           "conditions": [],
-          "theoryIds": ["t-segment"],
+          "theoryIds": [
+            "t-segment"
+          ],
           "reportExplanation": "你决定先做附近居民的日常茶饮。第一批顾客更容易听懂这家店是为谁开的。顾客更愿意相信菜单上写的价格和承诺。",
           "transferPrompt": "第一批顾客的到店习惯，哪一条证据真正改变了你的选择？",
           "playerConsequence": "第一批顾客更容易听懂这家店是为谁开的。",
@@ -2632,7 +3030,10 @@
           "workload": 3,
           "primaryBenefit": "第一波注意力来了",
           "primaryRisk": "顾客和购买理由容易变模糊",
-          "evidenceRelations": ["ev-r01-footfall", "ev-r01-competition"],
+          "evidenceRelations": [
+            "ev-r01-footfall",
+            "ev-r01-competition"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -2658,7 +3059,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "reportExplanation": "你决定做一杯游客都想拍的地标饮品。更多路过的人注意到店门口和主打产品。到店的人更难判断这家店是不是为自己准备的。",
           "transferPrompt": "第一批顾客的到店习惯，哪一条证据真正改变了你的选择？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -2677,7 +3081,10 @@
           "workload": 4,
           "primaryBenefit": "两类需求被放在同一张表上比较",
           "primaryRisk": "时间和精力消耗更大",
-          "evidenceRelations": ["ev-r01-footfall", "ev-r01-neighbor-interviews"],
+          "evidenceRelations": [
+            "ev-r01-footfall",
+            "ev-r01-neighbor-interviews"
+          ],
           "effects": [
             {
               "key": "segmentFit",
@@ -2703,7 +3110,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "reportExplanation": "你决定先做双时段的小范围试卖。第一批顾客更容易听懂这家店是为谁开的。增加的工作开始挤占店员和流程。",
           "transferPrompt": "第一批顾客的到店习惯，哪一条证据真正改变了你的选择？",
           "playerConsequence": "第一批顾客更容易听懂这家店是为谁开的。",
@@ -2722,7 +3132,9 @@
           "workload": 3,
           "primaryBenefit": "熟客觉得这家店记得住自己",
           "primaryRisk": "对游客的第一眼吸引较弱",
-          "evidenceRelations": ["ev-r01-footfall"],
+          "evidenceRelations": [
+            "ev-r01-footfall"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -2739,9 +3151,13 @@
               "theoryId": "t-segment"
             }
           ],
-          "riskPlanIds": ["risk-r01-repeat"],
+          "riskPlanIds": [
+            "risk-r01-repeat"
+          ],
           "conditions": [],
-          "theoryIds": ["t-segment"],
+          "theoryIds": [
+            "t-segment"
+          ],
           "reportExplanation": "你决定给附近居民做一套熟客方案。顾客更愿意相信菜单上写的价格和承诺。买过的人多了一个再回来的理由。",
           "transferPrompt": "第一批顾客的到店习惯，哪一条证据真正改变了你的选择？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -2760,7 +3176,9 @@
           "workload": 2,
           "primaryBenefit": "工作日购买更顺手",
           "primaryRisk": "品牌关系容易停在功能层",
-          "evidenceRelations": ["ev-r01-footfall"],
+          "evidenceRelations": [
+            "ev-r01-footfall"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -2779,7 +3197,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-segment"],
+          "theoryIds": [
+            "t-segment"
+          ],
           "reportExplanation": "你决定先服务通勤和办公人群。看完菜单的顾客更容易决定下单。顾客在不同地方遇到的说法开始对不上。",
           "transferPrompt": "第一批顾客的到店习惯，哪一条证据真正改变了你的选择？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -2797,13 +3217,23 @@
           "cashCostYuan": 2000,
           "actionPointCost": 1,
           "mitigationRatio": 30,
-          "theoryIds": ["t-segment", "t-insight"]
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r01-neighbor", "event-r01-tourist", "event-r01-hybrid"],
-      "theoryIds": ["t-segment", "t-insight"],
+      "eventIds": [
+        "event-r01-neighbor",
+        "event-r01-tourist",
+        "event-r01-hybrid"
+      ],
+      "theoryIds": [
+        "t-segment",
+        "t-insight"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r01-street",
         "motionCue": "street-light",
@@ -2852,13 +3282,18 @@
           "questionId": "question-r02-1",
           "prompt": "第一批顾客会在什么时刻想到你？",
           "context": "先分清居民、游客和通勤人群为什么来、多久来一次。",
-          "actionIds": ["r02-observe", "r02-test"]
+          "actionIds": [
+            "r02-observe",
+            "r02-test"
+          ]
         },
         {
           "questionId": "question-r02-2",
           "prompt": "一句承诺，店里真的做得到吗？",
           "context": "把产品数量、价格和人手放在一起算。",
-          "actionIds": ["r02-quote"]
+          "actionIds": [
+            "r02-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -2877,11 +3312,21 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "questionId": "question-r02-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r02-audience", "ev-r02-capacity"],
-          "helpsCompareChoiceIds": ["r02-anchor", "r02-dual-track", "r02-dual-track"],
+          "revealsEvidenceIds": [
+            "ev-r02-audience",
+            "ev-r02-capacity"
+          ],
+          "helpsCompareChoiceIds": [
+            "r02-anchor",
+            "r02-dual-track",
+            "r02-dual-track"
+          ],
           "remainingUnknown": "还不知道两类人是否能共享同一套产品基础。"
         },
         {
@@ -2893,11 +3338,20 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "questionId": "question-r02-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r02-culture", "ev-r02-voice"],
-          "helpsCompareChoiceIds": ["r02-culture-first", "r02-anti-trend"],
+          "revealsEvidenceIds": [
+            "ev-r02-culture",
+            "ev-r02-voice"
+          ],
+          "helpsCompareChoiceIds": [
+            "r02-culture-first",
+            "r02-anti-trend"
+          ],
           "remainingUnknown": "顾客是否愿意因为来源解释支付更多。"
         },
         {
@@ -2909,11 +3363,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-segment", "t-insight"],
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ],
           "questionId": "question-r02-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r02-price"],
-          "helpsCompareChoiceIds": ["r02-budget-first"],
+          "revealsEvidenceIds": [
+            "ev-r02-price"
+          ],
+          "helpsCompareChoiceIds": [
+            "r02-budget-first"
+          ],
           "remainingUnknown": "你的顾客愿意为哪一部分价值多付钱。"
         }
       ],
@@ -2943,7 +3404,10 @@
               "explanation": "两类需求确实存在，但需要额外组织能力。"
             }
           ],
-          "theoryIds": ["t-segment", "t-insight"]
+          "theoryIds": [
+            "t-segment",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r02-culture",
@@ -2963,7 +3427,10 @@
               "explanation": "来源记录支持从真实材料开始讲故事。"
             }
           ],
-          "theoryIds": ["t-insight", "t-product"]
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r02-price",
@@ -2983,7 +3450,10 @@
               "explanation": "价格带比较支持先管理顾客预期。"
             }
           ],
-          "theoryIds": ["t-insight", "t-product"]
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r02-capacity",
@@ -3003,7 +3473,9 @@
               "explanation": "团队容量提醒双线定位需要额外防护。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r02-voice",
@@ -3023,7 +3495,9 @@
               "explanation": "语言采样支持建立自己的说话方式。"
             }
           ],
-          "theoryIds": ["t-segment"]
+          "theoryIds": [
+            "t-segment"
+          ]
         }
       ],
       "choices": [
@@ -3038,7 +3512,9 @@
           "workload": 2,
           "primaryBenefit": "附近顾客知道午后想喝茶时可以来这里",
           "primaryRisk": "游客第一次路过时，未必立刻知道这家店和自己有关",
-          "evidenceRelations": ["ev-r02-audience"],
+          "evidenceRelations": [
+            "ev-r02-audience"
+          ],
           "effects": [
             {
               "key": "segmentFit",
@@ -3057,7 +3533,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-segment"],
+          "theoryIds": [
+            "t-segment"
+          ],
           "reportExplanation": "你决定先守住附近人的午后十分钟。第一批顾客更容易听懂这家店是为谁开的。路过的人更难注意到这家店。",
           "transferPrompt": "你承诺的那件事，忙起来时店员还能稳定做到吗？",
           "playerConsequence": "第一批顾客更容易听懂这家店是为谁开的。",
@@ -3076,7 +3554,10 @@
           "workload": 4,
           "primaryBenefit": "居民和游客各自看得懂该怎么买、该期待什么",
           "primaryRisk": "两名店员可能同时被两套菜单和说明拖住",
-          "evidenceRelations": ["ev-r02-audience", "ev-r02-capacity"],
+          "evidenceRelations": [
+            "ev-r02-audience",
+            "ev-r02-capacity"
+          ],
           "effects": [
             {
               "key": "segmentFit",
@@ -3093,9 +3574,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r02-risk-scope"],
+          "riskPlanIds": [
+            "r02-risk-scope"
+          ],
           "conditions": [],
-          "theoryIds": ["t-segment", "t-growth"],
+          "theoryIds": [
+            "t-segment",
+            "t-growth"
+          ],
           "reportExplanation": "你决定给居民和游客各留一个入口。第一批顾客更容易听懂这家店是为谁开的。增加的工作开始挤占店员和流程。",
           "transferPrompt": "你承诺的那件事，忙起来时店员还能稳定做到吗？",
           "playerConsequence": "第一批顾客更容易听懂这家店是为谁开的。",
@@ -3114,7 +3600,9 @@
           "workload": 3,
           "primaryBenefit": "顾客能说出茶叶从哪里来、为什么这样做",
           "primaryRisk": "如果杯里的体验跟不上故事，顾客会觉得店里只会说",
-          "evidenceRelations": ["ev-r02-culture"],
+          "evidenceRelations": [
+            "ev-r02-culture"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -3133,7 +3621,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-insight", "t-product"],
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ],
           "reportExplanation": "你决定让每杯茶先讲清来处。顾客能从茶材和做法里听到真实的地方来历。店里说出去的话需要更多实际体验来证明。",
           "transferPrompt": "你承诺的那件事，忙起来时店员还能稳定做到吗？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -3152,7 +3643,9 @@
           "workload": 2,
           "primaryBenefit": "菜单把价格、分量和原因写清，顾客少问一遍“为什么这么贵”",
           "primaryRisk": "路过的人暂时还记不住这家店的特别之处",
-          "evidenceRelations": ["ev-r02-price"],
+          "evidenceRelations": [
+            "ev-r02-price"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -3171,7 +3664,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-insight", "t-segment"],
+          "theoryIds": [
+            "t-insight",
+            "t-segment"
+          ],
           "reportExplanation": "你决定把每个价位说得明明白白。顾客更愿意相信菜单上写的价格和承诺。顾客更容易把你和同街门店混在一起。",
           "transferPrompt": "你承诺的那件事，忙起来时店员还能稳定做到吗？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -3190,7 +3686,9 @@
           "workload": 2,
           "primaryBenefit": "顾客能记住一句只属于这家店的招呼",
           "primaryRisk": "没有热点帮忙时，新顾客认识店铺会慢一点",
-          "evidenceRelations": ["ev-r02-voice"],
+          "evidenceRelations": [
+            "ev-r02-voice"
+          ],
           "effects": [
             {
               "key": "differentiation",
@@ -3209,7 +3707,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-segment"],
+          "theoryIds": [
+            "t-segment"
+          ],
           "reportExplanation": "你决定写一句只属于这家店的招呼。顾客更容易说出你和隔壁店哪里不同。路过的人更难注意到这家店。",
           "transferPrompt": "你承诺的那件事，忙起来时店员还能稳定做到吗？",
           "playerConsequence": "顾客更容易说出你和隔壁店哪里不同。",
@@ -3227,13 +3727,23 @@
           "cashCostYuan": 5000,
           "actionPointCost": 1,
           "mitigationRatio": 45,
-          "theoryIds": ["t-segment", "t-growth"]
+          "theoryIds": [
+            "t-segment",
+            "t-growth"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r02-anchor", "event-r02-voice", "event-r02-rent"],
-      "theoryIds": ["t-segment", "t-insight"],
+      "eventIds": [
+        "event-r02-anchor",
+        "event-r02-voice",
+        "event-r02-rent"
+      ],
+      "theoryIds": [
+        "t-segment",
+        "t-insight"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r02",
         "motionCue": "round-r02",
@@ -3245,7 +3755,11 @@
           }
         ]
       },
-      "termRefs": ["brand-positioning", "differentiation", "brand-promise"]
+      "termRefs": [
+        "brand-positioning",
+        "differentiation",
+        "brand-promise"
+      ]
     },
     {
       "roundId": "r03",
@@ -3275,13 +3789,18 @@
           "questionId": "question-r03-1",
           "prompt": "哪一杯能在高峰期稳定交到顾客手上？",
           "context": "看口味、制作步骤和等待时间，别只看拍照效果。",
-          "actionIds": ["r03-test-recipe", "r03-quote-packaging"]
+          "actionIds": [
+            "r03-test-recipe",
+            "r03-quote-packaging"
+          ]
         },
         {
           "questionId": "question-r03-2",
           "prompt": "复杂做法到底会多花什么？",
           "context": "把设备、包装和供应是否稳定一起问清楚。",
-          "actionIds": ["r03-negotiate-supply"]
+          "actionIds": [
+            "r03-negotiate-supply"
+          ]
         }
       ],
       "knownFacts": [
@@ -3300,11 +3819,20 @@
           "actionPointCost": 2,
           "durationDays": 3,
           "workload": 3,
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "questionId": "question-r03-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r03-queue", "ev-r03-price"],
-          "helpsCompareChoiceIds": ["r03-stable", "r03-complex", "r03-local-special"],
+          "revealsEvidenceIds": [
+            "ev-r03-queue",
+            "ev-r03-price"
+          ],
+          "helpsCompareChoiceIds": [
+            "r03-stable",
+            "r03-complex",
+            "r03-local-special"
+          ],
           "remainingUnknown": "还不知道顾客愿意为复杂体验多等多久。"
         },
         {
@@ -3316,11 +3844,17 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "questionId": "question-r03-2",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r03-packaging-cost"],
-          "helpsCompareChoiceIds": ["r03-complex"],
+          "revealsEvidenceIds": [
+            "ev-r03-packaging-cost"
+          ],
+          "helpsCompareChoiceIds": [
+            "r03-complex"
+          ],
           "remainingUnknown": "还不知道顾客是否会因为包装而主动复购或推荐。"
         },
         {
@@ -3332,11 +3866,17 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "questionId": "question-r03-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r03-supply"],
-          "helpsCompareChoiceIds": ["r03-local-special"],
+          "revealsEvidenceIds": [
+            "ev-r03-supply"
+          ],
+          "helpsCompareChoiceIds": [
+            "r03-local-special"
+          ],
           "remainingUnknown": "还不知道旺季需求会不会超过当前供应上限。"
         }
       ],
@@ -3366,7 +3906,9 @@
               "explanation": "复杂款会放大高峰等待风险。"
             }
           ],
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r03-price",
@@ -3386,7 +3928,10 @@
               "explanation": "地方感可以支持有理由的轻溢价。"
             }
           ],
-          "theoryIds": ["t-product", "t-insight"]
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r03-packaging-cost",
@@ -3413,7 +3958,10 @@
               "explanation": "控制包装复杂度有利于先把主打产品稳定交付。"
             }
           ],
-          "theoryIds": ["t-product", "t-insight"]
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r03-supply",
@@ -3440,7 +3988,9 @@
               "explanation": "步骤和原料都更复杂时，供应波动会更快传到顾客体验上。"
             }
           ],
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         }
       ],
       "choices": [
@@ -3455,7 +4005,9 @@
           "workload": 3,
           "primaryBenefit": "出杯稳定性提高",
           "primaryRisk": "第一眼传播不够强",
-          "evidenceRelations": ["ev-r03-queue"],
+          "evidenceRelations": [
+            "ev-r03-queue"
+          ],
           "effects": [
             {
               "key": "productDelivery",
@@ -3479,9 +4031,13 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["risk-r03-supply"],
+          "riskPlanIds": [
+            "risk-r03-supply"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "reportExplanation": "你决定先做一款稳定、好复购的主打茶。忙起来时，店员更容易把产品按时交到顾客手里。店里更有把说过的话稳定做到的把握。",
           "transferPrompt": "主打产品的哪个步骤最可能拖慢高峰期出杯？",
           "playerConsequence": "忙起来时，店员更容易把产品按时交到顾客手里。",
@@ -3500,7 +4056,11 @@
           "workload": 5,
           "primaryBenefit": "招牌产品获得讨论",
           "primaryRisk": "高峰交付容易失控",
-          "evidenceRelations": ["ev-r03-queue", "ev-r03-price", "ev-r03-packaging-cost"],
+          "evidenceRelations": [
+            "ev-r03-queue",
+            "ev-r03-price",
+            "ev-r03-packaging-cost"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -3526,7 +4086,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "reportExplanation": "你决定做一款步骤复杂但很出片的招牌茶。更多路过的人注意到店门口和主打产品。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "主打产品的哪个步骤最可能拖慢高峰期出杯？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -3545,7 +4108,10 @@
           "workload": 4,
           "primaryBenefit": "地方来源说得更清楚",
           "primaryRisk": "故事若不真实会反噬信任",
-          "evidenceRelations": ["ev-r03-price", "ev-r03-supply"],
+          "evidenceRelations": [
+            "ev-r03-price",
+            "ev-r03-supply"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -3569,9 +4135,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["risk-r03-supply"],
+          "riskPlanIds": [
+            "risk-r03-supply"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "reportExplanation": "你决定做一款有地方材料故事的轻量产品。顾客能从茶材和做法里听到真实的地方来历。顾客更愿意相信菜单上写的价格和承诺。",
           "transferPrompt": "主打产品的哪个步骤最可能拖慢高峰期出杯？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -3590,7 +4161,10 @@
           "workload": 4,
           "primaryBenefit": "地方材料有了具体体验",
           "primaryRisk": "季节变化会带来备货压力",
-          "evidenceRelations": ["ev-r03-price", "ev-r03-supply"],
+          "evidenceRelations": [
+            "ev-r03-price",
+            "ev-r03-supply"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -3607,9 +4181,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["risk-r03-supply"],
+          "riskPlanIds": [
+            "risk-r03-supply"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "reportExplanation": "你决定做一款季节限定的轻仪式茶。顾客能从茶材和做法里听到真实的地方来历。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "主打产品的哪个步骤最可能拖慢高峰期出杯？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -3628,7 +4207,9 @@
           "workload": 3,
           "primaryBenefit": "顾客更容易找到适合自己的组合",
           "primaryRisk": "选项太多会稀释主打记忆",
-          "evidenceRelations": ["ev-r03-queue"],
+          "evidenceRelations": [
+            "ev-r03-queue"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -3647,7 +4228,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "reportExplanation": "你决定做可自由组合的模块化菜单。看完菜单的顾客更容易决定下单。顾客更容易把你和同街门店混在一起。",
           "transferPrompt": "主打产品的哪个步骤最可能拖慢高峰期出杯？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -3665,13 +4248,22 @@
           "cashCostYuan": 6000,
           "actionPointCost": 1,
           "mitigationRatio": 45,
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r03-stable", "event-r03-complex", "event-r03-local"],
-      "theoryIds": ["t-product", "t-insight"],
+      "eventIds": [
+        "event-r03-stable",
+        "event-r03-complex",
+        "event-r03-local"
+      ],
+      "theoryIds": [
+        "t-product",
+        "t-insight"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r03-product",
         "motionCue": "tea-counter",
@@ -3683,7 +4275,9 @@
           }
         ]
       },
-      "termRefs": ["delivery"]
+      "termRefs": [
+        "delivery"
+      ]
     },
     {
       "roundId": "r04",
@@ -3713,13 +4307,18 @@
           "questionId": "question-r04-1",
           "prompt": "顾客愿意为什么多付一点？",
           "context": "比较金额、分量、等待时间和带走后的体验。",
-          "actionIds": ["r04-observe", "r04-test"]
+          "actionIds": [
+            "r04-observe",
+            "r04-test"
+          ]
         },
         {
           "questionId": "question-r04-2",
           "prompt": "包装和服务会不会把利润吃掉？",
           "context": "先算单件成本，也走一遍清洁、归还或礼盒交付。",
-          "actionIds": ["r04-quote"]
+          "actionIds": [
+            "r04-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -3738,11 +4337,21 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "questionId": "question-r04-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r04-daily", "ev-r04-reuse"],
-          "helpsCompareChoiceIds": ["r04-everyday-cup", "r04-refill", "r04-bundle"],
+          "revealsEvidenceIds": [
+            "ev-r04-daily",
+            "ev-r04-reuse"
+          ],
+          "helpsCompareChoiceIds": [
+            "r04-everyday-cup",
+            "r04-refill",
+            "r04-bundle"
+          ],
           "remainingUnknown": "快购买是否会削弱地方感。"
         },
         {
@@ -3754,11 +4363,20 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "questionId": "question-r04-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r04-gift", "ev-r04-price"],
-          "helpsCompareChoiceIds": ["r04-gift-box", "r04-price-ladder"],
+          "revealsEvidenceIds": [
+            "ev-r04-gift",
+            "ev-r04-price"
+          ],
+          "helpsCompareChoiceIds": [
+            "r04-gift-box",
+            "r04-price-ladder"
+          ],
           "remainingUnknown": "礼盒会不会只在节假日销售。"
         },
         {
@@ -3770,11 +4388,20 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "questionId": "question-r04-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r04-package", "ev-r04-margin"],
-          "helpsCompareChoiceIds": ["r04-gift-box", "r04-bundle"],
+          "revealsEvidenceIds": [
+            "ev-r04-package",
+            "ev-r04-margin"
+          ],
+          "helpsCompareChoiceIds": [
+            "r04-gift-box",
+            "r04-bundle"
+          ],
           "remainingUnknown": "顾客是否愿意为结构变化支付更多。"
         }
       ],
@@ -3797,7 +4424,9 @@
               "explanation": "购买记录支持把主力放在日常杯装。"
             }
           ],
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r04-gift",
@@ -3817,7 +4446,10 @@
               "explanation": "带走场景支持礼盒，但它不是所有时段的主力。"
             }
           ],
-          "theoryIds": ["t-product", "t-insight"]
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r04-package",
@@ -3837,7 +4469,10 @@
               "explanation": "报价提醒礼盒方案要管理库存与成本。"
             }
           ],
-          "theoryIds": ["t-insight", "t-product"]
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r04-reuse",
@@ -3864,7 +4499,10 @@
               "explanation": "组合销售也会增加包材管理复杂度。"
             }
           ],
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r04-price",
@@ -3884,7 +4522,9 @@
               "explanation": "比较结果支持用档位解释不同价值。"
             }
           ],
-          "theoryIds": ["t-insight"]
+          "theoryIds": [
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r04-margin",
@@ -3904,7 +4544,10 @@
               "explanation": "毛利表支持组合有机会，但提醒管理损耗。"
             }
           ],
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         }
       ],
       "choices": [
@@ -3919,7 +4562,9 @@
           "workload": 2,
           "primaryBenefit": "第一次购买更容易发生",
           "primaryRisk": "礼赠场景的溢价空间较小",
-          "evidenceRelations": ["ev-r04-daily"],
+          "evidenceRelations": [
+            "ev-r04-daily"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -3938,7 +4583,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "reportExplanation": "你决定把主力放在日常杯装。看完菜单的顾客更容易决定下单。买过的人多了一个再回来的理由。",
           "transferPrompt": "顾客支付的价格，具体换来了什么看得见的价值？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -3957,7 +4604,10 @@
           "workload": 4,
           "primaryBenefit": "地方故事被带进礼赠场景",
           "primaryRisk": "礼盒滞销会占压现金",
-          "evidenceRelations": ["ev-r04-gift", "ev-r04-package"],
+          "evidenceRelations": [
+            "ev-r04-gift",
+            "ev-r04-package"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -3976,7 +4626,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product", "t-insight"],
+          "theoryIds": [
+            "t-product",
+            "t-insight"
+          ],
           "reportExplanation": "你决定做一款有地方感的礼盒。顾客能从茶材和做法里听到真实的地方来历。说出去却还没做到的话变多，下一次失误更容易被放大。",
           "transferPrompt": "顾客支付的价格，具体换来了什么看得见的价值？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -3995,7 +4648,9 @@
           "workload": 4,
           "primaryBenefit": "顾客有了再次回来的理由",
           "primaryRisk": "清洁和回收流程容易失控",
-          "evidenceRelations": ["ev-r04-reuse"],
+          "evidenceRelations": [
+            "ev-r04-reuse"
+          ],
           "effects": [
             {
               "key": "loyalty",
@@ -4012,9 +4667,13 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r04-risk-reuse"],
+          "riskPlanIds": [
+            "r04-risk-reuse"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product"],
+          "theoryIds": [
+            "t-product"
+          ],
           "reportExplanation": "你决定做可回收容器的补充装。买过的人多了一个再回来的理由。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "顾客支付的价格，具体换来了什么看得见的价值？",
           "playerConsequence": "买过的人多了一个再回来的理由。",
@@ -4033,7 +4692,9 @@
           "workload": 3,
           "primaryBenefit": "顾客更容易找到合适档位",
           "primaryRisk": "档位过多会拖慢选择",
-          "evidenceRelations": ["ev-r04-price"],
+          "evidenceRelations": [
+            "ev-r04-price"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -4052,7 +4713,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-insight", "t-product"],
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ],
           "reportExplanation": "你决定做三档清晰的价格梯度。看完菜单的顾客更容易决定下单。店招、菜单和店员的说法更像同一家店。",
           "transferPrompt": "顾客支付的价格，具体换来了什么看得见的价值？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -4071,7 +4735,9 @@
           "workload": 3,
           "primaryBenefit": "组合让购买理由更完整",
           "primaryRisk": "备货复杂度增加",
-          "evidenceRelations": ["ev-r04-margin"],
+          "evidenceRelations": [
+            "ev-r04-margin"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -4088,9 +4754,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r04-risk-reuse"],
+          "riskPlanIds": [
+            "r04-risk-reuse"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-growth"],
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ],
           "reportExplanation": "你决定把饮品和小点心组合销售。看完菜单的顾客更容易决定下单。增加的工作开始挤占店员和流程。",
           "transferPrompt": "顾客支付的价格，具体换来了什么看得见的价值？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -4108,13 +4779,22 @@
           "cashCostYuan": 4800,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r04-daily", "event-r04-gift", "event-r04-reuse"],
-      "theoryIds": ["t-product", "t-insight"],
+      "eventIds": [
+        "event-r04-daily",
+        "event-r04-gift",
+        "event-r04-reuse"
+      ],
+      "theoryIds": [
+        "t-product",
+        "t-insight"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r04",
         "motionCue": "round-r04",
@@ -4156,13 +4836,18 @@
           "questionId": "question-r05-1",
           "prompt": "顾客第一眼要记住什么？",
           "context": "先决定店名、图形或角色各自负责什么，不让它们抢着说话。",
-          "actionIds": ["r05-observe", "r05-test"]
+          "actionIds": [
+            "r05-observe",
+            "r05-test"
+          ]
         },
         {
           "questionId": "question-r05-2",
           "prompt": "这套识别能不能做进每个触点？",
           "context": "把店招、杯身、头像和菜单放在同一张检查表上。",
-          "actionIds": ["r05-quote"]
+          "actionIds": [
+            "r05-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -4181,11 +4866,19 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "questionId": "question-r05-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r05-scale"],
-          "helpsCompareChoiceIds": ["r05-plain-word", "r05-no-symbol"],
+          "revealsEvidenceIds": [
+            "ev-r05-scale"
+          ],
+          "helpsCompareChoiceIds": [
+            "r05-plain-word",
+            "r05-no-symbol"
+          ],
           "remainingUnknown": "哪一项辅助元素能在小尺寸中保留下来。"
         },
         {
@@ -4197,11 +4890,18 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "questionId": "question-r05-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r05-competition"],
-          "helpsCompareChoiceIds": ["r05-mountain-mark"],
+          "revealsEvidenceIds": [
+            "ev-r05-competition"
+          ],
+          "helpsCompareChoiceIds": [
+            "r05-mountain-mark"
+          ],
           "remainingUnknown": "顾客会记住哪一个非通用的细节。"
         },
         {
@@ -4213,11 +4913,19 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "questionId": "question-r05-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r05-ip"],
-          "helpsCompareChoiceIds": ["r05-tea-character", "r05-neighborhood-seal"],
+          "revealsEvidenceIds": [
+            "ev-r05-ip"
+          ],
+          "helpsCompareChoiceIds": [
+            "r05-tea-character",
+            "r05-neighborhood-seal"
+          ],
           "remainingUnknown": "顾客会不会在没有文字的情况下认出它属于这家店。"
         }
       ],
@@ -4247,7 +4955,9 @@
               "explanation": "规范优先能减少缩小时的噪音。"
             }
           ],
-          "theoryIds": ["t-identity"]
+          "theoryIds": [
+            "t-identity"
+          ]
         },
         {
           "evidenceId": "ev-r05-competition",
@@ -4267,7 +4977,10 @@
               "explanation": "并置结果提醒山形主识别必须处理同质化。"
             }
           ],
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r05-ip",
@@ -4294,7 +5007,10 @@
               "explanation": "辅助图形也可以承担关系表达。"
             }
           ],
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         }
       ],
       "choices": [
@@ -4309,7 +5025,9 @@
           "workload": 2,
           "primaryBenefit": "店名在不同尺寸都更好读",
           "primaryRisk": "第一眼戏剧性不强",
-          "evidenceRelations": ["ev-r05-scale"],
+          "evidenceRelations": [
+            "ev-r05-scale"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -4328,7 +5046,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定先做清楚易读的文字标志。顾客在街上和手机上更容易认出这家店。地方故事缺少能让顾客相信的细节。",
           "transferPrompt": "店名、LOGO 和 IP 分别负责让顾客记住什么？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -4347,7 +5068,9 @@
           "workload": 3,
           "primaryBenefit": "地域联想更快建立",
           "primaryRisk": "同街同类符号很多",
-          "evidenceRelations": ["ev-r05-competition"],
+          "evidenceRelations": [
+            "ev-r05-competition"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -4366,7 +5089,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定把山形符号做成主识别。顾客能从茶材和做法里听到真实的地方来历。顾客更容易把你和同街门店混在一起。",
           "transferPrompt": "店名、LOGO 和 IP 分别负责让顾客记住什么？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -4385,7 +5111,9 @@
           "workload": 4,
           "primaryBenefit": "角色帮助顾客记住品牌",
           "primaryRisk": "IP 管理会增加内容工作量",
-          "evidenceRelations": ["ev-r05-ip"],
+          "evidenceRelations": [
+            "ev-r05-ip"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -4402,9 +5130,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r05-risk-ip"],
+          "riskPlanIds": [
+            "r05-risk-ip"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-growth"],
+          "theoryIds": [
+            "t-identity",
+            "t-growth"
+          ],
           "reportExplanation": "你决定为包装设计一个会打招呼的 IP。顾客在街上和手机上更容易认出这家店。增加的工作开始挤占店员和流程。",
           "transferPrompt": "店名、LOGO 和 IP 分别负责让顾客记住什么？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -4423,7 +5156,9 @@
           "workload": 3,
           "primaryBenefit": "熟客觉得品牌更像在和自己说话",
           "primaryRisk": "辅助图形过多会削弱主识别",
-          "evidenceRelations": ["ev-r05-ip"],
+          "evidenceRelations": [
+            "ev-r05-ip"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -4440,9 +5175,13 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["r05-risk-ip"],
+          "riskPlanIds": [
+            "r05-risk-ip"
+          ],
           "conditions": [],
-          "theoryIds": ["t-touchpoint"],
+          "theoryIds": [
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定做一个像街坊印章的辅助图形。顾客更愿意相信菜单上写的价格和承诺。顾客在不同地方遇到的说法开始对不上。",
           "transferPrompt": "店名、LOGO 和 IP 分别负责让顾客记住什么？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -4461,7 +5200,9 @@
           "workload": 2,
           "primaryBenefit": "基础规范让触点更像同一家店",
           "primaryRisk": "传播素材的变化空间较小",
-          "evidenceRelations": ["ev-r05-scale"],
+          "evidenceRelations": [
+            "ev-r05-scale"
+          ],
           "effects": [
             {
               "key": "brandConsistency",
@@ -4480,7 +5221,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定只做一套克制的文字与色彩规范。店招、菜单和店员的说法更像同一家店。路过的人更难注意到这家店。",
           "transferPrompt": "店名、LOGO 和 IP 分别负责让顾客记住什么？",
           "playerConsequence": "店招、菜单和店员的说法更像同一家店。",
@@ -4498,13 +5242,23 @@
           "cashCostYuan": 5200,
           "actionPointCost": 1,
           "mitigationRatio": 55,
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r05-word", "event-r05-mountain", "event-r05-character"],
-      "theoryIds": ["t-identity", "t-touchpoint"],
+      "eventIds": [
+        "event-r05-word",
+        "event-r05-mountain",
+        "event-r05-character"
+      ],
+      "theoryIds": [
+        "t-identity",
+        "t-touchpoint"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r05",
         "motionCue": "round-r05",
@@ -4516,7 +5270,13 @@
           }
         ]
       },
-      "termRefs": ["brand-personality", "visual-semantics", "logo", "vi", "ip"]
+      "termRefs": [
+        "brand-personality",
+        "visual-semantics",
+        "logo",
+        "vi",
+        "ip"
+      ]
     },
     {
       "roundId": "r06",
@@ -4546,13 +5306,18 @@
           "questionId": "question-r06-1",
           "prompt": "开业预算先让谁看见？",
           "context": "把门口、短视频、民宿推荐和熟客预订放回真实到店路径。",
-          "actionIds": ["r06-observe", "r06-test"]
+          "actionIds": [
+            "r06-observe",
+            "r06-test"
+          ]
         },
         {
           "questionId": "question-r06-2",
           "prompt": "哪种传播承诺店里接得住？",
           "context": "估算每多一批顾客，谁要负责接待、出杯和解释。",
-          "actionIds": ["r06-quote"]
+          "actionIds": [
+            "r06-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -4571,10 +5336,16 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r06-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r06-walkin", "ev-r06-capacity"],
+          "revealsEvidenceIds": [
+            "ev-r06-walkin",
+            "ev-r06-capacity"
+          ],
           "helpsCompareChoiceIds": [
             "r06-streetboard",
             "r06-member-preorder",
@@ -4592,11 +5363,20 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r06-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r06-content", "ev-r06-event"],
-          "helpsCompareChoiceIds": ["r06-shortvideo", "r06-pop-up"],
+          "revealsEvidenceIds": [
+            "ev-r06-content",
+            "ev-r06-event"
+          ],
+          "helpsCompareChoiceIds": [
+            "r06-shortvideo",
+            "r06-pop-up"
+          ],
           "remainingUnknown": "哪些内容会带来真正到店而不是只点赞。"
         },
         {
@@ -4608,11 +5388,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r06-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r06-partner"],
-          "helpsCompareChoiceIds": ["r06-partner-host"],
+          "revealsEvidenceIds": [
+            "ev-r06-partner"
+          ],
+          "helpsCompareChoiceIds": [
+            "r06-partner-host"
+          ],
           "remainingUnknown": "合作渠道能持续多久。"
         }
       ],
@@ -4642,7 +5429,9 @@
               "explanation": "预订可以验证进店后的兑现，但不能替代门口识别。"
             }
           ],
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r06-content",
@@ -4662,7 +5451,10 @@
               "explanation": "评论支持过程内容有吸引力，同时提醒兑现问题。"
             }
           ],
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r06-partner",
@@ -4682,7 +5474,9 @@
               "explanation": "合作访谈支持场景匹配，但需要共同维护信任。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r06-capacity",
@@ -4709,7 +5503,10 @@
               "explanation": "人手盘点提醒快闪要控制数量。"
             }
           ],
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r06-event",
@@ -4729,7 +5526,9 @@
               "explanation": "活动提供曝光机会，但不能掩盖日常能力。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         }
       ],
       "choices": [
@@ -4744,7 +5543,9 @@
           "workload": 3,
           "primaryBenefit": "经过门店的人更容易进店",
           "primaryRisk": "线上传播起量较慢",
-          "evidenceRelations": ["ev-r06-walkin"],
+          "evidenceRelations": [
+            "ev-r06-walkin"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -4763,7 +5564,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "reportExplanation": "你决定先把店招和门口体验做扎实。看完菜单的顾客更容易决定下单。路过的人更难注意到这家店。",
           "transferPrompt": "这笔传播预算最终让哪一类顾客在什么地方看见了你？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -4782,7 +5586,9 @@
           "workload": 4,
           "primaryBenefit": "更多人第一次看到品牌",
           "primaryRisk": "内容承诺可能跑在产品前面",
-          "evidenceRelations": ["ev-r06-content"],
+          "evidenceRelations": [
+            "ev-r06-content"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -4799,9 +5605,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r06-risk-content"],
+          "riskPlanIds": [
+            "r06-risk-content"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定用一组短视频讲产品过程。更多路过的人注意到店门口和主打产品。店里说出去的话需要更多实际体验来证明。",
           "transferPrompt": "这笔传播预算最终让哪一类顾客在什么地方看见了你？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -4820,7 +5631,9 @@
           "workload": 3,
           "primaryBenefit": "到店顾客与旅行场景更匹配",
           "primaryRisk": "渠道关系和服务标准要维护",
-          "evidenceRelations": ["ev-r06-partner"],
+          "evidenceRelations": [
+            "ev-r06-partner"
+          ],
           "effects": [
             {
               "key": "segmentFit",
@@ -4839,7 +5652,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定和老街民宿做互相推荐。第一批顾客更容易听懂这家店是为谁开的。订单更依赖单一渠道，渠道规则会更直接影响门店。",
           "transferPrompt": "这笔传播预算最终让哪一类顾客在什么地方看见了你？",
           "playerConsequence": "第一批顾客更容易听懂这家店是为谁开的。",
@@ -4858,7 +5673,10 @@
           "workload": 3,
           "primaryBenefit": "第一批顾客愿意把体验交给你",
           "primaryRisk": "开业声量不会很大",
-          "evidenceRelations": ["ev-r06-walkin", "ev-r06-capacity"],
+          "evidenceRelations": [
+            "ev-r06-walkin",
+            "ev-r06-capacity"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -4877,7 +5695,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product", "t-touchpoint"],
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定开业前先做熟客预订。顾客更愿意相信菜单上写的价格和承诺。忙起来时，店员更容易把产品按时交到顾客手里。",
           "transferPrompt": "这笔传播预算最终让哪一类顾客在什么地方看见了你？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -4896,7 +5717,9 @@
           "workload": 5,
           "primaryBenefit": "活动现场让品牌迅速被看见",
           "primaryRisk": "临时场景可能掩盖日常经营问题",
-          "evidenceRelations": ["ev-r06-event"],
+          "evidenceRelations": [
+            "ev-r06-event"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -4913,9 +5736,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r06-risk-content"],
+          "riskPlanIds": [
+            "r06-risk-content"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定去一个热门活动做快闪。更多路过的人注意到店门口和主打产品。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "这笔传播预算最终让哪一类顾客在什么地方看见了你？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -4933,13 +5761,23 @@
           "cashCostYuan": 4500,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r06-street", "event-r06-video", "event-r06-partner"],
-      "theoryIds": ["t-touchpoint", "t-growth"],
+      "eventIds": [
+        "event-r06-street",
+        "event-r06-video",
+        "event-r06-partner"
+      ],
+      "theoryIds": [
+        "t-touchpoint",
+        "t-growth"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r06",
         "motionCue": "round-r06",
@@ -4951,7 +5789,10 @@
           }
         ]
       },
-      "termRefs": ["brand-touchpoint", "brand-consistency"]
+      "termRefs": [
+        "brand-touchpoint",
+        "brand-consistency"
+      ]
     },
     {
       "roundId": "r07",
@@ -4981,13 +5822,18 @@
           "questionId": "question-r07-1",
           "prompt": "高峰期，哪一步最容易让顾客不耐烦？",
           "context": "从点单、等待到取杯，找一个会拖慢所有人的环节。",
-          "actionIds": ["r07-observe", "r07-test"]
+          "actionIds": [
+            "r07-observe",
+            "r07-test"
+          ]
         },
         {
           "questionId": "question-r07-2",
           "prompt": "店员能用同一种方式把话说清楚吗？",
           "context": "不是背口号，而是让承诺在忙的时候也不走样。",
-          "actionIds": ["r07-quote"]
+          "actionIds": [
+            "r07-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -5006,11 +5852,19 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r07-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r07-tone"],
-          "helpsCompareChoiceIds": ["r07-greeting-script", "r07-community-board"],
+          "revealsEvidenceIds": [
+            "ev-r07-tone"
+          ],
+          "helpsCompareChoiceIds": [
+            "r07-greeting-script",
+            "r07-community-board"
+          ],
           "remainingUnknown": "哪种话术最适合新人和高峰期。"
         },
         {
@@ -5022,11 +5876,19 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r07-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r07-wait"],
-          "helpsCompareChoiceIds": ["r07-express-line", "r07-self-service"],
+          "revealsEvidenceIds": [
+            "ev-r07-wait"
+          ],
+          "helpsCompareChoiceIds": [
+            "r07-express-line",
+            "r07-self-service"
+          ],
           "remainingUnknown": "哪一项互动值得顾客多等两分钟。"
         },
         {
@@ -5038,11 +5900,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r07-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r07-package"],
-          "helpsCompareChoiceIds": ["r07-gift-service"],
+          "revealsEvidenceIds": [
+            "ev-r07-package"
+          ],
+          "helpsCompareChoiceIds": [
+            "r07-gift-service"
+          ],
           "remainingUnknown": "顾客愿意保留什么样的包装细节。"
         }
       ],
@@ -5072,7 +5941,9 @@
               "explanation": "真实留言可以继续积累关系语言。"
             }
           ],
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r07-wait",
@@ -5099,7 +5970,10 @@
               "explanation": "清晰的自助流程可以减少等待和错单。"
             }
           ],
-          "theoryIds": ["t-product", "t-touchpoint"]
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r07-package",
@@ -5119,7 +5993,9 @@
               "explanation": "离店观察支持把交接作为品牌体验的一部分。"
             }
           ],
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         }
       ],
       "choices": [
@@ -5134,7 +6010,9 @@
           "workload": 2,
           "primaryBenefit": "服务语气开始和视觉系统对齐",
           "primaryRisk": "话术过硬会显得不自然",
-          "evidenceRelations": ["ev-r07-tone"],
+          "evidenceRelations": [
+            "ev-r07-tone"
+          ],
           "effects": [
             {
               "key": "brandConsistency",
@@ -5153,7 +6031,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-product"
+          ],
           "reportExplanation": "你决定把招呼和推荐写成一套轻量话术。店招、菜单和店员的说法更像同一家店。顾客更愿意相信菜单上写的价格和承诺。",
           "transferPrompt": "订单一多，服务承诺最容易在哪个环节走样？",
           "playerConsequence": "店招、菜单和店员的说法更像同一家店。",
@@ -5172,7 +6053,9 @@
           "workload": 3,
           "primaryBenefit": "高峰期出杯更稳定",
           "primaryRisk": "关系表达空间变少",
-          "evidenceRelations": ["ev-r07-wait"],
+          "evidenceRelations": [
+            "ev-r07-wait"
+          ],
           "effects": [
             {
               "key": "productDelivery",
@@ -5189,9 +6072,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["r07-risk-balance"],
+          "riskPlanIds": [
+            "r07-risk-balance"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-touchpoint"],
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定为高峰期做一条快取动线。忙起来时，店员更容易把产品按时交到顾客手里。顾客开始怀疑店里说的话能不能做到。",
           "transferPrompt": "订单一多，服务承诺最容易在哪个环节走样？",
           "playerConsequence": "忙起来时，店员更容易把产品按时交到顾客手里。",
@@ -5210,7 +6098,9 @@
           "workload": 3,
           "primaryBenefit": "包装离店后仍能被辨认",
           "primaryRisk": "动作复杂会拖慢高峰",
-          "evidenceRelations": ["ev-r07-package"],
+          "evidenceRelations": [
+            "ev-r07-package"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -5227,9 +6117,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r07-risk-balance"],
+          "riskPlanIds": [
+            "r07-risk-balance"
+          ],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-product"
+          ],
           "reportExplanation": "你决定把包装交接做成一个小仪式。顾客在街上和手机上更容易认出这家店。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "订单一多，服务承诺最容易在哪个环节走样？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -5248,7 +6143,9 @@
           "workload": 2,
           "primaryBenefit": "熟客获得参与和回来的理由",
           "primaryRisk": "内容管理会占用时间",
-          "evidenceRelations": ["ev-r07-tone"],
+          "evidenceRelations": [
+            "ev-r07-tone"
+          ],
           "effects": [
             {
               "key": "loyalty",
@@ -5267,7 +6164,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "reportExplanation": "你决定在店里留一块街坊留言板。买过的人多了一个再回来的理由。增加的工作开始挤占店员和流程。",
           "transferPrompt": "订单一多，服务承诺最容易在哪个环节走样？",
           "playerConsequence": "买过的人多了一个再回来的理由。",
@@ -5286,7 +6186,9 @@
           "workload": 3,
           "primaryBenefit": "流程更快更少错单",
           "primaryRisk": "品牌显得更像一个冷静的工具",
-          "evidenceRelations": ["ev-r07-wait"],
+          "evidenceRelations": [
+            "ev-r07-wait"
+          ],
           "effects": [
             {
               "key": "productDelivery",
@@ -5305,7 +6207,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-product", "t-touchpoint"],
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定把点单和取杯尽量自助化。忙起来时，店员更容易把产品按时交到顾客手里。顾客开始怀疑店里说的话能不能做到。",
           "transferPrompt": "订单一多，服务承诺最容易在哪个环节走样？",
           "playerConsequence": "忙起来时，店员更容易把产品按时交到顾客手里。",
@@ -5323,13 +6228,23 @@
           "cashCostYuan": 4300,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-product", "t-touchpoint"]
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r07-script", "event-r07-express", "event-r07-gift"],
-      "theoryIds": ["t-touchpoint", "t-product"],
+      "eventIds": [
+        "event-r07-script",
+        "event-r07-express",
+        "event-r07-gift"
+      ],
+      "theoryIds": [
+        "t-touchpoint",
+        "t-product"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r07",
         "motionCue": "round-r07",
@@ -5341,7 +6256,9 @@
           }
         ]
       },
-      "termRefs": ["org-capacity"]
+      "termRefs": [
+        "org-capacity"
+      ]
     },
     {
       "roundId": "r08",
@@ -5371,13 +6288,18 @@
           "questionId": "question-r08-1",
           "prompt": "哪套设计放小了、被挡住后还认得出来？",
           "context": "把店招、杯身、包装和头像放到真实大小，不只看大图。",
-          "actionIds": ["r08-test-sign", "r08-test-packaging"]
+          "actionIds": [
+            "r08-test-sign",
+            "r08-test-packaging"
+          ]
         },
         {
           "questionId": "question-r08-2",
           "prompt": "这套视觉会不会给门店增加额外负担？",
           "context": "同时看制作、补货和店员每天要维护的细节。",
-          "actionIds": ["r08-negotiate-production"]
+          "actionIds": [
+            "r08-negotiate-production"
+          ]
         }
       ],
       "knownFacts": [
@@ -5396,11 +6318,19 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "questionId": "question-r08-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r08-street"],
-          "helpsCompareChoiceIds": ["r08-line", "r08-symbol"],
+          "revealsEvidenceIds": [
+            "ev-r08-street"
+          ],
+          "helpsCompareChoiceIds": [
+            "r08-line",
+            "r08-symbol"
+          ],
           "remainingUnknown": "还不知道三套提案离开老街后是否仍然成立。"
         },
         {
@@ -5412,11 +6342,19 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "questionId": "question-r08-2",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r08-competitor"],
-          "helpsCompareChoiceIds": ["r08-symbol", "r08-hand"],
+          "revealsEvidenceIds": [
+            "ev-r08-competitor"
+          ],
+          "helpsCompareChoiceIds": [
+            "r08-symbol",
+            "r08-hand"
+          ],
           "remainingUnknown": "尚未知道顾客会记住哪一个独特元素。"
         },
         {
@@ -5428,11 +6366,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-identity"],
+          "theoryIds": [
+            "t-identity"
+          ],
           "questionId": "question-r08-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r08-touchpoint"],
-          "helpsCompareChoiceIds": ["r08-line", "r08-hand"],
+          "revealsEvidenceIds": [
+            "ev-r08-touchpoint"
+          ],
+          "helpsCompareChoiceIds": [
+            "r08-line",
+            "r08-hand"
+          ],
           "remainingUnknown": "还不知道哪种方案能让顾客愿意把包装留下来。"
         }
       ],
@@ -5462,7 +6407,10 @@
               "explanation": "强地方符号需要测试同街辨识度。"
             }
           ],
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r08-competitor",
@@ -5489,7 +6437,10 @@
               "explanation": "街坊语气可能成为更具体的关系资产。"
             }
           ],
-          "theoryIds": ["t-identity", "t-insight"]
+          "theoryIds": [
+            "t-identity",
+            "t-insight"
+          ]
         },
         {
           "evidenceId": "ev-r08-touchpoint",
@@ -5516,7 +6467,10 @@
               "explanation": "手写语气可能提高携带和分享的亲切感。"
             }
           ],
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         }
       ],
       "choices": [
@@ -5531,7 +6485,10 @@
           "workload": 4,
           "primaryBenefit": "识别基础更稳",
           "primaryRisk": "第一眼戏剧性较弱",
-          "evidenceRelations": ["ev-r08-street", "ev-r08-touchpoint"],
+          "evidenceRelations": [
+            "ev-r08-street",
+            "ev-r08-touchpoint"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -5555,9 +6512,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["risk-r08-production"],
+          "riskPlanIds": [
+            "risk-r08-production"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定选一套能缩小、能延展的识别系统。顾客在街上和手机上更容易认出这家店。店招、菜单和店员的说法更像同一家店。",
           "transferPrompt": "离开大幅效果图后，哪个触点最先暴露了设计问题？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -5577,7 +6539,10 @@
           "workload": 3,
           "primaryBenefit": "地方联想变强",
           "primaryRisk": "和同街品牌撞车",
-          "evidenceRelations": ["ev-r08-street", "ev-r08-competitor"],
+          "evidenceRelations": [
+            "ev-r08-street",
+            "ev-r08-competitor"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -5603,7 +6568,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-insight"],
+          "theoryIds": [
+            "t-identity",
+            "t-insight"
+          ],
           "reportExplanation": "你决定选最有地方符号感的方案。顾客能从茶材和做法里听到真实的地方来历。顾客更容易把你和同街门店混在一起。",
           "transferPrompt": "离开大幅效果图后，哪个触点最先暴露了设计问题？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -5623,7 +6591,10 @@
           "workload": 4,
           "primaryBenefit": "店铺语气更亲近",
           "primaryRisk": "规范不清会显得杂乱",
-          "evidenceRelations": ["ev-r08-competitor", "ev-r08-touchpoint"],
+          "evidenceRelations": [
+            "ev-r08-competitor",
+            "ev-r08-touchpoint"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -5647,9 +6618,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["risk-r08-production"],
+          "riskPlanIds": [
+            "risk-r08-production"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定选像街坊招呼一样的手写系统。顾客更愿意相信菜单上写的价格和承诺。顾客在不同地方遇到的说法开始对不上。",
           "transferPrompt": "离开大幅效果图后，哪个触点最先暴露了设计问题？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -5669,7 +6645,10 @@
           "workload": 3,
           "primaryBenefit": "店名更容易被读出来",
           "primaryRisk": "地域故事需要靠其他触点补足",
-          "evidenceRelations": ["ev-r08-street", "ev-r08-touchpoint"],
+          "evidenceRelations": [
+            "ev-r08-street",
+            "ev-r08-touchpoint"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -5686,9 +6665,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["risk-r08-production"],
+          "riskPlanIds": [
+            "risk-r08-production"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定选清楚易读的文字标志系统。顾客在街上和手机上更容易认出这家店。店招、菜单和店员的说法更像同一家店。",
           "transferPrompt": "离开大幅效果图后，哪个触点最先暴露了设计问题？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -5708,7 +6692,9 @@
           "workload": 4,
           "primaryBenefit": "包装上的角色更容易被记住",
           "primaryRisk": "IP规则不清会增加制作负担",
-          "evidenceRelations": ["ev-r08-touchpoint"],
+          "evidenceRelations": [
+            "ev-r08-touchpoint"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -5725,9 +6711,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["risk-r08-production"],
+          "riskPlanIds": [
+            "risk-r08-production"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定让 IP 印章成为包装主角。顾客在街上和手机上更容易认出这家店。增加的工作开始挤占店员和流程。",
           "transferPrompt": "离开大幅效果图后，哪个触点最先暴露了设计问题？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -5746,7 +6737,10 @@
           "cashCostYuan": 6500,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         }
       ],
       "visualTests": [
@@ -5754,24 +6748,39 @@
           "testId": "r08-sign-3-second",
           "title": "24 px 缩小测试",
           "prompt": "把主标识缩到 24 px 高，顾客还能看出它是谁吗？",
-          "theoryIds": ["t-identity"]
+          "theoryIds": [
+            "t-identity"
+          ]
         },
         {
           "testId": "r08-mobile-shrink",
           "title": "黑白打印测试",
           "prompt": "去掉颜色以后，主次关系和识别线索还成立吗？",
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         },
         {
           "testId": "r08-packaging-stress",
           "title": "35% 遮挡测试",
           "prompt": "顾客拿杯子时挡住标识约三分之一，剩下的线索够不够？",
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         }
       ],
       "visualRequired": true,
-      "eventIds": ["event-r08-line", "event-r08-symbol", "event-r08-hand"],
-      "theoryIds": ["t-identity", "t-touchpoint", "t-insight"],
+      "eventIds": [
+        "event-r08-line",
+        "event-r08-symbol",
+        "event-r08-hand"
+      ],
+      "theoryIds": [
+        "t-identity",
+        "t-touchpoint",
+        "t-insight"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r08-visual",
         "motionCue": "touchpoint-pan",
@@ -5783,7 +6792,10 @@
           }
         ]
       },
-      "termRefs": ["visual-recognition", "visual-adaptability"]
+      "termRefs": [
+        "visual-recognition",
+        "visual-adaptability"
+      ]
     },
     {
       "roundId": "r09",
@@ -5813,13 +6825,18 @@
           "questionId": "question-r09-1",
           "prompt": "顾客会替你说什么？",
           "context": "先看他们真实发出的内容，再判断哪些说法能留下来。",
-          "actionIds": ["r09-observe", "r09-test"]
+          "actionIds": [
+            "r09-observe",
+            "r09-test"
+          ]
         },
         {
           "questionId": "question-r09-2",
           "prompt": "热闹来了，谁来守住产品承诺？",
           "context": "把征集、审核和回应差评需要的人手算进去。",
-          "actionIds": ["r09-quote"]
+          "actionIds": [
+            "r09-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -5838,11 +6855,21 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r09-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r09-repeat", "ev-r09-feedback"],
-          "helpsCompareChoiceIds": ["r09-stamp", "r09-seasonal-club", "r09-feedback-table"],
+          "revealsEvidenceIds": [
+            "ev-r09-repeat",
+            "ev-r09-feedback"
+          ],
+          "helpsCompareChoiceIds": [
+            "r09-stamp",
+            "r09-seasonal-club",
+            "r09-feedback-table"
+          ],
           "remainingUnknown": "哪种内容能让顾客主动带朋友来。"
         },
         {
@@ -5854,11 +6881,18 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r09-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r09-story"],
-          "helpsCompareChoiceIds": ["r09-stories"],
+          "revealsEvidenceIds": [
+            "ev-r09-story"
+          ],
+          "helpsCompareChoiceIds": [
+            "r09-stories"
+          ],
           "remainingUnknown": "哪些用户表达适合长期公开使用。"
         },
         {
@@ -5870,11 +6904,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "questionId": "question-r09-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r09-culture"],
-          "helpsCompareChoiceIds": ["r09-tea-class"],
+          "revealsEvidenceIds": [
+            "ev-r09-culture"
+          ],
+          "helpsCompareChoiceIds": [
+            "r09-tea-class"
+          ],
           "remainingUnknown": "活动能否转化为日常购买。"
         }
       ],
@@ -5904,7 +6945,9 @@
               "explanation": "低频会员沟通更接近长期关系。"
             }
           ],
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r09-story",
@@ -5924,7 +6967,10 @@
               "explanation": "分享语料支持让顾客参与品牌叙事。"
             }
           ],
-          "theoryIds": ["t-touchpoint", "t-growth"]
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r09-culture",
@@ -5944,7 +6990,9 @@
               "explanation": "回访支持用体验而非口号解释文化。"
             }
           ],
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r09-feedback",
@@ -5964,7 +7012,10 @@
               "explanation": "反馈整理支持把差评转成流程改进。"
             }
           ],
-          "theoryIds": ["t-insight", "t-product"]
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ]
         }
       ],
       "choices": [
@@ -5979,7 +7030,9 @@
           "workload": 2,
           "primaryBenefit": "顾客多了一个回来的理由",
           "primaryRisk": "奖励设计会增加物料成本",
-          "evidenceRelations": ["ev-r09-repeat"],
+          "evidenceRelations": [
+            "ev-r09-repeat"
+          ],
           "effects": [
             {
               "key": "loyalty",
@@ -5998,7 +7051,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "reportExplanation": "你决定做一套可收集的街区印章。买过的人多了一个再回来的理由。说出去却还没做到的话变多，下一次失误更容易被放大。",
           "transferPrompt": "顾客替你说出去的话，和店里实际体验对得上吗？",
           "playerConsequence": "买过的人多了一个再回来的理由。",
@@ -6017,7 +7073,9 @@
           "workload": 3,
           "primaryBenefit": "顾客感到自己的经验被认真对待",
           "primaryRisk": "内容审核会占用团队时间",
-          "evidenceRelations": ["ev-r09-story"],
+          "evidenceRelations": [
+            "ev-r09-story"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -6034,9 +7092,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r09-risk-content"],
+          "riskPlanIds": [
+            "r09-risk-content"
+          ],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "reportExplanation": "你决定邀请顾客讲自己的老街故事。顾客更愿意相信菜单上写的价格和承诺。增加的工作开始挤占店员和流程。",
           "transferPrompt": "顾客替你说出去的话，和店里实际体验对得上吗？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -6055,7 +7118,9 @@
           "workload": 4,
           "primaryBenefit": "产品故事被真实体验支撑",
           "primaryRisk": "活动规模小，短期收入有限",
-          "evidenceRelations": ["ev-r09-culture"],
+          "evidenceRelations": [
+            "ev-r09-culture"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -6072,9 +7137,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["r09-risk-content"],
+          "riskPlanIds": [
+            "r09-risk-content"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-touchpoint"],
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定开一场小型茶饮体验课。顾客能从茶材和做法里听到真实的地方来历。买过的人多了一个再回来的理由。",
           "transferPrompt": "顾客替你说出去的话，和店里实际体验对得上吗？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -6093,7 +7163,9 @@
           "workload": 2,
           "primaryBenefit": "顾客看到品牌愿意面对问题",
           "primaryRisk": "短期看起来会暴露问题",
-          "evidenceRelations": ["ev-r09-feedback"],
+          "evidenceRelations": [
+            "ev-r09-feedback"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -6112,7 +7184,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-insight", "t-product"],
+          "theoryIds": [
+            "t-insight",
+            "t-product"
+          ],
           "reportExplanation": "你决定把差评也放进改进记录。顾客更愿意相信菜单上写的价格和承诺。忙起来时，店员更容易把产品按时交到顾客手里。",
           "transferPrompt": "顾客替你说出去的话，和店里实际体验对得上吗？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -6131,7 +7206,9 @@
           "workload": 3,
           "primaryBenefit": "顾客更知道品牌接下来要做什么",
           "primaryRisk": "增长速度不如高频投放",
-          "evidenceRelations": ["ev-r09-repeat"],
+          "evidenceRelations": [
+            "ev-r09-repeat"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -6150,7 +7227,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-touchpoint", "t-growth"],
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ],
           "reportExplanation": "你决定建立季节茶饮会员通讯。顾客更愿意相信菜单上写的价格和承诺。路过的人更难注意到这家店。",
           "transferPrompt": "顾客替你说出去的话，和店里实际体验对得上吗？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -6168,7 +7248,10 @@
           "cashCostYuan": 4200,
           "actionPointCost": 1,
           "mitigationRatio": 45,
-          "theoryIds": ["t-touchpoint", "t-growth"]
+          "theoryIds": [
+            "t-touchpoint",
+            "t-growth"
+          ]
         }
       ],
       "visualTests": [
@@ -6176,30 +7259,46 @@
           "testId": "r09-package-carry",
           "title": "拎着走一段",
           "prompt": "顾客把包装带出老街后，店名和产品信息还能一眼看清吗？",
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "testId": "r09-package-wet",
           "title": "遇水后还能读",
           "prompt": "杯套受潮后，店名、口味和过敏提醒会不会一起糊掉？",
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "testId": "r09-package-fold",
           "title": "折叠后还认得出",
           "prompt": "包装被折起、塞进袋子后，顾客还能找到品牌和产品信息吗？",
-          "theoryIds": ["t-touchpoint"]
+          "theoryIds": [
+            "t-touchpoint"
+          ]
         },
         {
           "testId": "r09-package-occlusion",
           "title": "被手挡住一半",
           "prompt": "顾客拿着杯子时，LOGO 被手遮住一半，剩下的线索还能让人认出你吗？",
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         }
       ],
       "visualRequired": true,
-      "eventIds": ["event-r09-stamp", "event-r09-stories", "event-r09-feedback"],
-      "theoryIds": ["t-touchpoint", "t-growth"],
+      "eventIds": [
+        "event-r09-stamp",
+        "event-r09-stories",
+        "event-r09-feedback"
+      ],
+      "theoryIds": [
+        "t-touchpoint",
+        "t-growth"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r09",
         "motionCue": "round-r09",
@@ -6211,7 +7310,9 @@
           }
         ]
       },
-      "termRefs": ["culture-credibility"]
+      "termRefs": [
+        "culture-credibility"
+      ]
     },
     {
       "roundId": "r10",
@@ -6241,13 +7342,18 @@
           "questionId": "question-r10-1",
           "prompt": "跨出老街后，谁负责把体验交付好？",
           "context": "把第二窗口、酒店、联名和外卖逐项拆到生产、包装和客诉。",
-          "actionIds": ["r10-observe", "r10-test"]
+          "actionIds": [
+            "r10-observe",
+            "r10-test"
+          ]
         },
         {
           "questionId": "question-r10-2",
           "prompt": "增长带来的钱，够不够覆盖新的麻烦？",
           "context": "别只看订单，先看每周交货、返工和合作沟通需要什么。",
-          "actionIds": ["r10-quote"]
+          "actionIds": [
+            "r10-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -6266,11 +7372,21 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "questionId": "question-r10-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r10-capacity", "ev-r10-channel"],
-          "helpsCompareChoiceIds": ["r10-second-counter", "r10-one-store", "r10-delivery"],
+          "revealsEvidenceIds": [
+            "ev-r10-capacity",
+            "ev-r10-channel"
+          ],
+          "helpsCompareChoiceIds": [
+            "r10-second-counter",
+            "r10-one-store",
+            "r10-delivery"
+          ],
           "remainingUnknown": "新增人手多久能达到稳定水平。"
         },
         {
@@ -6282,11 +7398,21 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "questionId": "question-r10-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r10-hotel", "ev-r10-price"],
-          "helpsCompareChoiceIds": ["r10-wholesale", "r10-co-brand", "r10-delivery"],
+          "revealsEvidenceIds": [
+            "ev-r10-hotel",
+            "ev-r10-price"
+          ],
+          "helpsCompareChoiceIds": [
+            "r10-wholesale",
+            "r10-co-brand",
+            "r10-delivery"
+          ],
           "remainingUnknown": "小批量供货的长期毛利是否足够。"
         },
         {
@@ -6298,11 +7424,18 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "questionId": "question-r10-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r10-partner"],
-          "helpsCompareChoiceIds": ["r10-co-brand"],
+          "revealsEvidenceIds": [
+            "ev-r10-partner"
+          ],
+          "helpsCompareChoiceIds": [
+            "r10-co-brand"
+          ],
           "remainingUnknown": "合作方能否长期遵守同一标准。"
         }
       ],
@@ -6332,7 +7465,9 @@
               "explanation": "盘点支持先把现有系统做稳。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r10-hotel",
@@ -6359,7 +7494,10 @@
               "explanation": "联名也要共享交付边界。"
             }
           ],
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r10-partner",
@@ -6379,7 +7517,9 @@
               "explanation": "合作评价提醒联名会共享声誉风险。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r10-channel",
@@ -6399,7 +7539,10 @@
               "explanation": "配送测试提醒平台扩张会改变体验。"
             }
           ],
-          "theoryIds": ["t-product", "t-touchpoint"]
+          "theoryIds": [
+            "t-product",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r10-price",
@@ -6419,7 +7562,10 @@
               "explanation": "费用核算提醒扩大触达不等于扩大有效收益。"
             }
           ],
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         }
       ],
       "choices": [
@@ -6434,7 +7580,9 @@
           "workload": 4,
           "primaryBenefit": "更多附近顾客能方便买到",
           "primaryRisk": "现金与人员压力上升",
-          "evidenceRelations": ["ev-r10-capacity"],
+          "evidenceRelations": [
+            "ev-r10-capacity"
+          ],
           "effects": [
             {
               "key": "conversion",
@@ -6451,9 +7599,13 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r10-risk-capacity"],
+          "riskPlanIds": [
+            "r10-risk-capacity"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定在老街附近开第二个小窗口。看完菜单的顾客更容易决定下单。增加的工作开始挤占店员和流程。",
           "transferPrompt": "跨出老街后，哪一方要为包装、交付和客诉负责？",
           "playerConsequence": "看完菜单的顾客更容易决定下单。",
@@ -6472,7 +7624,9 @@
           "workload": 4,
           "primaryBenefit": "品牌进入新的旅行触点",
           "primaryRisk": "渠道交付标准更高",
-          "evidenceRelations": ["ev-r10-hotel"],
+          "evidenceRelations": [
+            "ev-r10-hotel"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -6489,9 +7643,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r10-risk-capacity"],
+          "riskPlanIds": [
+            "r10-risk-capacity"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定给精品酒店做小批量供货。更多路过的人注意到店门口和主打产品。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "跨出老街后，哪一方要为包装、交付和客诉负责？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -6510,7 +7669,10 @@
           "workload": 4,
           "primaryBenefit": "地方生活方式被组合起来",
           "primaryRisk": "合作方失误会牵连信任",
-          "evidenceRelations": ["ev-r10-hotel", "ev-r10-partner"],
+          "evidenceRelations": [
+            "ev-r10-hotel",
+            "ev-r10-partner"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -6527,9 +7689,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r10-risk-partner"],
+          "riskPlanIds": [
+            "r10-risk-partner"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定和本地糕点店做联名礼盒。顾客能从茶材和做法里听到真实的地方来历。说出去却还没做到的话变多，下一次失误更容易被放大。",
           "transferPrompt": "跨出老街后，哪一方要为包装、交付和客诉负责？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -6548,7 +7715,9 @@
           "workload": 2,
           "primaryBenefit": "团队有时间把流程做扎实",
           "primaryRisk": "错过一部分外部机会",
-          "evidenceRelations": ["ev-r10-capacity"],
+          "evidenceRelations": [
+            "ev-r10-capacity"
+          ],
           "effects": [
             {
               "key": "orgCapacity",
@@ -6567,7 +7736,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定暂时只经营好这一间店。人手和流程更能接住增加的订单。路过的人更难注意到这家店。",
           "transferPrompt": "跨出老街后，哪一方要为包装、交付和客诉负责？",
           "playerConsequence": "人手和流程更能接住增加的订单。",
@@ -6586,7 +7757,9 @@
           "workload": 5,
           "primaryBenefit": "更多远端顾客看见品牌",
           "primaryRisk": "平台和配送会改变体验",
-          "evidenceRelations": ["ev-r10-channel"],
+          "evidenceRelations": [
+            "ev-r10-channel"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -6603,9 +7776,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r10-risk-capacity"],
+          "riskPlanIds": [
+            "r10-risk-capacity"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-touchpoint"],
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定直接上外卖和远程配送。更多路过的人注意到店门口和主打产品。订单更依赖单一渠道，渠道规则会更直接影响门店。",
           "transferPrompt": "跨出老街后，哪一方要为包装、交付和客诉负责？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -6623,7 +7801,9 @@
           "cashCostYuan": 6800,
           "actionPointCost": 1,
           "mitigationRatio": 55,
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "riskPlanId": "r10-risk-partner",
@@ -6633,13 +7813,23 @@
           "cashCostYuan": 5200,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r10-second", "event-r10-hotel", "event-r10-co-brand"],
-      "theoryIds": ["t-growth", "t-product"],
+      "eventIds": [
+        "event-r10-second",
+        "event-r10-hotel",
+        "event-r10-co-brand"
+      ],
+      "theoryIds": [
+        "t-growth",
+        "t-product"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r10",
         "motionCue": "round-r10",
@@ -6651,7 +7841,9 @@
           }
         ]
       },
-      "termRefs": ["channel-dependence"]
+      "termRefs": [
+        "channel-dependence"
+      ]
     },
     {
       "roundId": "r11",
@@ -6681,13 +7873,18 @@
           "questionId": "question-r11-1",
           "prompt": "订单突然变多，最先堵在哪？",
           "context": "分别看排队、出杯、打包和客诉，不把“火了”当成一个数字。",
-          "actionIds": ["r11-audit-capacity", "r11-test-delivery"]
+          "actionIds": [
+            "r11-audit-capacity",
+            "r11-test-delivery"
+          ]
         },
         {
           "questionId": "question-r11-2",
           "prompt": "平台带来的订单，店里能接住多少？",
           "context": "把每天上限、平台抽成和老客体验一起比较。",
-          "actionIds": ["r11-negotiate-platform"]
+          "actionIds": [
+            "r11-negotiate-platform"
+          ]
         }
       ],
       "knownFacts": [
@@ -6706,11 +7903,20 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "questionId": "question-r11-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r11-capacity", "ev-r11-loyalty"],
-          "helpsCompareChoiceIds": ["r11-platform", "r11-steady", "r11-community"],
+          "revealsEvidenceIds": [
+            "ev-r11-capacity",
+            "ev-r11-loyalty"
+          ],
+          "helpsCompareChoiceIds": [
+            "r11-platform",
+            "r11-steady",
+            "r11-community"
+          ],
           "remainingUnknown": "还不知道平台订单会在什么时间段集中涌入。"
         },
         {
@@ -6722,11 +7928,18 @@
           "actionPointCost": 2,
           "durationDays": 3,
           "workload": 3,
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "questionId": "question-r11-2",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r11-delivery"],
-          "helpsCompareChoiceIds": ["r11-platform"],
+          "revealsEvidenceIds": [
+            "ev-r11-delivery"
+          ],
+          "helpsCompareChoiceIds": [
+            "r11-platform"
+          ],
           "remainingUnknown": "还不知道平台配送高峰会不会和门店高峰重叠。"
         },
         {
@@ -6738,11 +7951,17 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "questionId": "question-r11-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r11-platform-terms"],
-          "helpsCompareChoiceIds": ["r11-platform"],
+          "revealsEvidenceIds": [
+            "ev-r11-platform-terms"
+          ],
+          "helpsCompareChoiceIds": [
+            "r11-platform"
+          ],
           "remainingUnknown": "还不知道活动峰值会不会超过门店与供应链的共同上限。"
         }
       ],
@@ -6772,7 +7991,10 @@
               "explanation": "先稳住组织能力更符合当前上限。"
             }
           ],
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r11-loyalty",
@@ -6792,7 +8014,9 @@
               "explanation": "老客反馈支持先修复关系和服务体验。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         },
         {
           "evidenceId": "ev-r11-delivery",
@@ -6819,7 +8043,10 @@
               "explanation": "先设上限和错峰，能为交付修复留下空间。"
             }
           ],
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r11-platform-terms",
@@ -6846,7 +8073,9 @@
               "explanation": "先把合作边界写清，可以把增长留到交付准备好以后。"
             }
           ],
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         }
       ],
       "choices": [
@@ -6861,7 +8090,11 @@
           "workload": 5,
           "primaryBenefit": "声量迅速放大",
           "primaryRisk": "平台依赖和服务失控",
-          "evidenceRelations": ["ev-r11-capacity", "ev-r11-delivery", "ev-r11-platform-terms"],
+          "evidenceRelations": [
+            "ev-r11-capacity",
+            "ev-r11-delivery",
+            "ev-r11-platform-terms"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -6892,9 +8125,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["risk-r11-delivery"],
+          "riskPlanIds": [
+            "risk-r11-delivery"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定趁热扩大线上渠道。更多路过的人注意到店门口和主打产品。订单更依赖单一渠道，渠道规则会更直接影响门店。",
           "transferPrompt": "如果订单再增加一倍，团队会先在哪个环节忙不过来？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -6913,7 +8151,10 @@
           "workload": 3,
           "primaryBenefit": "老客感到被看见",
           "primaryRisk": "错过部分热度",
-          "evidenceRelations": ["ev-r11-capacity", "ev-r11-loyalty"],
+          "evidenceRelations": [
+            "ev-r11-capacity",
+            "ev-r11-loyalty"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -6944,9 +8185,14 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["risk-r11-delivery"],
+          "riskPlanIds": [
+            "risk-r11-delivery"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ],
           "reportExplanation": "你决定先限量，把老客体验稳住。顾客更愿意相信菜单上写的价格和承诺。人手和流程更能接住增加的订单。",
           "transferPrompt": "如果订单再增加一倍，团队会先在哪个环节忙不过来？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -6965,7 +8211,9 @@
           "workload": 4,
           "primaryBenefit": "熟客关系被重新组织",
           "primaryRisk": "规模扩张速度较慢",
-          "evidenceRelations": ["ev-r11-loyalty"],
+          "evidenceRelations": [
+            "ev-r11-loyalty"
+          ],
           "effects": [
             {
               "key": "loyalty",
@@ -6991,7 +8239,9 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定把增长变成社区会员机制。买过的人多了一个再回来的理由。更多路过的人注意到店门口和主打产品。",
           "transferPrompt": "如果订单再增加一倍，团队会先在哪个环节忙不过来？",
           "playerConsequence": "买过的人多了一个再回来的理由。",
@@ -7010,7 +8260,9 @@
           "workload": 3,
           "primaryBenefit": "老客感到品牌愿意长期相处",
           "primaryRisk": "规模扩张速度较慢",
-          "evidenceRelations": ["ev-r11-capacity"],
+          "evidenceRelations": [
+            "ev-r11-capacity"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -7027,9 +8279,13 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["risk-r11-delivery"],
+          "riskPlanIds": [
+            "risk-r11-delivery"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定把增长先投回熟客社区。顾客更愿意相信菜单上写的价格和承诺。买过的人多了一个再回来的理由。",
           "transferPrompt": "如果订单再增加一倍，团队会先在哪个环节忙不过来？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -7048,7 +8304,9 @@
           "workload": 5,
           "primaryBenefit": "一次联名让更多人知道你",
           "primaryRisk": "联名复杂度可能挤压日常经营",
-          "evidenceRelations": ["ev-r11-capacity"],
+          "evidenceRelations": [
+            "ev-r11-capacity"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -7065,9 +8323,13 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["risk-r11-delivery"],
+          "riskPlanIds": [
+            "risk-r11-delivery"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定做一次限量联名快闪。更多路过的人注意到店门口和主打产品。增加的工作开始挤占店员和流程。",
           "transferPrompt": "如果订单再增加一倍，团队会先在哪个环节忙不过来？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -7085,13 +8347,22 @@
           "cashCostYuan": 8500,
           "actionPointCost": 1,
           "mitigationRatio": 55,
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r11-community", "event-r11-platform"],
-      "theoryIds": ["t-growth", "t-product"],
+      "eventIds": [
+        "event-r11-community",
+        "event-r11-platform"
+      ],
+      "theoryIds": [
+        "t-growth",
+        "t-product"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r11-growth",
         "motionCue": "street-queue",
@@ -7103,7 +8374,9 @@
           }
         ]
       },
-      "termRefs": ["reputation-debt"]
+      "termRefs": [
+        "reputation-debt"
+      ]
     },
     {
       "roundId": "r12",
@@ -7133,13 +8406,18 @@
           "questionId": "question-r12-1",
           "prompt": "这一年，什么值得留下？",
           "context": "回看熟客、产品、库存和店员压力，不把一时热闹当成资产。",
-          "actionIds": ["r12-observe", "r12-test"]
+          "actionIds": [
+            "r12-observe",
+            "r12-test"
+          ]
         },
         {
           "questionId": "question-r12-2",
           "prompt": "下一年先修哪里、再长哪里？",
           "context": "把保留、停止和新尝试写成一张能执行的任务单。",
-          "actionIds": ["r12-quote"]
+          "actionIds": [
+            "r12-quote"
+          ]
         }
       ],
       "knownFacts": [
@@ -7158,11 +8436,22 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-growth", "t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r12-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r12-review", "ev-r12-platform"],
-          "helpsCompareChoiceIds": ["r12-steady-renewal", "r12-loop-back", "r12-platform-growth"],
+          "revealsEvidenceIds": [
+            "ev-r12-review",
+            "ev-r12-platform"
+          ],
+          "helpsCompareChoiceIds": [
+            "r12-steady-renewal",
+            "r12-loop-back",
+            "r12-platform-growth"
+          ],
           "remainingUnknown": "下一年顾客关系会不会发生变化。"
         },
         {
@@ -7174,11 +8463,21 @@
           "actionPointCost": 2,
           "durationDays": 2,
           "workload": 2,
-          "theoryIds": ["t-growth", "t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r12-1",
           "outputType": "evidence",
-          "revealsEvidenceIds": ["ev-r12-renew", "ev-r12-feedback"],
-          "helpsCompareChoiceIds": ["r12-seasonal-new", "r12-loop-back"],
+          "revealsEvidenceIds": [
+            "ev-r12-renew",
+            "ev-r12-feedback"
+          ],
+          "helpsCompareChoiceIds": [
+            "r12-seasonal-new",
+            "r12-loop-back"
+          ],
           "remainingUnknown": "下一季最值得保留的产品线。"
         },
         {
@@ -7190,11 +8489,19 @@
           "actionPointCost": 1,
           "durationDays": 1,
           "workload": 1,
-          "theoryIds": ["t-growth", "t-touchpoint", "t-product"],
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint",
+            "t-product"
+          ],
           "questionId": "question-r12-2",
           "outputType": "quote",
-          "revealsEvidenceIds": ["ev-r12-future"],
-          "helpsCompareChoiceIds": ["r12-ip-merch"],
+          "revealsEvidenceIds": [
+            "ev-r12-future"
+          ],
+          "helpsCompareChoiceIds": [
+            "r12-ip-merch"
+          ],
           "remainingUnknown": "哪种物件会被长期使用而不是买完闲置。"
         }
       ],
@@ -7224,7 +8531,10 @@
               "explanation": "复盘也支持把经验转成下一年 brief。"
             }
           ],
-          "theoryIds": ["t-growth", "t-touchpoint"]
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r12-renew",
@@ -7244,7 +8554,9 @@
               "explanation": "意愿测试支持小规模创新而非全面换代。"
             }
           ],
-          "theoryIds": ["t-product"]
+          "theoryIds": [
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r12-future",
@@ -7264,7 +8576,10 @@
               "explanation": "调查支持做少量有场景的 IP 物件。"
             }
           ],
-          "theoryIds": ["t-identity", "t-touchpoint"]
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ]
         },
         {
           "evidenceId": "ev-r12-platform",
@@ -7284,7 +8599,10 @@
               "explanation": "需求表提醒平台增长会改变交付与关系。"
             }
           ],
-          "theoryIds": ["t-growth", "t-product"]
+          "theoryIds": [
+            "t-growth",
+            "t-product"
+          ]
         },
         {
           "evidenceId": "ev-r12-feedback",
@@ -7304,7 +8622,10 @@
               "explanation": "回访支持把反馈整理成下一年设计 brief。"
             }
           ],
-          "theoryIds": ["t-insight", "t-growth"]
+          "theoryIds": [
+            "t-insight",
+            "t-growth"
+          ]
         }
       ],
       "choices": [
@@ -7319,7 +8640,9 @@
           "workload": 2,
           "primaryBenefit": "熟客相信你会继续在这里",
           "primaryRisk": "外部声量增长较慢",
-          "evidenceRelations": ["ev-r12-review"],
+          "evidenceRelations": [
+            "ev-r12-review"
+          ],
           "effects": [
             {
               "key": "trust",
@@ -7338,7 +8661,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-growth", "t-touchpoint"],
+          "theoryIds": [
+            "t-growth",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定把成熟产品和关系继续做深。顾客更愿意相信菜单上写的价格和承诺。店招、菜单和店员的说法更像同一家店。",
           "transferPrompt": "明年要保留、停止和先测试的分别是什么？",
           "playerConsequence": "顾客更愿意相信菜单上写的价格和承诺。",
@@ -7357,7 +8683,9 @@
           "workload": 4,
           "primaryBenefit": "下一年的文化内容有了新入口",
           "primaryRisk": "新品会分散产品注意力",
-          "evidenceRelations": ["ev-r12-renew"],
+          "evidenceRelations": [
+            "ev-r12-renew"
+          ],
           "effects": [
             {
               "key": "culturalCredibility",
@@ -7374,9 +8702,14 @@
               "theoryId": "t-product"
             }
           ],
-          "riskPlanIds": ["r12-risk-product"],
+          "riskPlanIds": [
+            "r12-risk-product"
+          ],
           "conditions": [],
-          "theoryIds": ["t-product", "t-growth"],
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ],
           "reportExplanation": "你决定开发下一季的地方限定产品。顾客能从茶材和做法里听到真实的地方来历。高峰期的制作和交付更容易卡住。",
           "transferPrompt": "明年要保留、停止和先测试的分别是什么？",
           "playerConsequence": "顾客能从茶材和做法里听到真实的地方来历。",
@@ -7395,7 +8728,9 @@
           "workload": 3,
           "primaryBenefit": "IP 在门店外获得新的触点",
           "primaryRisk": "库存会占用现金",
-          "evidenceRelations": ["ev-r12-future"],
+          "evidenceRelations": [
+            "ev-r12-future"
+          ],
           "effects": [
             {
               "key": "visualRecognition",
@@ -7412,9 +8747,14 @@
               "theoryId": "t-touchpoint"
             }
           ],
-          "riskPlanIds": ["r12-risk-product"],
+          "riskPlanIds": [
+            "r12-risk-product"
+          ],
           "conditions": [],
-          "theoryIds": ["t-identity", "t-touchpoint"],
+          "theoryIds": [
+            "t-identity",
+            "t-touchpoint"
+          ],
           "reportExplanation": "你决定把 IP 做成少量可带走的物件。顾客在街上和手机上更容易认出这家店。说出去却还没做到的话变多，下一次失误更容易被放大。",
           "transferPrompt": "明年要保留、停止和先测试的分别是什么？",
           "playerConsequence": "顾客在街上和手机上更容易认出这家店。",
@@ -7433,7 +8773,9 @@
           "workload": 5,
           "primaryBenefit": "品牌被更大范围看见",
           "primaryRisk": "渠道依赖和组织压力显著增加",
-          "evidenceRelations": ["ev-r12-platform"],
+          "evidenceRelations": [
+            "ev-r12-platform"
+          ],
           "effects": [
             {
               "key": "awareness",
@@ -7450,9 +8792,13 @@
               "theoryId": "t-growth"
             }
           ],
-          "riskPlanIds": ["r12-risk-platform"],
+          "riskPlanIds": [
+            "r12-risk-platform"
+          ],
           "conditions": [],
-          "theoryIds": ["t-growth"],
+          "theoryIds": [
+            "t-growth"
+          ],
           "reportExplanation": "你决定接受平台的年度增长计划。更多路过的人注意到店门口和主打产品。订单更依赖单一渠道，渠道规则会更直接影响门店。",
           "transferPrompt": "明年要保留、停止和先测试的分别是什么？",
           "playerConsequence": "更多路过的人注意到店门口和主打产品。",
@@ -7471,7 +8817,10 @@
           "workload": 2,
           "primaryBenefit": "品牌承诺有了持续复盘的依据",
           "primaryRisk": "成果不会立刻带来大声量",
-          "evidenceRelations": ["ev-r12-review", "ev-r12-feedback"],
+          "evidenceRelations": [
+            "ev-r12-review",
+            "ev-r12-feedback"
+          ],
           "effects": [
             {
               "key": "promiseCredibility",
@@ -7490,7 +8839,10 @@
           ],
           "riskPlanIds": [],
           "conditions": [],
-          "theoryIds": ["t-insight", "t-growth"],
+          "theoryIds": [
+            "t-insight",
+            "t-growth"
+          ],
           "reportExplanation": "你决定把顾客反馈变成下一年的设计 brief。店里更有把说过的话稳定做到的把握。顾客更容易说出你和隔壁店哪里不同。",
           "transferPrompt": "明年要保留、停止和先测试的分别是什么？",
           "playerConsequence": "店里更有把说过的话稳定做到的把握。",
@@ -7508,7 +8860,10 @@
           "cashCostYuan": 5800,
           "actionPointCost": 1,
           "mitigationRatio": 50,
-          "theoryIds": ["t-product", "t-growth"]
+          "theoryIds": [
+            "t-product",
+            "t-growth"
+          ]
         },
         {
           "riskPlanId": "r12-risk-platform",
@@ -7518,13 +8873,22 @@
           "cashCostYuan": 7000,
           "actionPointCost": 1,
           "mitigationRatio": 55,
-          "theoryIds": ["t-growth"]
+          "theoryIds": [
+            "t-growth"
+          ]
         }
       ],
       "visualTests": [],
       "visualRequired": false,
-      "eventIds": ["event-r12-steady", "event-r12-platform"],
-      "theoryIds": ["t-growth", "t-touchpoint", "t-product"],
+      "eventIds": [
+        "event-r12-steady",
+        "event-r12-platform"
+      ],
+      "theoryIds": [
+        "t-growth",
+        "t-touchpoint",
+        "t-product"
+      ],
       "resultPresentation": {
         "resultArtKey": "result-r12",
         "motionCue": "round-r12",
@@ -7544,7 +8908,18 @@
       "visualId": "v-line",
       "name": "一笔成街",
       "description": "用连续线条和清晰比例建立可缩放、可延展的识别系统。",
-      "touchpoints": ["storefront", "cup", "packaging", "avatar", "menu", "social"],
+      "touchpoints": [
+        "storefront",
+        "side-sign",
+        "door-info",
+        "menu-board",
+        "order-card",
+        "receipt",
+        "cup",
+        "cup-sleeve",
+        "packaging",
+        "avatar"
+      ],
       "matchFactors": {
         "customerFit": 78,
         "positionFit": 82,
@@ -7558,7 +8933,18 @@
       "visualId": "v-symbol",
       "name": "山影入杯",
       "description": "把山形和茶饮容器结合，第一眼地域联想很强。",
-      "touchpoints": ["storefront", "cup", "packaging", "avatar", "menu"],
+      "touchpoints": [
+        "storefront",
+        "side-sign",
+        "door-info",
+        "menu-board",
+        "order-card",
+        "receipt",
+        "cup",
+        "cup-sleeve",
+        "packaging",
+        "avatar"
+      ],
       "matchFactors": {
         "customerFit": 75,
         "positionFit": 70,
@@ -7572,7 +8958,18 @@
       "visualId": "v-hand",
       "name": "茶友阿街 IP",
       "description": "让一位固定角色承担杯套、贴纸和互动提醒；亲切，但需要持续维护角色规则。",
-      "touchpoints": ["storefront", "cup", "packaging", "avatar", "menu", "social"],
+      "touchpoints": [
+        "storefront",
+        "side-sign",
+        "door-info",
+        "menu-board",
+        "order-card",
+        "receipt",
+        "cup",
+        "cup-sleeve",
+        "packaging",
+        "avatar"
+      ],
       "matchFactors": {
         "customerFit": 88,
         "positionFit": 76,
@@ -8056,5 +9453,5 @@
       "fallback": true
     }
   ],
-  "checksum": "1fa7ba5a3e3f69556430d1f874332a5591edbcc91b822dc20a6144214de5830c"
+  "checksum": "251c92a2de6ee9882461916f9160df1cb726138ca30eae7b904196266fd08918"
 }

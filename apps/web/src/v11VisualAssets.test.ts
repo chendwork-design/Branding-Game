@@ -63,9 +63,7 @@ describe('v11 visual asset production contract', () => {
     expect(actionAsset('r01-interview-neighbors', 'research')).toBe(
       'actions/v19/action-r01-interview-neighbors.jpg',
     );
-    expect(actionAsset('r01-quote-rent', 'quote')).toBe(
-      'actions/v19/action-r01-quote-rent.jpg',
-    );
+    expect(actionAsset('r01-quote-rent', 'quote')).toBe('actions/v19/action-r01-quote-rent.jpg');
     expect(
       new Set([
         actionAsset('r01-observe-footfall', 'research'),
@@ -102,13 +100,9 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r03-negotiate-supply', 'negotiate'),
       ]),
     ).toHaveLength(3);
-    expect(actionAsset('r04-observe', 'research')).toBe(
-      'actions/v19/action-r04-observe-price.jpg',
-    );
+    expect(actionAsset('r04-observe', 'research')).toBe('actions/v19/action-r04-observe-price.jpg');
     expect(actionAsset('r04-test', 'test')).toBe('actions/v19/action-r04-test-gift-box.jpg');
-    expect(actionAsset('r04-quote', 'quote')).toBe(
-      'actions/v19/action-r04-quote-full-cost.jpg',
-    );
+    expect(actionAsset('r04-quote', 'quote')).toBe('actions/v19/action-r04-quote-full-cost.jpg');
     expect(
       new Set([
         actionAsset('r04-observe', 'research'),
@@ -167,9 +161,7 @@ describe('v11 visual asset production contract', () => {
       'actions/v19/action-r09-observe-customer-shares.jpg',
     );
     expect(actionAsset('r09-test', 'test')).toBe('actions/v19/action-r09-test-story-invite.jpg');
-    expect(actionAsset('r09-quote', 'quote')).toBe(
-      'actions/v19/action-r09-quote-review-roles.jpg',
-    );
+    expect(actionAsset('r09-quote', 'quote')).toBe('actions/v19/action-r09-quote-review-roles.jpg');
     expect(
       new Set([
         actionAsset('r09-observe', 'research'),
@@ -243,7 +235,13 @@ describe('v11 visual asset production contract', () => {
     expect(choiceVisualAsset('r08-ip-stamp')).toBe('visual-ip.svg');
     expect(choiceVisualAsset('r12-seasonal-new')).toBeUndefined();
     expect(touchpointAsset('storefront')).toBe('touchpoints/v19/touchpoint-storefront.jpg');
+    expect(touchpointAsset('side-sign')).toBe('touchpoints/v19/touchpoint-side-sign-v19.jpg');
+    expect(touchpointAsset('door-info')).toBe('touchpoints/v19/touchpoint-glass-door-v19.jpg');
+    expect(touchpointAsset('menu-board')).toBe('touchpoints/v19/touchpoint-menu-board-v19.jpg');
+    expect(touchpointAsset('order-card')).toBe('touchpoints/v19/touchpoint-order-card-v19.jpg');
+    expect(touchpointAsset('receipt')).toBe('touchpoints/v19/touchpoint-receipt.jpg');
     expect(touchpointAsset('cup')).toBe('touchpoints/v19/touchpoint-cup.jpg');
+    expect(touchpointAsset('cup-sleeve')).toBe('touchpoints/v19/touchpoint-hot-cup-sleeve-v19.jpg');
     expect(touchpointAsset('packaging')).toBe('touchpoints/v19/touchpoint-bag.jpg');
     expect(touchpointAsset('avatar')).toBe('touchpoints/v19/touchpoint-avatar.jpg');
     expect(touchpointAsset('menu')).toBe('touchpoints/v19/touchpoint-receipt.jpg');
@@ -252,13 +250,27 @@ describe('v11 visual asset production contract', () => {
       x: 30.3,
       y: 14.1,
     });
+    expect(touchpointPlacement('side-sign')).toMatchObject({
+      surfaceClass: 'side-sign',
+      x: 39.8,
+      y: 18.4,
+    });
     expect(touchpointPlacement('cup')).toMatchObject({ surfaceClass: 'cup', x: 35.2, y: 38.8 });
+    expect(touchpointPlacement('cup-sleeve')).toMatchObject({
+      surfaceClass: 'cup-sleeve',
+      x: 30.8,
+      y: 31.1,
+    });
     expect(touchpointPlacement('avatar')).toMatchObject({
       surfaceClass: 'avatar',
       x: 43.6,
       y: 29.5,
     });
-    expect(touchpointPlacement('menu')).toMatchObject({ surfaceClass: 'menu', x: 20.2, y: 23.4 });
+    expect(touchpointPlacement('receipt')).toMatchObject({
+      surfaceClass: 'receipt',
+      x: 20.2,
+      y: 23.4,
+    });
     expect(chapterAsset('c2')).toBe('scenes/chapters/chapter-02-product-identity-v19.jpg');
     expect(chapterAsset('c3')).toBe('scenes/chapters/chapter-03-service-v19.jpg');
     expect(chapterAsset('c3')).not.toBe(sceneAsset('briefing-r07'));
@@ -278,6 +290,25 @@ describe('v11 visual asset production contract', () => {
     await Promise.all(allAssets.map((relativePath) => access(`${assetRoot}/${relativePath}`)));
   });
 
+  it('keeps the 28-category touchpoint library complete and non-duplicated', async () => {
+    const touchpointAssets = Object.values(V11VisualAssetManifest.touchpoint);
+
+    expect(touchpointAssets).toHaveLength(31);
+    expect(new Set(touchpointAssets).size).toBe(touchpointAssets.length);
+    await Promise.all(
+      touchpointAssets.map((relativePath) => access(`${assetRoot}/${relativePath}`)),
+    );
+
+    const hashes = await Promise.all(
+      touchpointAssets.map(async (relativePath) =>
+        createHash('sha256')
+          .update(await readFile(`${assetRoot}/${relativePath}`))
+          .digest('hex'),
+      ),
+    );
+    expect(new Set(hashes).size).toBe(hashes.length);
+  });
+
   it('gives every live stage action a unique, non-duplicated production photograph', async () => {
     const actions = v11FullContent.rounds.flatMap((round) => round.stageActions);
     const mappedAssets = actions.map((action) => actionAsset(action.actionId, action.actionType));
@@ -289,7 +320,9 @@ describe('v11 visual asset production contract', () => {
 
     const hashes = await Promise.all(
       assets.map(async (relativePath) =>
-        createHash('sha256').update(await readFile(`${assetRoot}/${relativePath}`)).digest('hex'),
+        createHash('sha256')
+          .update(await readFile(`${assetRoot}/${relativePath}`))
+          .digest('hex'),
       ),
     );
     expect(new Set(hashes).size).toBe(hashes.length);
@@ -339,7 +372,9 @@ describe('v11 visual asset production contract', () => {
 
     const hashes = await Promise.all(
       allAssets.map(async (relativePath) =>
-        createHash('sha256').update(await readFile(`${assetRoot}/${relativePath}`)).digest('hex'),
+        createHash('sha256')
+          .update(await readFile(`${assetRoot}/${relativePath}`))
+          .digest('hex'),
       ),
     );
     expect(new Set(hashes).size).toBe(hashes.length);

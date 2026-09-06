@@ -118,9 +118,20 @@ describe('v1.2 full course content coverage', () => {
     expect(content.visualSystems).toHaveLength(3);
     expect(
       content.visualSystems.every((visual) =>
-        (['storefront', 'cup', 'packaging', 'avatar'] as const).every((touchpoint) =>
-          visual.touchpoints.includes(touchpoint),
-        ),
+        (
+          [
+            'storefront',
+            'side-sign',
+            'door-info',
+            'menu-board',
+            'order-card',
+            'receipt',
+            'cup',
+            'cup-sleeve',
+            'packaging',
+            'avatar',
+          ] as const
+        ).every((touchpoint) => visual.touchpoints.includes(touchpoint)),
       ),
     ).toBe(true);
     const packagingRound = content.rounds.find((round) => round.roundId === 'r09');

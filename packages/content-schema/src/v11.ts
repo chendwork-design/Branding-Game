@@ -256,7 +256,20 @@ export const V11VisualSystem = z.object({
   name: z.string().min(1),
   description: z.string().min(1),
   touchpoints: z
-    .array(z.enum(['storefront', 'cup', 'packaging', 'avatar', 'menu', 'social']))
+    .array(
+      z.enum([
+        'storefront',
+        'side-sign',
+        'door-info',
+        'menu-board',
+        'order-card',
+        'receipt',
+        'cup',
+        'cup-sleeve',
+        'packaging',
+        'avatar',
+      ]),
+    )
     .min(3),
   matchFactors: z.object({
     customerFit: z.number().int().min(0).max(100),

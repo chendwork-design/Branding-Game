@@ -19,13 +19,13 @@ const assetRoot = fileURLToPath(new URL('../public/assets/v11/', import.meta.url
 
 describe('v11 visual asset production contract', () => {
   it('maps all runtime scene and result states to raster assets', () => {
-    expect(sceneAsset('onboarding-place')).toBe('scenes/onboarding/onboarding-place.jpg');
+    expect(sceneAsset('onboarding-place')).toBe('scenes/onboarding/onboarding-place-v19.jpg');
     expect(sceneAsset('briefing-r08-visual')).toBe('scenes/briefing/briefing-r08-v19.jpg');
     expect(resultSceneAsset('r08', 'stable')).toBe('scenes/results/result-r08-v18-stable.jpg');
     expect(resultSceneAsset('r01', 'stable')).toBe('scenes/results/result-r01-v18-neighbor.jpg');
     expect(resultSceneAsset('r01', 'strained')).toBe('scenes/results/result-r01-v18-hybrid.jpg');
     expect(resultSceneAsset('r01', 'crisis')).toBe('scenes/results/result-r01-v18-tourist.jpg');
-    expect(sceneAsset('briefing-r03-product')).toBe('scenes/briefing/briefing-r03-v18.jpg');
+    expect(sceneAsset('briefing-r03-product')).toBe('scenes/briefing/briefing-r03-v19.jpg');
     expect(sceneAsset('briefing-r04')).toBe('scenes/briefing/briefing-r04-v19.jpg');
     expect(sceneAsset('briefing-r05')).toBe('scenes/briefing/briefing-r05-v19.jpg');
     expect(sceneAsset('briefing-r07')).toBe('scenes/briefing/briefing-r07-v19.jpg');
@@ -47,7 +47,7 @@ describe('v11 visual asset production contract', () => {
     expect(resultSceneAsset('r12', 'stable')).toBe('scenes/results/result-r12-v19-stable.jpg');
     expect(resultSceneAsset('r12', 'strained')).toBe('scenes/results/result-r12-v19-strained.jpg');
     expect(resultSceneAsset('r12', 'crisis')).toBe('scenes/results/result-r12-v19-crisis.jpg');
-    expect(sceneAsset('briefing-r11-growth')).toBe('scenes/briefing/briefing-r11-v18.jpg');
+    expect(sceneAsset('briefing-r11-growth')).toBe('scenes/briefing/briefing-r11-v19.jpg');
     expect(resultSceneAsset('r11', 'stable')).toBe('scenes/results/result-r11-v18-stable.jpg');
     expect(resultSceneAsset('r11', 'strained')).toBe('scenes/results/result-r11-v18-strained.jpg');
     expect(resultSceneAsset('r11', 'crisis')).toBe('scenes/results/result-r11-v18-crisis.jpg');
@@ -259,8 +259,8 @@ describe('v11 visual asset production contract', () => {
       y: 29.5,
     });
     expect(touchpointPlacement('menu')).toMatchObject({ surfaceClass: 'menu', x: 20.2, y: 23.4 });
-    expect(chapterAsset('c2')).toBe('scenes/chapters/chapter-02-product-identity.jpg');
-    expect(chapterAsset('c3')).toBe('scenes/chapters/chapter-03-service-v2.jpg');
+    expect(chapterAsset('c2')).toBe('scenes/chapters/chapter-02-product-identity-v19.jpg');
+    expect(chapterAsset('c3')).toBe('scenes/chapters/chapter-03-service-v19.jpg');
     expect(chapterAsset('c3')).not.toBe(sceneAsset('briefing-r07'));
     expect(choiceVisualAsset('r01-local')).toBeUndefined();
   });
@@ -307,9 +307,41 @@ describe('v11 visual asset production contract', () => {
     expect(source).toContain('v11-chapter-scene');
   });
 
-  it('keeps active briefing and chapter-review scenes visually distinct', async () => {
-    const briefing = await readFile(`${assetRoot}/${sceneAsset('briefing-r07')}`);
-    const chapter = await readFile(`${assetRoot}/${chapterAsset('c3')}`);
-    expect(chapter.equals(briefing)).toBe(false);
+  it('keeps all VISUAL-023 briefing, onboarding and chapter scenes distinct', async () => {
+    const visual023Assets = [
+      [
+        'briefing-r01-street',
+        'briefing-r02',
+        'briefing-r03-product',
+        'briefing-r04',
+        'briefing-r05',
+        'briefing-r06',
+        'briefing-r07',
+        'briefing-r08-visual',
+        'briefing-r09',
+        'briefing-r10',
+        'briefing-r11-growth',
+        'briefing-r12',
+      ],
+      [
+        'onboarding-place',
+        'onboarding-goal',
+        'onboarding-operation',
+        'onboarding-loop-observe',
+        'onboarding-loop-decide',
+        'onboarding-loop-result',
+      ],
+    ].flatMap((keys) => keys.map((key) => sceneAsset(key)!));
+    const chapters = ['c1', 'c2', 'c3', 'c4'].map((chapterId) => chapterAsset(chapterId)!);
+    const allAssets = [...visual023Assets, ...chapters];
+
+    expect(new Set(allAssets).size).toBe(allAssets.length);
+
+    const hashes = await Promise.all(
+      allAssets.map(async (relativePath) =>
+        createHash('sha256').update(await readFile(`${assetRoot}/${relativePath}`)).digest('hex'),
+      ),
+    );
+    expect(new Set(hashes).size).toBe(hashes.length);
   });
 });

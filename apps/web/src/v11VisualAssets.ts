@@ -61,24 +61,24 @@ export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11Touchpoin
 };
 
 const sceneAssets: Record<string, string> = {
-  'onboarding-place': 'scenes/onboarding/onboarding-place.jpg',
-  'onboarding-goal': 'scenes/onboarding/onboarding-goal.jpg',
-  'onboarding-operation': 'scenes/onboarding/onboarding-operation.jpg',
-  'onboarding-loop-observe': 'scenes/onboarding/onboarding-loop-observe.jpg',
-  'onboarding-loop-decide': 'scenes/onboarding/onboarding-loop-decide.jpg',
-  'onboarding-loop-result': 'scenes/onboarding/onboarding-loop-result.jpg',
-  'briefing-r01-street': 'scenes/briefing/briefing-r01-v18.jpg',
-  'briefing-r02': 'scenes/briefing/briefing-r02.jpg',
-  'briefing-r03-product': 'scenes/briefing/briefing-r03-v18.jpg',
+  'onboarding-place': 'scenes/onboarding/onboarding-place-v19.jpg',
+  'onboarding-goal': 'scenes/onboarding/onboarding-goal-v19.jpg',
+  'onboarding-operation': 'scenes/onboarding/onboarding-operation-v19.jpg',
+  'onboarding-loop-observe': 'scenes/onboarding/onboarding-loop-observe-v19.jpg',
+  'onboarding-loop-decide': 'scenes/onboarding/onboarding-loop-decide-v19.jpg',
+  'onboarding-loop-result': 'scenes/onboarding/onboarding-loop-result-v19.jpg',
+  'briefing-r01-street': 'scenes/briefing/briefing-r01-v19.jpg',
+  'briefing-r02': 'scenes/briefing/briefing-r02-v19.jpg',
+  'briefing-r03-product': 'scenes/briefing/briefing-r03-v19.jpg',
   'briefing-r04': 'scenes/briefing/briefing-r04-v19.jpg',
   'briefing-r05': 'scenes/briefing/briefing-r05-v19.jpg',
-  'briefing-r06': 'scenes/briefing/briefing-r06.jpg',
+  'briefing-r06': 'scenes/briefing/briefing-r06-v19.jpg',
   'briefing-r07': 'scenes/briefing/briefing-r07-v19.jpg',
   'briefing-r08-visual': 'scenes/briefing/briefing-r08-v19.jpg',
-  'briefing-r09': 'scenes/briefing/briefing-r09.jpg',
-  'briefing-r10': 'scenes/briefing/briefing-r10.jpg',
-  'briefing-r11-growth': 'scenes/briefing/briefing-r11-v18.jpg',
-  'briefing-r12': 'scenes/briefing/briefing-r12.jpg',
+  'briefing-r09': 'scenes/briefing/briefing-r09-v19.jpg',
+  'briefing-r10': 'scenes/briefing/briefing-r10-v19.jpg',
+  'briefing-r11-growth': 'scenes/briefing/briefing-r11-v19.jpg',
+  'briefing-r12': 'scenes/briefing/briefing-r12-v19.jpg',
 };
 
 const actionAssets: Record<string, string> = {
@@ -194,10 +194,10 @@ const touchpointAliases: Record<string, string> = {
 };
 
 const chapterAssets: Record<string, string> = {
-  'chapter-01-customers': 'scenes/chapters/chapter-01-customers.jpg',
-  'chapter-02-product-identity': 'scenes/chapters/chapter-02-product-identity.jpg',
-  'chapter-03-service': 'scenes/chapters/chapter-03-service-v2.jpg',
-  'chapter-04-growth': 'scenes/chapters/chapter-04-growth.jpg',
+  'chapter-01-customers': 'scenes/chapters/chapter-01-customers-v19.jpg',
+  'chapter-02-product-identity': 'scenes/chapters/chapter-02-product-identity-v19.jpg',
+  'chapter-03-service': 'scenes/chapters/chapter-03-service-v19.jpg',
+  'chapter-04-growth': 'scenes/chapters/chapter-04-growth-v19.jpg',
 };
 
 // Decision visuals are deliberately sparse: they appear in the detail/result

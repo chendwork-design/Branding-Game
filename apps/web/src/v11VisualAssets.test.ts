@@ -1,5 +1,7 @@
+import { createHash } from 'node:crypto';
 import { access, readFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
+import { v11FullContent } from '@laojie/content-schema';
 import { describe, expect, it } from 'vitest';
 import {
   actionAsset,
@@ -201,6 +203,18 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r11-quote', 'quote'),
       ]),
     ).toHaveLength(3);
+    expect(actionAsset('r12-observe', 'research')).toBe(
+      'actions/v19/action-r12-observe-regulars.jpg',
+    );
+    expect(actionAsset('r12-test', 'test')).toBe('actions/v19/action-r12-test-inventory-retro.jpg');
+    expect(actionAsset('r12-quote', 'quote')).toBe('actions/v19/action-r12-quote-next-plan.jpg');
+    expect(
+      new Set([
+        actionAsset('r12-observe', 'research'),
+        actionAsset('r12-test', 'test'),
+        actionAsset('r12-quote', 'quote'),
+      ]),
+    ).toHaveLength(3);
     expect(actionAsset('unknown-action', 'unknown-action')).toBeUndefined();
     expect(decisionAsset('r03-stable')).toBe('decisions/products/product-r03-v18-stable.jpg');
     expect(decisionAsset('r03-complex')).toBe('decisions/products/product-r03-v18-complex.jpg');
@@ -262,6 +276,23 @@ describe('v11 visual asset production contract', () => {
     ];
     expect(new Set(allAssets).size).toBe(allAssets.length);
     await Promise.all(allAssets.map((relativePath) => access(`${assetRoot}/${relativePath}`)));
+  });
+
+  it('gives every live stage action a unique, non-duplicated production photograph', async () => {
+    const actions = v11FullContent.rounds.flatMap((round) => round.stageActions);
+    const mappedAssets = actions.map((action) => actionAsset(action.actionId, action.actionType));
+    const assets = mappedAssets.filter((asset): asset is string => asset !== undefined);
+
+    expect(actions).toHaveLength(36);
+    expect(assets).toHaveLength(actions.length);
+    expect(new Set(assets).size).toBe(actions.length);
+
+    const hashes = await Promise.all(
+      assets.map(async (relativePath) =>
+        createHash('sha256').update(await readFile(`${assetRoot}/${relativePath}`)).digest('hex'),
+      ),
+    );
+    expect(new Set(hashes).size).toBe(hashes.length);
   });
 
   it('uses image elements for photos while retaining SVG fallback hooks', async () => {

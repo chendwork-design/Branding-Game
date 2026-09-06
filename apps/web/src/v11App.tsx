@@ -1786,6 +1786,7 @@ function ChoiceVisualPreview({
   const asset = choiceVisualAsset(choiceId);
   if (!asset) return null;
   const isRoute = asset.endsWith('.svg');
+  const alt = isRoute ? `${label}的视觉路线结构示意` : `${label}的方案物件或操作场景示意`;
   return (
     <figure
       className={`v11-choice-visual v11-choice-visual-${context} ${isRoute ? 'route' : 'object'}`}
@@ -1793,7 +1794,7 @@ function ChoiceVisualPreview({
     >
       <img
         src={visualAssetPath(asset)}
-        alt={`${label}的视觉示意`}
+        alt={alt}
         loading={context === 'result' ? 'eager' : 'lazy'}
         decoding="async"
       />

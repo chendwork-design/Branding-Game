@@ -208,24 +208,47 @@ describe('v11 visual asset production contract', () => {
       ]),
     ).toHaveLength(3);
     expect(actionAsset('unknown-action', 'unknown-action')).toBeUndefined();
-    expect(decisionAsset('r03-stable')).toBe('decisions/products/product-r03-v18-stable.jpg');
-    expect(decisionAsset('r03-complex')).toBe('decisions/products/product-r03-v18-complex.jpg');
-    expect(decisionAsset('r03-local-special')).toBe('decisions/products/product-r03-v18-local.jpg');
+    expect(decisionAsset('r03-stable')).toBe('decisions/products/product-r03-v19-stable.jpg');
+    expect(decisionAsset('r03-complex')).toBe('decisions/products/product-r03-v19-complex.jpg');
+    expect(decisionAsset('r03-local-special')).toBe('decisions/products/product-r03-v19-local.jpg');
     expect(decisionAsset('r03-seasonal-ritual')).toBe(
-      'decisions/products/product-r03-v18-seasonal-ritual.jpg',
+      'decisions/products/product-r03-v19-seasonal-ritual.jpg',
     );
     expect(decisionAsset('r03-modular-menu')).toBe(
-      'decisions/products/product-r03-v18-modular-menu.jpg',
+      'decisions/products/product-r03-v19-modular-menu.jpg',
     );
     expect(decisionAsset('r04-everyday-cup')).toBe(
-      'decisions/packaging/package-r04-v18-everyday-cup.jpg',
+      'decisions/packaging/package-r04-v19-everyday-cup.jpg',
     );
-    expect(decisionAsset('r04-gift-box')).toBe('decisions/packaging/package-r04-v18-gift-box.jpg');
-    expect(decisionAsset('r04-refill')).toBe('decisions/packaging/package-r04-v18-refill.jpg');
+    expect(decisionAsset('r04-gift-box')).toBe('decisions/packaging/package-r04-v19-gift-box.jpg');
+    expect(decisionAsset('r04-refill')).toBe('decisions/packaging/package-r04-v19-refill.jpg');
     expect(decisionAsset('r04-price-ladder')).toBe(
-      'decisions/packaging/package-r04-v18-price-ladder.jpg',
+      'decisions/packaging/package-r04-v19-price-ladder.jpg',
     );
-    expect(decisionAsset('r04-bundle')).toBe('decisions/packaging/package-r04-v18-bundle.jpg');
+    expect(decisionAsset('r04-bundle')).toBe('decisions/packaging/package-r04-v19-bundle.jpg');
+    expect(decisionAsset('r06-shortvideo')).toBe('decisions/details/detail-r06-v19-shortvideo.jpg');
+    expect(decisionAsset('r06-partner-host')).toBe(
+      'decisions/details/detail-r06-v19-partner-host.jpg',
+    );
+    expect(decisionAsset('r07-greeting-script')).toBe(
+      'decisions/details/detail-r07-v19-greeting-script.jpg',
+    );
+    expect(decisionAsset('r07-self-service')).toBe(
+      'decisions/details/detail-r07-v19-self-service.jpg',
+    );
+    expect(decisionAsset('r09-stories')).toBe('decisions/details/detail-r09-v19-stories.jpg');
+    expect(decisionAsset('r09-feedback-table')).toBe(
+      'decisions/details/detail-r09-v19-feedback-table.jpg',
+    );
+    expect(decisionAsset('r10-wholesale')).toBe('decisions/details/detail-r10-v19-wholesale.jpg');
+    expect(decisionAsset('r10-delivery')).toBe('decisions/details/detail-r10-v19-delivery.jpg');
+    expect(decisionAsset('r11-platform')).toBe('decisions/details/detail-r11-v19-platform.jpg');
+    expect(decisionAsset('r11-limited-drop')).toBe(
+      'decisions/details/detail-r11-v19-limited-drop.jpg',
+    );
+    expect(decisionAsset('r12-seasonal-new')).toBe(
+      'decisions/details/detail-r12-v19-seasonal-new.jpg',
+    );
     expect(decisionAsset('r05-tea-character')).toBe(
       'decisions/ip-objects/ip-object-tea-clip-v19.jpg',
     );
@@ -233,7 +256,10 @@ describe('v11 visual asset production contract', () => {
     expect(choiceVisualAsset('r08-hand')).toBe('visual-ip.svg');
     expect(choiceVisualAsset('r08-wordmark')).toBe('visual-wordmark.svg');
     expect(choiceVisualAsset('r08-ip-stamp')).toBe('visual-ip.svg');
-    expect(choiceVisualAsset('r12-seasonal-new')).toBeUndefined();
+    expect(choiceVisualAsset('r12-seasonal-new')).toBe(
+      'decisions/details/detail-r12-v19-seasonal-new.jpg',
+    );
+    expect(choiceVisualAsset('r12-ip-merch')).toBe('decisions/details/detail-r12-v19-ip-merch.jpg');
     expect(touchpointAsset('storefront')).toBe('touchpoints/v19/touchpoint-storefront.jpg');
     expect(touchpointAsset('side-sign')).toBe('touchpoints/v19/touchpoint-side-sign-v19.jpg');
     expect(touchpointAsset('door-info')).toBe('touchpoints/v19/touchpoint-glass-door-v19.jpg');
@@ -307,6 +333,30 @@ describe('v11 visual asset production contract', () => {
       ),
     );
     expect(new Set(hashes).size).toBe(hashes.length);
+  });
+
+  it('keeps all VISUAL-026 decision-detail images unique, lazy-loadable and on disk', async () => {
+    const visual026Assets = Object.values(V11VisualAssetManifest.decision).filter((asset) =>
+      asset.includes('-v19-'),
+    );
+    expect(visual026Assets).toHaveLength(22);
+    expect(new Set(visual026Assets).size).toBe(visual026Assets.length);
+    await Promise.all(
+      visual026Assets.map((relativePath) => access(`${assetRoot}/${relativePath}`)),
+    );
+
+    const hashes = await Promise.all(
+      visual026Assets.map(async (relativePath) =>
+        createHash('sha256')
+          .update(await readFile(`${assetRoot}/${relativePath}`))
+          .digest('hex'),
+      ),
+    );
+    expect(new Set(hashes).size).toBe(hashes.length);
+
+    const source = await readFile(new URL('./v11App.tsx', import.meta.url), 'utf8');
+    expect(source).toContain("loading={context === 'result' ? 'eager' : 'lazy'}");
+    expect(source).toContain('方案物件或操作场景示意');
   });
 
   it('gives every live stage action a unique, non-duplicated production photograph', async () => {

@@ -12,7 +12,9 @@ import {
   sceneAsset,
   touchpointAsset,
   touchpointPlacement,
+  V11VisualAdditionalTouchpointIds,
   V11VisualAssetManifest,
+  V11VisualAssetRecords,
 } from './v11VisualAssets.js';
 
 const assetRoot = fileURLToPath(new URL('../public/assets/v11/', import.meta.url));
@@ -181,18 +183,20 @@ describe('v11 visual asset production contract', () => {
         actionAsset('r10-quote', 'quote'),
       ]),
     ).toHaveLength(3);
-    expect(actionAsset('r11-observe', 'research')).toBe(
+    expect(actionAsset('r11-audit-capacity', 'research')).toBe(
       'actions/v19/action-r11-observe-peak-hour.jpg',
     );
-    expect(actionAsset('r11-test', 'test')).toBe('actions/v19/action-r11-test-platform-batch.jpg');
-    expect(actionAsset('r11-quote', 'quote')).toBe(
+    expect(actionAsset('r11-test-delivery', 'test')).toBe(
+      'actions/v19/action-r11-test-platform-batch.jpg',
+    );
+    expect(actionAsset('r11-negotiate-platform', 'negotiate')).toBe(
       'actions/v19/action-r11-quote-supplier-capacity.jpg',
     );
     expect(
       new Set([
-        actionAsset('r11-observe', 'research'),
-        actionAsset('r11-test', 'test'),
-        actionAsset('r11-quote', 'quote'),
+        actionAsset('r11-audit-capacity', 'research'),
+        actionAsset('r11-test-delivery', 'test'),
+        actionAsset('r11-negotiate-platform', 'negotiate'),
       ]),
     ).toHaveLength(3);
     expect(actionAsset('r12-observe', 'research')).toBe(
@@ -297,6 +301,16 @@ describe('v11 visual asset production contract', () => {
       x: 20.2,
       y: 23.4,
     });
+    expect(touchpointPlacement('a-frame')).toMatchObject({
+      surfaceClass: 'flat-board',
+      x: 19,
+      y: 9,
+    });
+    expect(touchpointPlacement('tea-tin')).toMatchObject({
+      surfaceClass: 'cylinder-surface',
+      x: 31,
+      y: 20,
+    });
     expect(chapterAsset('c2')).toBe('scenes/chapters/chapter-02-product-identity-v19.jpg');
     expect(chapterAsset('c3')).toBe('scenes/chapters/chapter-03-service-v19.jpg');
     expect(chapterAsset('c3')).not.toBe(sceneAsset('briefing-r07'));
@@ -314,6 +328,25 @@ describe('v11 visual asset production contract', () => {
     ];
     expect(new Set(allAssets).size).toBe(allAssets.length);
     await Promise.all(allAssets.map((relativePath) => access(`${assetRoot}/${relativePath}`)));
+  });
+
+  it('records an explicit focal point for every production raster and exposes all 31 touchpoints', () => {
+    const manifestAssets = Object.values(V11VisualAssetManifest).flatMap((assets) =>
+      Object.values(assets),
+    );
+    expect(Object.keys(V11VisualAssetRecords).sort()).toEqual([...manifestAssets].sort());
+    for (const asset of Object.values(V11VisualAssetRecords)) {
+      expect(asset.path).toBeTruthy();
+      expect(asset.focalPoint.x).toBeGreaterThanOrEqual(0);
+      expect(asset.focalPoint.x).toBeLessThanOrEqual(100);
+      expect(asset.focalPoint.y).toBeGreaterThanOrEqual(0);
+      expect(asset.focalPoint.y).toBeLessThanOrEqual(100);
+    }
+    expect(V11VisualAdditionalTouchpointIds).toHaveLength(21);
+    for (const touchpointId of V11VisualAdditionalTouchpointIds) {
+      expect(touchpointAsset(touchpointId)).toBeTruthy();
+      expect(touchpointPlacement(touchpointId)).toBeTruthy();
+    }
   });
 
   it('keeps the 28-category touchpoint library complete and non-duplicated', async () => {
@@ -357,6 +390,8 @@ describe('v11 visual asset production contract', () => {
     const source = await readFile(new URL('./v11App.tsx', import.meta.url), 'utf8');
     expect(source).toContain("loading={context === 'result' ? 'eager' : 'lazy'}");
     expect(source).toContain('方案物件或操作场景示意');
+    expect(source).toContain('查看其余 ${additionalTouchpoints.length} 个真实应用');
+    expect(source).toContain('visualAssetObjectPosition');
   });
 
   it('gives every live stage action a unique, non-duplicated production photograph', async () => {

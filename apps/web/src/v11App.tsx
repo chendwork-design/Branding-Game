@@ -22,6 +22,8 @@ import {
   sceneAsset,
   touchpointAsset,
   touchpointPlacement,
+  V11VisualAdditionalTouchpointIds,
+  visualAssetObjectPosition,
   visualAssetPath,
   type V11OutcomeState,
 } from './v11VisualAssets.js';
@@ -59,6 +61,27 @@ const touchpointLabels: Record<string, string> = {
   avatar: '头像',
   menu: '菜单',
   social: '社交页面',
+  'a-frame': '门口 A 字牌',
+  'story-wall': '品牌故事墙',
+  'pickup-token': '取杯号牌',
+  'pickup-shelf-label': '取杯架标签',
+  'price-tag': '价格/原料签',
+  'tamper-seal': '封口防拆贴',
+  'lid-marker': '杯盖口味贴',
+  'coaster-napkin': '杯垫与餐巾',
+  'tray-mat': '托盘交接垫',
+  'double-carrier': '双杯提篮',
+  'gift-box': '地方礼盒',
+  'refill-pouch': '补充装袋',
+  'tea-tin': '茶罐',
+  'snack-carrier': '饮品点心组合',
+  'apron-patch': '围裙胸前应用',
+  'name-badge': '员工名牌',
+  'customer-cards': '会员与投稿卡',
+  'hotel-supply': '酒店供货',
+  'delivery-crates': '配送箱',
+  'popup-flag': '快闪桌旗',
+  'sleeve-dispenser': '杯套收纳器',
 };
 
 const metricLabels: Record<string, string> = {
@@ -169,7 +192,15 @@ function ActionSceneThumb({
   const asset = actionAsset(actionId, actionType);
   return (
     <figure className={`v11-action-scene-thumb ${actionType}`} aria-label={`${label}的现场示意`}>
-      {asset && <img src={visualAssetPath(asset)} alt="" loading="lazy" decoding="async" />}
+      {asset && (
+        <img
+          src={visualAssetPath(asset)}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          style={{ objectPosition: visualAssetObjectPosition(asset) }}
+        />
+      )}
     </figure>
   );
 }
@@ -1797,6 +1828,7 @@ function ChoiceVisualPreview({
         alt={alt}
         loading={context === 'result' ? 'eager' : 'lazy'}
         decoding="async"
+        style={isRoute ? undefined : { objectPosition: visualAssetObjectPosition(asset) }}
       />
       <figcaption>
         {isRoute ? '视觉路线示意' : decisionAsset(choiceId) ? '方案物件示意' : '视觉应用示意'}
@@ -2315,7 +2347,8 @@ function VisualInspector({
   busy: boolean;
   run: (work: () => Promise<void> | void) => Promise<void>;
 }) {
-  const [touchpoint, setTouchpoint] = useState(selected.touchpoints[0] ?? 'storefront');
+  const [touchpoint, setTouchpoint] = useState<string>(selected.touchpoints[0] ?? 'storefront');
+  const [showAdditionalTouchpoints, setShowAdditionalTouchpoints] = useState(false);
   const testedIds = flow.state.visualState.testedTouchpoints;
   const testResults = flow.state.visualState.testResults ?? [];
   const smallTested = testedIds.some((id) => id.includes('sign-3-second'));
@@ -2333,7 +2366,11 @@ function VisualInspector({
   const touchpoints = selected.touchpoints
     .filter((item) => Boolean(touchpointAsset(item) && touchpointPlacement(item)))
     .slice(0, 10);
-  const activeTouchpoint = touchpoints.includes(touchpoint)
+  const additionalTouchpoints = V11VisualAdditionalTouchpointIds.filter(
+    (item) => Boolean(touchpointAsset(item) && touchpointPlacement(item)),
+  );
+  const availableTouchpoints: string[] = [...touchpoints, ...additionalTouchpoints];
+  const activeTouchpoint = availableTouchpoints.includes(touchpoint)
     ? touchpoint
     : (touchpoints[0] ?? 'storefront');
   const touchpointFile = touchpointAsset(activeTouchpoint);
@@ -2375,6 +2412,7 @@ function VisualInspector({
               alt=""
               loading="eager"
               decoding="async"
+              style={{ objectPosition: visualAssetObjectPosition(touchpointFile) }}
             />
           )}
           {placement && (
@@ -2409,6 +2447,33 @@ function VisualInspector({
           </span>
         ))}
       </div>
+      <section className="v11-additional-touchpoints" aria-label="扩展品牌应用">
+        <button
+          type="button"
+          className="v11-additional-touchpoints-toggle"
+          aria-expanded={showAdditionalTouchpoints}
+          onClick={() => setShowAdditionalTouchpoints((current) => !current)}
+        >
+          {showAdditionalTouchpoints
+            ? '收起扩展应用'
+            : `查看其余 ${additionalTouchpoints.length} 个真实应用`}
+        </button>
+        {showAdditionalTouchpoints && (
+          <div className="v11-additional-touchpoints-grid" role="list">
+            {additionalTouchpoints.map((item) => (
+              <div key={item} role="listitem">
+                <button
+                  type="button"
+                  className={item === activeTouchpoint ? 'active' : ''}
+                  onClick={() => setTouchpoint(item)}
+                >
+                  {touchpointLabels[item] ?? item}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
       <p>{selected.description}</p>
       <section className="v11-visual-constraint-preview" aria-label="视觉约束测试结果">
         <div className={`v11-preview-mono ${monoTested ? 'active' : ''}`}>
@@ -2853,6 +2918,7 @@ function SceneArt({ imageKey, label }: { imageKey: string; label: string }) {
           alt=""
           loading="eager"
           decoding="async"
+          style={{ objectPosition: visualAssetObjectPosition(asset) }}
           onError={() => setAssetFailed(true)}
         />
       )}
@@ -2903,6 +2969,7 @@ function ResultArt({
           alt=""
           loading="eager"
           decoding="async"
+          style={{ objectPosition: visualAssetObjectPosition(asset) }}
           onError={() => setAssetFailed(true)}
         />
       )}
@@ -3006,6 +3073,7 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
             alt={`${chapter[0]}的门店现场`}
             loading="eager"
             decoding="async"
+            style={{ objectPosition: visualAssetObjectPosition(chapterImage) }}
           />
         </figure>
       )}

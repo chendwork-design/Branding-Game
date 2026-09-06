@@ -28,8 +28,8 @@ test('VISUAL-027 keeps a lazy decision visual inside the 360 px detail sheet and
   await expect(detail).toBeVisible();
   await expect(image).toBeVisible();
   await expect(image).toHaveAttribute('loading', 'lazy');
-  await expect(image).toHaveJSProperty('naturalWidth', 1000);
-  await expect(image).toHaveJSProperty('naturalHeight', 750);
+  await expect(image).toHaveJSProperty('naturalWidth', 800);
+  await expect(image).toHaveJSProperty('naturalHeight', 600);
 
   const mobileBox = await image.boundingBox();
   expect(mobileBox).not.toBeNull();

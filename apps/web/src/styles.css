@@ -1572,16 +1572,6 @@ textarea {
   object-fit: cover;
 }
 
-.v11-action-scene-thumb.research img {
-  object-position: 24% 50%;
-}
-.v11-action-scene-thumb.test img {
-  object-position: 50% 50%;
-}
-.v11-action-scene-thumb.quote img {
-  object-position: 76% 50%;
-}
-
 .v11-action-card.done .v11-action-scene-thumb {
   border-color: #a7c3ad;
   filter: saturate(0.76);
@@ -2199,6 +2189,52 @@ textarea {
   background: #fbfef9;
   font-size: 0.7rem;
   text-align: center;
+}
+
+.v11-additional-touchpoints {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #cfddca;
+}
+
+.v11-additional-touchpoints-toggle,
+.v11-additional-touchpoints-grid button {
+  min-height: var(--v11-touch-min);
+  border: 1px solid #c7d9c8;
+  color: #466b5b;
+  background: #fbfef9;
+  font: inherit;
+  cursor: pointer;
+}
+
+.v11-additional-touchpoints-toggle {
+  width: 100%;
+  border-radius: 10px;
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.v11-additional-touchpoints-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.v11-additional-touchpoints-grid button {
+  min-width: 0;
+  padding: 7px 8px;
+  border-radius: 8px;
+  font-size: 0.68rem;
+  line-height: 1.25;
+}
+
+.v11-additional-touchpoints-grid button.active,
+.v11-additional-touchpoints-grid button:focus-visible,
+.v11-additional-touchpoints-toggle:focus-visible {
+  border-color: #a36243;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(163, 98, 67, 0.18);
 }
 
 .v11-visual-inspector > p,
@@ -5732,6 +5768,32 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   border-radius: 50%;
   box-shadow: none;
 }
+
+.v11-touchpoint-brand-surface.flat-board,
+.v11-touchpoint-brand-surface.paper-surface {
+  border-radius: 2px;
+  transform: perspective(760px) rotateY(-1.5deg) skewY(-0.5deg);
+}
+
+.v11-touchpoint-brand-surface.small-token {
+  border-radius: 14%;
+  transform: perspective(520px) rotateX(1deg) rotateY(-2deg);
+}
+
+.v11-touchpoint-brand-surface.round-surface {
+  border-radius: 50%;
+  transform: perspective(440px) rotateX(2deg) scaleX(0.94);
+}
+
+.v11-touchpoint-brand-surface.cylinder-surface {
+  border-radius: 12% 12% 9% 9%;
+  transform: perspective(460px) rotateX(1deg) rotateY(-3deg) scaleX(0.91);
+}
+
+.v11-touchpoint-brand-surface.fabric-surface {
+  border-radius: 5%;
+  transform: perspective(620px) rotateX(1.5deg) rotateY(-2deg) skewY(0.7deg);
+}
 .v11-touchpoint-brand-surface .v11-brand-mark-paper {
   opacity: 0.04;
 }
@@ -5740,12 +5802,16 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 }
 .v11-touchpoint-brand-surface.cup .v11-brand-mark,
 .v11-touchpoint-brand-surface.cup-sleeve .v11-brand-mark,
-.v11-touchpoint-brand-surface.packaging .v11-brand-mark {
+.v11-touchpoint-brand-surface.packaging .v11-brand-mark,
+.v11-touchpoint-brand-surface.cylinder-surface .v11-brand-mark,
+.v11-touchpoint-brand-surface.fabric-surface .v11-brand-mark {
   mix-blend-mode: multiply;
 }
 .v11-touchpoint-brand-surface.cup::before,
 .v11-touchpoint-brand-surface.cup-sleeve::before,
-.v11-touchpoint-brand-surface.packaging::before {
+.v11-touchpoint-brand-surface.packaging::before,
+.v11-touchpoint-brand-surface.cylinder-surface::before,
+.v11-touchpoint-brand-surface.fabric-surface::before {
   position: absolute;
   z-index: 3;
   inset: 0;
@@ -6182,7 +6248,8 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-choice-visual img {
   display: block;
   width: 100%;
-  height: clamp(156px, 25vw, 232px);
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
 }
 
@@ -6226,7 +6293,8 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-touchpoint-stage {
   position: relative;
   display: block;
-  height: 188px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: #eee3d4;
 }
@@ -6301,7 +6369,8 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-chapter-scene img {
   display: block;
   width: 100%;
-  max-height: 238px;
+  max-height: none;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
@@ -6312,8 +6381,8 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 }
 
 @media (max-width: 560px) {
-  .v11-choice-visual-detail img {
-    height: min(190px, 44svh);
+  .v11-choice-visual-detail.object img {
+    height: auto;
   }
   .v11-choice-visual-detail.route img {
     height: 116px;
@@ -6328,7 +6397,7 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
     width: 46%;
   }
   .v11-chapter-scene img {
-    max-height: 190px;
+    max-height: none;
   }
 }
 
@@ -6621,7 +6690,7 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   width: 100%;
   height: auto;
   min-height: 230px;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   flex: none;
   border-radius: 18px;
 }

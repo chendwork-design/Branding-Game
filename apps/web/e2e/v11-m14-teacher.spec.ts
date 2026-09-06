@@ -4,7 +4,6 @@ test('M22 v1.2 teacher surface loads read-only analytics for the trial class', a
   await page.goto('/v11-teacher');
   await page.getByLabel('教师账号').fill('teacher@example.test');
   await page.getByLabel('密码').fill('change-me-in-production');
-  await page.getByLabel('班级 ID').fill('v11-trial-class');
   await page.getByRole('button', { name: '进入 v1.2 后台' }).click();
   await expect(page.getByText('v1.2 十二轮正式候选班', { exact: true })).toBeVisible({
     timeout: 15_000,

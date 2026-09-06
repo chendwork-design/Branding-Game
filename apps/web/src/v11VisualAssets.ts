@@ -22,6 +22,11 @@ export type V11TouchpointPlacement = {
   height: number;
 };
 
+export type V11VisualFocalPoint = {
+  x: number;
+  y: number;
+};
+
 export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11TouchpointPlacement> = {
   storefront: {
     asset: 'touchpoints/v19/touchpoint-storefront.jpg',
@@ -115,6 +120,236 @@ export const V11VisualTouchpointPlacements: Record<V11TouchpointId, V11Touchpoin
   },
 };
 
+// The ten course comparison surfaces stay in the primary tab row. The remaining
+// applications are grouped separately so they remain inspectable without making a
+// phone-sized tab strip unusable. Each placement is a real print/attachment area,
+// never a centered card pasted over the photo.
+export const V11VisualAdditionalTouchpointIds = [
+  'a-frame',
+  'story-wall',
+  'pickup-token',
+  'pickup-shelf-label',
+  'price-tag',
+  'tamper-seal',
+  'lid-marker',
+  'coaster-napkin',
+  'tray-mat',
+  'double-carrier',
+  'gift-box',
+  'refill-pouch',
+  'tea-tin',
+  'snack-carrier',
+  'apron-patch',
+  'name-badge',
+  'customer-cards',
+  'hotel-supply',
+  'delivery-crates',
+  'popup-flag',
+  'sleeve-dispenser',
+] as const;
+
+type V11VisualAdditionalTouchpointId = (typeof V11VisualAdditionalTouchpointIds)[number];
+
+export const V11VisualAdditionalTouchpointPlacements: Record<
+  V11VisualAdditionalTouchpointId,
+  V11TouchpointPlacement
+> = {
+  'a-frame': {
+    asset: 'touchpoints/v19/touchpoint-a-frame-v19.jpg',
+    label: '门口 A 字牌',
+    surfaceClass: 'flat-board',
+    x: 19,
+    y: 9,
+    width: 57,
+    height: 86,
+  },
+  'story-wall': {
+    asset: 'touchpoints/v19/touchpoint-story-wall-v19.jpg',
+    label: '品牌故事墙',
+    surfaceClass: 'flat-board',
+    x: 28,
+    y: 15,
+    width: 47,
+    height: 56,
+  },
+  'pickup-token': {
+    asset: 'touchpoints/v19/touchpoint-pickup-token-v19.jpg',
+    label: '取杯号牌',
+    surfaceClass: 'small-token',
+    x: 8,
+    y: 47,
+    width: 60,
+    height: 24,
+  },
+  'pickup-shelf-label': {
+    asset: 'touchpoints/v19/touchpoint-pickup-shelf-label-v19.jpg',
+    label: '取杯架标签',
+    surfaceClass: 'small-token',
+    x: 34,
+    y: 43,
+    width: 58,
+    height: 13,
+  },
+  'price-tag': {
+    asset: 'touchpoints/v19/touchpoint-price-tag-v19.jpg',
+    label: '价格/原料签',
+    surfaceClass: 'small-token',
+    x: 25,
+    y: 56,
+    width: 55,
+    height: 20,
+  },
+  'tamper-seal': {
+    asset: 'touchpoints/v19/touchpoint-tamper-seal-v19.jpg',
+    label: '封口防拆贴',
+    surfaceClass: 'round-surface',
+    x: 11,
+    y: 51,
+    width: 25,
+    height: 22,
+  },
+  'lid-marker': {
+    asset: 'touchpoints/v19/touchpoint-lid-marker-v19.jpg',
+    label: '杯盖口味贴',
+    surfaceClass: 'round-surface',
+    x: 16,
+    y: 36,
+    width: 26,
+    height: 30,
+  },
+  'coaster-napkin': {
+    asset: 'touchpoints/v19/touchpoint-coaster-napkin-v19.jpg',
+    label: '杯垫与餐巾',
+    surfaceClass: 'paper-surface',
+    x: 62,
+    y: 16,
+    width: 28,
+    height: 48,
+  },
+  'tray-mat': {
+    asset: 'touchpoints/v19/touchpoint-tray-mat-v19.jpg',
+    label: '托盘交接垫',
+    surfaceClass: 'paper-surface',
+    x: 19,
+    y: 42,
+    width: 63,
+    height: 31,
+  },
+  'double-carrier': {
+    asset: 'touchpoints/v19/touchpoint-double-carrier-v19.jpg',
+    label: '双杯提篮',
+    surfaceClass: 'paper-surface',
+    x: 37,
+    y: 55,
+    width: 25,
+    height: 20,
+  },
+  'gift-box': {
+    asset: 'touchpoints/v19/touchpoint-gift-box-v19.jpg',
+    label: '地方礼盒',
+    surfaceClass: 'paper-surface',
+    x: 21,
+    y: 20,
+    width: 38,
+    height: 42,
+  },
+  'refill-pouch': {
+    asset: 'touchpoints/v19/touchpoint-refill-pouch-v19.jpg',
+    label: '补充装袋',
+    surfaceClass: 'packaging',
+    x: 45,
+    y: 12,
+    width: 31,
+    height: 76,
+  },
+  'tea-tin': {
+    asset: 'touchpoints/v19/touchpoint-tea-tin-v19.jpg',
+    label: '茶罐',
+    surfaceClass: 'cylinder-surface',
+    x: 31,
+    y: 20,
+    width: 32,
+    height: 60,
+  },
+  'snack-carrier': {
+    asset: 'touchpoints/v19/touchpoint-snack-carrier-v19.jpg',
+    label: '饮品点心组合',
+    surfaceClass: 'paper-surface',
+    x: 25,
+    y: 50,
+    width: 50,
+    height: 24,
+  },
+  'apron-patch': {
+    asset: 'touchpoints/v19/touchpoint-apron-patch-v19.jpg',
+    label: '围裙胸前应用',
+    surfaceClass: 'fabric-surface',
+    x: 42,
+    y: 30,
+    width: 12,
+    height: 10,
+  },
+  'name-badge': {
+    asset: 'touchpoints/v19/touchpoint-name-badge-v19.jpg',
+    label: '员工名牌',
+    surfaceClass: 'small-token',
+    x: 34,
+    y: 45,
+    width: 23,
+    height: 16,
+  },
+  'customer-cards': {
+    asset: 'touchpoints/v19/touchpoint-customer-cards-v19.jpg',
+    label: '会员与投稿卡',
+    surfaceClass: 'paper-surface',
+    x: 8,
+    y: 21,
+    width: 82,
+    height: 60,
+  },
+  'hotel-supply': {
+    asset: 'touchpoints/v19/touchpoint-hotel-supply-v19.jpg',
+    label: '酒店供货',
+    surfaceClass: 'packaging',
+    x: 15,
+    y: 20,
+    width: 60,
+    height: 54,
+  },
+  'delivery-crates': {
+    asset: 'touchpoints/v19/touchpoint-delivery-crates-v19.jpg',
+    label: '配送箱',
+    surfaceClass: 'flat-board',
+    x: 20,
+    y: 20,
+    width: 50,
+    height: 56,
+  },
+  'popup-flag': {
+    asset: 'touchpoints/v19/touchpoint-popup-flag-v19.jpg',
+    label: '快闪桌旗',
+    surfaceClass: 'fabric-surface',
+    x: 36,
+    y: 30,
+    width: 24,
+    height: 45,
+  },
+  'sleeve-dispenser': {
+    asset: 'touchpoints/v19/touchpoint-sleeve-dispenser-v19.jpg',
+    label: '杯套收纳器',
+    surfaceClass: 'round-surface',
+    x: 38,
+    y: 49,
+    width: 22,
+    height: 21,
+  },
+};
+
+const allTouchpointPlacements: Record<string, V11TouchpointPlacement> = {
+  ...V11VisualTouchpointPlacements,
+  ...V11VisualAdditionalTouchpointPlacements,
+};
+
 const sceneAssets: Record<string, string> = {
   'onboarding-place': 'scenes/onboarding/onboarding-place-v19.jpg',
   'onboarding-goal': 'scenes/onboarding/onboarding-goal-v19.jpg',
@@ -136,15 +371,9 @@ const sceneAssets: Record<string, string> = {
   'briefing-r12': 'scenes/briefing/briefing-r12-v19.jpg',
 };
 
-const actionAssets: Record<string, string> = {
-  research: 'actions/action-observe-v1.webp',
-  test: 'actions/action-test-v1.webp',
-  quote: 'actions/action-quote-v1.webp',
-};
-
-// P1 gives each course action its own operational camera.  Keep the generic
-// family as a compatibility fallback for unfinished or future content, but do
-// not collapse the active round's three evidence-gathering jobs into one scene.
+// P1 gives each course action its own operational camera. There is no generic
+// visual fallback in the runtime manifest: a new course action must ship its
+// own approved photograph instead of silently reviving an old stock thumbnail.
 const actionAssetOverrides: Record<string, string> = {
   'r01-observe-footfall': 'actions/v19/action-r01-observe-footfall.jpg',
   'r01-interview-neighbors': 'actions/v19/action-r01-interview-neighbors.jpg',
@@ -176,9 +405,9 @@ const actionAssetOverrides: Record<string, string> = {
   'r10-observe': 'actions/v19/action-r10-observe-delivery.jpg',
   'r10-test': 'actions/v19/action-r10-test-small-batch.jpg',
   'r10-quote': 'actions/v19/action-r10-quote-fixed-costs.jpg',
-  'r11-observe': 'actions/v19/action-r11-observe-peak-hour.jpg',
-  'r11-test': 'actions/v19/action-r11-test-platform-batch.jpg',
-  'r11-quote': 'actions/v19/action-r11-quote-supplier-capacity.jpg',
+  'r11-audit-capacity': 'actions/v19/action-r11-observe-peak-hour.jpg',
+  'r11-test-delivery': 'actions/v19/action-r11-test-platform-batch.jpg',
+  'r11-negotiate-platform': 'actions/v19/action-r11-quote-supplier-capacity.jpg',
   'r12-observe': 'actions/v19/action-r12-observe-regulars.jpg',
   'r12-test': 'actions/v19/action-r12-test-inventory-retro.jpg',
   'r12-quote': 'actions/v19/action-r12-quote-next-plan.jpg',
@@ -322,7 +551,6 @@ const choiceRouteAssets: Record<string, string> = {
 export const V11VisualAssetManifest = {
   scene: sceneAssets,
   action: {
-    ...actionAssets,
     'r01-observe-footfall': actionAssetOverrides['r01-observe-footfall']!,
     'r01-interview-neighbors': actionAssetOverrides['r01-interview-neighbors']!,
     'r01-quote-rent': actionAssetOverrides['r01-quote-rent']!,
@@ -353,9 +581,9 @@ export const V11VisualAssetManifest = {
     'r10-observe': actionAssetOverrides['r10-observe']!,
     'r10-test': actionAssetOverrides['r10-test']!,
     'r10-quote': actionAssetOverrides['r10-quote']!,
-    'r11-observe': actionAssetOverrides['r11-observe']!,
-    'r11-test': actionAssetOverrides['r11-test']!,
-    'r11-quote': actionAssetOverrides['r11-quote']!,
+    'r11-audit-capacity': actionAssetOverrides['r11-audit-capacity']!,
+    'r11-test-delivery': actionAssetOverrides['r11-test-delivery']!,
+    'r11-negotiate-platform': actionAssetOverrides['r11-negotiate-platform']!,
     'r12-observe': actionAssetOverrides['r12-observe']!,
     'r12-test': actionAssetOverrides['r12-test']!,
     'r12-quote': actionAssetOverrides['r12-quote']!,
@@ -366,14 +594,44 @@ export const V11VisualAssetManifest = {
   chapter: chapterAssets,
 } as const;
 
+type V11VisualAssetFamily = keyof typeof V11VisualAssetManifest;
+
+export type V11VisualAssetRecord = {
+  family: V11VisualAssetFamily;
+  path: string;
+  focalPoint: V11VisualFocalPoint;
+};
+
+const focalPointByFamily: Record<V11VisualAssetFamily, V11VisualFocalPoint> = {
+  scene: { x: 50, y: 50 },
+  action: { x: 50, y: 50 },
+  result: { x: 50, y: 48 },
+  decision: { x: 50, y: 50 },
+  touchpoint: { x: 50, y: 50 },
+  chapter: { x: 50, y: 50 },
+};
+
+// This metadata table is the formal, per-raster delivery manifest. It keeps
+// crop intent beside every runtime path so components never have to guess a
+// focal position from a generic `object-fit: cover` rule.
+export const V11VisualAssetRecords: Record<string, V11VisualAssetRecord> = Object.fromEntries(
+  Object.entries(V11VisualAssetManifest).flatMap(([family, assets]) => {
+    const typedFamily = family as V11VisualAssetFamily;
+    return Object.values(assets).map((path) => ({
+      path,
+      family: typedFamily,
+      focalPoint: { ...focalPointByFamily[typedFamily] },
+    }));
+  }).map((record) => [record.path, record]),
+);
+
 export function sceneAsset(imageKey: string): string | undefined {
   return sceneAssets[imageKey];
 }
 
-export function actionAsset(actionId: string, actionType: string): string | undefined {
-  if (actionAssetOverrides[actionId]) return actionAssetOverrides[actionId];
-  if (actionType === 'negotiate') return actionAssets.quote;
-  return actionAssets[actionType];
+export function actionAsset(actionId: string, _actionType: string): string | undefined {
+  void _actionType;
+  return actionAssetOverrides[actionId];
 }
 
 export function resultSceneAsset(
@@ -399,7 +657,7 @@ export function touchpointAsset(touchpointId: string): string | undefined {
 }
 
 export function touchpointPlacement(touchpointId: string): V11TouchpointPlacement | undefined {
-  return V11VisualTouchpointPlacements[touchpointId as V11TouchpointId];
+  return allTouchpointPlacements[touchpointId];
 }
 
 export function chapterAsset(chapterId: string): string | undefined {
@@ -410,4 +668,13 @@ export function chapterAsset(chapterId: string): string | undefined {
 
 export function visualAssetPath(relativePath: string): string {
   return `/assets/v11/${relativePath}`;
+}
+
+export function visualAssetFocalPoint(relativePath: string): V11VisualFocalPoint | undefined {
+  return V11VisualAssetRecords[relativePath]?.focalPoint;
+}
+
+export function visualAssetObjectPosition(relativePath: string): string {
+  const focalPoint = visualAssetFocalPoint(relativePath);
+  return focalPoint ? `${focalPoint.x}% ${focalPoint.y}%` : '50% 50%';
 }

@@ -254,7 +254,7 @@ describe('v1.2 full course content coverage', () => {
 
   it('keeps the checked-in published artifact aligned with the source content', async () => {
     const artifact = JSON.parse(
-      await readFile(new URL('../../../content/compiled/v1.2.0.json', import.meta.url), 'utf8'),
+      await readFile(new URL('../../../content/compiled/v1.3.0.json', import.meta.url), 'utf8'),
     ) as { checksum: string };
     expect(artifact.checksum).toBe(compileV11Content(v11FullContent).checksum);
   });

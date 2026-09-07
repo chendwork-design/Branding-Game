@@ -1,4 +1,4 @@
-import { validateV11Content, type V11Effect } from './v11.js';
+import { CONTENT_SCHEMA_VERSION_V11, validateV11Content, type V11Effect } from './v11.js';
 
 const effect = (
   key: V11Effect['key'],
@@ -9,7 +9,7 @@ const effect = (
 ): V11Effect => ({ key, amount, timing, label, theoryId });
 
 export const v11SliceContent = validateV11Content({
-  contentVersion: 'v1.2.0',
+  contentVersion: CONTENT_SCHEMA_VERSION_V11,
   engineVersion: '1.2.0',
   reportVersion: '1.2.0',
   priceBaselineVersion: 'prices-2026-08',

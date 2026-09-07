@@ -4,12 +4,15 @@ import { hashState, replay, resolveEngineVersion } from '../src/index.js';
 import { createV11State, ENGINE_VERSION_V11 } from '../src/v11.js';
 
 describe('v1.2 engine compatibility contract', () => {
-  it('routes v1.0, v1.1 and v1.2 content to separate engine implementations', () => {
+  it('routes v1.0, v1.1 and v1.2/v1.3 content to separate engine implementations', () => {
     expect(resolveEngineVersion({ contentVersion: 'v1.0.0', engineVersion: '0.1.0' })).toBe(
       'legacy',
     );
     expect(
       resolveEngineVersion({ contentVersion: 'v1.2.0', engineVersion: ENGINE_VERSION_V11 }),
+    ).toBe('v1.2');
+    expect(
+      resolveEngineVersion({ contentVersion: 'v1.3.0', engineVersion: ENGINE_VERSION_V11 }),
     ).toBe('v1.2');
     expect(resolveEngineVersion({ contentVersion: 'v1.1.0', engineVersion: '1.1.0' })).toBe('v1.1');
     expect(() =>

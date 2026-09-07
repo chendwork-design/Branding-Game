@@ -97,7 +97,7 @@ function assertOk(result, label) {
 try {
   startServer();
   const ready = await waitForReady();
-  if (ready.status !== 'ready' || ready.contentVersion !== 'v1.2.0')
+  if (ready.status !== 'ready' || ready.contentVersion !== 'v1.3.0')
     throw new Error(`Unexpected ready response: ${JSON.stringify(ready)}`);
 
   const login = await request(
@@ -113,8 +113,8 @@ try {
     jsonOptions({ name: 'PostgreSQL storage smoke' }, { cookie: teacherCookie }),
   );
   assertOk(created, 'class creation');
-  if (created.body.contentVersion !== 'v1.2.0' || !created.body.code)
-    throw new Error(`class was not bound to v1.2.0: ${JSON.stringify(created.body)}`);
+  if (created.body.contentVersion !== 'v1.3.0' || !created.body.code)
+    throw new Error(`class was not bound to v1.3.0: ${JSON.stringify(created.body)}`);
 
   const joined = await request(
     '/api/v11/student/join',

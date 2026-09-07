@@ -7,6 +7,7 @@ describe('v1.2 report compatibility contract', () => {
       'legacy',
     );
     expect(resolveReportVersion({ contentVersion: 'v1.2.0', engineVersion: '1.2.0' })).toBe('v1.2');
+    expect(resolveReportVersion({ contentVersion: 'v1.3.0', engineVersion: '1.2.0' })).toBe('v1.2');
     expect(resolveReportVersion({ contentVersion: 'v1.1.0', engineVersion: '1.1.0' })).toBe('v1.1');
     expect(() =>
       resolveReportVersion({ contentVersion: 'v1.2.0', engineVersion: '0.1.0' }),

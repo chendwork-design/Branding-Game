@@ -1,6 +1,9 @@
 import { z } from 'zod';
 
-export const CONTENT_SCHEMA_VERSION_V11 = 'v1.2.0';
+// Content revisions are immutable once a production class has been created.
+// The expanded visual touchpoint library is therefore published as a new
+// content version instead of replacing the v1.2.0 snapshot used by earlier classes.
+export const CONTENT_SCHEMA_VERSION_V11 = 'v1.3.0';
 export const ENGINE_VERSION_V11 = '1.2.0';
 export const REPORT_VERSION_V11 = '1.2.0';
 

@@ -13,7 +13,7 @@ if (process.env.CONFIRM_RESTORE !== 'YES')
   );
 const dumpPath = resolve(backupFile);
 const manifest = JSON.parse(await readFile(`${dumpPath}.manifest.json`, 'utf8'));
-const contentVersion = process.env.CONTENT_VERSION ?? 'v1.2.0';
+const contentVersion = process.env.CONTENT_VERSION ?? 'v1.3.0';
 const contentFile = resolve(process.env.CONTENT_FILE ?? `content/compiled/${contentVersion}.json`);
 const contentBytes = await readFile(contentFile);
 const content = JSON.parse(contentBytes);

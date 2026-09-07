@@ -15,12 +15,12 @@ describe('operations contracts', () => {
     const compose = await readFile(new URL('../../../compose.yaml', import.meta.url), 'utf8');
     expect(backup).toContain('shell: false');
     expect(backup).toContain('contentChecksum');
-    expect(backup).toContain("process.env.CONTENT_VERSION ?? 'v1.2.0'");
+    expect(backup).toContain("process.env.CONTENT_VERSION ?? 'v1.3.0'");
     expect(backup).toContain('content/compiled/${contentVersion}.json');
     expect(backup).toContain('contentManifest.contentVersion !== contentVersion');
     expect(restore).toContain("CONFIRM_RESTORE !== 'YES'");
     expect(restore).toContain('--clean');
-    expect(restore).toContain("process.env.CONTENT_VERSION ?? 'v1.2.0'");
+    expect(restore).toContain("process.env.CONTENT_VERSION ?? 'v1.3.0'");
     expect(restore).toContain('manifest.contentVersion !== contentVersion');
     expect(restore).toContain('manifest.contentChecksum !== contentChecksum');
     expect(restore).toContain('verifiedContentFile');

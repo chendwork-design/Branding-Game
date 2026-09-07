@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const runtimeRoot = join(root, 'apps', 'api', 'dist');
 const packageRoot = join(runtimeRoot, 'node_modules', '@laojie');
-const contentSource = join(root, 'content', 'compiled', 'v1.2.0.json');
-const contentTarget = join(runtimeRoot, 'content', 'compiled', 'v1.2.0.json');
+const contentSource = join(root, 'content', 'compiled', 'v1.3.0.json');
+const contentTarget = join(runtimeRoot, 'content', 'compiled', 'v1.3.0.json');
 const nobleSource = await realpath(
   join(root, 'packages', 'game-engine', 'node_modules', '@noble', 'hashes'),
 );
@@ -57,7 +57,7 @@ await writeFile(
   join(runtimeRoot, 'runtime-manifest.json'),
   `${JSON.stringify(
     {
-      runtime: 'v1.2.0',
+      runtime: 'v1.3.0',
       entrypoint: 'apps/api/src/v11-server.js',
       contentVersion: artifact.contentVersion,
       contentChecksum: artifact.checksum,

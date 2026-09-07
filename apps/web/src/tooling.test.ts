@@ -142,13 +142,13 @@ describe('web tooling boundary', () => {
     expect(assetCheck).toContain('duplicates its corresponding briefing scene');
   });
 
-  it('runs pilot preflight against the published v1.2 content package', async () => {
+  it('runs pilot preflight against the published v1.3 content package', async () => {
     const script = await readFile(
       new URL('../../../scripts/pilot-preflight.mjs', import.meta.url),
       'utf8',
     );
-    expect(script).toContain('content/compiled/v1.2.0.json');
-    expect(script).toContain("compiled.contentVersion === 'v1.2.0'");
+    expect(script).toContain('content/compiled/v1.3.0.json');
+    expect(script).toContain("compiled.contentVersion === 'v1.3.0'");
   });
 
   it('maps the public mobile test command to the configured mobile project', async () => {

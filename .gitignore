@@ -15,6 +15,7 @@ test-results/
 content/compiled/*
 !content/compiled/v1.1.0.json
 !content/compiled/v1.2.0.json
+!content/compiled/v1.3.0.json
 db/local/
 db/backups/
 *.log

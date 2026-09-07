@@ -6,18 +6,18 @@ import {
   validatePublishedContentArtifact,
 } from '../src/v11-content.js';
 
-describe('v1.2 published content loading', () => {
+describe('v1.3 published content loading', () => {
   it('loads the compiled artifact and exposes its verified manifest', async () => {
     const loaded = await loadPublishedContent();
 
-    expect(loaded.content.contentVersion).toBe('v1.2.0');
+    expect(loaded.content.contentVersion).toBe('v1.3.0');
     expect(loaded.checksum).toMatch(/^[0-9a-f]{64}$/);
     expect(loaded.content.rounds).toHaveLength(12);
   });
 
   it('rejects a missing published artifact with a startup-safe error', async () => {
     await expect(
-      loadPublishedContent(new URL('../missing-v1.2.0.json', import.meta.url)),
+      loadPublishedContent(new URL('../missing-v1.3.0.json', import.meta.url)),
     ).rejects.toThrow('正式内容包');
   });
 

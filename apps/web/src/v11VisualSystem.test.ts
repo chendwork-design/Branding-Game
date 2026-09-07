@@ -19,14 +19,15 @@ describe('r08 visual system contract', () => {
     expect(isCoreVisualRoute('v-symbol')).toBe(true);
     expect(isCoreVisualRoute('v-hand')).toBe(true);
     expect(isCoreVisualRoute('v-seal')).toBe(false);
-    expect(coreVisualRouteLabel('v-symbol')).toBe('杯影符号系统');
+    expect(coreVisualRouteLabel('v-symbol')).toBe('月门印记系统');
   });
 
   it('uses a symbol-only visual until the player establishes a brand name', () => {
     const markup = renderToStaticMarkup(
       createElement(V11VisualMark, { visualId: 'v-symbol', brandName: '' }),
     );
-    expect(markup).toContain('杯影符号系统');
+    expect(markup).toContain('月门印记系统');
+    expect(markup).toContain('data-v11-mark="v-symbol"');
     expect(markup).not.toContain('你的品牌名');
     expect(markup).not.toContain('OLD STREET');
     expect(markup).not.toContain('CUP · LEAF');
@@ -39,5 +40,16 @@ describe('r08 visual system contract', () => {
     );
     expect(markup).toContain('老街一盏茶');
     expect(markup).not.toContain('你的品牌名');
+  });
+
+  it('gives every route a distinct original vector mark instead of reusing a cup illustration', () => {
+    const marks = V11_CORE_VISUAL_ROUTES.map((visualId) =>
+      renderToStaticMarkup(createElement(V11VisualMark, { visualId, brandName: '' })),
+    );
+    expect(marks[0]).toContain('data-v11-mark="v-line"');
+    expect(marks[1]).toContain('data-v11-mark="v-symbol"');
+    expect(marks[2]).toContain('data-v11-mark="v-hand"');
+    expect(new Set(marks).size).toBe(3);
+    expect(marks.every((mark) => !mark.includes('你的品牌名'))).toBe(true);
   });
 });

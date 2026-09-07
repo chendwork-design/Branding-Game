@@ -45,12 +45,14 @@ test('v1.4 first-use terminology and visual constraints remain usable on a phone
   await page.getByRole('button', { name: /打开视觉提案/ }).click();
   await page.locator('.v11-visual-system-card .v11-visual-select').first().click();
   await expect(page.getByLabel(/店招上的视觉系统预览/)).toBeVisible();
-  await expect(page.getByText('黑白打印', { exact: true })).toBeVisible();
-  await expect(page.getByText('24 px 缩小', { exact: true })).toBeVisible();
-  await expect(page.getByText('35% 遮挡', { exact: true })).toBeVisible();
+  await expect(page.locator('.v11-touchpoint-grid')).toHaveCount(0);
+  await expect(page.locator('.v11-visual-constraint-preview')).toHaveCount(0);
   await page.getByRole('button', { name: /24 px 缩小测试/ }).click();
   await expect(page.locator('[data-v11-preview-state="small"]')).toBeVisible();
-  await expect(page.getByRole('img', { name: /Old Stre.*线性字标系统/ }).first()).toBeVisible();
+  await expect(page.getByText('24 px 缩小', { exact: true })).toBeVisible();
+  await expect(page.getByText('黑白打印', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('35% 遮挡', { exact: true })).toHaveCount(0);
+  await expect(page.getByRole('img', { name: /Old Stre.*屋檐一笔系统/ }).first()).toBeVisible();
   const overflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,
   );

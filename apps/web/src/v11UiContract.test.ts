@@ -158,9 +158,9 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     for (const text of [
       'v11-touchpoint-tabs',
       'data-v11-preview-state',
-      'v11-preview-mono',
-      'v11-preview-small',
-      'v11-preview-occluded',
+      'previewState',
+      'completedConstraintPreviews',
+      'v11-preview-${preview.key}',
     ]) {
       expect(app).toContain(text);
     }
@@ -203,18 +203,17 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(styles).toContain('.asset-missing::after');
   });
 
-  it('uses vector-driven wordmark, symbol and IP routes on the actual touchpoint surface', async () => {
+  it('uses original vector routes across cards and touchpoints without duplicate inactive previews', async () => {
     const app = await readFile(appPath, 'utf8');
-    const assets = ['visual-wordmark.svg', 'visual-symbol.svg', 'visual-ip.svg'];
-    for (const asset of assets) {
-      expect(app).toContain(asset);
-      await expect(
-        readFile(new URL(`../public/assets/v11/${asset}`, import.meta.url), 'utf8'),
-      ).resolves.toContain('<svg');
-    }
+    const visualSystem = await readFile(new URL('./v11VisualSystem.tsx', import.meta.url), 'utf8');
     expect(app).toContain('V11VisualMark');
+    expect(app).toContain('v11-visual-system-mark');
     expect(app).toContain('v11-touchpoint-brand-surface');
     expect(app).not.toContain('v11-touchpoint-brand-name');
+    expect(app).not.toContain('v11-touchpoint-grid');
+    expect(app).toContain('completedConstraintPreviews');
+    expect(app).toContain('hasMeaningfulRiskOutcome');
+    expect(visualSystem).toContain('data-v11-mark={route}');
     expect(app).toContain('scene-atlas.svg');
     expect(app).toContain('resolveSceneAsset');
     expect(app).toContain('resolveResultAsset');

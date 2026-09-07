@@ -2174,23 +2174,6 @@ textarea {
   font-size: 0.76rem;
 }
 
-.v11-touchpoint-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  margin-top: 12px;
-}
-
-.v11-touchpoint-grid span {
-  padding: 8px 5px;
-  border: 1px solid #d6e3d4;
-  border-radius: 8px;
-  color: #55756b;
-  background: #fbfef9;
-  font-size: 0.7rem;
-  text-align: center;
-}
-
 .v11-additional-touchpoints {
   margin-top: 10px;
   padding-top: 10px;
@@ -2328,10 +2311,10 @@ textarea {
   font-size: 0.78rem;
 }
 
-.v11-chapter-route-mark img {
+.v11-chapter-route-mark .v11-brand-mark {
   width: 52px;
   height: 40px;
-  object-fit: contain;
+  flex: 0 0 auto;
 }
 
 .v11-result-art.motion-tea-pour,
@@ -5563,11 +5546,6 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   font-size: 0.68rem;
 }
 
-.v11-touchpoint-grid span.active {
-  color: #a36243;
-  font-weight: 700;
-}
-
 .v11-visual-constraint-preview > div {
   position: relative;
   overflow: hidden;
@@ -5664,8 +5642,23 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-brand-mark-paper {
   fill: #f1e9da;
 }
-.v11-brand-mark-line {
+.v11-brand-mark-ink {
   stroke: #242621;
+}
+.v11-brand-mark-sage {
+  stroke: #68744e;
+}
+.v11-brand-mark-sage-fill {
+  fill: #68744e;
+}
+.v11-brand-mark-copper {
+  stroke: #a66442;
+}
+.v11-brand-mark-copper-fill {
+  fill: #a66442;
+}
+.v11-brand-mark-paper-cut {
+  fill: #f1e9da;
 }
 .v11-brand-mark-accent {
   stroke: #68744e;
@@ -5676,46 +5669,16 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
   font-weight: 800;
   letter-spacing: 2px;
 }
-.v11-brand-mark-subtitle {
-  fill: #68744e;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1.2px;
-}
 .v11-brand-mark-name-left {
   text-anchor: start;
 }
-.v11-brand-mark-symbol {
-  stroke: #f1e9da;
-  fill: none;
-}
-.v11-brand-mark-symbol path {
-  fill: #f1e9da;
-  stroke: none;
-}
 .v11-brand-mark-v-symbol .v11-brand-mark-paper {
-  fill: #68744e;
+  fill: #405d52;
 }
-.v11-brand-mark-v-symbol .v11-brand-mark-accent {
+.v11-brand-mark-v-symbol .v11-brand-mark-ink {
   stroke: #f1e9da;
 }
-.v11-brand-mark-v-symbol .v11-brand-mark-name,
-.v11-brand-mark-v-symbol .v11-brand-mark-subtitle {
-  fill: #f1e9da;
-}
-.v11-brand-mark-character-body {
-  fill: #f1e9da;
-  stroke: #242621;
-  stroke-width: 5;
-}
-.v11-brand-mark-character-leaf {
-  fill: #68744e;
-}
-.v11-brand-mark-character-steam,
-.v11-brand-mark-character-gesture {
-  stroke: #a66442;
-}
-.v11-brand-mark-v-hand .v11-brand-mark-paper {
+.v11-brand-mark-v-symbol .v11-brand-mark-name {
   fill: #f1e9da;
 }
 .v11-brand-mark-v-hand .v11-brand-mark-accent {
@@ -5880,8 +5843,18 @@ html[data-v11-text-scale='large'] .v11-shell .v11-detail-label {
 .v11-visual-system-card .v11-brand-mark-name {
   font-size: 24px;
 }
-.v11-visual-system-card .v11-brand-mark-subtitle {
-  display: none;
+.v11-visual-system-mark {
+  width: 100%;
+  height: 108px;
+  margin-bottom: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(91, 72, 49, 0.12);
+  border-radius: 10px;
+  background: #f5ecdf;
+}
+.v11-visual-system-mark .v11-brand-mark {
+  width: 100%;
+  height: 100%;
 }
 
 .v11-visual-constraint-preview > div {

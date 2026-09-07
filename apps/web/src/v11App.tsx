@@ -180,6 +180,10 @@ function riskOutcomeLabel(status: string): string {
   return labels[status] ?? '风险结果已记录';
 }
 
+function hasMeaningfulRiskOutcome(status: string): boolean {
+  return ['mitigated', 'partially_mitigated', 'missed', 'unexpected'].includes(status);
+}
+
 function ActionSceneThumb({
   label,
   actionId,
@@ -1826,6 +1830,15 @@ function ChoiceVisualPreview({
         loading={context === 'result' ? 'eager' : 'lazy'}
         decoding="async"
         style={isRoute ? undefined : { objectPosition: visualAssetObjectPosition(asset) }}
+        onError={(event) => {
+          if (event.currentTarget.dataset.fallbackApplied) {
+            event.currentTarget.hidden = true;
+            event.currentTarget.parentElement?.classList.add('asset-missing');
+            return;
+          }
+          event.currentTarget.dataset.fallbackApplied = 'true';
+          event.currentTarget.src = visualAssetPath('asset-placeholder.svg');
+        }}
       />
       <figcaption>
         {isRoute ? '视觉路线示意' : decisionAsset(choiceId) ? '方案物件示意' : '视觉应用示意'}
@@ -2292,6 +2305,7 @@ function VisualCompareScreen({ flow, round }: { flow: V11StudentFlowLike; round:
                   key={visual.visualId}
                   visual={visual}
                   selected={visual.visualId === selectedId}
+                  brandName={flow.state.brandIdentity?.brandName ?? ''}
                   locked={routeIsLocked}
                   onSelect={() => void run(() => flow.selectVisual(visual.visualId))}
                 />
@@ -2353,6 +2367,11 @@ function VisualInspector({
   const occludedTested = testedIds.some(
     (id) => id.includes('packaging-stress') || id.includes('occlusion') || id.includes('fold'),
   );
+  const completedConstraintPreviews = [
+    { key: 'mono', label: '黑白打印', tested: monoTested },
+    { key: 'small', label: '24 px 缩小', tested: smallTested },
+    { key: 'occluded', label: '35% 遮挡', tested: occludedTested },
+  ].filter((preview) => preview.tested);
   const previewState = occludedTested
     ? 'occluded'
     : monoTested
@@ -2437,13 +2456,6 @@ function VisualInspector({
                 : '35% 遮挡检查'}
         </figcaption>
       </figure>
-      <div className="v11-touchpoint-grid">
-        {touchpoints.map((item) => (
-          <span className={item === activeTouchpoint ? 'active' : ''} key={item}>
-            {touchpointLabels[item] ?? item}
-          </span>
-        ))}
-      </div>
       <section className="v11-additional-touchpoints" aria-label="扩展品牌应用">
         <button
           type="button"
@@ -2472,20 +2484,16 @@ function VisualInspector({
         )}
       </section>
       <p>{selected.description}</p>
-      <section className="v11-visual-constraint-preview" aria-label="视觉约束测试结果">
-        <div className={`v11-preview-mono ${monoTested ? 'active' : ''}`}>
-          <span>黑白打印</span>
-          <V11VisualMark visualId={selected.visualId} brandName={brandName} />
-        </div>
-        <div className={`v11-preview-small ${smallTested ? 'active' : ''}`}>
-          <span>24 px 缩小</span>
-          <V11VisualMark visualId={selected.visualId} brandName={brandName} />
-        </div>
-        <div className={`v11-preview-occluded ${occludedTested ? 'active' : ''}`}>
-          <span>35% 遮挡</span>
-          <V11VisualMark visualId={selected.visualId} brandName={brandName} />
-        </div>
-      </section>
+      {completedConstraintPreviews.length > 0 && (
+        <section className="v11-visual-constraint-preview" aria-label="已完成的视觉约束测试结果">
+          {completedConstraintPreviews.map((preview) => (
+            <div className={`v11-preview-${preview.key} active`} key={preview.key}>
+              <span>{preview.label}</span>
+              <V11VisualMark visualId={selected.visualId} brandName={brandName} />
+            </div>
+          ))}
+        </section>
+      )}
       <div className="v11-test-grid">
         {round.visualTests.map((test) => {
           const tested = testedIds.includes(test.testId);
@@ -2519,34 +2527,22 @@ function VisualInspector({
 function VisualSystemCard({
   visual,
   selected,
+  brandName,
   locked = false,
   onSelect,
 }: {
   visual: V11VisualSystem;
   selected: boolean;
+  brandName: string;
   locked?: boolean;
   onSelect: () => void;
 }) {
-  const preview = visualSystemPreviewAsset(visual.visualId);
   return (
     <article className={`v11-visual-system-card ${selected ? 'selected' : ''}`}>
       <button className="v11-visual-select" type="button" disabled={locked} onClick={onSelect}>
-        <img
-          className="v11-visual-asset v11-visual-system-preview"
-          src={`/assets/v11/${preview}`}
-          alt={`${visual.name}在店招、杯身和包装上的视觉方案`}
-          loading="lazy"
-          decoding="async"
-          onError={(event) => {
-            if (event.currentTarget.dataset.fallbackApplied) {
-              event.currentTarget.hidden = true;
-              event.currentTarget.parentElement?.classList.add('asset-missing');
-              return;
-            }
-            event.currentTarget.dataset.fallbackApplied = 'true';
-            event.currentTarget.src = `/assets/v11/${visualAsset(visual.visualId)}`;
-          }}
-        />
+        <div className="v11-visual-system-mark">
+          <V11VisualMark visualId={visual.visualId} brandName={brandName} />
+        </div>
         <strong>{visual.name}</strong>
         <span>{visual.description}</span>
         <small>
@@ -2559,24 +2555,6 @@ function VisualSystemCard({
       </button>
     </article>
   );
-}
-
-function visualAsset(visualId: string): string {
-  const assets: Record<string, string> = {
-    'v-line': 'visual-wordmark.svg',
-    'v-symbol': 'visual-symbol.svg',
-    'v-hand': 'visual-ip.svg',
-  };
-  return assets[visualId] ?? 'asset-placeholder.svg';
-}
-
-function visualSystemPreviewAsset(visualId: string): string {
-  const previews: Record<string, string> = {
-    'v-line': 'visual-system-line.jpg',
-    'v-symbol': 'visual-system-symbol.jpg',
-    'v-hand': 'visual-system-ip.jpg',
-  };
-  return previews[visualId] ?? visualAsset(visualId);
 }
 
 function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V11Round }) {
@@ -2592,6 +2570,9 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
     .filter((entry) => entry.category === 'gross_profit')
     .reduce((sum, entry) => sum + entry.amountYuan, 0);
   const hasOperatingIncome = operatingIncome > 0;
+  const meaningfulRiskOutcome = hasMeaningfulRiskOutcome(result.riskOutcome.status);
+  const followupRisk =
+    choice?.delayedRisk ?? (meaningfulRiskOutcome ? result.riskOutcome.explanation : undefined);
   return (
     <section
       className="v11-result-screen"
@@ -2670,16 +2651,18 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
           </div>
         </section>
       )}
-      <section
-        className={`v11-result-risk ${result.riskOutcome.status}`}
-        aria-label="本轮风险处理结果"
-      >
-        <div>
-          <span className="v11-detail-label">风险处理</span>
-          <strong>{riskOutcomeLabel(result.riskOutcome.status)}</strong>
-        </div>
-        <p>{result.riskOutcome.explanation}</p>
-      </section>
+      {meaningfulRiskOutcome && (
+        <section
+          className={`v11-result-risk ${result.riskOutcome.status}`}
+          aria-label="本轮风险处理结果"
+        >
+          <div>
+            <span className="v11-detail-label">风险处理</span>
+            <strong>{riskOutcomeLabel(result.riskOutcome.status)}</strong>
+          </div>
+          <p>{result.riskOutcome.explanation}</p>
+        </section>
+      )}
       {result.visualDiagnostics.length > 0 && (
         <section className="v11-result-visual-diagnostics" aria-label="本轮视觉测试诊断">
           <span className="v11-detail-label">视觉测试带回的诊断</span>
@@ -2764,7 +2747,7 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
               “{reaction}”
             </p>
           ))}
-          <p>{choice?.delayedRisk ?? result.riskOutcome.explanation}</p>
+          {followupRisk && <p>{followupRisk}</p>}
         </div>
       </div>
       <details className="v11-result-followup">
@@ -3094,9 +3077,9 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
       </section>
       {visual && (
         <figure className="v11-chapter-route-mark">
-          <img
-            src={`/assets/v11/${visualAsset(visual.visualId)}`}
-            alt={`${visual.name}正在进入你的品牌路线`}
+          <V11VisualMark
+            visualId={visual.visualId}
+            brandName={flow.state.brandIdentity?.brandName ?? ''}
           />
           <figcaption>你的视觉路线：{visual.name}</figcaption>
         </figure>

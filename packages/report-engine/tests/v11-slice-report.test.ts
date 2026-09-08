@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { v11SliceContent } from '@laojie/content-schema';
+import { v11FullContent, v11SliceContent } from '@laojie/content-schema';
 import { applyV11Action, createV11State, type V11Action } from '@laojie/game-engine';
 import { buildV11Report } from '../src/v11-report.js';
 
@@ -12,8 +12,8 @@ function action(
   return { protocolVersion: '1.1', actionId, type, ...(roundId ? { roundId } : {}), payload };
 }
 
-function oneRoundState() {
-  let state = createV11State(v11SliceContent.contentVersion, 'report-fixture');
+function oneRoundState(content = v11SliceContent) {
+  let state = createV11State(content.contentVersion, 'report-fixture');
   const actions: V11Action[] = [
     action('a1', 'onboarding_completed', undefined, {}),
     action('a2', 'stage_action_selected', 'r01', { actionId: 'r01-observe-footfall' }),
@@ -26,7 +26,7 @@ function oneRoundState() {
     action('a6', 'round_result_acknowledged', 'r01', { resultId: 'result-r01' }),
   ];
   for (const current of actions)
-    state = applyV11Action(state, v11SliceContent, current, 'report-seed').state;
+    state = applyV11Action(state, content, current, 'report-seed').state;
   return state;
 }
 
@@ -77,5 +77,17 @@ describe('v1.1 slice report', () => {
       level: 'sustainable',
     };
     expect(buildV11Report(state, v11SliceContent).scoreBreakdown).toEqual(state.scoreBreakdown);
+  });
+
+  it('keeps the full-content report as one readable decision chain', () => {
+    const report = buildV11Report(oneRoundState(v11FullContent), v11FullContent);
+    const mechanism = report.roundReviews[0]?.mechanism ?? '';
+    expect(mechanism).toContain('你选择了「先做附近居民的日常茶饮」');
+    expect(mechanism).toContain('当时参考了「一周客流观察」');
+    expect(mechanism).toContain('店里先发生：');
+    expect(mechanism).toContain('最先有回应的是：');
+    expect(mechanism).toContain('接下来要留意：');
+    expect(mechanism).not.toContain('即时后果');
+    expect(mechanism).not.toContain('延迟后果');
   });
 });

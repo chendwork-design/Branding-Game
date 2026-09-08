@@ -37,13 +37,16 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(app).toContain('每轮因果链');
     expect(app).toContain('这一步的投入');
     expect(app).toContain('执行前检查');
-    expect(app).toContain('提交后现金');
+    expect(app).toContain('执行后现金');
     expect(app).toContain('你掌握的信息怎么说');
     expect(app).toContain('已知现场');
     expect(app).toContain('先完成“');
     expect(app).toContain('安全余量');
-    expect(app).toContain('当前最大矛盾');
-    expect(app).toContain('下一轮风险');
+    expect(app).toContain('顾客已经怎样回应');
+    expect(app).toContain('店里目前最容易卡住哪里');
+    expect(app).not.toContain('当前最站得住的一项');
+    expect(app).not.toContain('当前最大矛盾');
+    expect(app).toContain('下一轮马上会遇到');
     expect(app).toContain('判断命中');
     expect(app).toContain('预判复盘');
     expect(app).toContain('完整账本和团队压力');
@@ -52,6 +55,13 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(app).toContain('v11-step-surface');
     expect(app).toContain('可选行动');
     expect(app).toContain('刚刚查到');
+  });
+
+  it('only opens the concept strip for new, in-scope terms', async () => {
+    const app = await readFile(appPath, 'utf8');
+    expect(app).toContain('introducedTermIds');
+    expect(app).toContain('.slice(0, 2)');
+    expect(app).toContain('如果本轮没有新概念，不显示概念提示');
   });
 
   it('uses compact responsive rules and a result motion cue instead of a long survey page', async () => {
@@ -85,7 +95,7 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
   it('defines the compact HUD information hierarchy for mobile play', async () => {
     const app = await readFile(appPath, 'utf8');
     const styles = await readFile(stylesPath, 'utf8');
-    for (const text of ['v11-resource-value', '可调查', '可提交', 'v11-chapter-strip']) {
+    for (const text of ['v11-resource-value', '可调查', '战略余力', 'v11-chapter-strip']) {
       expect(app).toContain(text);
     }
     expect(styles).toContain('.v11-resource-strip');
@@ -123,6 +133,9 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     ]) {
       expect(app).toContain(text);
     }
+    expect(app).toContain('evidenceRelationCopy');
+    expect(app).toContain('更适合「${target}」');
+    expect(app).toContain('选择「${target}」前要注意');
     expect(app).not.toContain('v11-choice-comparison-tray');
     expect(app).not.toContain('加入方案对比');
     expect(styles).toContain('.v11-choice-evidence-state');
@@ -181,7 +194,7 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
       'v11-result-primary-changes',
       'v11-result-followup',
       '你在这一章做成的事',
-      'playerEffectSentence',
+      'resultCopy?.sceneChange',
     ]) {
       expect(app).toContain(text);
     }
@@ -406,7 +419,13 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
     expect(app).toContain(
       "step === 'actions' ? '第 1 / 2 步 · 眼前发生了什么' : '第 2 / 2 步 · 现在要做的决定'",
     );
+    expect(app).toContain('? briefing.mustComplete');
+    expect(app).toContain('`你会怎么处理：${briefing.dilemma}`');
     expect(app).toContain('round.briefing.situation');
+    expect(app).toContain('function roundBriefingForPlayer');
+    expect(app).toContain("if (round.roundId !== 'r12') return round.briefing;");
+    expect(app).toContain('const selectedLabels =');
+    expect(app).toContain('flow.state.traces');
     expect(app).not.toContain('actionQuestion?.context ?? round.briefing.whyNow');
     expect(app).not.toContain('v11-step-heading-meta');
     expect(app).not.toContain(
@@ -447,8 +466,8 @@ describe('M10 v1.1 student vertical-slice UI contract', () => {
 
   it('shows the concept launcher only when a round has terms, and always names the available terms', async () => {
     const app = await readFile(appPath, 'utf8');
-    expect(app).toContain('if (terms.length === 0) return null;');
-    expect(app).toContain('terms.map((term) =>');
+    expect(app).toContain('if (newTerms.length === 0) return null;');
+    expect(app).toContain('newTerms.map((term) =>');
     expect(app).toContain('aria-pressed={term.termId === activeTermId}');
   });
 

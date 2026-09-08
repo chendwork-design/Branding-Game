@@ -18,7 +18,7 @@ const delayedEffect = {
 };
 
 const v11Fixture: GameContentV11 = {
-  contentVersion: 'v1.3.0',
+  contentVersion: 'v1.4.0',
   engineVersion: '1.2.0',
   reportVersion: '1.2.0',
   priceBaselineVersion: 'prices-2026-08',
@@ -175,15 +175,15 @@ const v11Fixture: GameContentV11 = {
   endings: [],
 };
 
-describe('v1.3 content contract', () => {
+describe('v1.4 content contract', () => {
   it('accepts the smallest complete round with multi-angle evidence and costs', () => {
     const parsed = validateV11Content(v11Fixture);
-    expect(parsed.contentVersion).toBe('v1.3.0');
+    expect(parsed.contentVersion).toBe('v1.4.0');
     expect(parsed.rounds[0]?.evidence).toHaveLength(2);
     expect(parsed.rounds[0]?.choices[0]?.cashCostYuan).toBe(18000);
   });
 
-  it('compiles a validated v1.3 content fixture with a stable checksum', () => {
+  it('compiles a validated v1.4 content fixture with a stable checksum', () => {
     const first = compileV11Content(v11Fixture);
     const second = compileV11Content(v11Fixture);
     expect(first.checksum).toMatch(/^[0-9a-f]{64}$/);

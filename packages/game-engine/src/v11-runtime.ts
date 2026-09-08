@@ -633,9 +633,11 @@ function settleResult(
     .filter((achievement) => allConditionsMatch(achievement.conditions, state))
     .map((achievement) => achievement.achievementId);
   state.achievements.push(...newAchievements);
-  const reactions = round.resultPresentation.characterReactions
-    .filter((reaction) => allConditionsMatch(reaction.conditions, state))
-    .map((reaction) => reaction.text);
+  const reactions = choice.resultCopy
+    ? [choice.resultCopy.characterText]
+    : round.resultPresentation.characterReactions
+        .filter((reaction) => allConditionsMatch(reaction.conditions, state))
+        .map((reaction) => reaction.text);
   const outcomeState = resultOutcomeState(state);
   const result: V11RoundResult = {
     resultType: 'choice',

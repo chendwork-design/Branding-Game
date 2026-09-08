@@ -1,11 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 
-const compiled = JSON.parse(await readFile(resolve('content/compiled/v1.3.0.json'), 'utf8'));
+const compiled = JSON.parse(await readFile(resolve('content/compiled/v1.4.0.json'), 'utf8'));
 const releaseCandidate = await readFile(resolve('docs/v1.2-发布候选验收包.md'), 'utf8');
 
 const checks = [
-  ['content version is v1.3.0', compiled.contentVersion === 'v1.3.0'],
+  ['content version is v1.4.0', compiled.contentVersion === 'v1.4.0'],
   ['12 rounds are present', compiled.rounds.length === 12],
   ['the visual round is present', compiled.rounds.some((round) => round.visualRequired)],
   ['three approved visual systems are present', compiled.visualSystems.length === 3],

@@ -15,7 +15,17 @@ describe('v1.2 player language boundary', () => {
     const source = (await Promise.all(playerSources.map((path) => readFile(path, 'utf8')))).join(
       '\n',
     );
-    for (const forbidden of ['服务端', '服务器', '正式结算', '本机存档', '内容版本']) {
+    for (const forbidden of [
+      '服务端',
+      '服务器',
+      '正式结算',
+      '本机存档',
+      '本机进度',
+      '首局经营记录',
+      '首局记录',
+      '独立重玩',
+      '内容版本',
+    ]) {
       expect(source).not.toContain(forbidden);
     }
   });

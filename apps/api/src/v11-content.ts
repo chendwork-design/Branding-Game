@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { validateV11Content, type GameContentV11 } from '@laojie/content-schema';
 
 export const publishedV11ContentUrl = new URL(
-  '../../../content/compiled/v1.3.0.json',
+  '../../../content/compiled/v1.4.0.json',
   import.meta.url,
 );
 

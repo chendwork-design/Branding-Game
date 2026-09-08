@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const entrypoint = resolve(root, 'apps', 'api', 'dist', 'apps', 'api', 'src', 'v11-server.js');
-const contentFile = resolve(root, 'content', 'compiled', 'v1.3.0.json');
+const contentFile = resolve(root, 'content', 'compiled', 'v1.4.0.json');
 const port = process.env.RELEASE_SMOKE_PORT ?? '3399';
 const endpoint = `http://127.0.0.1:${port}/ready`;
 

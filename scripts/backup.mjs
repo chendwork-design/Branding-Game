@@ -8,7 +8,7 @@ const backupRoot = resolve(process.env.BACKUP_DIR ?? 'db/backups');
 if (!databaseUrl) throw new Error('DATABASE_URL is required');
 const stamp = new Date().toISOString().replaceAll(':', '').replaceAll('.', '');
 const dumpFile = resolve(backupRoot, `laojie-${stamp}.dump`);
-const contentVersion = process.env.CONTENT_VERSION ?? 'v1.3.0';
+const contentVersion = process.env.CONTENT_VERSION ?? 'v1.4.0';
 const contentFile = resolve(process.env.CONTENT_FILE ?? `content/compiled/${contentVersion}.json`);
 const content = await readFile(contentFile);
 const contentManifest = JSON.parse(content);

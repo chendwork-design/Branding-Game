@@ -18,13 +18,18 @@ function action(
 }
 
 describe('v1.2 player feedback', () => {
-  it('describes an action in player language rather than exposing an engine trace', () => {
+  it('does not repeat an in-page action result as a generic toast', () => {
     const message = v11PlayerFeedback(
       v11FullContent,
       action('visual_tested', 'r08', { testId: 'r08-sign-3-second' }),
     );
-    expect(message).toContain('24 px 缩小测试');
-    expect(message).not.toMatch(/完成了视觉测试：|testId|提交|记录|等待确认/);
+    expect(message).toBeUndefined();
+    expect(
+      v11PlayerFeedback(
+        v11FullContent,
+        action('stage_action_selected', 'r01', { actionId: 'r01-observe' }),
+      ),
+    ).toBeUndefined();
   });
 
   it('does not interrupt a player merely for previewing a choice', () => {
@@ -41,6 +46,21 @@ describe('v1.2 player feedback', () => {
       v11PlayerFeedback(
         v11FullContent,
         action('evidence_viewed', 'r01', { evidenceId: 'ev-r01-footfall' }),
+      ),
+    ).toBeUndefined();
+  });
+
+  it('does not show an empty concept or choice-completion toast over the next screen', () => {
+    expect(
+      v11PlayerFeedback(
+        v11FullContent,
+        action('terms_introduced', 'r05', { termIds: ['t-identity'] }),
+      ),
+    ).toBeUndefined();
+    expect(
+      v11PlayerFeedback(
+        v11FullContent,
+        action('choice_committed', 'r01', { choiceId: 'r01-neighbor' }),
       ),
     ).toBeUndefined();
   });

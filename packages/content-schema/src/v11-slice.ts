@@ -117,19 +117,19 @@ export const v11SliceContent = validateV11Content({
       theoryId: 't-identity',
       title: '视觉是经营变量',
       explanation: 'LOGO、VI、包装和门店触点会影响识别、理解、选择和传播。',
-      transferPrompt: '你的视觉系统如何进入至少三个真实触点？',
+      transferPrompt: '你的 LOGO、VI 和包装，分别要解决顾客在哪一步认出你？',
     },
     {
       theoryId: 't-touchpoint',
       title: '系统要在触点中保持一致',
       explanation: '顾客不会只看一张效果图，而会在招牌、杯子、包装和手机页面之间感受品牌。',
-      transferPrompt: '你的品牌在不同媒介中如何保持同一性又不僵化？',
+      transferPrompt: '你的招牌、杯子和包装，顾客能认出是同一家店吗？',
     },
     {
       theoryId: 't-growth',
       title: '增长会放大组织问题',
       explanation: '声量和订单增长会同时放大交付、团队和关系问题。',
-      transferPrompt: '如果作品突然被大量看见，系统能不能接住？',
+      transferPrompt: '订单多一倍时，哪一步最先需要补人或改流程？',
     },
   ],
   rounds: [
@@ -379,7 +379,7 @@ export const v11SliceContent = validateV11Content({
         motionCue: 'street-light',
         characterReactions: [
           {
-            characterId: 'shop-owner',
+            characterId: 'character-ahe',
             text: '先别急着把所有人都叫进来，至少我们知道第一批客人是谁了。',
             conditions: [],
           },
@@ -640,7 +640,7 @@ export const v11SliceContent = validateV11Content({
         motionCue: 'tea-counter',
         characterReactions: [
           {
-            characterId: 'tea-supplier',
+            characterId: 'character-laozhou',
             text: '产品名字可以很诗意，但装箱单最好还是写清楚。',
             conditions: [],
           },
@@ -656,8 +656,8 @@ export const v11SliceContent = validateV11Content({
       briefing: {
         situation: '设计师递来三套提案：一套很古雅，一套很醒目，一套像街坊手写的招呼。',
         whyNow: 'LOGO和VI马上要进入招牌、杯套、包装和手机头像，今天选的不是一张海报。',
-        dilemma: '选择最有地方符号的方案，还是选择能在多个触点长期工作的系统？',
-        mustComplete: '选择并测试一套能服务既定路线的视觉系统。',
+        dilemma: '把三套提案放进店招、杯套和包装后，哪一套先上线？',
+        mustComplete: '把选定的视觉方向放进招牌、杯套和包装，找出最先要改的一处。',
         imageKey: 'briefing-r08-visual',
       },
       actionPointBudget: 8,
@@ -900,12 +900,12 @@ export const v11SliceContent = validateV11Content({
         motionCue: 'touchpoint-pan',
         characterReactions: [
           {
-            characterId: 'designer',
+            characterId: 'character-xiaoman',
             text: '今天选的不是一张图，是以后每个触点都要遵守的一套关系。',
             conditions: [],
           },
           {
-            characterId: 'shop-owner',
+            characterId: 'character-ahe',
             text: '杯子拿出老街以后还像你的，这才算真的上线。',
             conditions: [{ type: 'visual_was', visualId: 'v-line' }],
           },
@@ -922,7 +922,7 @@ export const v11SliceContent = validateV11Content({
         situation: '一条短视频让店门口排起了队，平台来谈合作，老客却说自己进不去了。',
         whyNow: '增长会把品牌的优势和漏洞一起放大，现在必须决定扩张速度。',
         dilemma: '趁热扩大线上渠道，还是先把老客和交付能力稳住？',
-        mustComplete: '决定增长是否要超过当前组织的承接能力。',
+        mustComplete: '订单变多了，先决定保护老客体验还是扩大新客入口。',
         imageKey: 'briefing-r11-growth',
       },
       actionPointBudget: 8,
@@ -1168,7 +1168,7 @@ export const v11SliceContent = validateV11Content({
         motionCue: 'street-queue',
         characterReactions: [
           {
-            characterId: 'shop-owner',
+            characterId: 'character-ahe',
             text: '火是好事，但别让火把菜单、团队和老客一起烤糊了。',
             conditions: [],
           },

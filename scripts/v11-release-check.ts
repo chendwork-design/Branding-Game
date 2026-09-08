@@ -8,11 +8,11 @@ async function main(): Promise<void> {
   const { simulateV11, simulateV11Strategies } =
     await import('../packages/game-engine/src/index.ts');
   const artifact = JSON.parse(
-    await readFile(new URL('../content/compiled/v1.3.0.json', import.meta.url), 'utf8'),
+    await readFile(new URL('../content/compiled/v1.4.0.json', import.meta.url), 'utf8'),
   ) as { checksum: string };
   const compiled = compileV11Content(v11FullContent);
   const artifactContent = JSON.parse(
-    await readFile(new URL('../content/compiled/v1.3.0.json', import.meta.url), 'utf8'),
+    await readFile(new URL('../content/compiled/v1.4.0.json', import.meta.url), 'utf8'),
   ) as { checksum: string } & Record<string, unknown>;
   const { checksum: artifactChecksum, ...artifactWithoutChecksum } = artifactContent;
   const recomputedArtifactChecksum = createHash('sha256')

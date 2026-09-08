@@ -421,7 +421,7 @@ export class V11StudentFlow {
         ? { selectedRiskPlanId: input.selectedRiskPlanId }
         : { selectedRiskPlanId: undefined }),
       error: undefined,
-      notice: '已恢复本机进度。',
+      notice: '已恢复上次的经营进度。',
     });
   }
 

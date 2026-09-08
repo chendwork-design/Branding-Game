@@ -183,7 +183,7 @@ function V11LiveJoinScreen({
         <p className="v11-kicker">屯溪老街 · 品牌经营体验</p>
         <h1 id="v11-live-join-title">加入老街品牌局</h1>
         <p className="v11-onboarding-body">
-          每一步都会记入你的首局经营记录。刷新页面后，你可以从上次停下的地方继续。
+          每一步都会保存到这局经营进度。刷新页面后，你可以从上次停下的地方继续。
         </p>
         <form className="join-form" onSubmit={join}>
           <label>

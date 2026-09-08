@@ -147,8 +147,8 @@ describe('web tooling boundary', () => {
       new URL('../../../scripts/pilot-preflight.mjs', import.meta.url),
       'utf8',
     );
-    expect(script).toContain('content/compiled/v1.3.0.json');
-    expect(script).toContain("compiled.contentVersion === 'v1.3.0'");
+    expect(script).toContain('content/compiled/v1.4.0.json');
+    expect(script).toContain("compiled.contentVersion === 'v1.4.0'");
   });
 
   it('maps the public mobile test command to the configured mobile project', async () => {

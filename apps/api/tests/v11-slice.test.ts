@@ -55,7 +55,7 @@ describe('v1.1 four-round API slice', () => {
     expect(ready.statusCode).toBe(200);
     expect(ready.json()).toMatchObject({
       status: 'ready',
-      contentVersion: 'v1.3.0',
+      contentVersion: 'v1.4.0',
     });
     expect(ready.json().contentChecksum).toHaveLength(64);
     await app.close();
@@ -109,7 +109,7 @@ describe('v1.1 four-round API slice', () => {
     expect(created.statusCode).toBe(200);
     expect(created.json()).toMatchObject({
       name: '2026 秋季品牌经营课',
-      contentVersion: 'v1.3.0',
+      contentVersion: 'v1.4.0',
       status: 'active',
     });
     expect(created.json()).not.toHaveProperty('seed');

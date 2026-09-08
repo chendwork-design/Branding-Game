@@ -192,6 +192,69 @@ describe('v1.2 full course content coverage', () => {
     expect(first.checksum).toBe(second.checksum);
   });
 
+  it('publishes a complete, choice-specific result card for every decision', () => {
+    const content = validateV11Content(v11FullContent);
+    const choices = content.rounds.flatMap((round) => round.choices);
+    const scenes = choices.map((choice) => choice.resultCopy?.sceneChange ?? '');
+
+    expect(choices.every((choice) => choice.resultCopy)).toBe(true);
+    expect(
+      choices.every(
+        (choice) =>
+          Boolean(choice.resultCopy?.sceneChange) &&
+          Boolean(choice.resultCopy?.riskToWatch) &&
+          Boolean(choice.resultCopy?.reflectionPrompt) &&
+          Boolean(choice.resultCopy?.characterId) &&
+          Boolean(choice.resultCopy?.characterText),
+      ),
+    ).toBe(true);
+    expect(new Set(scenes).size).toBe(choices.length);
+    expect(
+      choices.every((choice) => choice.playerConsequence === choice.resultCopy?.sceneChange),
+    ).toBe(true);
+    expect(choices.every((choice) => choice.delayedRisk === choice.resultCopy?.riskToWatch)).toBe(
+      true,
+    );
+    expect(
+      choices.some(
+        (choice) =>
+          choice.resultCopy?.delayedGain &&
+          choice.resultCopy.delayedGain !== choice.resultCopy.riskToWatch,
+      ),
+    ).toBe(true);
+  });
+
+  it('keeps free known facts distinct from the scene description', () => {
+    const content = validateV11Content(v11FullContent);
+    expect(
+      content.rounds.every((round) => {
+        const knownFact = round.knownFacts?.[0]?.text;
+        return Boolean(knownFact) && knownFact !== round.briefing.situation;
+      }),
+    ).toBe(true);
+    expect(new Set(content.rounds.map((round) => round.knownFacts?.[0]?.text)).size).toBe(
+      content.rounds.length,
+    );
+  });
+
+  it('keeps the visual brief separate from the later visual-route decision', () => {
+    const content = validateV11Content(v11FullContent);
+    const briefRound = content.rounds.find((round) => round.roundId === 'r05');
+    const routeRound = content.rounds.find((round) => round.roundId === 'r08');
+    expect(briefRound?.choices.every((choice) => !choice.visualRouteId)).toBe(true);
+    expect(briefRound?.briefing.mustComplete).toContain('各视觉资产各自负责');
+    expect(new Set(routeRound?.choices.map((choice) => choice.visualRouteId))).toEqual(
+      new Set(content.visualSystems.map((visual) => visual.visualId)),
+    );
+    expect(
+      content.rounds.every((round) =>
+        round.resultPresentation.characterReactions.every((reaction) =>
+          reaction.characterId.startsWith('character-'),
+        ),
+      ),
+    ).toBe(true);
+  });
+
   it('gives every round concrete questions, actions and player-facing language', () => {
     const content = validateV11Content(v11FullContent);
     expect(content.rounds.every((round) => (round.decisionQuestions?.length ?? 0) >= 2)).toBe(true);
@@ -210,6 +273,19 @@ describe('v1.2 full course content coverage', () => {
         .map((action) => `${round.roundId}:${action.actionId}`),
     );
     expect(incompleteActions).toEqual([]);
+    const invalidActionComparisons = content.rounds.flatMap((round) =>
+      round.stageActions
+        .filter(
+          (action) =>
+            !action.helpsCompareChoiceIds?.length ||
+            new Set(action.helpsCompareChoiceIds).size !== action.helpsCompareChoiceIds.length ||
+            action.helpsCompareChoiceIds.some(
+              (choiceId) => !round.choices.some((choice) => choice.choiceId === choiceId),
+            ),
+        )
+        .map((action) => `${round.roundId}:${action.actionId}`),
+    );
+    expect(invalidActionComparisons).toEqual([]);
     for (const round of content.rounds) {
       const revealed = new Set(
         round.stageActions.flatMap((action) => action.revealsEvidenceIds ?? []),
@@ -254,7 +330,7 @@ describe('v1.2 full course content coverage', () => {
 
   it('keeps the checked-in published artifact aligned with the source content', async () => {
     const artifact = JSON.parse(
-      await readFile(new URL('../../../content/compiled/v1.3.0.json', import.meta.url), 'utf8'),
+      await readFile(new URL('../../../content/compiled/v1.4.0.json', import.meta.url), 'utf8'),
     ) as { checksum: string };
     expect(artifact.checksum).toBe(compileV11Content(v11FullContent).checksum);
   });

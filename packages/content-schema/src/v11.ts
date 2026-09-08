@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 // Content revisions are immutable once a production class has been created.
 // The expanded visual touchpoint library is therefore published as a new
-// content version instead of replacing the v1.2.0 snapshot used by earlier classes.
-export const CONTENT_SCHEMA_VERSION_V11 = 'v1.3.0';
+// content version instead of replacing the v1.3.0 snapshot used by earlier classes.
+export const CONTENT_SCHEMA_VERSION_V11 = 'v1.4.0';
 export const ENGINE_VERSION_V11 = '1.2.0';
 export const REPORT_VERSION_V11 = '1.2.0';
 
@@ -106,6 +106,21 @@ export const V11StageAction = z.object({
 });
 export type V11StageAction = z.infer<typeof V11StageAction>;
 
+/**
+ * The authored bridge between a decision and its player-facing result.
+ * Numeric effects remain the settlement source; these fields explain the
+ * human-scale change, the delayed upside, the risk and who reacts first.
+ */
+export const V11ChoiceResultCopy = z.object({
+  sceneChange: z.string().min(1),
+  delayedGain: z.string().min(1).optional(),
+  riskToWatch: z.string().min(1),
+  reflectionPrompt: z.string().min(1),
+  characterId: z.string().min(1),
+  characterText: z.string().min(1),
+});
+export type V11ChoiceResultCopy = z.infer<typeof V11ChoiceResultCopy>;
+
 export const V11Choice = z.object({
   choiceId: z.string().min(1),
   label: z.string().min(1),
@@ -128,6 +143,8 @@ export const V11Choice = z.object({
   playerConsequence: z.string().min(1).optional(),
   /** Player-facing delayed risk: when the trade-off may return to the store. */
   delayedRisk: z.string().min(1).optional(),
+  /** Authored, choice-specific bridge from settlement to the result card. */
+  resultCopy: V11ChoiceResultCopy.optional(),
   /** A visual route that this choice must carry into later touchpoint checks. */
   visualRouteId: z.string().min(1).optional(),
   resultArtKey: z.string().min(1),

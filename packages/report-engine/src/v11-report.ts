@@ -106,15 +106,29 @@ export function buildV11Report(state: V11GameState, content: GameContentV11): Ga
       outcome: result.riskOutcome.status === 'not_selected' ? '未配置预案' : '已配置预案',
       explanation: result.riskOutcome.explanation,
     });
+    const authoredCopy = skipped ? undefined : choice?.resultCopy;
     const immediate = result.immediateEffects.map((effect) => effect.label);
     const delayed = [...result.scheduledEffects, ...result.maturedEffects].map(
       (effect) => effect.label,
     );
     const mechanism =
       [
-        skipped ? '你没有执行新的战略方案，店里仍在结算既有经营和前面埋下的影响' : '',
-        immediate.length > 0 ? `马上：${immediate.join('、')}` : '',
-        delayed.length > 0 ? `随后：${delayed.join('、')}` : '',
+        skipped
+          ? '本轮选择暂缓新方案，店里继续承接此前已经发生的经营变化'
+          : choice
+            ? `你选择了「${choice.label}」`
+            : '本轮执行了一项经营方案',
+        skipped
+          ? '之前查到的信息仍留在这局判断里'
+          : evidence.evidenceTitle
+            ? `当时参考了「${evidence.evidenceTitle}」`
+            : evidence.status,
+        authoredCopy?.sceneChange ? `店里先发生：${authoredCopy.sceneChange}` : '',
+        result.characterReactions[0] ? `最先有回应的是：${result.characterReactions[0]}` : '',
+        authoredCopy?.delayedGain ? `随后可能得到：${authoredCopy.delayedGain}` : '',
+        authoredCopy?.riskToWatch ? `接下来要留意：${authoredCopy.riskToWatch}` : '',
+        !authoredCopy && immediate.length > 0 ? `马上：${immediate.join('、')}` : '',
+        !authoredCopy && delayed.length > 0 ? `随后：${delayed.join('、')}` : '',
       ]
         .filter(Boolean)
         .join('；') ||
@@ -124,10 +138,14 @@ export function buildV11Report(state: V11GameState, content: GameContentV11): Ga
       mechanism,
       traceRefs: [`第${trace.sequence}条决策记录`],
     });
-    const immediateConsequences = result.immediateEffects.map((effect) => effect.label);
-    const delayedConsequences = [...result.scheduledEffects, ...result.maturedEffects].map(
-      (effect) => effect.label,
-    );
+    const immediateConsequences = authoredCopy?.sceneChange
+      ? [authoredCopy.sceneChange]
+      : result.immediateEffects.map((effect) => effect.label);
+    const delayedConsequences = authoredCopy
+      ? [authoredCopy.delayedGain, authoredCopy.riskToWatch].filter((item): item is string =>
+          Boolean(item),
+        )
+      : [...result.scheduledEffects, ...result.maturedEffects].map((effect) => effect.label);
     const theoryLinks = theoryTitles(content, choice?.theoryIds ?? round.theoryIds);
     roundReviews.push({
       roundTitle: round.title,

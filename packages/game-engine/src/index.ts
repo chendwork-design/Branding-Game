@@ -22,7 +22,9 @@ export function resolveEngineVersion(input: {
   if (input.contentVersion === 'v1.0.0' && input.engineVersion === ENGINE_VERSION) return 'legacy';
   if (input.contentVersion === 'v1.1.0' && input.engineVersion === '1.1.0') return 'v1.1';
   if (
-    (input.contentVersion === 'v1.2.0' || input.contentVersion === 'v1.3.0') &&
+    (input.contentVersion === 'v1.2.0' ||
+      input.contentVersion === 'v1.3.0' ||
+      input.contentVersion === 'v1.4.0') &&
     input.engineVersion === '1.2.0'
   )
     return 'v1.2';

@@ -1,11 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
-import type {
-  GameContentV11,
-  V11Choice,
-  V11Effect,
-  V11Round,
-  V11VisualSystem,
-} from '@laojie/content-schema';
+import type { GameContentV11, V11Choice, V11Round, V11VisualSystem } from '@laojie/content-schema';
 import { V11StudentFlow, type V11Screen, type V11StudentFlowLike } from './v11StudentFlow.js';
 import { buildV11Report } from '@laojie/report-engine';
 import {
@@ -123,50 +117,6 @@ const evidenceAngleLabels: Record<string, string> = {
   culture: '地方故事靠什么站住',
   visual: '设计放进真实场景后怎样',
 };
-
-function playerEffectSentence(effect: Pick<V11Effect, 'key' | 'amount' | 'label'>): string {
-  const improving = effect.amount >= 0;
-  const copy: Partial<Record<V11Effect['key'], string>> = {
-    awareness: improving ? '更多路过的人注意到店门口和主打产品。' : '路过的人更难注意到这家店。',
-    conversion: improving ? '看完菜单的顾客更容易决定下单。' : '顾客在菜单前更容易犹豫后离开。',
-    trust: improving
-      ? '顾客更愿意相信菜单上写的价格和承诺。'
-      : '顾客开始怀疑店里说的话能不能做到。',
-    loyalty: improving ? '买过的人多了一个再回来的理由。' : '熟客少了一个愿意回来的理由。',
-    segmentFit: improving
-      ? '第一批顾客更容易听懂这家店是为谁开的。'
-      : '到店的人更难判断这家店是不是为自己准备的。',
-    differentiation: improving
-      ? '顾客更容易说出你和隔壁店哪里不同。'
-      : '顾客更容易把你和同街门店混在一起。',
-    promiseCredibility: improving
-      ? '店里更有把说过的话稳定做到的把握。'
-      : '店里说出去的话需要更多实际体验来证明。',
-    productDelivery: improving
-      ? '忙起来时，店员更容易把产品按时交到顾客手里。'
-      : '高峰期的制作和交付更容易卡住。',
-    orgCapacity: improving ? '人手和流程更能接住增加的订单。' : '增加的工作开始挤占店员和流程。',
-    brandConsistency: improving
-      ? '店招、菜单和店员的说法更像同一家店。'
-      : '顾客在不同地方遇到的说法开始对不上。',
-    visualRecognition: improving
-      ? '顾客在街上和手机上更容易认出这家店。'
-      : '顾客不容易从街景里认出这家店。',
-    visualAdaptability: improving
-      ? '同一套设计换到不同地方后仍然清楚好用。'
-      : '设计换到杯身或小屏后开始失去作用。',
-    culturalCredibility: improving
-      ? '顾客能从茶材和做法里听到真实的地方来历。'
-      : '地方故事缺少能让顾客相信的细节。',
-    channelDependence: improving
-      ? '订单更依赖单一渠道，渠道规则会更直接影响门店。'
-      : '店里不再把太多订单押在同一个渠道上。',
-    reputationDebt: improving
-      ? '说出去却还没做到的话变多，下一次失误更容易被放大。'
-      : '店里没做到的承诺在减少，顾客的不满没有继续累积。',
-  };
-  return copy[effect.key] ?? effect.label;
-}
 
 function riskOutcomeLabel(status: string): string {
   const labels: Record<string, string> = {
@@ -761,9 +711,13 @@ function TermCards({ flow, roundId }: { flow: V11StudentFlowLike; roundId: strin
   const terms = (flow.content.termGlossary ?? []).filter((term) =>
     (round?.termRefs ?? []).includes(term.termId),
   );
+  const newTerms = terms
+    .filter((term) => !flow.state.introducedTermIds.includes(term.termId))
+    .slice(0, 2);
   const [activeTermId, setActiveTermId] = useState<string | undefined>();
-  if (terms.length === 0) return null;
-  const activeTerm = terms.find((term) => term.termId === activeTermId);
+  // 如果本轮没有新概念，不显示概念提示。
+  if (newTerms.length === 0) return null;
+  const activeTerm = newTerms.find((term) => term.termId === activeTermId);
   const closeTerm = () => {
     if (activeTerm) void flow.introduceTerms([activeTerm.termId]);
     setActiveTermId(undefined);
@@ -773,7 +727,7 @@ function TermCards({ flow, roundId }: { flow: V11StudentFlowLike; roundId: strin
       <div className="v11-term-launcher">
         <strong>本轮概念提示</strong>
         <span>遇到不熟的词，点 ? 立刻看人话解释。</span>
-        {terms.map((term) => (
+        {newTerms.map((term) => (
           <button
             type="button"
             key={term.termId}
@@ -807,24 +761,96 @@ function TermCards({ flow, roundId }: { flow: V11StudentFlowLike; roundId: strin
   );
 }
 
+function roundBriefingForPlayer(flow: V11StudentFlowLike, round: V11Round): V11Round['briefing'] {
+  if (round.roundId !== 'r12') return round.briefing;
+
+  const selectedLabels = [
+    ...new Set(
+      flow.state.traces
+        .filter((trace) => trace.actionType === 'choice_committed' && trace.result?.choiceLabel)
+        .map((trace) => trace.result?.choiceLabel as string),
+    ),
+  ].slice(-3);
+  const customerProof =
+    (flow.state.metrics.loyalty ?? 0) >= 60 ? '熟客已经形成了回访习惯' : '熟客还没有稳定地回来';
+  const teamProof =
+    Math.min(flow.state.metrics.productDelivery ?? 0, flow.state.metrics.orgCapacity ?? 0) >= 60
+      ? '团队目前接得住大部分交付'
+      : '制作和交付仍有容易卡住的环节';
+  const visual = flow.state.visualState.selectedVisualId
+    ? flow.content.visualSystems.find(
+        (item) => item.visualId === flow.state.visualState.selectedVisualId,
+      )
+    : undefined;
+  const strongestAsset =
+    (flow.state.metrics.loyalty ?? 0) >= (flow.state.metrics.awareness ?? 0)
+      ? '熟客关系'
+      : '被看见的机会';
+  const nextPressure =
+    (flow.state.metrics.productDelivery ?? 0) < (flow.state.metrics.orgCapacity ?? 0)
+      ? '高峰期的制作和交付'
+      : '顾客会不会继续回来';
+
+  return {
+    ...round.briefing,
+    situation: `走到年末，店里已经做过${selectedLabels.length > 0 ? `「${selectedLabels.join('」「')}」` : '几次关键取舍'}；现在还剩 ${formatCash(flow.state.cashYuan)}，${customerProof}，${teamProof}。${visual ? `视觉方向「${visual.name}」已经选定。` : '视觉方向还没有定稿。'}`,
+    whyNow: `明年的预算和人手有限，要把这一局已经验证过的做法留下，也要给还没验证的机会设好边界。`,
+    dilemma: `继续放大${strongestAsset}，还是先处理${nextPressure}再接新的机会？`,
+    mustComplete: '从这一局留下的做法里，选出明年要保留、停止和先试的一项。',
+  };
+}
+
+function evidenceRelationTargetLabel(
+  content: GameContentV11,
+  round: V11Round,
+  relation: V11Round['evidence'][number]['relations'][number],
+): string | undefined {
+  if (relation.targetType === 'choice') {
+    return round.choices.find((choice) => choice.choiceId === relation.targetId)?.label;
+  }
+  if (relation.targetType === 'visualSystem') {
+    return content.visualSystems.find((visual) => visual.visualId === relation.targetId)?.name;
+  }
+  if (relation.targetType === 'riskPlan') {
+    return round.riskPlans?.find((plan) => plan.riskPlanId === relation.targetId)?.label;
+  }
+  return undefined;
+}
+
+function evidenceRelationCopy(
+  content: GameContentV11,
+  round: V11Round,
+  relation: V11Round['evidence'][number]['relations'][number],
+): string {
+  const target = evidenceRelationTargetLabel(content, round, relation);
+  if (relation.relation === 'supports') {
+    return `${target ? `更适合「${target}」` : '更适合这项方案'}：${relation.explanation}`;
+  }
+  if (relation.relation === 'warns') {
+    return `${target ? `选择「${target}」前要注意` : '选择前要注意'}：${relation.explanation}`;
+  }
+  return `${target ? `关于「${target}」` : '补充情况'}：${relation.explanation}`;
+}
+
 function BriefingScreen({ flow, round }: { flow: V11StudentFlowLike; round: V11Round }) {
+  const briefing = roundBriefingForPlayer(flow, round);
   return (
     <section className="v11-briefing v11-panel" aria-labelledby="v11-briefing-title">
       <div className="v11-briefing-copy">
         <p className="v11-kicker">本轮目标</p>
-        <h2 id="v11-briefing-title">{round.briefing.mustComplete}</h2>
+        <h2 id="v11-briefing-title">{briefing.mustComplete}</h2>
         <div className="v11-briefing-facts">
           <div>
             <span>现场</span>
-            <p>{round.briefing.situation}</p>
+            <p>{briefing.situation}</p>
           </div>
           <div>
             <span>为什么现在</span>
-            <p>{round.briefing.whyNow}</p>
+            <p>{briefing.whyNow}</p>
           </div>
           <div>
             <span>两难</span>
-            <p>{round.briefing.dilemma}</p>
+            <p>{briefing.dilemma}</p>
           </div>
         </div>
         <TermCards flow={flow} roundId={round.roundId} />
@@ -882,13 +908,13 @@ function BrandIdentityPanel({ flow }: { flow: V11StudentFlowLike }) {
           placeholder="例如：松弛、可靠、有一点幽默"
         />
       </label>
-      <div role="group" aria-label="优先建立哪种身份架构">
-        <span>先从哪种识别方式开始？</span>
+      <div role="group" aria-label="先给设计师哪项工作排序">
+        <span>先给设计师哪项工作排序？</span>
         {(
           [
-            ['wordmark', '文字标志：先把店名读清楚'],
-            ['symbol', '符号标志：用一个图形建立联想'],
-            ['ip', 'IP 角色：让角色承担包装和互动任务'],
+            ['wordmark', '先让店名在招牌和小屏上读清楚'],
+            ['symbol', '先让顾客认出这里属于这条街'],
+            ['ip', '先让角色承担包装和互动'],
           ] as const
         ).map(([value, label]) => (
           <button
@@ -924,6 +950,7 @@ function BrandIdentityPanel({ flow }: { flow: V11StudentFlowLike }) {
 
 function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11Round }) {
   const [busy, run] = useFlowAction();
+  const briefing = roundBriefingForPlayer(flow, round);
   const actionScreen = [...flow.snapshot.screenStack]
     .reverse()
     .find((screen) => screen.id === 'action-center');
@@ -939,8 +966,8 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
       : [
           {
             questionId: `question-${round.roundId}-fallback`,
-            prompt: round.briefing.mustComplete,
-            context: round.briefing.whyNow,
+            prompt: briefing.mustComplete,
+            context: briefing.whyNow,
             actionIds: round.stageActions.map((item) => item.actionId),
           },
         ];
@@ -975,12 +1002,14 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
             {step === 'actions' ? '第 1 / 2 步 · 眼前发生了什么' : '第 2 / 2 步 · 现在要做的决定'}
           </p>
           <h2>
-            {step === 'actions'
-              ? '先看清这轮现场，再决定押哪条路'
-              : `你会怎么处理：${round.briefing.dilemma}`}
+            {step === 'actions' ? briefing.mustComplete : `你会怎么处理：${briefing.dilemma}`}
           </h2>
-          <p>{round.briefing.situation}</p>
-          <small className="v11-step-heading-why">为什么现在：{round.briefing.whyNow}</small>
+          <p>
+            {step === 'actions'
+              ? `先查清：${round.decisionQuestions?.[0]?.prompt ?? briefing.dilemma}`
+              : briefing.situation}
+          </p>
+          <small className="v11-step-heading-why">为什么现在：{briefing.whyNow}</small>
         </div>
       </div>
       {step === 'actions' ? (
@@ -1032,6 +1061,23 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
                         );
                         const missingCash = Math.max(0, item.cashCostYuan - state.cashYuan);
                         const requiresConfirm = item.actionPointCost >= state.freeActionPoints;
+                        const actionEvidence = round.evidence.filter((evidence) =>
+                          item.revealsEvidenceIds?.includes(evidence.evidenceId),
+                        );
+                        const comparisonChoices = [
+                          ...new Set(
+                            item.helpsCompareChoiceIds?.map(
+                              (choiceId) =>
+                                round.choices.find((choice) => choice.choiceId === choiceId)?.label,
+                            ),
+                          ),
+                        ].filter((label): label is string => Boolean(label));
+                        const outputCopy =
+                          item.outputType === 'quote'
+                            ? '一份可核对的投入与交付限制'
+                            : actionEvidence[0]?.title
+                              ? `${actionEvidence[0].title}中的具体客流、成本或现场记录`
+                              : '一条具体的现场事实';
                         return (
                           <article
                             className={`v11-action-row ${doneActions.has(item.actionId) ? 'done' : ''}`}
@@ -1051,10 +1097,10 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
                                 <b>{item.durationDays} 天</b>
                               </div>
                               <small>
-                                查完会带回：
-                                {item.outputType === 'quote'
-                                  ? '投入范围和限制'
-                                  : '一条能改变比较的现场事实'}
+                                查完会带回：{outputCopy}
+                                {comparisonChoices.length > 0 && (
+                                  <> · 帮助比较：{comparisonChoices.join('、')}</>
+                                )}
                               </small>
                             </div>
                             <button
@@ -1149,12 +1195,7 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
               <div className="v11-relation-tags">
                 {revealedEvidence.relations.map((relation) => (
                   <span key={`${relation.targetType}-${relation.targetId}`}>
-                    {relation.relation === 'supports'
-                      ? '更支持：'
-                      : relation.relation === 'warns'
-                        ? '要小心：'
-                        : '补充：'}
-                    {relation.explanation}
+                    {evidenceRelationCopy(flow.content, round, relation)}
                   </span>
                 ))}
               </div>
@@ -1189,7 +1230,7 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
             <div className="v11-step-card-title">
               <div>
                 <p className="v11-detail-label">现在要怎么处理</p>
-                <h3 id="v11-choice-title">{round.briefing.dilemma}</h3>
+                <h3 id="v11-choice-title">{briefing.dilemma}</h3>
               </div>
               <span>不同方案会消耗 2—4 点战略行动力</span>
             </div>
@@ -1271,7 +1312,7 @@ function ActionCenterV14({ flow, round }: { flow: V11StudentFlowLike; round: V11
                 <p>
                   执行“{action.label}”会花掉 {action.actionPointCost}{' '}
                   点可调查点数，但不会动用已经保留的 4
-                  点战略行动力。查完后，你仍能提交一项战略方案。
+                  点战略行动力。查完后，你仍能执行一项战略方案。
                 </p>
                 <div>
                   <button
@@ -1635,7 +1676,7 @@ function ActionCenter({ flow, round }: { flow: V11StudentFlowLike; round: V11Rou
             <p className="v11-kicker">当前决策提示</p>
             <h2>先弄清，再下注</h2>
             <p>
-              自由行动带回事实，战略行动用来提交方案。不要把所有精力花在看信息上，最后要给自己留下一次真正的经营选择。
+              自由行动带回事实，战略行动用来执行方案。不要把所有精力花在看信息上，最后要给自己留下一次真正的经营选择。
             </p>
             <ol className="v11-step-list">
               <li className="active">
@@ -1648,7 +1689,7 @@ function ActionCenter({ flow, round }: { flow: V11StudentFlowLike; round: V11Rou
               </li>
               <li>
                 <strong>3</strong>
-                <span>提交一次战略选择；也可以选择本轮不新增方案。</span>
+                <span>执行一次战略选择；也可以选择本轮不新增方案。</span>
               </li>
             </ol>
           </section>
@@ -1684,7 +1725,7 @@ function ActionCenter({ flow, round }: { flow: V11StudentFlowLike; round: V11Rou
                 <h2 id="v11-last-ap-title">这会用掉最后的自由行动</h2>
                 <p>
                   你将执行“{action.label}”。这会花掉 {action.actionPointCost}{' '}
-                  点自由行动，但不会动用已经保留的 4 点战略行动力；本轮仍可提交一项战略方案。
+                  点自由行动，但不会动用已经保留的 4 点战略行动力；本轮仍可执行一项战略方案。
                 </p>
                 <div>
                   <button
@@ -1722,8 +1763,8 @@ function VisualPrompt({ flow }: { flow: V11StudentFlowLike }) {
   return (
     <section className="v11-visual-prompt v11-panel">
       <div>
-        <p className="v11-kicker">本轮有一个不能跳过的触点</p>
-        <h2>LOGO / VI 要离开效果图，进入真实使用</h2>
+        <p className="v11-kicker">这一轮先确定视觉方向</p>
+        <h2>把 LOGO 和 VI 放进真实使用，再决定哪套能工作</h2>
         <p>
           先选一套视觉方向，再用有限行动力做小测试。测试不是找“最漂亮”，而是看它放进真实场景后还认不认得出、用得顺不顺。
         </p>
@@ -2037,10 +2078,10 @@ function ChoiceDetailScreen({
   );
   const workloadStatus =
     choice.workload >= 4 && capacity < 60
-      ? '当前承接偏紧'
+      ? '现有两人可能要在高峰期加班'
       : choice.workload >= 4
-        ? '需要盯住高峰期'
-        : '当前可承接';
+        ? '高峰期要专人盯住交付'
+        : '现有排班可以完成';
   return (
     <div
       className="v11-choice-detail-backdrop"
@@ -2172,7 +2213,7 @@ function ChoiceDetailScreen({
         </details>
         <section className="v11-submit-preview" aria-label="执行前检查">
           <strong>执行前检查</strong>
-          <span>提交后现金：{remainingCash >= 0 ? formatCash(remainingCash) : '现金不足'}</span>
+          <span>执行后现金：{remainingCash >= 0 ? formatCash(remainingCash) : '现金不足'}</span>
           <span>时间会推进：{choice.durationDays} 天</span>
           <span>
             工作量：{choice.workload} / 5 · {workloadStatus}
@@ -2180,23 +2221,22 @@ function ChoiceDetailScreen({
           <span>
             {requiredVisual
               ? visualRouteMatches
-                ? `视觉路线已对齐：${requiredVisual.name}`
-                : `这条方案需要：${requiredVisual.name}`
+                ? `这项方案会使用：${requiredVisual.name}`
+                : `执行前还要选择：${requiredVisual.name}`
               : round.visualRequired
                 ? flow.state.visualState.selectedVisualId
-                  ? '视觉系统已选，可以落地'
-                  : '还要先选视觉系统'
+                  ? `已选${flow.content.visualSystems.find((item) => item.visualId === flow.state.visualState.selectedVisualId)?.name ?? '视觉方向'}，会进入本轮触点`
+                  : '执行前需要先选一套视觉方向'
                 : '本轮不需要先选视觉系统'}
           </span>
-          {selectedRisk && <span>风险预案已在前一步付费配置。</span>}
+          {selectedRisk && <span>这项风险已经预留了缓冲。</span>}
         </section>
         {round.visualRequired && !flow.state.visualState.selectedVisualId && (
           <p className="v11-inline-warning">这轮要先选视觉系统，执行按钮会保持关闭。</p>
         )}
         {requiredVisual && !visualRouteMatches && (
           <p className="v11-inline-warning">
-            这条策略会把“{requiredVisual.name}
-            ”带进后面的包装与触点检查；请返回经营现场，先确认同一套视觉路线。
+            这项方案需要“{requiredVisual.name}”。请返回经营现场，先选好这套视觉方向。
           </p>
         )}
         <div className="v11-detail-footer">
@@ -2382,8 +2422,8 @@ function VisualInspector({
   const touchpoints = selected.touchpoints
     .filter((item) => Boolean(touchpointAsset(item) && touchpointPlacement(item)))
     .slice(0, 10);
-  const additionalTouchpoints = V11VisualAdditionalTouchpointIds.filter(
-    (item) => Boolean(touchpointAsset(item) && touchpointPlacement(item)),
+  const additionalTouchpoints = V11VisualAdditionalTouchpointIds.filter((item) =>
+    Boolean(touchpointAsset(item) && touchpointPlacement(item)),
   );
   const availableTouchpoints: string[] = [...touchpoints, ...additionalTouchpoints];
   const activeTouchpoint = availableTouchpoints.includes(touchpoint)
@@ -2571,8 +2611,7 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
     .reduce((sum, entry) => sum + entry.amountYuan, 0);
   const hasOperatingIncome = operatingIncome > 0;
   const meaningfulRiskOutcome = hasMeaningfulRiskOutcome(result.riskOutcome.status);
-  const followupRisk =
-    choice?.delayedRisk ?? (meaningfulRiskOutcome ? result.riskOutcome.explanation : undefined);
+  const resultCopy = choice?.resultCopy;
   return (
     <section
       className="v11-result-screen"
@@ -2585,7 +2624,7 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
         <div>
           <p className="v11-kicker">执行结果 · 第 {flow.state.roundIndex + 1} 回合</p>
           <h2 id="v11-result-title">{result.choiceLabel}</h2>
-          <p>你做的选择已经进入店铺，下面先看发生了什么。</p>
+          <p>先看这项选择在店里造成的变化，再决定下一轮要盯住什么。</p>
           <ChoiceVisualPreview
             choiceId={result.choiceId}
             label={result.choiceLabel}
@@ -2603,10 +2642,9 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
       </div>
       <div className="v11-result-feedback" aria-live="polite">
         <div>
-          <strong>现场先有这些变化</strong>
+          <strong>店里先发生了什么</strong>
           <span>
-            {result.immediateEffects.map(playerEffectSentence).join('；') ||
-              '这一步暂时没有明显变化，但店里已经开始按这个决定准备。'}
+            {resultCopy?.sceneChange || '这一步暂时没有明显变化，但店里已经开始按这个决定准备。'}
           </span>
         </div>
       </div>
@@ -2722,10 +2760,7 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
       </details>
       <div className="v11-result-columns">
         <div className="v11-result-card">
-          <span className="v11-detail-label">顾客和店里先发生了什么</span>
-          <p>
-            {choice?.playerConsequence ?? '这一步已经进入店里，顾客和团队会用接下来的反应检验它。'}
-          </p>
+          <span className="v11-detail-label">经营指标变化</span>
           {metricChanges.length > 0 ? (
             metricChanges.map(([key, amount]) => (
               <div className="v11-change-row" key={key}>
@@ -2741,13 +2776,22 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
           )}
         </div>
         <div className="v11-result-card">
-          <span className="v11-detail-label">现场反应和要盯住的事</span>
+          <span className="v11-detail-label">谁先有反应</span>
           {result.characterReactions.map((reaction, index) => (
             <p className="v11-reaction" key={`${reaction}-${index}`}>
               “{reaction}”
             </p>
           ))}
-          {followupRisk && <p>{followupRisk}</p>}
+          {resultCopy?.delayedGain && (
+            <p>
+              <strong>接下来可能得到：</strong> {resultCopy.delayedGain}
+            </p>
+          )}
+          {resultCopy?.riskToWatch && (
+            <p>
+              <strong>需要留意：</strong> {resultCopy.riskToWatch}
+            </p>
+          )}
         </div>
       </div>
       <details className="v11-result-followup">
@@ -2765,22 +2809,26 @@ function RoundResultScreen({ flow, round }: { flow: V11StudentFlowLike; round: V
         )}
         <div className="v11-cause-lanes">
           <div>
-            <span>现在发生</span>
+            <span>接下来可能得到</span>
             <p>
-              {result.immediateEffects.map(playerEffectSentence).join('；') || '暂时没有明显变化'}
+              {resultCopy?.delayedGain ||
+                result.scheduledEffects.map((effect) => effect.label).join('；') ||
+                '这一步没有明确的延迟收益，先观察门店是否真的接得住。'}
             </p>
           </div>
           <div>
-            <span>以后可能发生</span>
+            <span>需要留意</span>
             <p>
-              {result.scheduledEffects.map(playerEffectSentence).join('；') ||
-                '这一步没有埋下延迟影响'}
+              {resultCopy?.riskToWatch ||
+                (meaningfulRiskOutcome
+                  ? result.riskOutcome.explanation
+                  : '这一步暂时没有额外风险提示。')}
             </p>
           </div>
           {result.maturedEffects.length > 0 && (
             <div>
               <span>本轮兑现</span>
-              <p>{result.maturedEffects.map(playerEffectSentence).join('；')}</p>
+              <p>{result.maturedEffects.map((effect) => effect.label).join('；')}</p>
             </div>
           )}
         </div>
@@ -2969,35 +3017,30 @@ function ResultArt({
 
 function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
   const lastRoundId = flow.state.completedRoundIds.at(-1);
-  const chapter =
+  const chapterLabel =
     lastRoundId === 'r02'
-      ? [
-          '第一章体检',
-          '你已经决定先服务谁，也写下了要稳定做到什么。接下来产品、价格和身份都要围绕这句话。',
-        ]
+      ? '第一章体检'
       : lastRoundId === 'r06'
-        ? [
-            '第二章体检',
-            '产品、价格和品牌身份已经落到具体触点。下一步不是再加概念，而是让顾客在门口、点单和带走时都感到一致。',
-          ]
+        ? '第二章体检'
         : lastRoundId === 'r09'
-          ? [
-              '第三章体检',
-              '服务、视觉和顾客关系已经开始一起工作。增长前先看清：热度来了，店里能不能接住。',
-            ]
-          : [
-              '年度体检',
-              '你已经走完整年。报告会把每次选择、依据和后果串成一条可以带进课堂讨论的路径。',
-            ];
+          ? '第三章体检'
+          : '年度体检';
   const recent = flow.state.traces
     .filter(
       (trace) => trace.actionType === 'choice_committed' || trace.actionType === 'choice_skipped',
     )
     .slice(-2);
-  const strongest = Object.entries(flow.state.metrics)
-    .filter(([key]) => !['channelDependence', 'reputationDebt'].includes(key))
-    .sort((left, right) => right[1] - left[1])[0];
-  const strongestLabel = strongest ? (metricLabels[strongest[0]] ?? strongest[0]) : '尚未形成';
+  const recentChoiceCopies = recent.map((trace) => {
+    const sourceRound = flow.content.rounds.find((round) => round.roundId === trace.roundId);
+    return sourceRound?.choices.find((choice) => choice.choiceId === trace.result?.choiceId)
+      ?.resultCopy;
+  });
+  const chapterIntro =
+    recent.length > 0
+      ? `你刚刚做出的选择已经进入现场：${recent
+          .map((trace) => trace.result?.choiceLabel ?? '维持现状')
+          .join('、')}。现在回看顾客的回应和店里的变化。`
+      : '这一章还没有形成可回看的决定，先从眼前的现场开始。';
   const customerStatus = Math.round(
     ['awareness', 'conversion', 'trust', 'loyalty', 'segmentFit'].reduce(
       (sum, key) => sum + (flow.state.metrics[key] ?? 0),
@@ -3007,27 +3050,14 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
   const shopStatus = Math.round(
     ((flow.state.metrics.productDelivery ?? 0) + (flow.state.metrics.orgCapacity ?? 0)) / 2,
   );
-  const biggestContradiction: [string, number] =
+  const pressurePoint =
     (flow.state.metrics.reputationDebt ?? 0) >= 35
-      ? ['口碑承诺和现场交付没有接住', flow.state.metrics.reputationDebt ?? 0]
+      ? '顾客已经开始怀疑承诺能不能做到'
       : shopStatus < 55
-        ? ['店里承接能力偏弱', shopStatus]
-        : (Object.entries(flow.state.metrics)
-            .filter(([key]) =>
-              [
-                'awareness',
-                'conversion',
-                'trust',
-                'loyalty',
-                'segmentFit',
-                'differentiation',
-                'brandConsistency',
-                'promiseCredibility',
-                'culturalCredibility',
-                'visualRecognition',
-              ].includes(key),
-            )
-            .sort((left, right) => left[1] - right[1])[0] ?? ['下一步仍要验证', 0]);
+        ? '高峰期的制作和交付还不够稳'
+        : shopStatus < customerStatus
+          ? '顾客期待已经跑在店里能力前面'
+          : '下一步要继续观察顾客是否真的回来';
   const futureRisk =
     flow.state.pendingEffects[0]?.label ??
     (shopStatus < customerStatus
@@ -3043,14 +3073,14 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
   const chapterImage = chapterAsset(chapterId);
   return (
     <main className="v11-chapter-review">
-      <p className="v11-kicker">{chapter[0]}</p>
-      <h1>这一章，店里已经变成什么样？</h1>
-      <p>{chapter[1]}</p>
+      <p className="v11-kicker">{chapterLabel}</p>
+      <h1>这一章，顾客和店里已经怎样回应？</h1>
+      <p>{chapterIntro}</p>
       {chapterImage && (
         <figure className="v11-chapter-scene">
           <img
             src={visualAssetPath(chapterImage)}
-            alt={`${chapter[0]}的门店现场`}
+            alt={`${chapterLabel}的门店现场`}
             loading="eager"
             decoding="async"
             style={{ objectPosition: visualAssetObjectPosition(chapterImage) }}
@@ -3085,16 +3115,11 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
         </figure>
       )}
       <section className="v11-chapter-strength">
-        <span>当前最站得住的一项</span>
+        <span>顾客已经怎样回应</span>
         <strong>
-          {strongestLabel} · {strongest?.[1] ?? 0}
+          {recentChoiceCopies.filter(Boolean)[0]?.sceneChange ?? '还没有足够的现场结果可以回看。'}
         </strong>
-        <i>
-          <i style={{ width: `${strongest?.[1] ?? 0}%` }} />
-        </i>
-        <small>
-          这不是最终成绩。下一章里，更多顾客和更复杂的现场会看看店员能不能一直做到这件事。
-        </small>
+        <small>先看具体回应，再用下面的状态条判断它是否已经变成稳定能力。</small>
       </section>
       <section className="v11-chapter-health" aria-label="本章经营状态">
         <div>
@@ -3115,22 +3140,19 @@ function ChapterReviewScreen({ flow }: { flow: V11StudentFlowLike }) {
         </div>
       </section>
       <section className="v11-chapter-contradiction">
-        <span>当前最大矛盾</span>
-        <strong>
-          {metricLabels[biggestContradiction[0]] ?? biggestContradiction[0]} ·{' '}
-          {biggestContradiction[1]}
-        </strong>
-        <p>下一轮风险：{futureRisk}</p>
+        <span>店里目前最容易卡住哪里</span>
+        <strong>{pressurePoint}</strong>
+        <p>下一轮马上会遇到：{futureRisk}</p>
       </section>
       <div>
-        {recent.map((trace) => (
+        {recent.map((trace, index) => (
           <article key={trace.actionId}>
             <strong>{trace.result?.choiceLabel ?? '本轮经营'}</strong>
             <span>
               {trace.result?.resultType === 'skip'
                 ? '你选择维持现状，既有经营继续结算。'
-                : trace.result?.immediateEffects.map(playerEffectSentence).join('；') ||
-                  '这一刻没有立刻看得见的变化，但店里已经开始按这个决定准备。'}
+                : (recentChoiceCopies[index]?.sceneChange ??
+                  '这一刻没有立刻看得见的变化，但店里已经开始按这个决定准备。')}
             </span>
           </article>
         ))}
@@ -3244,7 +3266,7 @@ function CompletionScreen({
             disabled={replaying}
             onClick={() => void startReplay()}
           >
-            {replaying ? '正在准备独立重玩…' : '从首局记录开始独立重玩'}
+            {replaying ? '正在准备再来一局…' : '再来一局（从头开始）'}
           </button>
         )}
       </div>
@@ -3332,16 +3354,6 @@ function ReportScreen({ flow }: { flow: V11StudentFlowLike }) {
                   {review.resourceImpact.durationDays} 天准备 · 工作量{' '}
                   {review.resourceImpact.workload} / 5
                 </span>
-              </div>
-              <div className="v11-report-consequence-grid">
-                <div>
-                  <small>即时后果</small>
-                  <span>{review.immediateConsequences.join('；') || '没有明显即时变化'}</span>
-                </div>
-                <div>
-                  <small>延迟后果</small>
-                  <span>{review.delayedConsequences.join('；') || '没有记录到延迟变化'}</span>
-                </div>
               </div>
               <p className="v11-report-evidence">
                 <b>证据判断：</b>

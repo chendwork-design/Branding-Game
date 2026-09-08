@@ -5,6 +5,7 @@ import {
   type V11Event,
   type V11Evidence,
   type V11Ending,
+  type V11ChoiceResultCopy,
   type V11RiskPlan,
   type V11Round,
 } from './v11.js';
@@ -36,81 +37,528 @@ interface ChoiceSpec {
   visualRouteId?: string;
 }
 
-const roundTransferPrompts: Record<string, string> = {
-  r01: '第一批顾客的到店习惯，哪一条证据真正改变了你的选择？',
-  r02: '你承诺的那件事，忙起来时店员还能稳定做到吗？',
-  r03: '主打产品的哪个步骤最可能拖慢高峰期出杯？',
-  r04: '顾客支付的价格，具体换来了什么看得见的价值？',
-  r05: '店名、LOGO 和 IP 分别负责让顾客记住什么？',
-  r06: '这笔传播预算最终让哪一类顾客在什么地方看见了你？',
-  r07: '订单一多，服务承诺最容易在哪个环节走样？',
-  r08: '离开大幅效果图后，哪个触点最先暴露了设计问题？',
-  r09: '顾客替你说出去的话，和店里实际体验对得上吗？',
-  r10: '跨出老街后，哪一方要为包装、交付和客诉负责？',
-  r11: '如果订单再增加一倍，团队会先在哪个环节忙不过来？',
-  r12: '明年要保留、停止和先测试的分别是什么？',
+/**
+ * One authored result card per choice. Keep this separate from numeric
+ * effects: the rules engine settles numbers, while this copy tells the
+ * player what changed in the shop and what to watch next.
+ */
+const choiceResultCopy: Record<string, V11ChoiceResultCopy> = {
+  'r01-neighbor': {
+    sceneChange: '第一周的下午，附近居民能在熟悉的时间买到一杯不必多解释的茶。',
+    delayedGain: '熟客开始把这家店排进自己的日常路线。',
+    riskToWatch: '游客经过时可能看不出这里还有什么只属于老街的体验。',
+    reflectionPrompt: '如果先服务每天经过的人，你愿意暂时放下哪一种游客期待？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：这样买茶很顺手，我下周还会按这个时间过来。',
+  },
+  'r01-tourist': {
+    sceneChange: '门口先出现举着手机找招牌的游客，第一杯茶被当成了老街行程的一站。',
+    delayedGain: '照片和口头推荐会把新的顾客线索带回店里。',
+    riskToWatch: '游客被吸引进来后，如果杯里的体验不具体，期待会很快落空。',
+    reflectionPrompt: '一张好看的照片之外，顾客还能从这一杯茶带走什么？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：人是被招牌吸引来的，可别让他们只拍照不喝完。',
+  },
+  'r01-hybrid': {
+    sceneChange: '早晚两段试卖把居民和游客分开接住，店里第一次有了可对照的两种购买节奏。',
+    delayedGain: '两拨顾客留下的反馈，让下一轮菜单不必只靠猜。',
+    riskToWatch: '两套节奏同时运行时，排队一长，店员容易顾此失彼。',
+    reflectionPrompt: '两种顾客都要接住时，哪一个环节必须先写成同一套流程？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：两边都有客人了，但高峰一来，我们得知道先做什么。',
+  },
+  'r01-resident-loyalty': {
+    sceneChange: '熟客在固定时段拿到专属回馈，店里开始记住谁常来、为什么回来。',
+    delayedGain: '稳定关系会慢慢变成可预期的复购。',
+    riskToWatch: '店的第一眼吸引力较弱，游客可能还不知道自己也能进来。',
+    reflectionPrompt: '熟客方案建立关系后，你会用什么入口迎接第一次来的游客？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我喜欢这种被记住的感觉，但朋友第一次来时也得看得懂。',
+  },
+  'r01-office-morning': {
+    sceneChange: '工作日早晨，店员把取杯顺序理顺，赶时间的人更容易买了就走。',
+    riskToWatch: '如果一直只讲效率，顾客可能记不住这家店和别处有什么关系。',
+    reflectionPrompt: '在不拖慢出杯的前提下，你要留下哪一个能被记住的细节？',
+    characterId: 'character-laozhou',
+    characterText: '老周：快是好事，但我下次路过时还得想得起为什么进你家。',
+  },
+  'r02-anchor': {
+    sceneChange: '午后三点，附近的人能在十分钟里买到熟悉的口味和价格。',
+    delayedGain: '稳定的午后习惯会给门店带来更可预测的回头客。',
+    riskToWatch: '游客第一次路过时，未必立刻知道这家店和自己有关。',
+    reflectionPrompt: '守住日常客之后，你准备在哪个触点补上游客的第一眼理解？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我知道什么时候该来买，但外地朋友问起时，我还说不清特别在哪。',
+  },
+  'r02-dual-track': {
+    sceneChange: '菜单分成日常和地方体验两个入口，居民与游客都能先找到适合自己的那一项。',
+    delayedGain: '两类顾客都被接住，店里得到更丰富的购买线索。',
+    riskToWatch: '两套菜单和说明会让高峰期的店员更容易顾不过来。',
+    reflectionPrompt: '两条入口都保留时，哪一套规则能让新店员不用临场解释？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：入口是清楚了，可忙起来时我们不能各说各的。',
+  },
+  'r02-culture-first': {
+    sceneChange: '每杯茶都能说清茶材、产地和做法，游客问“从哪里来”时店员有了具体答案。',
+    delayedGain: '能被尝到和看见的地方细节，会逐渐沉淀成可信的记忆。',
+    riskToWatch: '如果杯里的体验跟不上故事，顾客会觉得店里只是会说。',
+    reflectionPrompt: '你说出的地方故事，哪一个细节能在产品里被顾客当场验证？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：故事可以讲，但茶叶和做法得先对得上。',
+  },
+  'r02-budget-first': {
+    sceneChange: '菜单把每个价位、分量和差别写清，顾客少问一遍“为什么是这个价”。',
+    delayedGain: '价格透明会让第一次购买少一道犹豫。',
+    riskToWatch: '只讲价格时，路过的人还记不住这家店的特别之处。',
+    reflectionPrompt: '把价格说清后，你还要用哪一句话说明这杯茶为什么值得？',
+    characterId: 'character-xufangdong',
+    characterText: '许房东：价钱明白了，下一步还得让我知道你和隔壁不一样。',
+  },
+  'r02-anti-trend': {
+    sceneChange: '店员用一句不追热梗的招呼迎客，顾客开始把这句话和门店联系起来。',
+    delayedGain: '一句稳定、自然的回应，可能变成熟客之间愿意转述的记号。',
+    riskToWatch: '如果只有一句口号而没有对应体验，招呼很快会变成空话。',
+    reflectionPrompt: '这句招呼承诺了什么？店员每天哪一个动作能把它做实？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：这句话挺像你们，但别让我每次都背得像在演广告。',
+  },
+  'r03-stable': {
+    sceneChange: '主打茶的步骤被压到店员能稳定复现的范围，高峰期也能按同一标准出杯。',
+    delayedGain: '顾客每次回来都喝到相近的味道，复购理由变得更可靠。',
+    riskToWatch: '产品太稳妥，第一次听说的人可能缺少愿意分享的亮点。',
+    reflectionPrompt: '稳定交付之后，你会在哪个小细节上留下记忆点而不增加负担？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：这杯终于不用靠谁当班，换个人也做得出来。',
+  },
+  'r03-complex': {
+    sceneChange: '招牌茶的制作动作变得更有仪式感，顾客愿意举起手机等它完成。',
+    delayedGain: '出片的过程会带来分享和新客讨论。',
+    riskToWatch: '步骤一多，排队和交付时间就可能先于惊喜被顾客记住。',
+    reflectionPrompt: '如果高峰期只能保留一个仪式动作，哪个最值得留下？',
+    characterId: 'character-laozhou',
+    characterText: '老周：好看是好看，可后面排队的人已经在看表了。',
+  },
+  'r03-local-special': {
+    sceneChange: '地方材料进入主打产品，顾客能从味道和做法里听到具体的老街来历。',
+    delayedGain: '真实的材料故事会让产品更容易被记住和复述。',
+    riskToWatch: '材料供应一波动，店里就要面对替代品和解释成本。',
+    reflectionPrompt: '这份地方感如果暂时缺货，哪一个体验不能跟着消失？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：材料有来处就有分量，但每一批货都得接得上。',
+  },
+  'r03-seasonal-ritual': {
+    sceneChange: '季节材料和一个简短动作让主打茶有了轻仪式，店员仍能在高峰期完成。',
+    delayedGain: '季节变化会给熟客一个再次回来尝新的理由。',
+    riskToWatch: '备货随季节变化，某些时段可能增加交付压力。',
+    reflectionPrompt: '这份仪式感的最小版本是什么，才能在材料变化时继续成立？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我愿意为季节回来一次，但别让我每次来都碰上缺料。',
+  },
+  'r03-modular-menu': {
+    sceneChange: '茶底、口味和加料被拆成有限模块，顾客有选择，店员也有清楚的组合规则。',
+    delayedGain: '不同顾客更容易找到适合自己的杯子。',
+    riskToWatch: '选项一多，主打产品反而不容易被顾客记住。',
+    reflectionPrompt: '模块化菜单里，哪一个组合要被明确推成“先试这一杯”？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：选择是多了，但我希望顾客最后记住的是一杯，而不是一张表。',
+  },
+  'r04-everyday-cup': {
+    sceneChange: '主力产品回到日常杯装，价格、分量和取用方式都更适合反复购买。',
+    delayedGain: '每天一杯的习惯会让营业额更稳，而不是只等节日订单。',
+    riskToWatch: '日常杯装的礼赠感较弱，想买伴手礼的人可能转去别家。',
+    reflectionPrompt: '守住日常杯之后，哪些礼赠需求可以先用更轻的方式接住？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：平时喝很方便，送人时我还需要一个拿得出手的选择。',
+  },
+  'r04-gift-box': {
+    sceneChange: '地方感被装进一套可以带走的礼盒，顾客购买的不只是饮品，还有一段送人的理由。',
+    delayedGain: '礼盒会把门店带到不常经过老街的人手里。',
+    riskToWatch: '包装、库存和交接都变复杂，日常出杯不能被礼盒拖慢。',
+    reflectionPrompt: '礼盒增加的哪一项价值，足以抵消它带来的制作和库存？',
+    characterId: 'character-xufangdong',
+    characterText: '许房东：送礼有面子，但仓库里不能堆着卖不掉的盒子。',
+  },
+  'r04-refill': {
+    sceneChange: '顾客可以带回容器再补充，购买动作从一次性带走变成了可以重复的关系。',
+    delayedGain: '愿意回来补充的人，会成为更稳定的熟客。',
+    riskToWatch: '回收、清洁和识别容器的流程一乱，环保承诺反而会伤害信任。',
+    reflectionPrompt: '这套补充服务最容易在哪一步被忙碌的店员漏掉？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：我支持少用一点一次性包装，但交接规则得一眼看懂。',
+  },
+  'r04-price-ladder': {
+    sceneChange: '三档价格各自对应清楚的分量和体验，顾客不用猜多花的钱换来了什么。',
+    delayedGain: '不同预算的顾客都能找到愿意尝试的入口。',
+    riskToWatch: '档位一多，店员和顾客都可能在比较上花掉更多时间。',
+    reflectionPrompt: '三档里哪一档是主力，门店要用什么证据把顾客带到那里？',
+    characterId: 'character-laozhou',
+    characterText: '老周：档位清楚了，可别把点一杯茶变成做选择题。',
+  },
+  'r04-bundle': {
+    sceneChange: '饮品和小点心在同一张菜单上配好，顾客更容易顺手把一次购买买完整。',
+    delayedGain: '组合订单提高了每次到店留下的价值。',
+    riskToWatch: '点心的库存和保质期会把新的损耗带进每天的经营。',
+    reflectionPrompt: '组合销售带来的额外收入，能否覆盖点心的备货与损耗？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：搭配是方便，可今天卖不掉的点心明天怎么办？',
+  },
+  'r05-plain-word': {
+    sceneChange: '店名的读法、字号和出现位置被写进视觉说明，设计师先知道哪里必须清楚。',
+    delayedGain: '先把名称规则定稳，后面换招牌、杯身和小屏时会少一次返工。',
+    riskToWatch: '地方故事不能只靠名字完成，还要由材料、空间或服务补上。',
+    reflectionPrompt: '店名已经说清“叫什么”，哪一个触点还要回答“为什么在这里”？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：名字先读清楚，地方感留给后面的图形和使用场景来讲。',
+  },
+  'r05-mountain-mark': {
+    sceneChange: '视觉说明先划定可以借用的山形、屋檐和地方色彩，也写下不能直接照搬的常见图形。',
+    delayedGain: '边界清楚后，下一轮视觉提案更容易做出真正属于这家店的差异。',
+    riskToWatch: '地方线索如果只停在“像山”，后面的方案仍可能和同街门店撞在一起。',
+    reflectionPrompt: '除了让人想到黄山，这个地方线索还要让顾客联想到店里的哪一种体验？',
+    characterId: 'character-laozhou',
+    characterText: '老周：地方线索可以留，但先写清哪些是你的，别把整条街都画成同一座山。',
+  },
+  'r05-tea-character': {
+    sceneChange:
+      'IP 说明先写清角色要在包装、留言还是互动里承担什么任务，设计师不再只交一张可爱草图。',
+    delayedGain: '角色任务明确后，后面的插图和店员说法更容易保持同一个性格。',
+    riskToWatch: 'IP 一旦承担太多任务，后续每个物料都要额外制作、校对和维护。',
+    reflectionPrompt: '这个角色最重要的任务是什么，哪些地方反而不该让它出现？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：角色可以讨喜，但先说清它什么时候开口，才不会每张图都换性格。',
+  },
+  'r05-neighborhood-seal': {
+    sceneChange:
+      '辅助记号的使用范围被写进视觉说明：它只在杯套、小卡和熟客互动里回应街坊关系，不抢主标识的位置。',
+    delayedGain: '使用边界清楚后，熟客会更容易把这个记号和店里的日常关系联系起来。',
+    riskToWatch: '辅助记号如果被放到所有地方，主标识会变弱，缩小后也容易糊成一团。',
+    reflectionPrompt: '这个记号最该回应哪一种街坊关系，哪些场景应该让它留白？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：这个记号像街坊的招呼，但别让它盖住我在杯子上找店名的第一眼。',
+  },
+  'r05-no-symbol': {
+    sceneChange:
+      '视觉说明先锁定字体、主色、辅助色和版式边界，后续视觉提案不必靠不断加图形制造热闹。',
+    delayedGain: '规则简单，团队更容易在不同物料上保持清楚，也更容易控制制作成本。',
+    riskToWatch: '不靠图形记忆时，顾客在街上第一次认出门店可能会更慢。',
+    reflectionPrompt: '如果暂时不靠图形记忆，哪一种颜色、比例或语气必须坚持到底？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：看着干净是好事，但还得留一处让我能指给外地客人看。',
+  },
+  'r06-streetboard': {
+    sceneChange: '店招、门口菜单和进店第一步被重新整理，路过的人更快知道这里卖什么、适合谁。',
+    delayedGain: '清楚的门口触点会持续把路过流量送进店里。',
+    riskToWatch: '如果店内体验没有接上，门口的吸引只会增加一次性进店。',
+    reflectionPrompt: '门口已经说清楚之后，顾客进门的第一分钟还会遇到什么落差？',
+    characterId: 'character-xufangdong',
+    characterText: '许房东：门口看懂了，进门后别让我再找半天该怎么买。',
+  },
+  'r06-shortvideo': {
+    sceneChange: '茶材、制作和交付被剪成一组短视频，顾客在到店前先看见了产品如何被做出来。',
+    delayedGain: '持续发布会带来更远处的关注和新的到店理由。',
+    riskToWatch: '拍摄和更新会占用店员时间，视频里的体验也会抬高现场期待。',
+    reflectionPrompt: '视频承诺的哪一个画面，店里每天都能不加戏地做到？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：镜头里很热闹，现场可别让顾客发现只是剪出来的。',
+  },
+  'r06-partner-host': {
+    sceneChange: '老街民宿开始把住客介绍到店里，门店获得了一个新的稳定客源入口。',
+    delayedGain: '合作方的推荐会把不熟悉老街的游客带到店门口。',
+    riskToWatch: '客人从合作方听到的期待如果没人校准，体验出问题时责任会被来回推。',
+    reflectionPrompt: '合作方替你说出去的第一句话，谁负责确保店里真的接得住？',
+    characterId: 'character-xufangdong',
+    characterText: '许房东：推荐可以做，但客人进店后出了问题，不能只说不是我的事。',
+  },
+  'r06-member-preorder': {
+    sceneChange: '开业前的熟客预订把一部分需求提前锁定，店员能先知道要准备多少。',
+    delayedGain: '预订会给现金流和排班带来更清楚的预期。',
+    riskToWatch: '一旦承诺了取货时间，临时缺货或延误会直接伤害熟客信任。',
+    reflectionPrompt: '预订能带来确定性，但你愿意为哪些情况预留补救？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我可以提前订，但取不到时你们要先告诉我怎么解决。',
+  },
+  'r06-pop-up': {
+    sceneChange: '快闪摊位把产品带到热门活动现场，第一次有一群不认识老街的人排队尝试。',
+    delayedGain: '现场的新客反馈会帮助门店判断哪些话题值得继续传播。',
+    riskToWatch: '快闪占用的人手和物料，可能让日常门店在同一天顾不过来。',
+    reflectionPrompt: '这次快闪最想验证哪一件事，才能避免只买到短暂热闹？',
+    characterId: 'character-laozhou',
+    characterText: '老周：新客是多了，可别为了摊位让老客在店里等太久。',
+  },
+  'r07-greeting-script': {
+    sceneChange: '店员有了一套轻量招呼和推荐顺序，新客不必从零猜菜单，熟客也不会被强行推销。',
+    delayedGain: '稳定的回应会让不同班次的服务体验更接近。',
+    riskToWatch: '话术一旦写得太满，店员照念时会失去真实的判断和温度。',
+    reflectionPrompt: '哪一句可以统一，哪一个判断必须留给店员现场完成？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：有顺序就不慌，但我得能听着顾客的话调整。',
+  },
+  'r07-express-line': {
+    sceneChange: '高峰期多出一条快取动线，已经选好产品的顾客能更快拿到手里。',
+    delayedGain: '等待减少后，门店更有能力接住同一时段的订单。',
+    riskToWatch: '动线太强调速度，第一次来的顾客可能失去被好好介绍的机会。',
+    reflectionPrompt: '快取线服务谁？你要给第一次来的顾客留下哪一个不被省略的提示？',
+    characterId: 'character-laozhou',
+    characterText: '老周：快取确实顺了，但新客别被一条队伍挡在外面。',
+  },
+  'r07-gift-service': {
+    sceneChange: '包装交接多了一个简短而明确的小动作，顾客拿走礼物时知道它被认真准备过。',
+    delayedGain: '被记住的交接会增加分享和再次送人的可能。',
+    riskToWatch: '每单都做完整仪式会拖慢高峰期，店员也更容易漏掉核心步骤。',
+    reflectionPrompt: '这个仪式最小要做到哪一步，才不会从心意变成排队成本？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：交接有心意是好事，但别让后面的人等到没心情。',
+  },
+  'r07-community-board': {
+    sceneChange: '店里留出一块街坊留言板，顾客不只买茶，也开始留下对这条街的回应。',
+    delayedGain: '真实的留言会慢慢形成属于门店的社区记忆。',
+    riskToWatch: '留言没有回应或审核，负面内容会比好话更快占满注意力。',
+    reflectionPrompt: '谁在什么时间查看留言，哪些内容值得被店里真正回应？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我愿意留下话，但希望它不是贴上墙就没人看了。',
+  },
+  'r07-self-service': {
+    sceneChange: '点单和取杯的一部分交给自助流程，熟悉的顾客少排一步，店员腾出手处理复杂订单。',
+    delayedGain: '人手有限时，更多订单可以在同一时段被接住。',
+    riskToWatch: '不熟悉手机或自助设备的人，可能觉得自己被挡在门外。',
+    reflectionPrompt: '哪些顾客必须保留人工入口，门店如何让两条路径互不打架？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：自助对年轻人方便，可别让不会用的人只能站着等。',
+  },
+  'r08-line': {
+    sceneChange: '识别系统先按缩小、延展和跨触点使用来整理，招牌、杯身和头像都能保留清楚的骨架。',
+    delayedGain: '同一套基础规则能减少后续每做一个物料就重画一次的成本。',
+    riskToWatch: '系统越克制，地方故事就越需要靠产品和空间补出来。',
+    reflectionPrompt: '离开大幅效果图后，哪个小触点最能证明这套系统真的好用？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：缩小后还认得出来，才算是能陪店走远的设计。',
+  },
+  'r08-symbol': {
+    sceneChange: '最有地方符号感的图形成为主识别，顾客先从形状认出这家店和老街的关系。',
+    delayedGain: '稳定使用的符号会增强街景、包装和社交头像之间的联想。',
+    riskToWatch: '图形在小尺寸和复杂背景上可能变糊，故事也可能被符号本身盖住。',
+    reflectionPrompt: '符号缩到杯套角落时，哪一处仍要让人看出它属于这家店？',
+    characterId: 'character-laozhou',
+    characterText: '老周：地方味有了，可顾客从远处看还得认得出是你。',
+  },
+  'r08-hand': {
+    sceneChange: '手写系统把招呼的温度带到招牌和包装上，顾客会觉得每次遇到的店都有人在说话。',
+    delayedGain: '亲近的笔触会让熟客更愿意分享和收集不同触点。',
+    riskToWatch: '笔画、字距和尺寸不稳时，温度会先变成难读和难复制。',
+    reflectionPrompt: '手写感要保留，但哪些字形规则不能交给每次临时发挥？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：像街坊写的字很亲切，但我不想每个杯子都认不出店名。',
+  },
+  'r08-wordmark': {
+    sceneChange: '文字标志系统先解决可读性，店名在街上、手机和杯身上都能被快速认出。',
+    delayedGain: '清楚的字形会成为多个触点共用的稳定底座。',
+    riskToWatch: '文字本身不讲地方故事，需要其他触点补上情绪和来处。',
+    reflectionPrompt: '如果让文字负责被认出，哪一项产品体验负责被记住？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：字看清楚了，接下来别让所有地方感都只剩说明文字。',
+  },
+  'r08-ip-stamp': {
+    sceneChange: 'IP 印章成为包装主角，角色不再只出现在海报里，而是跟着顾客一起离店。',
+    delayedGain: '可带走、可分享的角色会把包装变成下一次传播的入口。',
+    riskToWatch: '角色物料一多，若没有统一规范，团队会被制作和校对拖住。',
+    reflectionPrompt: 'IP 要参与哪些日常触点，哪些地方反而应该留白？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：角色走出海报了，但每一次出现都要有明确的用法。',
+  },
+  'r09-stamp': {
+    sceneChange: '顾客每次到店都能收下一枚街区印章，购买被串成一条可以继续完成的路线。',
+    delayedGain: '收集进度会给熟客一个再次到店的具体理由。',
+    riskToWatch: '印章和回馈规则太复杂，会把关系变成顾客必须记住的任务。',
+    reflectionPrompt: '收集机制要奖励什么行为，才能不让顾客只盯着兑换？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我愿意集，但更想知道每一枚为什么和这条街有关。',
+  },
+  'r09-stories': {
+    sceneChange: '顾客讲自己的老街故事，门店的品牌内容开始由真实经历而不是单方面宣传组成。',
+    delayedGain: '被认真听见的故事会带来更自然的口碑传播。',
+    riskToWatch: '故事没有筛选和回应时，公开内容可能积累新的声誉负担。',
+    reflectionPrompt: '哪些故事适合公开，谁来确认它们和店里的真实体验一致？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：顾客愿意说是信任，但我们也要对他们说出去的话负责。',
+  },
+  'r09-tea-class': {
+    sceneChange: '小型茶饮体验课让顾客亲手接触茶材和做法，地方故事有了可以验证的过程。',
+    delayedGain: '参与过的人更容易记住产品，也更愿意带朋友再来。',
+    riskToWatch: '课程占用空间和店员时间，普通营业时段可能因此变得拥挤。',
+    reflectionPrompt: '体验课要让顾客学会哪一件事，才值得占用这段经营时间？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：大家听懂了来处，可下课后的日常服务也不能被落下。',
+  },
+  'r09-feedback-table': {
+    sceneChange: '差评和改进记录被放到同一张桌上，店里开始把不舒服的反馈变成下一次调整。',
+    delayedGain: '顾客看见问题有回应，会更愿意留下真实而具体的意见。',
+    riskToWatch: '公开负面内容会带来压力，回应慢或回应空泛反而会放大不满。',
+    reflectionPrompt: '哪一条差评能改变流程，而不是只让店员当场道歉？',
+    characterId: 'character-laozhou',
+    characterText: '老周：差评不怕看，怕的是看完以后没人真的改。',
+  },
+  'r09-seasonal-club': {
+    sceneChange: '季节茶饮会员通讯把新品、材料变化和到店理由按时发给熟客。',
+    delayedGain: '持续而有用的提醒会让季节变化变成稳定复购。',
+    riskToWatch: '消息过多或只剩促销，顾客会把它当成打扰而不是关系。',
+    reflectionPrompt: '会员通讯每次都要带来什么真实信息，才值得顾客继续打开？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我愿意收到新茶消息，但别每次打开都只是让我买东西。',
+  },
+  'r10-second-counter': {
+    sceneChange: '第二个小窗口把取杯入口推到老街另一段，原店之外又出现了一个能被看见的门面。',
+    delayedGain: '新位置会带来更多路过客和新的经营数据。',
+    riskToWatch: '两处门店同时缺人时，服务标准和库存都更容易失控。',
+    reflectionPrompt: '第二个窗口要复制的是哪一项能力，而不是简单复制全部物料？',
+    characterId: 'character-xufangdong',
+    characterText: '许房东：多一个窗口能多见人，但没人守好时就是多一个出错的地方。',
+  },
+  'r10-wholesale': {
+    sceneChange: '精品酒店开始小批量订货，门店第一次要按合作方的时间和规格稳定交付。',
+    delayedGain: '批量订单会让产能和收入有新的增长来源。',
+    riskToWatch: '包装、运输和客诉跨出店门后，任何一方出错都可能回到品牌身上。',
+    reflectionPrompt: '合作订单增加后，谁能在交付前发现问题并承担补救？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：数量是上来了，可每一盒都得按同一个标准到客人手里。',
+  },
+  'r10-co-brand': {
+    sceneChange: '联名礼盒把茶和本地糕点放进同一份伴手礼，两个品牌第一次共同面对顾客。',
+    delayedGain: '双方的顾客会互相认识，门店获得新的被推荐场景。',
+    riskToWatch: '只要一个触点的包装或承诺不一致，顾客会把问题算在整套礼盒上。',
+    reflectionPrompt: '联名里哪些体验必须统一，哪些差异反而应该被保留？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：一起出现能扩大影响，但出问题时顾客只会记住整盒礼物。',
+  },
+  'r10-one-store': {
+    sceneChange: '门店暂时不扩张，团队把时间用来把这一间店的产品、关系和流程继续做稳。',
+    delayedGain: '稳定的单店体验会成为以后扩张时可以复用的底稿。',
+    riskToWatch: '增长速度较慢，外部机会可能先被别的门店接走。',
+    reflectionPrompt: '暂缓扩张的这段时间，你要留下哪一份可复制的经营证据？',
+    characterId: 'character-laozhou',
+    characterText: '老周：先把一间店做好不是停下来，是把以后要复制的东西做明白。',
+  },
+  'r10-delivery': {
+    sceneChange: '外卖和远程配送把产品送到不在老街的人手里，门店的服务边界被推得更远。',
+    delayedGain: '新的配送入口会带来更广的触达和订单来源。',
+    riskToWatch: '平台规则和运输过程不由门店完全控制，差评也会直接回到品牌。',
+    reflectionPrompt: '离开门店后，哪一个承诺必须写进包装和配送流程？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：送得远是机会，但顾客只会把收到的那一刻算给我们。',
+  },
+  'r11-platform': {
+    sceneChange: '线上渠道趁着热度放大门店的曝光，更多不在附近的人开始看见这家店。',
+    delayedGain: '新增订单可能把品牌带到原本触达不到的人群。',
+    riskToWatch: '订单集中在一个平台时，平台规则和流量变化会直接牵动门店。',
+    reflectionPrompt: '如果平台明天改变规则，店里还有什么顾客关系能留下？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：流量来得快，但别让平台比我们更了解顾客是谁。',
+  },
+  'r11-steady': {
+    sceneChange: '门店把订单量设在团队能稳定交付的范围，老客仍能按熟悉的方式得到产品和回应。',
+    delayedGain: '稳住体验会让信任和复购慢慢变厚。',
+    riskToWatch: '限制规模会放慢增长，新的顾客机会可能暂时进不来。',
+    reflectionPrompt: '你愿意为了稳定暂时放弃多少订单，换来哪一个长期指标？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我宁愿晚一点买到，也希望每次来都还是熟悉的那杯。',
+  },
+  'r11-community': {
+    sceneChange: '增长被改写成社区会员机制，顾客不只是被拉新，也有了持续参与和回来的理由。',
+    delayedGain: '会员关系会把一次传播变成更稳定的复购和反馈。',
+    riskToWatch: '社区机制需要长期维护，短期声量和订单增长可能不明显。',
+    reflectionPrompt: '会员留下来是因为得到了什么，而不是因为被频繁提醒？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：如果会员真的能参与店的变化，我愿意一直跟着看。',
+  },
+  'r11-steady-circle': {
+    sceneChange: '新增预算先回到熟客社区，活动、权益和产品节奏都围绕长期相处重新安排。',
+    delayedGain: '熟客关系被做深后，会带来更稳定的回访和口头推荐。',
+    riskToWatch: '增长会比追热点慢，门店需要接受一段时间看不见大声量。',
+    reflectionPrompt: '把钱投回熟客之后，你要用什么迹象判断关系真的变厚了？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：慢一点没关系，但每一笔投入都得让熟客感到被认真对待。',
+  },
+  'r11-limited-drop': {
+    sceneChange: '一次边界清楚的限量联名快闪把话题和新客带到店门口，没有把全部产能一次押上。',
+    delayedGain: '新客反应会帮助团队判断下一次联名值不值得继续。',
+    riskToWatch: '协作、限量和日常订单同时发生时，短期超载仍可能伤到老客体验。',
+    reflectionPrompt: '这次限量要记录哪一项数据，才能决定下次是扩大还是停止？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：试一次可以，但要记得这次到底学到了什么。',
+  },
+  'r12-steady-renewal': {
+    sceneChange: '成熟产品和熟客关系继续被做深，门店把已经被信任的部分做得更稳定。',
+    delayedGain: '稳定的复购和口碑会成为下一年的底盘。',
+    riskToWatch: '过于依赖已有产品，新的顾客和新的场景可能增长得更慢。',
+    reflectionPrompt: '明年保留这套成熟做法时，哪一点仍值得小范围更新？',
+    characterId: 'character-ahe',
+    characterText: '阿禾：我愿意继续回来，但也想偶尔看到一点新鲜变化。',
+  },
+  'r12-seasonal-new': {
+    sceneChange: '下一季的地方限定产品进入测试，门店用新材料回应季节变化和老街来历。',
+    delayedGain: '季节限定会给熟客新的回访理由，也让地方故事继续生长。',
+    riskToWatch: '新材料和新流程会带来备货、培训与交付压力。',
+    reflectionPrompt: '下一季先测哪一个最小版本，才能知道顾客要的是味道还是故事？',
+    characterId: 'character-chenyi',
+    characterText: '陈姨：新东西可以做，但先别把还没验证的复杂度全搬进店里。',
+  },
+  'r12-ip-merch': {
+    sceneChange: '熟悉的 IP 被做成少量可带走的物件，顾客离店后仍能把这家店带回自己的生活。',
+    delayedGain: '物件会延长品牌记忆，也带来新的分享场景。',
+    riskToWatch: '周边一旦变成库存，制作成本和占用空间会压回日常经营。',
+    reflectionPrompt: '第一件周边要验证的是顾客愿不愿意带走，还是 IP 是否真的被记住？',
+    characterId: 'character-xiaoshen',
+    characterText: '小沈：带走一个小东西挺好，但别为了摆满货架把店变成仓库。',
+  },
+  'r12-platform-growth': {
+    sceneChange: '门店接下平台的年度增长计划，订单目标和渠道要求被写进下一年的经营安排。',
+    delayedGain: '更大的渠道会带来新的触达和收入机会。',
+    riskToWatch: '增长目标一旦压过交付能力，平台上的每次失误都会被放大。',
+    reflectionPrompt: '接受增长目标之前，你要先谈清楚哪一条不能牺牲的体验？',
+    characterId: 'character-laozhou',
+    characterText: '老周：目标可以接，但不能拿已经建立的信任去填不现实的量。',
+  },
+  'r12-loop-back': {
+    sceneChange: '顾客反馈被整理成下一年的设计说明，产品、服务和视觉终于有了同一份改进清单。',
+    delayedGain: '持续回看反馈会让下一轮设计更贴近真实使用，而不是只追求好看。',
+    riskToWatch: '记录太多却没有排序，团队可能把时间耗在讨论而不是交付上。',
+    reflectionPrompt: '下一年的第一项改动，哪一条证据足以让全店一起行动？',
+    characterId: 'character-xiaoman',
+    characterText: '小满：把反馈带回设计很好，但明年要先做最能改变现场的一件事。',
+  },
 };
 
-function effectSceneCopy(effect: V11Effect | undefined, fallback: string): string {
-  if (!effect) return fallback;
-  const improving = effect.amount >= 0;
-  const copy: Partial<Record<V11Effect['key'], string>> = {
-    awareness: improving ? '更多路过的人注意到店门口和主打产品。' : '路过的人更难注意到这家店。',
-    conversion: improving ? '看完菜单的顾客更容易决定下单。' : '顾客在菜单前更容易犹豫后离开。',
-    trust: improving
-      ? '顾客更愿意相信菜单上写的价格和承诺。'
-      : '顾客开始怀疑店里说的话能不能做到。',
-    loyalty: improving ? '买过的人多了一个再回来的理由。' : '熟客少了一个愿意回来的理由。',
-    segmentFit: improving
-      ? '第一批顾客更容易听懂这家店是为谁开的。'
-      : '到店的人更难判断这家店是不是为自己准备的。',
-    differentiation: improving
-      ? '顾客更容易说出你和隔壁店哪里不同。'
-      : '顾客更容易把你和同街门店混在一起。',
-    promiseCredibility: improving
-      ? '店里更有把说过的话稳定做到的把握。'
-      : '店里说出去的话需要更多实际体验来证明。',
-    productDelivery: improving
-      ? '忙起来时，店员更容易把产品按时交到顾客手里。'
-      : '高峰期的制作和交付更容易卡住。',
-    orgCapacity: improving ? '人手和流程更能接住增加的订单。' : '增加的工作开始挤占店员和流程。',
-    brandConsistency: improving
-      ? '店招、菜单和店员的说法更像同一家店。'
-      : '顾客在不同地方遇到的说法开始对不上。',
-    visualRecognition: improving
-      ? '顾客在街上和手机上更容易认出这家店。'
-      : '顾客不容易从街景里认出这家店。',
-    visualAdaptability: improving
-      ? '同一套设计换到不同地方后仍然清楚好用。'
-      : '设计换到杯身或小屏后开始失去作用。',
-    culturalCredibility: improving
-      ? '顾客能从茶材和做法里听到真实的地方来历。'
-      : '地方故事缺少能让顾客相信的细节。',
-    channelDependence: improving
-      ? '订单更依赖单一渠道，渠道规则会更直接影响门店。'
-      : '店里不再把太多订单押在同一个渠道上。',
-    reputationDebt: improving
-      ? '说出去却还没做到的话变多，下一次失误更容易被放大。'
-      : '店里没做到的承诺在减少，顾客的不满没有继续累积。',
-  };
-  return copy[effect.key] ?? effect.label;
-}
+const roundKnownFacts: Record<string, string> = {
+  r01: '店铺当前可用现金是 ¥500,000；附近居民和游客的高峰时段不同。',
+  r02: '店里目前由两名店员轮班，午后两拨顾客会共用同一条取杯动线。',
+  r03: '第一款主打茶要在第二个月内上线；目前两名店员共用一台制茶设备。',
+  r04: '日常杯装已经有稳定价格，但礼赠、补充装和组合销售还没有固定包装规则。',
+  r05: '当前只有店名和一套基础色；招牌、杯套、头像还没有统一的最小尺寸规则。',
+  r06: '门店主要依赖老街自然客流，现有传播预算只够先测试一个新入口。',
+  r07: '高峰期集中在午后和周末，点单、制作、取杯目前共用一个柜台。',
+  r08: '视觉提案要同时放进店招、杯套、包装和手机头像，测试窗口只有一轮。',
+  r09: '近几周顾客已经开始在评价里提到门店，但每个人说出的理由还不一致。',
+  r10: '门店目前只有一处制作点，合作订单需要在固定日期统一交付。',
+  r11: '最近一周订单上涨，但排班和备料没有同步增加；平台会从每笔订单中扣除抽成。',
+  r12: '这一年已经留下产品、熟客、视觉和渠道资产，但明年预算只能优先保住其中几项。',
+};
 
 function choiceNarrative(
-  roundId: string,
-  spec: Pick<ChoiceSpec, 'label' | 'detail' | 'effects' | 'primaryBenefit' | 'primaryRisk'>,
-): Pick<V11Choice, 'reportExplanation' | 'transferPrompt' | 'playerConsequence' | 'delayedRisk'> {
-  const immediateEffect = spec.effects.find((item) => item.timing === 'immediate');
-  const delayedEffect = spec.effects.find((item) => item.timing === 'delayed');
-  const firstEffect = effectSceneCopy(immediateEffect, spec.primaryBenefit);
-  const nextEffect = effectSceneCopy(delayedEffect, `接下来要盯住：${spec.primaryRisk}。`);
+  choiceId: string,
+  spec: Pick<ChoiceSpec, 'label'>,
+): Pick<
+  V11Choice,
+  'reportExplanation' | 'transferPrompt' | 'playerConsequence' | 'delayedRisk' | 'resultCopy'
+> {
+  const authored = choiceResultCopy[choiceId];
+  if (!authored) throw new Error(`内容构造错误：${choiceId} 缺少结果文案`);
   return {
-    reportExplanation: `你决定${spec.label}。${firstEffect}${nextEffect}`,
-    transferPrompt:
-      roundTransferPrompts[roundId] ??
-      '这项选择先改变了谁的体验，又给店里留下了什么要继续处理的问题？',
-    playerConsequence: firstEffect,
-    delayedRisk: nextEffect,
+    reportExplanation: `你决定${spec.label}。${authored.sceneChange}${
+      authored.delayedGain ? ` ${authored.delayedGain}` : ''
+    } 需要留意：${authored.riskToWatch}`,
+    transferPrompt: authored.reflectionPrompt,
+    playerConsequence: authored.sceneChange,
+    delayedRisk: authored.riskToWatch,
+    resultCopy: authored,
   };
 }
 
@@ -136,7 +584,7 @@ function choice(roundId: string, spec: ChoiceSpec): V11Choice {
     conditions: [],
     theoryIds: spec.theoryIds,
     ...(spec.visualRouteId ? { visualRouteId: spec.visualRouteId } : {}),
-    ...choiceNarrative(roundId, spec),
+    ...choiceNarrative(choiceId, spec),
     resultArtKey: `result-${choiceId}`,
     motionCue: `decision-${spec.key}`,
   };
@@ -306,9 +754,27 @@ const extraChoices: Record<string, V11Choice[]> = {
   ],
 };
 
+const roundReactionCharacterIds: Record<string, string> = {
+  r01: 'character-chenyi',
+  r02: 'character-ahe',
+  r03: 'character-laozhou',
+  r04: 'character-chenyi',
+  r05: 'character-xiaoman',
+  r06: 'character-xiaoshen',
+  r07: 'character-ahe',
+  r08: 'character-xiaoman',
+  r09: 'character-chenyi',
+  r10: 'character-xufangdong',
+  r11: 'character-chenyi',
+  r12: 'character-ahe',
+};
+
 function expandSliceRound(round: V11Round): V11Round {
   const playerCopy = sliceRoundPlayerCopy[round.roundId];
   const evidenceIds = round.evidence.map((item) => item.evidenceId);
+  const comparisonChoiceIds = new Set(
+    [...round.choices, ...(extraChoices[round.roundId] ?? [])].map((choice) => choice.choiceId),
+  );
   const stageActions = round.stageActions.map((item, index) => ({
     ...item,
     label: playerCopy?.actions[index]?.label ?? item.label,
@@ -320,16 +786,31 @@ function expandSliceRound(round: V11Round): V11Round {
       : evidenceIds.filter(
           (_, evidenceIndex) => evidenceIndex % round.stageActions.length === index,
         ),
-    helpsCompareChoiceIds: round.choices
-      .filter((choice) =>
-        (item.revealsEvidenceIds?.length
-          ? item.revealsEvidenceIds
-          : evidenceIds.filter(
-              (_, evidenceIndex) => evidenceIndex % round.stageActions.length === index,
-            )
-        ).some((evidenceId) => choice.evidenceRelations.includes(evidenceId)),
-      )
-      .map((choice) => choice.choiceId),
+    helpsCompareChoiceIds: [
+      ...new Set(
+        round.evidence
+          .filter((evidence) =>
+            (item.revealsEvidenceIds?.length
+              ? item.revealsEvidenceIds
+              : evidenceIds.filter(
+                  (_, evidenceIndex) => evidenceIndex % round.stageActions.length === index,
+                )
+            ).includes(evidence.evidenceId),
+          )
+          .flatMap((evidence) =>
+            evidence.relations.flatMap((relation) => {
+              if (relation.targetType === 'choice') return [relation.targetId];
+              if (relation.targetType === 'visualSystem') {
+                return [...round.choices, ...(extraChoices[round.roundId] ?? [])]
+                  .filter((choice) => choice.visualRouteId === relation.targetId)
+                  .map((choice) => choice.choiceId);
+              }
+              return [];
+            }),
+          )
+          .filter((choiceId) => comparisonChoiceIds.has(choiceId)),
+      ),
+    ],
     remainingUnknown:
       (item.revealsEvidenceIds?.[0]
         ? round.evidence.find((evidence) => evidence.evidenceId === item.revealsEvidenceIds?.[0])
@@ -359,14 +840,19 @@ function expandSliceRound(round: V11Round): V11Round {
         actionIds: stageActions.slice(2).map((item) => item.actionId),
       },
     ],
-    knownFacts: [{ factId: `known-${round.roundId}-1`, text: round.briefing.situation }],
+    knownFacts: [
+      {
+        factId: `known-${round.roundId}-1`,
+        text: roundKnownFacts[round.roundId] ?? '店里已有一部分经营条件，仍需用行动核对细节。',
+      },
+    ],
     choices: [...round.choices, ...(extraChoices[round.roundId] ?? [])].map((item) => {
       const immediate =
         item.effects.find((effect) => effect.timing === 'immediate')?.label ?? item.primaryBenefit;
       return {
         ...item,
         primaryBenefit: immediate,
-        ...choiceNarrative(round.roundId, item),
+        ...choiceNarrative(item.choiceId, item),
       };
     }),
     resultPresentation: playerCopy
@@ -374,7 +860,7 @@ function expandSliceRound(round: V11Round): V11Round {
           ...round.resultPresentation,
           characterReactions: [
             {
-              characterId: `character-${round.roundId}`,
+              characterId: roundReactionCharacterIds[round.roundId] ?? 'character-ahe',
               text: playerCopy.characterReaction,
               conditions: [],
             },
@@ -471,7 +957,7 @@ const sliceRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '和房东、供应商核对押金、原料和基础设备，别只算招牌。',
       },
     ],
-    characterReaction: '附近居民：我不是每次都想拍照，顺手、好喝、下次还一样，才会常来。',
+    characterReaction: '陈姨：我不是每次都想拍照，顺手、好喝、下次还一样，才会常来。',
   },
   r03: {
     questions: [
@@ -495,7 +981,7 @@ const sliceRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '直接问批次、交期和替代原料，看看主打产品会不会断。',
       },
     ],
-    characterReaction: '店员小周：顾客愿意等一会儿，但高峰期每杯都多两步，后面的人可不会一直等。',
+    characterReaction: '阿禾：顾客愿意等一会儿，但高峰期每杯都多两步，后面的人可不会一直等。',
   },
   r08: {
     questions: [
@@ -522,7 +1008,7 @@ const sliceRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '和制作方核对颜色、印刷和补货，避免设计进店后每天都难执行。',
       },
     ],
-    characterReaction: '设计师阿岚：海报上好看只是起点，杯子被手挡住一半还能认出来才算真的能用。',
+    characterReaction: '小满：海报上好看只是起点，杯子被手挡住一半还能认出来才算真的能用。',
   },
   r11: {
     questions: [
@@ -549,7 +1035,7 @@ const sliceRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '直接问原料、包材和临时补货最多能撑到多少单。',
       },
     ],
-    characterReaction: '老客：店火了当然好，可我下班路过还要等半小时，就不敢天天来了。',
+    characterReaction: '陈姨：店火了当然好，可我下班路过还要等半小时，就不敢天天来了。',
   },
 };
 
@@ -576,7 +1062,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '和店员一起走一遍两类产品说明，看看高峰期会不会忙乱。',
       },
     ],
-    characterReaction: '店员小周：顾客能听懂一句话是好事，可别让我们每单都要解释半天。',
+    characterReaction: '阿禾：顾客能听懂一句话是好事，可别让我们每单都要解释半天。',
   },
   r04: {
     questions: [
@@ -600,7 +1086,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '把茶、包材、制作时间和售后一起写进账本，不只看原料价。',
       },
     ],
-    characterReaction: '顾客阿敏：贵一点没关系，别让我拿回家才发现包装不好用。',
+    characterReaction: '陈姨：贵一点没关系，别让我拿回家才发现包装不好用。',
   },
   r05: {
     questions: [
@@ -627,12 +1113,12 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '和制作方确认颜色、尺寸和物料数量，避免设计好看却难以落地。',
       },
     ],
-    characterReaction: '设计师阿岚：大图好看不算本事，缩到头像还能认出来才过关。',
+    characterReaction: '小满：大图好看不算本事，缩到头像还能认出来才过关。',
   },
   r06: {
     questions: [
       {
-        prompt: '开业预算先让谁看见？',
+        prompt: '第一笔传播预算先让谁看见？',
         context: '把门口、短视频、民宿推荐和熟客预订放回真实到店路径。',
       },
       {
@@ -654,7 +1140,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '和民宿或街区伙伴约定推荐话术和交付边界，别把承诺说大。',
       },
     ],
-    characterReaction: '合作方小许：我可以推荐客人，但他们来了以后，体验得和我说的一样。',
+    characterReaction: '许房东：我可以推荐客人，但他们来了以后，体验得和我说的一样。',
   },
   r07: {
     questions: [
@@ -681,7 +1167,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '把制作、收银和取杯分别交给谁写清楚，先看最缺哪一位。',
       },
     ],
-    characterReaction: '店员小周：订单一多，大家只想快点把茶交出去，话得提前说清。',
+    characterReaction: '阿禾：订单一多，大家只想快点把茶交出去，话得提前说清。',
   },
   r09: {
     questions: [
@@ -705,7 +1191,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '写清楚谁回应差评、谁确认投稿能不能用，避免忙起来没人负责。',
       },
     ],
-    characterReaction: '熟客阿敏：我愿意帮你分享，但我说出去的话，得和店里体验对得上。',
+    characterReaction: '陈姨：我愿意帮你分享，但我说出去的话，得和店里体验对得上。',
   },
   r10: {
     questions: [
@@ -732,7 +1218,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '把新增人手、包装、沟通和返工都算进每周账本。',
       },
     ],
-    characterReaction: '合作方小许：顾客不会管是哪一方出错，他们只会觉得这家店没做到。',
+    characterReaction: '周经理：顾客不会管是哪一方出错，他们只会觉得这家店没做到。',
   },
   r12: {
     questions: [
@@ -759,7 +1245,7 @@ const extendedRoundPlayerCopy: Record<string, RoundPlayerCopy> = {
         description: '列出一件要保留、一件要停下、一件要先测试的事，再估算人手和预算。',
       },
     ],
-    characterReaction: '店主：明年不一定要更热闹，先把大家已经信任的东西做稳。',
+    characterReaction: '阿禾：明年不一定要更热闹，先把大家已经信任的东西做稳。',
   },
 };
 
@@ -816,9 +1302,13 @@ function roundFromSpec(spec: RoundSpec): V11Round {
       revealsEvidenceIds: evidence
         .filter((_, index) => index % 3 === 0)
         .map((item) => item.evidenceId),
-      helpsCompareChoiceIds: evidence
-        .filter((_, index) => index % 3 === 0)
-        .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+      helpsCompareChoiceIds: [
+        ...new Set(
+          evidence
+            .filter((_, index) => index % 3 === 0)
+            .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+        ),
+      ],
       remainingUnknown: evidence[0]?.unknown,
     },
     {
@@ -836,9 +1326,13 @@ function roundFromSpec(spec: RoundSpec): V11Round {
       revealsEvidenceIds: evidence
         .filter((_, index) => index % 3 === 1)
         .map((item) => item.evidenceId),
-      helpsCompareChoiceIds: evidence
-        .filter((_, index) => index % 3 === 1)
-        .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+      helpsCompareChoiceIds: [
+        ...new Set(
+          evidence
+            .filter((_, index) => index % 3 === 1)
+            .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+        ),
+      ],
       remainingUnknown: evidence[1]?.unknown,
     },
     {
@@ -856,9 +1350,13 @@ function roundFromSpec(spec: RoundSpec): V11Round {
       revealsEvidenceIds: evidence
         .filter((_, index) => index % 3 === 2)
         .map((item) => item.evidenceId),
-      helpsCompareChoiceIds: evidence
-        .filter((_, index) => index % 3 === 2)
-        .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+      helpsCompareChoiceIds: [
+        ...new Set(
+          evidence
+            .filter((_, index) => index % 3 === 2)
+            .flatMap((item) => item.relations.map((relation) => relation.targetId)),
+        ),
+      ],
       remainingUnknown: evidence[2]?.unknown,
     },
   ];
@@ -902,7 +1400,12 @@ function roundFromSpec(spec: RoundSpec): V11Round {
         actionIds: stageActions.slice(2).map((item) => item.actionId),
       },
     ],
-    knownFacts: [{ factId: `known-${spec.roundId}-1`, text: spec.situation }],
+    knownFacts: [
+      {
+        factId: `known-${spec.roundId}-1`,
+        text: roundKnownFacts[spec.roundId] ?? '店里已有一部分经营条件，仍需用行动核对细节。',
+      },
+    ],
     evidence,
     choices,
     riskPlans,
@@ -915,7 +1418,7 @@ function roundFromSpec(spec: RoundSpec): V11Round {
       motionCue: `round-${spec.roundId}`,
       characterReactions: [
         {
-          characterId: `character-${spec.roundId}`,
+          characterId: roundReactionCharacterIds[spec.roundId] ?? 'character-ahe',
           text: playerCopy.characterReaction,
           conditions: [],
         },
@@ -1419,9 +1922,9 @@ const extendedRoundSpecs: RoundSpec[] = [
     title: '名字、LOGO 和 IP 各自要做什么',
     timelineLabel: '第3月上旬',
     situation: '设计师拿来几张很漂亮的草图：有的适合招牌，有的适合包装，还有的只有放大时好看。',
-    whyNow: '品牌视觉不是一次投票，而是要在不同尺寸、触点和语气里持续工作。',
-    dilemma: '是先做一个醒目的符号，还是先建立一套可使用的规则？',
-    mustComplete: '确定视觉资产各自承担的任务和边界。',
+    whyNow: '先把名字、性格和每项视觉资产各自负责的事写清，后面做图才不会让招牌、包装各说各的。',
+    dilemma: '先把店名和地方线索说清，还是先定义角色与辅助记号的使用边界？',
+    mustComplete: '写清店名、性格和各视觉资产各自负责什么。',
     theoryIds: ['t-identity', 't-touchpoint'],
     eventIds: ['event-r05-word', 'event-r05-mountain', 'event-r05-character'],
     isKeyRound: true,
@@ -1607,7 +2110,7 @@ const extendedRoundSpecs: RoundSpec[] = [
       '门店快开了，预算只够把一部分触点做扎实：店招、杯套、社交页面和合作渠道不能同时铺满。',
     whyNow: '传播不是把同一张海报复制到所有地方，而是要决定顾客如何第一次遇见你。',
     dilemma: '是把钱砸在门店第一眼，还是借别人的场景快速获得讨论？',
-    mustComplete: '选择第一批可承受的触点和传播节奏。',
+    mustComplete: '决定第一笔传播先让谁、在哪里看见你。',
     theoryIds: ['t-touchpoint', 't-growth'],
     eventIds: ['event-r06-street', 'event-r06-video', 'event-r06-partner'],
     businessPhase: 'operating',
@@ -1828,7 +2331,7 @@ const extendedRoundSpecs: RoundSpec[] = [
       '开业的新鲜感过去后，顾客开始记住的不是海报，而是点单、等待、取杯和离店时的每个动作。',
     whyNow: '如果服务体验和视觉、产品承诺不一致，顾客会把品牌理解成另一回事。',
     dilemma: '是追求更快的出杯，还是留下更有温度的互动？',
-    mustComplete: '让至少三个真实触点说同一种品牌语言。',
+    mustComplete: '把高峰期最不能丢的服务动作写下来。',
     theoryIds: ['t-touchpoint', 't-product'],
     eventIds: ['event-r07-script', 'event-r07-express', 'event-r07-gift'],
     businessPhase: 'operating',
@@ -2014,7 +2517,7 @@ const extendedRoundSpecs: RoundSpec[] = [
     situation: '有顾客在社交平台分享杯套和茶，但他们说的品牌故事并不完全一样。',
     whyNow: '口碑会带来新的关系，也会把没有准备好的承诺放大。',
     dilemma: '是鼓励所有人自由发挥，还是先规定一句统一的话？',
-    mustComplete: '让顾客参与传播，同时守住品牌核心承诺。',
+    mustComplete: '决定顾客会怎样替这家店说话。',
     theoryIds: ['t-touchpoint', 't-growth'],
     eventIds: ['event-r09-stamp', 'event-r09-stories', 'event-r09-feedback'],
     businessPhase: 'operating',
@@ -2442,7 +2945,7 @@ const extendedRoundSpecs: RoundSpec[] = [
     chapterId: 'c4',
     title: '一年以后，品牌要留下什么',
     timelineLabel: '第12月',
-    situation: '一年快结束了，品牌已经拥有一些熟客、一套视觉资产和几个增长机会。',
+    situation: '一年快结束了，店里留下了几种被反复验证的做法，也出现了新的订单机会。',
     whyNow: '最后的决定不是把指标都做大，而是判断什么值得继续、什么应该舍弃。',
     dilemma: '是追逐下一次更大的声量，还是把已经成立的关系做得更深？',
     mustComplete: '为品牌下一年选择一条可持续的方向。',
@@ -2530,7 +3033,7 @@ const extendedRoundSpecs: RoundSpec[] = [
       },
       {
         key: 'loop-back',
-        label: '把顾客反馈变成下一年的设计 brief',
+        label: '把顾客反馈变成下一年的设计说明',
         summary: '让每次经营都回到下一次产品和视觉决策。',
         detail:
           '整理顾客、团队和合作方的反馈，形成下一年的品牌简报，而不是凭老板一句“感觉应该升级”。',
@@ -2567,7 +3070,7 @@ const extendedRoundSpecs: RoundSpec[] = [
             choiceKey: 'loop-back',
             relation: 'supports',
             strength: 70,
-            explanation: '复盘也支持把经验转成下一年 brief。',
+            explanation: '复盘也支持把经验转成下一年的设计说明。',
           },
         ],
         theoryIds: ['t-growth', 't-touchpoint'],
@@ -2627,7 +3130,7 @@ const extendedRoundSpecs: RoundSpec[] = [
         key: 'feedback',
         title: '团队与合作方回访',
         fact: '最有效的改进往往来自跨岗位的小问题：菜单、包装、排班和话术没有对齐。',
-        implication: '品牌 brief 不应只写视觉愿景，还要写产品和组织如何兑现。',
+        implication: '品牌说明不应只写视觉愿景，还要写产品和组织如何兑现。',
         unknown: '下一年最值得优先解决的系统断点。',
         angle: 'delivery',
         relations: [
@@ -2635,7 +3138,7 @@ const extendedRoundSpecs: RoundSpec[] = [
             choiceKey: 'loop-back',
             relation: 'supports',
             strength: 80,
-            explanation: '回访支持把反馈整理成下一年设计 brief。',
+            explanation: '回访支持把反馈整理成下一年的设计说明。',
           },
         ],
         theoryIds: ['t-insight', 't-growth'],

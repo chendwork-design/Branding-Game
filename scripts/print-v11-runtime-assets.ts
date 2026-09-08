@@ -1,7 +1,4 @@
-import {
-  V11VisualAssetManifest,
-  V11VisualAssetRecords,
-} from '../apps/web/src/v11VisualAssets.ts';
+import { V11VisualAssetManifest, V11VisualAssetRecords } from '../apps/web/src/v11VisualAssets.ts';
 
 const runtimeAssets = Object.entries(V11VisualAssetManifest)
   .flatMap(([family, assets]) =>

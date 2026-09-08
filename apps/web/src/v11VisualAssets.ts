@@ -615,14 +615,16 @@ const focalPointByFamily: Record<V11VisualAssetFamily, V11VisualFocalPoint> = {
 // crop intent beside every runtime path so components never have to guess a
 // focal position from a generic `object-fit: cover` rule.
 export const V11VisualAssetRecords: Record<string, V11VisualAssetRecord> = Object.fromEntries(
-  Object.entries(V11VisualAssetManifest).flatMap(([family, assets]) => {
-    const typedFamily = family as V11VisualAssetFamily;
-    return Object.values(assets).map((path) => ({
-      path,
-      family: typedFamily,
-      focalPoint: { ...focalPointByFamily[typedFamily] },
-    }));
-  }).map((record) => [record.path, record]),
+  Object.entries(V11VisualAssetManifest)
+    .flatMap(([family, assets]) => {
+      const typedFamily = family as V11VisualAssetFamily;
+      return Object.values(assets).map((path) => ({
+        path,
+        family: typedFamily,
+        focalPoint: { ...focalPointByFamily[typedFamily] },
+      }));
+    })
+    .map((record) => [record.path, record]),
 );
 
 export function sceneAsset(imageKey: string): string | undefined {

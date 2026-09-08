@@ -29,12 +29,14 @@ test('v1.4 first-use terminology and visual constraints remain usable on a phone
 
   await expect(page.getByLabel('本轮概念说明')).toBeVisible();
   await expect(page.getByRole('button', { name: '解释品牌人格' })).toBeVisible();
-  for (const term of ['视觉语义', 'LOGO', 'VI', 'IP'])
+  for (const term of ['视觉语义'])
     await expect(page.getByRole('button', { name: `解释${term}` })).toBeVisible();
+  for (const term of ['LOGO', 'VI', 'IP'])
+    await expect(page.getByRole('button', { name: `解释${term}` })).toHaveCount(0);
   await page.getByRole('button', { name: '解释品牌人格' }).click();
   await page.getByRole('button', { name: '知道了，继续经营' }).click();
-  await page.getByRole('button', { name: '解释LOGO' }).click();
-  await expect(page.getByText('让顾客认出品牌的核心标志。')).toBeVisible();
+  await page.getByRole('button', { name: '解释视觉语义' }).click();
+  await expect(page.getByText('顾客从颜色、字体和图形里读到的感觉。')).toBeVisible();
   await page.getByRole('button', { name: '知道了，继续经营' }).click();
   await page.getByLabel('品牌名').fill('Old Street Tea');
   await page.getByLabel('你希望顾客从名字里感到什么？').fill('每天都能顺手喝到一杯靠谱的老街茶');

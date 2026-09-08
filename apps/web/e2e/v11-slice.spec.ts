@@ -41,7 +41,7 @@ test('v1.4 four-round slice can be finished from a phone-sized student surface',
   await page.getByRole('button', { name: /一笔成街/ }).click();
   await page.getByRole('button', { name: /24 px 缩小测试/ }).click();
   await expect(page.locator('[data-v11-preview-state="small"]')).toBeVisible();
-  await expect(page.getByRole('button', { name: /店招/ }).first()).toBeVisible();
+  await expect(page.getByRole('tab', { name: '店招', selected: true })).toBeVisible();
   await page
     .getByRole('button', { name: /返回经营现场/ })
     .last()

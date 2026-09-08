@@ -6,10 +6,7 @@ const databaseUrl = process.env.DATABASE_URL;
 if (!databaseUrl) throw new Error('DATABASE_URL is required for db:migrate');
 const pool = new Pool({ connectionString: databaseUrl });
 const migrationsDirectory = resolve(process.cwd(), 'db', 'migrations');
-const initialSql = await readFile(
-  resolve(migrationsDirectory, '0001_initial.sql'),
-  'utf8',
-);
+const initialSql = await readFile(resolve(migrationsDirectory, '0001_initial.sql'), 'utf8');
 const reportReadingSql = await readFile(
   resolve(migrationsDirectory, '0002_report_reading.sql'),
   'utf8',

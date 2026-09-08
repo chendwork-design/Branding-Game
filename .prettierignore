@@ -1,0 +1,3 @@
+# Published content packages are generated, checksummed release artifacts.
+# Do not rewrite their historical snapshots as a side effect of source formatting.
+content/compiled/

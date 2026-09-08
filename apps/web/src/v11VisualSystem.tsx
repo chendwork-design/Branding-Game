@@ -92,7 +92,9 @@ function LineMark({ label }: { label: string }) {
           {label}
         </text>
       )}
-      {label && <path className="v11-brand-mark-accent" d="M178 95h78" fill="none" strokeWidth="4" />}
+      {label && (
+        <path className="v11-brand-mark-accent" d="M178 95h78" fill="none" strokeWidth="4" />
+      )}
     </>
   );
 }
@@ -121,7 +123,9 @@ function SymbolMark({ label }: { label: string }) {
           {label}
         </text>
       )}
-      {label && <path className="v11-brand-mark-accent" d="M162 95h78" fill="none" strokeWidth="4" />}
+      {label && (
+        <path className="v11-brand-mark-accent" d="M162 95h78" fill="none" strokeWidth="4" />
+      )}
     </>
   );
 }
@@ -139,10 +143,7 @@ function CharacterMark({ label }: { label: string }) {
           strokeLinejoin="round"
           strokeWidth="6"
         />
-        <path
-          className="v11-brand-mark-copper-fill"
-          d="M39 40h30v36H39z"
-        />
+        <path className="v11-brand-mark-copper-fill" d="M39 40h30v36H39z" />
         <path
           className="v11-brand-mark-paper-cut"
           d="M54 48c8 0 13 5 13 11 0 9-8 14-13 19-5-5-13-10-13-19 0-6 5-11 13-11Z"
@@ -168,7 +169,9 @@ function CharacterMark({ label }: { label: string }) {
           {label}
         </text>
       )}
-      {label && <path className="v11-brand-mark-accent" d="M166 95h78" fill="none" strokeWidth="4" />}
+      {label && (
+        <path className="v11-brand-mark-accent" d="M166 95h78" fill="none" strokeWidth="4" />
+      )}
     </>
   );
 }

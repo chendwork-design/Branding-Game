@@ -1,11 +1,13 @@
 import { z } from 'zod';
 
 // Content revisions are immutable once a production class has been created.
-// The expanded visual touchpoint library is therefore published as a new
-// content version instead of replacing the v1.3.0 snapshot used by earlier classes.
+// The server may read these historic packages only to replay their matching
+// classes; new classes always use CONTENT_SCHEMA_VERSION_V11 below.
 export const CONTENT_SCHEMA_VERSION_V11 = 'v1.4.0';
+export const SUPPORTED_CONTENT_VERSIONS_V11 = ['v1.2.0', 'v1.3.0', 'v1.4.0'] as const;
 export const ENGINE_VERSION_V11 = '1.2.0';
 export const REPORT_VERSION_V11 = '1.2.0';
+export const V11ContentVersion = z.enum(SUPPORTED_CONTENT_VERSIONS_V11);
 
 export const V11MetricKey = z.enum([
   'awareness',
@@ -357,7 +359,7 @@ export const V11TermGlossaryEntry = z.object({
 export type V11TermGlossaryEntry = z.infer<typeof V11TermGlossaryEntry>;
 
 export const V11GameContent = z.object({
-  contentVersion: z.literal(CONTENT_SCHEMA_VERSION_V11),
+  contentVersion: V11ContentVersion,
   engineVersion: z.literal(ENGINE_VERSION_V11),
   reportVersion: z.literal(REPORT_VERSION_V11),
   priceBaselineVersion: z.string().min(1),

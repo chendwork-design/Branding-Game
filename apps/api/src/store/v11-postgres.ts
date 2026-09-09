@@ -140,16 +140,26 @@ const playthroughColumns = `
 
 export interface V11PostgresStoreOptions {
   content: GameContentV11;
+  additionalContents?: readonly GameContentV11[];
   connectionString?: string;
 }
 
 export class V11PostgresStore implements V11Store {
   readonly content: GameContentV11;
+  private readonly contents: ReadonlyMap<string, GameContentV11>;
   private readonly pool: Pool;
   private readonly teacherSessions = new Map<string, V11TeacherSession>();
 
   constructor(options: V11PostgresStoreOptions) {
     this.content = options.content;
+    const contents = new Map<string, GameContentV11>();
+    for (const candidate of [this.content, ...(options.additionalContents ?? [])]) {
+      const prior = contents.get(candidate.contentVersion);
+      if (prior && checksum(prior) !== checksum(candidate))
+        throw new Error(`同一内容版本不能对应多个内容包：${candidate.contentVersion}`);
+      contents.set(candidate.contentVersion, candidate);
+    }
+    this.contents = contents;
     const connectionString = options.connectionString ?? process.env.DATABASE_URL;
     if (!connectionString) throw new Error('DATABASE_URL is required for V11 PostgreSQL storage');
     encryptionKey();
@@ -166,6 +176,25 @@ export class V11PostgresStore implements V11Store {
 
   async checkReadiness(): Promise<void> {
     await this.pool.query('SELECT 1');
+    const required = await this.pool.query<{ version: string; checksum: string; status: string }>(
+      'SELECT version, checksum, status FROM content_versions WHERE version = $1',
+      [this.content.contentVersion],
+    );
+    const current = required.rows[0];
+    if (!current || current.status !== 'published' || current.checksum !== checksum(this.content))
+      throw new Error('当前内容不是数据库中的已发布候选版本');
+    const classVersions = await this.pool.query<{ version: string; checksum: string }>(
+      'SELECT DISTINCT cv.version, cv.checksum FROM classes c JOIN content_versions cv ON cv.id = c.content_version_id',
+    );
+    for (const classVersion of classVersions.rows) {
+      const content = this.getContent(classVersion.version);
+      if (!content || checksum(content) !== classVersion.checksum)
+        throw new Error(`班级绑定的内容包未随服务发布：${classVersion.version}`);
+    }
+  }
+
+  getContent(version: string): GameContentV11 | undefined {
+    return this.contents.get(version);
   }
 
   async authenticateTeacher(email: string, password: string): Promise<string | undefined> {
@@ -192,11 +221,12 @@ export class V11PostgresStore implements V11Store {
 
   private async ensureContentVersion(
     client: PoolClient,
+    content: GameContentV11 = this.content,
   ): Promise<{ id: string; checksum: string }> {
-    const contentChecksum = checksum(this.content);
+    const contentChecksum = checksum(content);
     const found = await client.query<{ id: string; checksum: string; status: string }>(
       'SELECT id, checksum, status FROM content_versions WHERE version = $1',
-      [this.content.contentVersion],
+      [content.contentVersion],
     );
     if (found.rows[0]) {
       if (found.rows[0].checksum !== contentChecksum || found.rows[0].status !== 'published')
@@ -205,12 +235,7 @@ export class V11PostgresStore implements V11Store {
     }
     const inserted = await client.query<{ id: string; checksum: string }>(
       "INSERT INTO content_versions (version, engine_version, checksum, status, content_json, published_at) VALUES ($1, $2, $3, 'published', $4::jsonb, now()) RETURNING id, checksum",
-      [
-        this.content.contentVersion,
-        this.content.engineVersion,
-        contentChecksum,
-        JSON.stringify(this.content),
-      ],
+      [content.contentVersion, content.engineVersion, contentChecksum, JSON.stringify(content)],
     );
     return inserted.rows[0]!;
   }
@@ -311,6 +336,13 @@ export class V11PostgresStore implements V11Store {
     return result.rows[0] ? this.classFromRow(result.rows[0]) : undefined;
   }
 
+  private contentForClassRow(row: ClassRow): GameContentV11 {
+    const content = this.getContent(row.content_version);
+    if (!content || checksum(content) !== row.content_checksum)
+      throw new Error(`班级绑定的内容包未随服务发布：${row.content_version}`);
+    return content;
+  }
+
   async joinStudent(classCode: string, studentNumber: string, displayName: string) {
     const client = await this.pool.connect();
     try {
@@ -321,12 +353,7 @@ export class V11PostgresStore implements V11Store {
       );
       const classRow = classResult.rows[0];
       if (!classRow || classRow.status !== 'active') throw new Error('班级不存在或已关闭');
-      if (
-        classRow.content_version !== this.content.contentVersion ||
-        classRow.content_checksum !== checksum(this.content)
-      ) {
-        throw new Error('班级内容版本与当前正式内容不一致，请联系任课教师');
-      }
+      const content = this.contentForClassRow(classRow);
       const normalizedStudentNumber = normalize(studentNumber);
       const name = displayName.trim();
       if (!normalizedStudentNumber || !name) throw new Error('学号和姓名不能为空');
@@ -352,7 +379,7 @@ export class V11PostgresStore implements V11Store {
         )
       ).rows[0];
       if (!playthrough) {
-        const state = createV11State(this.content.contentVersion, randomUUID());
+        const state = createV11State(content.contentVersion, randomUUID());
         playthrough = (
           await client.query<PlaythroughRow>(
             `INSERT INTO playthroughs (id, class_id, student_identity_id, kind, state_json, state_hash) VALUES ($1, $2, $3, 'first_run', $4::jsonb, $5) RETURNING ${playthroughColumns}`,
@@ -370,10 +397,10 @@ export class V11PostgresStore implements V11Store {
           [
             playthrough.id,
             '1.2',
-            this.content.engineVersion,
-            this.content.reportVersion,
-            this.content.contentVersion,
-            checksum(this.content),
+            content.engineVersion,
+            content.reportVersion,
+            content.contentVersion,
+            checksum(content),
           ],
         );
       }
@@ -437,12 +464,8 @@ export class V11PostgresStore implements V11Store {
         )
       ).rows[0];
       if (!classRow || classRow.status !== 'active') throw new Error('班级不存在或已关闭');
-      if (
-        classRow.content_version !== this.content.contentVersion ||
-        classRow.content_checksum !== checksum(this.content)
-      )
-        throw new Error('班级内容版本与当前正式内容不一致，请联系任课教师');
-      const state = createV11State(this.content.contentVersion, randomUUID());
+      const content = this.contentForClassRow(classRow);
+      const state = createV11State(content.contentVersion, randomUUID());
       const replay = (
         await client.query<PlaythroughRow>(
           `INSERT INTO playthroughs (id, class_id, student_identity_id, kind, state_json, state_hash) VALUES ($1, $2, $3, 'replay', $4::jsonb, $5) RETURNING ${playthroughColumns}`,
@@ -460,10 +483,10 @@ export class V11PostgresStore implements V11Store {
         [
           replay.id,
           '1.2',
-          this.content.engineVersion,
-          this.content.reportVersion,
-          this.content.contentVersion,
-          checksum(this.content),
+          content.engineVersion,
+          content.reportVersion,
+          content.contentVersion,
+          checksum(content),
         ],
       );
       await client.query('COMMIT');
@@ -538,13 +561,14 @@ export class V11PostgresStore implements V11Store {
         )
       ).rows[0];
       if (!classRow) throw new Error('班级不存在');
+      const content = this.contentForClassRow(classRow);
       const currentLogs = await client.query<LogRow>(
         'SELECT sequence_no, idempotency_key, action_hash, action_json, trace_json, state_hash, created_at FROM decision_logs WHERE playthrough_id = $1 ORDER BY sequence_no',
         [playthroughId],
       );
       const resultState = applyV11Action(
         row.state_json,
-        this.content,
+        content,
         action,
         checksum(`${decryptSeed(classRow.seed_ciphertext)}:${playthroughId}`),
       );
@@ -579,15 +603,16 @@ export class V11PostgresStore implements V11Store {
         action,
         log.sequenceNo,
         resultState,
+        content,
       );
       const annualReviewPending =
-        this.content.rounds.at(-1)?.roundId === 'r12' &&
+        content.rounds.at(-1)?.roundId === 'r12' &&
         !(resultState.state.chapterReviews ?? []).includes('r12');
       const report =
-        resultState.state.roundIndex >= this.content.rounds.length &&
+        resultState.state.roundIndex >= content.rounds.length &&
         !resultState.state.pendingRoundResult &&
         !annualReviewPending
-          ? buildV11Report(resultState.state, this.content)
+          ? buildV11Report(resultState.state, content)
           : undefined;
       await client.query(
         "UPDATE playthroughs SET state_json = $2::jsonb, state_hash = $3, status = $4, report_json = $5::jsonb, completed_at = CASE WHEN $4 = 'completed' THEN now() ELSE completed_at END WHERE id = $1",
@@ -606,9 +631,7 @@ export class V11PostgresStore implements V11Store {
         );
       }
       if (resultState.state.ending) {
-        const ending = this.content.endings.find(
-          (item) => item.endingId === resultState.state.ending,
-        );
+        const ending = content.endings.find((item) => item.endingId === resultState.state.ending);
         if (ending) {
           await client.query(
             'INSERT INTO endings (playthrough_id, ending_id, state_hash, ending_json) VALUES ($1, $2, $3, $4::jsonb) ON CONFLICT DO NOTHING',
@@ -668,10 +691,11 @@ export class V11PostgresStore implements V11Store {
     action: V11Action,
     sequenceNo: number,
     resultState: { state: V11GameState; trace: V11GameState['traces'][number] },
+    content: GameContentV11,
   ) {
     if (action.type === 'evidence_viewed') {
       const evidenceId = String(action.payload.evidenceId ?? '');
-      const evidence = this.content.rounds
+      const evidence = content.rounds
         .find((round) => round.roundId === action.roundId)
         ?.evidence.find((item) => item.evidenceId === evidenceId);
       if (evidence) {
@@ -760,17 +784,23 @@ export class V11PostgresStore implements V11Store {
   }
 
   private offlineContext(classRecord: V11ClassRecord, playthroughId: string) {
+    const content = this.getContent(classRecord.contentVersion);
+    if (!content || checksum(content) !== classRecord.contentChecksum)
+      throw new Error(`班级绑定的内容包未随服务发布：${classRecord.contentVersion}`);
     return {
-      contentVersion: this.content.contentVersion,
-      contentChecksum: checksum(this.content),
+      contentVersion: content.contentVersion,
+      contentChecksum: checksum(content),
       playthroughSeed: checksum(`${classRecord.seed}:${playthroughId}`),
     };
   }
 
   private publicPlaythrough(playthrough: V11PlaythroughRecord): V11PublicPlaythroughView {
+    const content = this.getContent(playthrough.state.contentVersion);
+    if (!content)
+      throw new Error(`游戏记录绑定的内容包未随服务发布：${playthrough.state.contentVersion}`);
     const resumeScreen = deriveV11ResumeScreen(
       playthrough.state,
-      this.content.rounds.map((round) => round.roundId),
+      content.rounds.map((round) => round.roundId),
       Boolean(playthrough.report),
     );
     const pendingChapterReview =
@@ -794,8 +824,8 @@ export class V11PostgresStore implements V11Store {
         ? [playthrough.state.traces.at(-1)!.explanation]
         : [],
       reportAvailable: Boolean(playthrough.report),
-      contentVersion: this.content.contentVersion,
-      contentChecksum: checksum(this.content),
+      contentVersion: content.contentVersion,
+      contentChecksum: checksum(content),
       resumeScreen,
       nextActionSequence: playthrough.logs.length + 1,
       ...(pendingChapterReview ? { chapterReviewPending: pendingChapterReview } : {}),

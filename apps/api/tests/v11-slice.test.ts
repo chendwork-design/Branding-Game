@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { v11FullContent } from '@laojie/content-schema';
+import { v11FullContent, type GameContentV11 } from '@laojie/content-schema';
 import { buildV11App } from '../src/v11-app.js';
 import { V11MemoryStore } from '../src/store/v11-memory.js';
 
@@ -86,6 +86,27 @@ describe('v1.1 four-round API slice', () => {
         .find((round) => round.roundId === 'r08')
         ?.choices.every((choice) => Boolean(choice.visualRouteId)),
     ).toBe(true);
+    await app.close();
+  });
+
+  it('serves an immutable historical package by its exact version without changing the current package', async () => {
+    const historicalContent: GameContentV11 = { ...v11FullContent, contentVersion: 'v1.2.0' };
+    const app = buildV11App(
+      new V11MemoryStore({
+        trialClassCode: 'HISTORYV11',
+        content: v11FullContent,
+        additionalContents: [historicalContent],
+      }),
+    );
+    const response = await app.inject({ method: 'GET', url: '/api/v11/content?version=v1.2.0' });
+    expect(response.statusCode).toBe(200);
+    expect(response.json()).toMatchObject({ contentVersion: 'v1.2.0' });
+    expect(response.headers['x-v11-content-version']).toBe('v1.2.0');
+
+    const current = await app.inject({ method: 'GET', url: '/api/v11/content' });
+    expect(current.json()).toMatchObject({ contentVersion: 'v1.4.0' });
+    const unavailable = await app.inject({ method: 'GET', url: '/api/v11/content?version=v9.9.9' });
+    expect(unavailable.statusCode).toBe(404);
     await app.close();
   });
 

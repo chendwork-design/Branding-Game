@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const entrypoint = resolve(root, 'apps', 'api', 'dist', 'apps', 'api', 'src', 'v11-server.js');
 const contentFile = resolve(root, 'content', 'compiled', 'v1.4.0.json');
+const historicalContentFile = resolve(root, 'content', 'compiled', 'v1.2.0.json');
 const port = process.env.RELEASE_SMOKE_PORT ?? '3399';
 const endpoint = `http://127.0.0.1:${port}/ready`;
 
@@ -41,6 +42,7 @@ async function stop() {
 
 try {
   const expected = JSON.parse(await readFile(contentFile, 'utf8'));
+  const historical = JSON.parse(await readFile(historicalContentFile, 'utf8'));
   let ready;
   for (let attempt = 0; attempt < 20; attempt += 1) {
     if (child.exitCode !== null)
@@ -66,12 +68,29 @@ try {
       `候选 API 内容身份不一致：${JSON.stringify({ ready, expected: { contentVersion: expected.contentVersion, checksum: expected.checksum } })}`,
     );
 
+  const historicalResponse = await fetch(
+    `${endpoint.replace('/ready', '')}/api/v11/content?version=v1.2.0`,
+  );
+  const historicalBody = await historicalResponse.json();
+  if (
+    !historicalResponse.ok ||
+    historicalBody.contentVersion !== historical.contentVersion ||
+    historicalBody.contentChecksum !== historical.checksum
+  )
+    throw new Error(
+      `候选 API 未能提供历史班级的只读内容包：${JSON.stringify({
+        status: historicalResponse.status,
+        body: historicalBody,
+      })}`,
+    );
+
   console.log(
     JSON.stringify({
       endpoint,
       status: ready.status,
       contentVersion: ready.contentVersion,
       contentChecksum: ready.contentChecksum,
+      historicalContentVersion: historicalBody.contentVersion,
     }),
   );
 } finally {

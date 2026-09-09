@@ -78,6 +78,7 @@ export interface V11PublicPlaythroughView {
 
 export interface V11Store {
   readonly content: GameContentV11;
+  getContent(version: string): GameContentV11 | undefined;
   checkReadiness(): Promise<void>;
   authenticateTeacher(email: string, password: string): Promise<string | undefined>;
   getTeacherSession(token: string): Promise<V11TeacherSession | undefined>;

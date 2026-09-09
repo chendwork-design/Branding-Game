@@ -39,11 +39,13 @@ const actionDigest = (action: V11Action) =>
 export interface V11MemoryStoreOptions {
   trialClassCode?: string;
   content?: GameContentV11;
+  additionalContents?: readonly GameContentV11[];
 }
 
 export class V11MemoryStore implements V11Store {
   readonly content: GameContentV11;
   private readonly contentChecksum: string;
+  private readonly contents: ReadonlyMap<string, GameContentV11>;
   private readonly classes = new Map<string, V11ClassRecord>();
   private readonly students = new Map<string, V11StudentIdentity>();
   private readonly sessions = new Map<string, V11StudentSession>();
@@ -60,6 +62,14 @@ export class V11MemoryStore implements V11Store {
   constructor(options: V11MemoryStoreOptions = {}) {
     this.content = options.content ?? v11SliceContent;
     this.contentChecksum = digest(this.content);
+    const contents = new Map<string, GameContentV11>();
+    for (const candidate of [this.content, ...(options.additionalContents ?? [])]) {
+      const prior = contents.get(candidate.contentVersion);
+      if (prior && digest(prior) !== digest(candidate))
+        throw new Error(`同一内容版本不能对应多个内容包：${candidate.contentVersion}`);
+      contents.set(candidate.contentVersion, candidate);
+    }
+    this.contents = contents;
     const code = options.trialClassCode?.trim().toUpperCase();
     if (!code) return;
     if (!/^[A-Z0-9-]{4,32}$/.test(code))
@@ -78,6 +88,10 @@ export class V11MemoryStore implements V11Store {
 
   async checkReadiness(): Promise<void> {
     return;
+  }
+
+  getContent(version: string): GameContentV11 | undefined {
+    return this.contents.get(version);
   }
 
   async authenticateTeacher(email: string, password: string): Promise<string | undefined> {

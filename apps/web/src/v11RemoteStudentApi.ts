@@ -1,3 +1,4 @@
+import type { GameContentV11 } from '@laojie/content-schema';
 import type { V11Action, V11GameState, V11ResumeScreen } from '@laojie/game-engine';
 import type { GameReportV11 } from '@laojie/report-engine';
 
@@ -32,6 +33,7 @@ export interface V11RemoteReplayResponse {
 }
 
 export interface V11RemoteStudentApi {
+  content?: (version: string) => Promise<GameContentV11 & { contentChecksum: string }>;
   join(classCode: string, studentNumber: string, name: string): Promise<V11RemoteJoinResponse>;
   replay(token: string, firstRunId: string): Promise<V11RemoteReplayResponse>;
   me(token: string, playthroughId: string): Promise<{ playthrough: V11RemotePlaythrough }>;
@@ -42,6 +44,10 @@ export interface V11RemoteStudentApi {
     idempotencyKey: string,
   ): Promise<{ playthrough: V11RemotePlaythrough }>;
   report(token: string, playthroughId: string): Promise<GameReportV11>;
+}
+
+export interface V11RemoteContentApi {
+  content(version: string): Promise<GameContentV11 & { contentChecksum: string }>;
 }
 
 async function parse<T>(response: Response): Promise<T> {
@@ -90,6 +96,10 @@ export class FetchV11RemoteStudentApi implements V11RemoteStudentApi {
       }
       throw cause;
     }
+  }
+
+  async content(version: string): Promise<GameContentV11 & { contentChecksum: string }> {
+    return this.json(`/api/v11/content?version=${encodeURIComponent(version)}`);
   }
 
   async join(

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import type { GameContentV11 } from '@laojie/content-schema';
+import { validateV11Content, type GameContentV11 } from '@laojie/content-schema';
 import { hashV11Content } from '@laojie/game-engine';
 import { V11StudentApp } from './v11App.js';
 import { createV11RemoteFlow, type V11RemoteStudentFlow } from './v11RemoteStudentFlow.js';
-import { FetchV11RemoteStudentApi } from './v11RemoteStudentApi.js';
+import { FetchV11RemoteStudentApi, type V11RemoteContentApi } from './v11RemoteStudentApi.js';
 
 const api = new FetchV11RemoteStudentApi();
 const sessionKey = 'laojie.v11.live.student-session';
@@ -15,8 +15,18 @@ interface LiveSession {
   firstRunId?: string;
 }
 
+interface LiveFlow {
+  flow: V11RemoteStudentFlow;
+  content: GameContentV11;
+}
+
+interface RemoteContentIdentity {
+  contentVersion: string;
+  contentChecksum: string;
+}
+
 export function V11LiveStudentApp({ content }: { content: GameContentV11 }) {
-  const [flow, setFlow] = useState<V11RemoteStudentFlow | null>(null);
+  const [liveFlow, setLiveFlow] = useState<LiveFlow | null>(null);
   const [restoring, setRestoring] = useState(true);
   const [restoreError, setRestoreError] = useState('');
 
@@ -38,21 +48,17 @@ export function V11LiveStudentApp({ content }: { content: GameContentV11 }) {
     void api
       .me(session.token, session.playthroughId)
       .then(async (response) => {
-        await assertContentMatch(
-          content,
-          response.playthrough.contentVersion,
-          response.playthrough.contentChecksum,
-        );
+        const matchedContent = await resolveRemoteContent(content, response.playthrough, api);
         const next = createV11RemoteFlow(
           session.token,
           session.seed,
-          content,
+          matchedContent,
           api,
           response.playthrough,
         );
         await next.flushPending();
         await next.loadReport();
-        setFlow(next);
+        setLiveFlow({ flow: next, content: matchedContent });
       })
       .catch((cause) =>
         setRestoreError(
@@ -72,19 +78,23 @@ export function V11LiveStudentApp({ content }: { content: GameContentV11 }) {
         </section>
       </main>
     );
-  if (flow) {
-    const replay = sessionReplay(content, flow, setFlow);
+  if (liveFlow) {
+    const replay = sessionReplay(liveFlow.content, liveFlow.flow, setLiveFlow);
     return (
-      <V11StudentApp content={content} flow={flow} {...(replay ? { onReplay: replay } : {})} />
+      <V11StudentApp
+        content={liveFlow.content}
+        flow={liveFlow.flow}
+        {...(replay ? { onReplay: replay } : {})}
+      />
     );
   }
-  return <V11LiveJoinScreen content={content} onJoined={setFlow} initialError={restoreError} />;
+  return <V11LiveJoinScreen content={content} onJoined={setLiveFlow} initialError={restoreError} />;
 }
 
 function sessionReplay(
   content: GameContentV11,
   flow: V11RemoteStudentFlow,
-  setFlow: (flow: V11RemoteStudentFlow) => void,
+  setLiveFlow: (liveFlow: LiveFlow) => void,
 ): (() => Promise<void>) | undefined {
   const encoded =
     typeof localStorage === 'undefined' ? undefined : localStorage.getItem(sessionKey);
@@ -100,15 +110,19 @@ function sessionReplay(
   if (!firstRunId) return undefined;
   return async () => {
     const response = await api.replay(session.token, firstRunId);
-    await assertContentMatch(
+    const matchedContent = await resolveRemoteContent(
       content,
-      response.playthrough.contentVersion,
-      response.playthrough.contentChecksum || response.offlineContext.contentChecksum,
+      {
+        contentVersion: response.playthrough.contentVersion,
+        contentChecksum:
+          response.playthrough.contentChecksum || response.offlineContext.contentChecksum,
+      },
+      api,
     );
     const next = createV11RemoteFlow(
       session.token,
       response.offlineContext.playthroughSeed,
-      content,
+      matchedContent,
       api,
       response.playthrough,
     );
@@ -120,7 +134,7 @@ function sessionReplay(
         seed: response.offlineContext.playthroughSeed,
       } satisfies LiveSession),
     );
-    setFlow(next);
+    setLiveFlow({ flow: next, content: matchedContent });
   };
 }
 
@@ -130,10 +144,10 @@ function V11LiveJoinScreen({
   initialError = '',
 }: {
   content: GameContentV11;
-  onJoined: (flow: V11RemoteStudentFlow) => void;
+  onJoined: (liveFlow: LiveFlow) => void;
   initialError?: string;
 }) {
-  const [classCode, setClassCode] = useState('LAOJIE11');
+  const [classCode, setClassCode] = useState('');
   const [studentNumber, setStudentNumber] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState(initialError);
@@ -145,15 +159,19 @@ function V11LiveJoinScreen({
     setError('');
     try {
       const response = await api.join(classCode, studentNumber, name);
-      await assertContentMatch(
+      const matchedContent = await resolveRemoteContent(
         content,
-        response.contentVersion,
-        response.playthrough.contentChecksum || response.offlineContext.contentChecksum,
+        {
+          contentVersion: response.contentVersion,
+          contentChecksum:
+            response.playthrough.contentChecksum || response.offlineContext.contentChecksum,
+        },
+        api,
       );
       const flow = createV11RemoteFlow(
         response.token,
         response.offlineContext.playthroughSeed,
-        content,
+        matchedContent,
         api,
         response.playthrough,
       );
@@ -166,7 +184,7 @@ function V11LiveJoinScreen({
           firstRunId: response.playthrough.id,
         } satisfies LiveSession),
       );
-      onJoined(flow);
+      onJoined({ flow, content: matchedContent });
     } catch (cause) {
       setError(cause instanceof Error ? cause.message : '加入失败，请检查班级码和输入信息');
     } finally {
@@ -192,7 +210,7 @@ function V11LiveJoinScreen({
               required
               value={classCode}
               onChange={(event) => setClassCode(event.target.value.toUpperCase())}
-              placeholder="例如 LAOJIE11"
+              placeholder="请输入教师提供的班级码"
               autoComplete="off"
             />
           </label>
@@ -231,13 +249,26 @@ function V11LiveJoinScreen({
   );
 }
 
-function assertContentMatch(
-  content: GameContentV11,
-  remoteVersion: string,
-  remoteChecksum: string,
-): void {
-  const localChecksum = hashV11Content(content);
-  if (remoteVersion !== content.contentVersion || remoteChecksum !== localChecksum) {
-    throw new Error('游戏资料与经营服务不一致，请刷新页面后重新进入。已保存的经营进度不会被覆盖。');
-  }
+export async function resolveRemoteContent(
+  currentContent: GameContentV11,
+  remote: RemoteContentIdentity,
+  remoteApi: V11RemoteContentApi,
+): Promise<GameContentV11> {
+  const localChecksum = hashV11Content(currentContent);
+  if (
+    remote.contentVersion === currentContent.contentVersion &&
+    remote.contentChecksum === localChecksum
+  )
+    return currentContent;
+
+  const fetched = await remoteApi.content(remote.contentVersion);
+  const { contentChecksum, ...rawContent } = fetched;
+  const resolved = validateV11Content(rawContent);
+  if (
+    resolved.contentVersion !== remote.contentVersion ||
+    contentChecksum !== remote.contentChecksum ||
+    hashV11Content(resolved) !== contentChecksum
+  )
+    throw new Error('本节课的游戏资料暂时无法核验，请稍后再试或联系任课教师。');
+  return resolved;
 }

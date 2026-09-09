@@ -119,6 +119,12 @@ function contentChecksum(content: V11Store['content']): string {
   return createHash('sha256').update(JSON.stringify(content)).digest('hex');
 }
 
+function requiredContent(store: V11Store, version: string): V11Store['content'] {
+  const content = store.getContent(version);
+  if (!content) throw new Error(`班级绑定的内容包未随服务发布：${version}`);
+  return content;
+}
+
 function publicV11Class(record: V11ClassRecord) {
   return {
     id: record.id,
@@ -247,11 +253,17 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
       });
     }
   });
-  app.get('/api/v11/content', async (_request, reply) => {
-    const checksum = contentChecksum(store.content);
-    reply.header('x-v11-content-version', store.content.contentVersion);
+  app.get<{ Querystring: { version?: string } }>('/api/v11/content', async (request, reply) => {
+    const content = request.query.version ? store.getContent(request.query.version) : store.content;
+    if (!content)
+      return reply.code(404).send({
+        code: 'CONTENT_VERSION_NOT_AVAILABLE',
+        message: '这节课绑定的游戏资料暂时不可用，请联系任课教师。',
+      });
+    const checksum = contentChecksum(content);
+    reply.header('x-v11-content-version', content.contentVersion);
     reply.header('x-v11-content-checksum', checksum);
-    return { ...store.content, contentChecksum: checksum };
+    return { ...content, contentChecksum: checksum };
   });
 
   app.post<{ Body: { email?: string; password?: string } }>(
@@ -343,7 +355,12 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
         return reply.code(401).send(playerError('UNAUTHORIZED'));
       const playthrough = await store.getPlaythroughForStudent(token, request.query.playthroughId);
       if (!playthrough) return reply.code(404).send(playerError('PLAYTHROUGH_NOT_FOUND'));
-      return { playthrough: publicV11Playthrough(playthrough, store.content) };
+      return {
+        playthrough: publicV11Playthrough(
+          playthrough,
+          requiredContent(store, playthrough.state.contentVersion),
+        ),
+      };
     },
   );
 
@@ -369,7 +386,7 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
             studentNumber: result.identity.studentNumber,
             displayName: result.identity.displayName,
           },
-          contentVersion: store.content.contentVersion,
+          contentVersion: result.playthrough.contentVersion,
           offlineContext: result.offlineContext,
           playthrough: result.playthrough,
         };
@@ -482,7 +499,7 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
       return buildV11ClassAnalytics(
         classRecord,
         await store.getClassStudents(classRecord.id),
-        store.content,
+        requiredContent(store, classRecord.contentVersion),
       );
     },
   );
@@ -538,7 +555,11 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
       const existingVariantCount = [...anonymousCases.values()].filter(
         (entry) => entry.classId === classRecord.id,
       ).length;
-      const data = buildV11AnonymousCase(bundles, store.content, existingVariantCount);
+      const data = buildV11AnonymousCase(
+        bundles,
+        requiredContent(store, classRecord.contentVersion),
+        existingVariantCount,
+      );
       if (!data)
         return reply
           .code(404)

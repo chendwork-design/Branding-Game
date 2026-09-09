@@ -7,6 +7,13 @@ export const publishedV11ContentUrl = new URL(
   import.meta.url,
 );
 
+/**
+ * Production classes are immutable. Keep every still-supported package in the
+ * runtime so a class can always be replayed against the exact package it was
+ * created with, while new classes continue to use the current package.
+ */
+export const publishedV11ContentVersions = ['v1.2.0', 'v1.3.0', 'v1.4.0'] as const;
+
 export interface PublishedV11Content {
   content: GameContentV11;
   checksum: string;
@@ -55,4 +62,20 @@ export async function loadPublishedContent(
   }
 
   return validatePublishedContentArtifact(artifact);
+}
+
+export async function loadPublishedContentCatalog(): Promise<
+  ReadonlyMap<string, PublishedV11Content>
+> {
+  const loaded = await Promise.all(
+    publishedV11ContentVersions.map(async (version) => {
+      const artifact = await loadPublishedContent(
+        new URL(`../../../content/compiled/${version}.json`, import.meta.url),
+      );
+      if (artifact.content.contentVersion !== version)
+        throw new Error(`正式内容包版本标识不匹配：${version}`);
+      return [version, artifact] as const;
+    }),
+  );
+  return new Map(loaded);
 }

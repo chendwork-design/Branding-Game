@@ -70,9 +70,51 @@ describe('web tooling boundary', () => {
 
   it('uses a runtime API configuration file instead of hard-coding the static preview port', async () => {
     const server = await readFile(new URL('../static-server.mjs', import.meta.url), 'utf8');
+    const runtimeConfig = await readFile(
+      new URL('../public/runtime-config.js', import.meta.url),
+      'utf8',
+    );
     expect(server).toContain("requested === 'runtime-config.js'");
     expect(server).toContain('apiBase');
     expect(server).toContain('v11ApiBase');
+    expect(runtimeConfig).toContain("hostname === 'branding-game.pages.dev'");
+    expect(runtimeConfig).toContain('https://api-v2-production-6e81.up.railway.app');
+    expect(runtimeConfig).toContain('!config.v11ApiBase');
+  });
+
+  it('falls back to the public API only on the production Pages hostname', async () => {
+    const runtimeConfig = await readFile(
+      new URL('../public/runtime-config.js', import.meta.url),
+      'utf8',
+    );
+    type RuntimeConfigWindow = {
+      location: { hostname: string };
+      __LAOJIE_RUNTIME_CONFIG__?: { v11ApiBase?: string };
+    };
+    const configure = new Function('window', runtimeConfig) as (
+      windowObject: RuntimeConfigWindow,
+    ) => void;
+
+    const pagesWindow: RuntimeConfigWindow = {
+      location: { hostname: 'branding-game.pages.dev' },
+    };
+    configure(pagesWindow);
+    expect(pagesWindow.__LAOJIE_RUNTIME_CONFIG__?.v11ApiBase).toBe(
+      'https://api-v2-production-6e81.up.railway.app',
+    );
+
+    const localWindow: RuntimeConfigWindow = { location: { hostname: 'localhost' } };
+    configure(localWindow);
+    expect(localWindow.__LAOJIE_RUNTIME_CONFIG__).toEqual({});
+
+    const configuredWindow = {
+      location: { hostname: 'branding-game.pages.dev' },
+      __LAOJIE_RUNTIME_CONFIG__: { v11ApiBase: 'https://configured.example.test' },
+    };
+    configure(configuredWindow);
+    expect(configuredWindow.__LAOJIE_RUNTIME_CONFIG__.v11ApiBase).toBe(
+      'https://configured.example.test',
+    );
   });
 
   it('keeps a non-React startup fallback and diagnostic loader in the entry document', async () => {

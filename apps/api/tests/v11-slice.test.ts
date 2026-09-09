@@ -23,6 +23,24 @@ describe('v1.1 four-round API slice', () => {
     });
     expect(content.statusCode).toBe(200);
     expect(content.headers['access-control-allow-origin']).toBe(previewOrigin);
+
+    const productionPagesOrigin = 'https://branding-game.pages.dev';
+    const productionContent = await app.inject({
+      method: 'GET',
+      url: '/api/v11/content',
+      headers: { origin: productionPagesOrigin },
+    });
+    expect(productionContent.statusCode).toBe(200);
+    expect(productionContent.headers['access-control-allow-origin']).toBe(productionPagesOrigin);
+
+    const productionJoin = await app.inject({
+      method: 'POST',
+      url: '/api/v11/student/join',
+      headers: { origin: productionPagesOrigin },
+      payload: { classCode: 'CORSV11', studentNumber: '20260018', name: '正式入口学生' },
+    });
+    expect(productionJoin.statusCode).toBe(200);
+
     const deletePreflight = await app.inject({
       method: 'OPTIONS',
       url: '/api/v11/teacher/classes/v11-trial-class',

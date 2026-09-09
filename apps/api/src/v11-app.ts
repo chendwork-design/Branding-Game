@@ -101,6 +101,7 @@ const defaultV11CorsOrigins = [
   'http://127.0.0.1:4180',
   'http://localhost:4180',
   'http://192.168.1.103:4180',
+  'https://branding-game.pages.dev',
 ].join(',');
 
 function playerError(code: V11PlayerErrorCode, technicalCode: string = code) {

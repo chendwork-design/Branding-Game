@@ -290,6 +290,11 @@ export const V11VisualSystem = z.object({
         'cup-sleeve',
         'packaging',
         'avatar',
+        // Immutable v1.2.0 packages used these legacy identifiers. They remain
+        // valid for historical classes even though newer packages use the
+        // more specific touchpoint identifiers above.
+        'menu',
+        'social',
       ]),
     )
     .min(3),

@@ -464,8 +464,7 @@ export class V11PostgresStore implements V11Store {
         ).rows[0];
       }
       if (!firstRun) throw new Error('REPLAY_FIRST_RUN_NOT_FOUND');
-      if (firstRun.status !== 'completed' || !firstRun.report_json)
-        throw new Error('REPLAY_INCOMPLETE');
+      if (firstRun.status !== 'completed') throw new Error('REPLAY_INCOMPLETE');
       const classRow = (
         await client.query<ClassRow>(
           'SELECT c.id, c.code, c.name, cv.version AS content_version, cv.checksum AS content_checksum, c.seed_ciphertext, c.status, c.created_at FROM classes c JOIN content_versions cv ON cv.id = c.content_version_id WHERE c.id = $1 FOR SHARE',
@@ -474,6 +473,20 @@ export class V11PostgresStore implements V11Store {
       ).rows[0];
       if (!classRow || classRow.status !== 'active') throw new Error('REPLAY_CLASS_CLOSED');
       const content = this.contentForClassRow(classRow);
+      if (!firstRun.report_json) {
+        if (hashV11State(firstRun.state_json) !== firstRun.state_hash)
+          throw new Error('REPLAY_INCOMPLETE');
+        const recoveredReport = buildV11Report(firstRun.state_json, content);
+        await client.query(
+          'UPDATE playthroughs SET report_json = $2::jsonb WHERE id = $1 AND report_json IS NULL',
+          [firstRun.id, JSON.stringify(recoveredReport)],
+        );
+        await client.query(
+          'INSERT INTO reports (playthrough_id, state_hash, report_json) VALUES ($1, $2, $3::jsonb) ON CONFLICT DO NOTHING',
+          [firstRun.id, firstRun.state_hash, JSON.stringify(recoveredReport)],
+        );
+        firstRun = { ...firstRun, report_json: recoveredReport };
+      }
       const state = createV11State(content.contentVersion, randomUUID());
       const replay = (
         await client.query<PlaythroughRow>(

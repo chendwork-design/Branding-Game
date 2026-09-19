@@ -32,6 +32,12 @@ describe('V11 formal PostgreSQL storage contract', () => {
     expect(store).toContain('FOR UPDATE');
     expect(store).toContain('action_hash');
     expect(store).toContain('applyV11Action');
+    expect(store).toContain('hashV11State(firstRun.state_json) !== firstRun.state_hash');
+    expect(store).toContain('buildV11Report(firstRun.state_json, content)');
+    expect(store).toContain(
+      'UPDATE playthroughs SET report_json = $2::jsonb WHERE id = $1 AND report_json IS NULL',
+    );
+    expect(store).toContain('INSERT INTO reports (playthrough_id, state_hash, report_json)');
     expect(store).toContain("await client.query('COMMIT')");
     expect(store).toContain("await client.query('ROLLBACK')");
 

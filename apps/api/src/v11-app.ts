@@ -30,7 +30,9 @@ type V11PlayerErrorCode =
   | 'PLAYTHROUGH_NOT_FOUND'
   | 'CONTENT_VERSION_MISMATCH'
   | 'REPORT_NOT_READY'
-  | 'REPLAY_NOT_READY'
+  | 'REPLAY_FIRST_RUN_NOT_FOUND'
+  | 'REPLAY_INCOMPLETE'
+  | 'REPLAY_CLASS_CLOSED'
   | 'JOIN_INVALID'
   | 'IDEMPOTENCY_CONFLICT'
   | 'ACTION_REJECTED'
@@ -65,10 +67,20 @@ const playerErrorCopy: Record<
     retryable: false,
     recoveryAction: '继续完成经营',
   },
-  REPLAY_NOT_READY: {
+  REPLAY_FIRST_RUN_NOT_FOUND: {
+    playerMessage: '没找到可用于重玩的首局记录。请重新进入班级后再试；首局成绩不会被覆盖。',
+    retryable: true,
+    recoveryAction: '重新进入班级',
+  },
+  REPLAY_INCOMPLETE: {
     playerMessage: '先完成首局经营，才能开始一次不会影响首局记录的独立重玩。',
     retryable: false,
     recoveryAction: '继续完成首局',
+  },
+  REPLAY_CLASS_CLOSED: {
+    playerMessage: '班级目前已关闭，暂时不能新开重玩。请联系任课教师重新开放班级。',
+    retryable: true,
+    recoveryAction: '联系任课教师',
   },
   JOIN_INVALID: {
     playerMessage: '请检查班级码、学号和姓名后再试。',
@@ -404,19 +416,25 @@ export function buildV11App(store: V11Store = new V11MemoryStore()): FastifyInst
   app.post<{ Body: { firstRunId?: string } }>('/api/v11/student/replay', async (request, reply) => {
     const token = studentToken(request);
     if (!token) return reply.code(401).send(playerError('UNAUTHORIZED'));
+    if (!(await store.getStudentSession(token)))
+      return reply.code(401).send(playerError('UNAUTHORIZED', 'STUDENT_SESSION_EXPIRED'));
     try {
-      if (!request.body.firstRunId || request.body.firstRunId.length > 80)
-        throw new Error('缺少首局记录编号');
-      return await store.startReplay(token, request.body.firstRunId);
+      const firstRunId = request.body.firstRunId;
+      if (firstRunId && firstRunId.length > 80) throw new Error('REPLAY_FIRST_RUN_NOT_FOUND');
+      return await store.startReplay(token, firstRunId ?? '');
     } catch (error) {
+      const technicalCode = error instanceof Error ? error.message : 'REPLAY_FIRST_RUN_NOT_FOUND';
+      const code: Extract<
+        V11PlayerErrorCode,
+        'REPLAY_FIRST_RUN_NOT_FOUND' | 'REPLAY_INCOMPLETE' | 'REPLAY_CLASS_CLOSED'
+      > = technicalCode === 'REPLAY_INCOMPLETE'
+        ? 'REPLAY_INCOMPLETE'
+        : technicalCode === 'REPLAY_CLASS_CLOSED'
+          ? 'REPLAY_CLASS_CLOSED'
+          : 'REPLAY_FIRST_RUN_NOT_FOUND';
       return reply
         .code(400)
-        .send(
-          playerError(
-            'REPLAY_NOT_READY',
-            error instanceof Error ? error.message : 'REPLAY_NOT_READY',
-          ),
-        );
+        .send(playerError(code, technicalCode));
     }
   });
 

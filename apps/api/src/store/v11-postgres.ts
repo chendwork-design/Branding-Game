@@ -445,25 +445,34 @@ export class V11PostgresStore implements V11Store {
 
   async startReplay(token: string, firstRunId: string) {
     const session = await this.getStudentSession(token);
-    if (!session) throw new Error('学生会话无效');
+    if (!session) throw new Error('STUDENT_SESSION_EXPIRED');
     const client = await this.pool.connect();
     try {
       await client.query('BEGIN');
-      const firstRun = (
+      let firstRun = (
         await client.query<PlaythroughRow>(
           `SELECT ${playthroughColumns} FROM playthroughs WHERE id = $1 AND student_identity_id = $2 AND kind = 'first_run' FOR UPDATE`,
           [firstRunId, session.studentIdentityId],
         )
       ).rows[0];
-      if (!firstRun || firstRun.status !== 'completed' || !firstRun.report_json)
-        throw new Error('完成首局后才能开始独立重玩');
+      if (!firstRun) {
+        firstRun = (
+          await client.query<PlaythroughRow>(
+            `SELECT ${playthroughColumns} FROM playthroughs WHERE student_identity_id = $1 AND kind = 'first_run' ORDER BY created_at ASC LIMIT 1 FOR UPDATE`,
+            [session.studentIdentityId],
+          )
+        ).rows[0];
+      }
+      if (!firstRun) throw new Error('REPLAY_FIRST_RUN_NOT_FOUND');
+      if (firstRun.status !== 'completed' || !firstRun.report_json)
+        throw new Error('REPLAY_INCOMPLETE');
       const classRow = (
         await client.query<ClassRow>(
           'SELECT c.id, c.code, c.name, cv.version AS content_version, cv.checksum AS content_checksum, c.seed_ciphertext, c.status, c.created_at FROM classes c JOIN content_versions cv ON cv.id = c.content_version_id WHERE c.id = $1 FOR SHARE',
           [firstRun.class_id],
         )
       ).rows[0];
-      if (!classRow || classRow.status !== 'active') throw new Error('班级不存在或已关闭');
+      if (!classRow || classRow.status !== 'active') throw new Error('REPLAY_CLASS_CLOSED');
       const content = this.contentForClassRow(classRow);
       const state = createV11State(content.contentVersion, randomUUID());
       const replay = (

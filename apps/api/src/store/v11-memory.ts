@@ -222,13 +222,20 @@ export class V11MemoryStore implements V11Store {
 
   async startReplay(token: string, firstRunId: string) {
     const session = await this.getStudentSession(token);
-    const firstRun = this.playthroughs.get(firstRunId);
-    if (!session || !firstRun || firstRun.studentIdentityId !== session.studentIdentityId)
-      throw new Error('首局经营记录不存在');
+    if (!session) throw new Error('STUDENT_SESSION_EXPIRED');
+    const requestedFirstRun = this.playthroughs.get(firstRunId);
+    const firstRun =
+      requestedFirstRun?.studentIdentityId === session.studentIdentityId &&
+      requestedFirstRun.kind === 'first_run'
+        ? requestedFirstRun
+        : [...this.playthroughs.values()].find(
+            (item) => item.studentIdentityId === session.studentIdentityId && item.kind === 'first_run',
+          );
+    if (!firstRun) throw new Error('REPLAY_FIRST_RUN_NOT_FOUND');
     if (firstRun.kind !== 'first_run' || firstRun.status !== 'completed' || !firstRun.report)
-      throw new Error('完成首局后才能开始独立重玩');
+      throw new Error('REPLAY_INCOMPLETE');
     const classRecord = this.classes.get(firstRun.classId);
-    if (!classRecord) throw new Error('班级不存在');
+    if (!classRecord || classRecord.status !== 'active') throw new Error('REPLAY_CLASS_CLOSED');
     const replay = this.newPlaythrough(classRecord, { id: firstRun.studentIdentityId }, 'replay');
     return {
       playthrough: this.publicPlaythrough(replay),

@@ -556,7 +556,7 @@ describe('v1.1 four-round API slice', () => {
     });
     expect(replayBeforeComplete.statusCode).toBe(400);
     expect(replayBeforeComplete.json()).toMatchObject({
-      code: 'REPLAY_NOT_READY',
+      code: 'REPLAY_INCOMPLETE',
       retryable: false,
     });
 
@@ -616,6 +616,19 @@ describe('v1.1 four-round API slice', () => {
     });
     expect(replay.json().playthrough.id).not.toBe(joined.playthrough.id);
 
+    const replayFromStaleClientReference = await app.inject({
+      method: 'POST',
+      url: '/api/v11/student/replay',
+      headers: { 'x-student-token': joined.token },
+      payload: { firstRunId: 'stale-first-run-reference' },
+    });
+    expect(replayFromStaleClientReference.statusCode).toBe(200);
+    expect(replayFromStaleClientReference.json().playthrough).toMatchObject({
+      kind: 'replay',
+      status: 'active',
+      roundIndex: 0,
+    });
+
     const firstRun = await app.inject({
       method: 'GET',
       url: `/api/v11/student/me?playthroughId=${joined.playthrough.id}`,
@@ -642,7 +655,7 @@ describe('v1.1 four-round API slice', () => {
       students
         .json()
         .students[0].playthroughs.filter((item: { kind: string }) => item.kind === 'replay'),
-    ).toHaveLength(1);
+    ).toHaveLength(2);
     await app.close();
   });
 });

@@ -22,6 +22,12 @@ describe('V11 formal PostgreSQL storage contract', () => {
     expect(store).toContain('export class V11PostgresStore');
     expect(store).toContain('async checkReadiness');
     expect(store).toContain("await this.pool.query('SELECT 1')");
+    expect(store).toContain("'SELECT version, checksum, status FROM content_versions WHERE version = $1'");
+    expect(store).not.toContain(
+      'SELECT DISTINCT cv.version, cv.checksum FROM classes c JOIN content_versions cv ON cv.id = c.content_version_id',
+    );
+    expect(store).toContain('private contentForClassRow(row: ClassRow)');
+    expect(store).toContain('checksum(content) !== row.content_checksum');
     expect(store).toContain('async createClass');
     expect(store).toContain('async listClasses');
     expect(store).toContain('async updateClassStatus');

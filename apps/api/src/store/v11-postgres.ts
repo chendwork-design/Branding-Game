@@ -183,14 +183,12 @@ export class V11PostgresStore implements V11Store {
     const current = required.rows[0];
     if (!current || current.status !== 'published' || current.checksum !== checksum(this.content))
       throw new Error('当前内容不是数据库中的已发布候选版本');
-    const classVersions = await this.pool.query<{ version: string; checksum: string }>(
-      'SELECT DISTINCT cv.version, cv.checksum FROM classes c JOIN content_versions cv ON cv.id = c.content_version_id',
-    );
-    for (const classVersion of classVersions.rows) {
-      const content = this.getContent(classVersion.version);
-      if (!content || checksum(content) !== classVersion.checksum)
-        throw new Error(`班级绑定的内容包未随服务发布：${classVersion.version}`);
-    }
+    // Readiness describes whether this release can serve traffic, not whether
+    // every historical class ever stored in the database is still executable
+    // by the current engine. Class-scoped operations validate the immutable
+    // version and checksum through contentForClassRow before reading or writing
+    // that class, so an unsupported legacy record remains isolated instead of
+    // taking the whole service offline.
   }
 
   getContent(version: string): GameContentV11 | undefined {
